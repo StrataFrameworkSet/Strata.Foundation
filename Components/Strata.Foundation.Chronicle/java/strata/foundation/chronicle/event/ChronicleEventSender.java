@@ -85,6 +85,7 @@ class ChronicleEventSender<E>
     public ChronicleQueue
     getQueue() { return queue; }
 
+    @SuppressWarnings("unchecked")
     private SendResult<E>
     appendToQueue(ExcerptAppender a,E event)
     {

@@ -6,6 +6,8 @@ package strata.foundation.core.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -16,11 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-
-/****************************************************************************
- * 
- */
-public 
+public
 class JsonObjectMapper<T>
     implements IObjectMapper<T,String>
 {
@@ -28,27 +26,25 @@ class JsonObjectMapper<T>
     private final ObjectMapper       itsMapper;
     private final Map<String,String> itsTypeMappings;
     
-    /************************************************************************
-     * Creates a new JsonObjectMapper. 
-     *
-     */
     public
     JsonObjectMapper()
     {
+        itsMapper =
+            JsonMapper
+                .builder()
+                .enable( MapperFeature.REQUIRE_SETTERS_FOR_GETTERS )
+                .enable( MapperFeature.ALLOW_EXPLICIT_PROPERTY_RENAMING )
+                .enable( DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES )
+                .enable( SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS )
+                .build();
 
-        itsMapper = new ObjectMapper();
         itsMapper
-            .setPropertyNamingStrategy( 
-                new PropertyNamingStrategy.UpperCamelCaseStrategy() )
+            .setPropertyNamingStrategy(
+                PropertyNamingStrategies.UPPER_CAMEL_CASE )
             .activateDefaultTypingAsProperty(
-                itsMapper.getPolymorphicTypeValidator(),
+                LaissezFaireSubTypeValidator.instance,
                 ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE,
-                    "@class")
-            .enable( MapperFeature.REQUIRE_SETTERS_FOR_GETTERS )
-            .enable( MapperFeature.ALLOW_EXPLICIT_PROPERTY_RENAMING )
-            .enable( MapperFeature.SORT_PROPERTIES_ALPHABETICALLY )
-            .enable( DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES )
-            .enable( SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS )
+                "@class")
             .registerModule(new SimpleModule())
             .registerModule(new JavaTimeModule())
             .registerModule( new Jdk8Module())
@@ -57,10 +53,6 @@ class JsonObjectMapper<T>
         itsTypeMappings = new HashMap<>();
     }
 
-    /************************************************************************
-     * Creates a new JsonObjectMapper.
-     *
-     */
     public
     JsonObjectMapper(ObjectMapper mapper)
     {
@@ -68,9 +60,6 @@ class JsonObjectMapper<T>
         itsTypeMappings = new HashMap<>();
     }
 
-    /************************************************************************
-     * {@inheritDoc} 
-     */
     @Override
     public <S extends T> String
     toPayload(S object)
@@ -85,9 +74,6 @@ class JsonObjectMapper<T>
         }
     }
 
-    /************************************************************************
-     * {@inheritDoc} 
-     */
     @Override
     public <S extends T> S 
     toObject(Class<S> type,String payload)
@@ -102,13 +88,6 @@ class JsonObjectMapper<T>
         }
     }
 
-    /************************************************************************
-     *  
-     *
-     * @param sourceType
-     * @param destType
-     * @return
-     */
     public JsonObjectMapper<T>
     insertMapping(String sourceType,Class<?> destType)
     {
@@ -116,11 +95,6 @@ class JsonObjectMapper<T>
         return this;
     }
     
-    /************************************************************************
-     *  
-     *
-     * @return
-     */
     public JsonObjectMapper<T>
     clearMappings()
     {
@@ -138,12 +112,6 @@ class JsonObjectMapper<T>
         return itsMapper;
     }
 
-    /************************************************************************
-     *  
-     *
-     * @param payload
-     * @return
-     */
     private String
     preprocess(String payload)
     {
