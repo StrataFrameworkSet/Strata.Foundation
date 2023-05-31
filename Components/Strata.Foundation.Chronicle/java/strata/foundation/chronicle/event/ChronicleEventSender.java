@@ -24,7 +24,7 @@ class ChronicleEventSender<E>
     public
     ChronicleEventSender(ChronicleQueue q)
     {
-        queue = q;
+        queue    = q;
         appender = Optional.empty();
 
         if (queue.isClosed())
