@@ -27,11 +27,16 @@
 # Gradle
 ######################
 .gradle/**
+!.gradle/
+!.gradle/wrapper/
+!.gradle/wrapper/gradle-wrapper.jar
+!.gradle/wrapper/gradle-wrapper.properties
 
 ######################
 # Package Files
 ######################
 *.jar
+!.gradle/wrapper/gradle-wrapper.jar
 *.war
 *.ear
 *.db
