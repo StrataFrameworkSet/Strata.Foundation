@@ -1,0 +1,22 @@
+//////////////////////////////////////////////////////////////////////////////
+// AbstractUnboundedStreamSink.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.stream;
+
+public abstract
+class AbstractUnboundedStreamSink<T>
+    implements IUnboundedStreamSink<T>
+{
+    @Override
+    public void
+    accept(IUnboundedStream<T> stream)
+    {
+        stream.forEach(e -> process(e));
+    }
+
+    protected abstract void
+    process(T element);
+}
+
+//////////////////////////////////////////////////////////////////////////////

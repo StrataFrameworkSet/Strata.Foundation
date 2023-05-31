@@ -1,0 +1,4 @@
+group 'strata.foundation'
+version '1.0-SNAPSHOT'
+project.buildDir = ".build";
+wrapper.jarFile = ".gradle/wrapper/gradle-wrapper.jar"
