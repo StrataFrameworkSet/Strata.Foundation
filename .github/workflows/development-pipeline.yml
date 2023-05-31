@@ -23,5 +23,5 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
-          gradle-executable: .gradle/wrapper
+          gradle-executable: gradlew
           arguments: build
