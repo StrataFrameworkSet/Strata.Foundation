@@ -8,10 +8,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  PROPERTIES_ENCRYPTION_KEY: ${{secrets.PROPERTIES_ENCRYPTION_KEY}}
+
 jobs:
   run-commit-stage:
     runs-on: ubuntu-latest
-    environment: Development
     steps:
       - name: Check Out
         uses: actions/checkout@v3
