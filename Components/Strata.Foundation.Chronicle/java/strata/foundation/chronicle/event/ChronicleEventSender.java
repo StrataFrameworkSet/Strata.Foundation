@@ -24,7 +24,7 @@ class ChronicleEventSender<E>
     public
     ChronicleEventSender(ChronicleQueue q)
     {
-        queue = q;
+        queue    = q;
         appender = Optional.empty();
 
         if (queue.isClosed())
@@ -85,6 +85,7 @@ class ChronicleEventSender<E>
     public ChronicleQueue
     getQueue() { return queue; }
 
+    @SuppressWarnings("unchecked")
     private SendResult<E>
     appendToQueue(ExcerptAppender a,E event)
     {
