@@ -1,0 +1,10 @@
+{
+    "type" : "record",
+    "namespace" : "strata.foundation.core.event",
+    "name" : "EventIdentifiersData",
+    "fields" : [
+        {"name" : "eventId", "type": "string"},
+        {"name" : "correlationId", "type": ["null","string"], "default": null},
+        {"name" : "timestamp", "type" : {"type": "long", "logicalType": "timestamp-millis"}}
+    ]
+}

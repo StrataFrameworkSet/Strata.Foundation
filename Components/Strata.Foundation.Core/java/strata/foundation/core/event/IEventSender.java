@@ -4,8 +4,6 @@
 
 package strata.foundation.core.event;
 
-import java.util.concurrent.CompletionStage;
-
 public
 interface IEventSender<E>
 {
@@ -15,7 +13,7 @@ interface IEventSender<E>
     IEventSender<E>
     close() throws Exception;
 
-    CompletionStage<SendResult<E>>
+    ICompletableSendResult<E>
     send(E event);
 
     boolean

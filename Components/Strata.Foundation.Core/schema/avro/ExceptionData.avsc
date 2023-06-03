@@ -1,0 +1,11 @@
+{
+    "type" : "record",
+    "namespace" : "strata.foundation.core.event",
+    "name" : "ExceptionData",
+    "fields" : [
+        {"name" : "message", "type": ["null","string"],"default": null},
+        {"name" : "errorCode", "type": ["null","int"], "default": null},
+        {"name" : "stackTrace", "type": ["null","string"],"default": null},
+        {"name" : "cause", "type": ["null","ExceptionData"], "default" : null}
+    ]
+}

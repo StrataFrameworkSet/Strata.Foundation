@@ -4,15 +4,15 @@
 
 package strata.foundation.chronicle.event;
 
-import strata.foundation.core.event.IEventSender;
-import strata.foundation.core.event.SendResult;
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.ExcerptAppender;
+import strata.foundation.core.event.CompletableSendResult;
+import strata.foundation.core.event.ICompletableSendResult;
+import strata.foundation.core.event.IEventSender;
+import strata.foundation.core.event.SendResult;
 import strata.foundation.core.utility.OptionalExtension;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 
 public
 class ChronicleEventSender<E>
@@ -49,7 +49,7 @@ class ChronicleEventSender<E>
     }
 
     @Override
-    public CompletionStage<SendResult<E>>
+    public ICompletableSendResult<E>
     send(E event)
     {
         return
@@ -57,9 +57,9 @@ class ChronicleEventSender<E>
                 .ifPresentOrElse(
                     appender,
                     a ->
-                        CompletableFuture.supplyAsync(() -> appendToQueue(a,event)),
+                        CompletableSendResult.supplyAsync(() -> appendToQueue(a,event)),
                     () ->
-                        CompletableFuture.completedFuture(
+                        CompletableSendResult.completedWith(
                             new SendResult<>(
                                 new IllegalStateException("sender is not open"))));
     }

@@ -1,18 +1,39 @@
 plugins {
     id 'java-library'
+    id "com.github.davidmc24.gradle.plugin.avro-base" version "1.3.0"
 }
 
 sourceSets {
-    main.java.srcDirs = ['java']
+    main.java.srcDirs = ['java','build/generated-java']
     test.java.srcDirs = ['java']
-    main.resources.srcDirs = ['resources']
+    main.resources.srcDirs = ['resources','schema']
     test.resources.srcDirs = ['resources']
 }
 
+import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
+
 apply plugin: 'maven-publish'
+apply plugin: "com.github.davidmc24.gradle.plugin.avro-base"
 
 group 'strata.foundation'
 version '1.0-SNAPSHOT'
+
+def genAvro = tasks.register("genAvro", GenerateAvroJavaTask) {
+    source = file("schema/avro")
+    outputDir = file("build/generated-java")
+    createSetters = true
+    createOptionalGetters = false
+    gettersReturnOptional = false
+    optionalGettersForNullableFieldsOnly = false
+    fieldVisibility = "PRIVATE"
+    outputCharacterEncoding = "UTF-8"
+    stringType = "String"
+    enableDecimalLogicalType = true
+}
+
+tasks.named("compileJava").configure {
+    source(genAvro)
+}
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
@@ -48,7 +69,6 @@ dependencies {
     api 'org.apache.avro:avro:1.11.1'
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.1'
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.1'
-    //api 'org.springdoc:springdoc-openapi-webmvc-core:1.6.12'
     api 'org.apache.logging.log4j:log4j-api:2.20.0'
     api 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
 }

@@ -5,11 +5,7 @@
 package strata.foundation.spring.event;
 
 import org.springframework.kafka.core.KafkaTemplate;
-import strata.foundation.core.event.IEventKeySelector;
-import strata.foundation.core.event.IEventSender;
-import strata.foundation.core.event.SendResult;
-
-import java.util.concurrent.CompletionStage;
+import strata.foundation.core.event.*;
 
 public abstract
 class AbstractKafkaTemplateEventSender<K,E>
@@ -45,20 +41,21 @@ class AbstractKafkaTemplateEventSender<K,E>
     }
 
     @Override
-    public CompletionStage<SendResult<E>>
+    public ICompletableSendResult<E>
     send(E event)
     {
         return
-            sender
-                .send(topic,keySelector.get(event),event)
-                .thenApply(
-                    result ->
-                        new SendResult<>(
-                            result
-                                .getProducerRecord()
-                                .value()))
-                .exceptionally(exception -> new SendResult<>(exception));
-    }
+            new CompletableSendResult<>(
+                sender
+                    .send(topic,keySelector.get(event),event)
+                    .thenApply(
+                        result ->
+                            new SendResult<>(
+                                result
+                                    .getProducerRecord()
+                                    .value()))
+                    .exceptionally(exception -> new SendResult<>(exception)));
+        }
 
     @Override
     public boolean

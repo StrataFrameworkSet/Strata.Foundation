@@ -1,0 +1,10 @@
+{
+    "type" : "record",
+    "namespace" : "strata.foundation.core.event",
+    "name" : "FooData",
+    "fields" : [
+        {"name":  "id","type":  "string"},
+        {"name" : "x", "type": ["null","string"],"default": null},
+        {"name" : "y", "type": ["null","int"], "default": null}
+    ]
+}

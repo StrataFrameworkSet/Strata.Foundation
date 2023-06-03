@@ -1,0 +1,11 @@
+{
+    "type" : "record",
+    "namespace" : "strata.foundation.core.event",
+    "name" : "FooEvent",
+    "fields" : [
+        {"name" : "identifiers", "type": "strata.foundation.core.event.EventIdentifiersData"},
+        {"name" : "eventType", "type": "strata.foundation.core.event.StandardEventType"},
+        {"name" : "source", "type": "strata.foundation.core.event.FooData"},
+        {"name" : "exception", "type": ["null","strata.foundation.core.event.ExceptionData"], "default" : null}
+    ]
+}

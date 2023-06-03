@@ -10,7 +10,7 @@ sourceSets {
 }
 
 dependencies {
-    testImplementation project(':Components:Strata.Foundation.Core')
+    testImplementation project(':Components:Strata.Foundation.Chronicle')
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
