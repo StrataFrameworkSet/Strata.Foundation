@@ -82,6 +82,10 @@ class AbstractKafkaEventSender<E>
     }
 
     @Override
+    public boolean
+    isClosed() { return itsProducer == null; }
+
+    @Override
     public ICompletableSendResult<E>
     send(E event)
     {

@@ -42,6 +42,5 @@ include 'Tests:Strata.Foundation.CoreTest'
 include 'Tests:Strata.Foundation.SpringTest'
 include 'Tests:Strata.Foundation.KafkaTest'
 include 'Tests:Strata.Foundation.ChronicleTest'
-include 'Tests:Strata.Foundation.SpringTest'
-findProject(':Tests:Strata.Foundation.SpringTest')?.name = 'Strata.Foundation.SpringTest'
+
 

@@ -66,7 +66,7 @@ class ConfluentConsumerConfigurationProvider
         if (getProperties().containsKey(SchemaRegistryClientConfig.USER_INFO_CONFIG))
         {
             properties.put(
-                SchemaRegistryClientConfig.SCHEMA_REGISTRY_USER_INFO_CONFIG,
+                SchemaRegistryClientConfig.USER_INFO_CONFIG,
                 getProperties().get(SchemaRegistryClientConfig.USER_INFO_CONFIG));
             properties.put(
                 SchemaRegistryClientConfig.BASIC_AUTH_CREDENTIALS_SOURCE,
