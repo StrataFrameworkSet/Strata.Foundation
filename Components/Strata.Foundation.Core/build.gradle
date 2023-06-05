@@ -16,7 +16,7 @@ apply plugin: 'maven-publish'
 apply plugin: "com.github.davidmc24.gradle.plugin.avro-base"
 
 group 'strata.foundation'
-version '1.0-SNAPSHOT'
+version "$major$minor$patch"
 
 def genAvro = tasks.register("genAvro", GenerateAvroJavaTask) {
     source = file("schema/avro")

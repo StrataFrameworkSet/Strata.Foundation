@@ -12,7 +12,7 @@ sourceSets {
 apply plugin: 'maven-publish'
 
 group 'strata.foundation'
-version '1.0-SNAPSHOT'
+version "$major$minor$patch"
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
