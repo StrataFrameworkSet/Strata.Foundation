@@ -5,10 +5,10 @@ plugins {
 }
 
 sourceSets {
+    test.java.srcDirs = ['test/java']
+    test.resources.srcDirs = ['test/resources']
     testFixtures.java.srcDirs = ['testFixtures/java','build/generated-java']
     testFixtures.resources.srcDirs = ['testFixtures/resources','testFixtures/schema']
-    test.java.srcDirs = ['unused']
-    test.resources.srcDirs = ['unused']
     main.java.srcDirs = ['unused']
     main.resources.srcDirs = ['unused']
 }
@@ -60,8 +60,10 @@ tasks.named("compileJava").configure {
 }
 
 dependencies {
-    implementation project(':Components:Strata.Foundation.Core')
+    testImplementation project(':Components:Strata.Foundation.Core')
     testFixturesApi project(':Components:Strata.Foundation.Core')
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testFixturesImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
     testFixturesImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'

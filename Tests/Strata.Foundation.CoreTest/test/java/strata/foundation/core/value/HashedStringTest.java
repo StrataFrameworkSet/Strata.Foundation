@@ -4,10 +4,7 @@
 
 package strata.foundation.core.value;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,9 +27,9 @@ class HashedStringTest
     public void
     testMatches()
     {
-        assertTrue(foo.matches("XXXXXXX"));
-        assertFalse(foo.matches("XXXXXXY"));
-        assertFalse(bar.matches("XXXXXXX"));
+        Assertions.assertTrue(foo.matches("XXXXXXX"));
+        Assertions.assertFalse(foo.matches("XXXXXXY"));
+        Assertions.assertFalse(bar.matches("XXXXXXX"));
     }
 
     @Disabled
@@ -40,7 +37,7 @@ class HashedStringTest
     public void
     testToString()
     {
-        assertEquals(foo.toString(),"");
+        Assertions.assertEquals(foo.toString(),"");
     }
 
 }

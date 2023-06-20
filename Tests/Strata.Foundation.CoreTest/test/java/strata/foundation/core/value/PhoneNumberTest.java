@@ -4,6 +4,7 @@
 
 package strata.foundation.core.value;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -57,7 +58,7 @@ class PhoneNumberTest
             .out
             .println(new PhoneNumber(input).getDigitsOnly());
 
-        assertTrue(
+        Assertions.assertTrue(
             new PhoneNumber(input)
                 .getDigitsOnly()
                 .chars()

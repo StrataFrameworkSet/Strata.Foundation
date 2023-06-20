@@ -4,6 +4,7 @@
 
 package strata.foundation.core.configuration;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -39,10 +40,10 @@ class SecureConfigurationTest
         String encryptedProperty2 =
             itsTarget.getProperty("encrypted.property2");
 
-        assertNotNull(unencryptedProperty1);
-        assertNotNull(encryptedProperty1);
-        assertNotNull(unencryptedProperty2);
-        assertNotNull(encryptedProperty2);
+        Assertions.assertNotNull(unencryptedProperty1);
+        Assertions.assertNotNull(encryptedProperty1);
+        Assertions.assertNotNull(unencryptedProperty2);
+        Assertions.assertNotNull(encryptedProperty2);
     }
 
     protected InputStream

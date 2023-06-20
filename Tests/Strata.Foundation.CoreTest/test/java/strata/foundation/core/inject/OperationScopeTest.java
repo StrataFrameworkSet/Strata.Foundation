@@ -7,10 +7,7 @@ package strata.foundation.core.inject;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.TypeLiteral;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,22 +58,22 @@ class OperationScopeTest
             }
         }
 
-        assertEquals(5,lists.size());
+        Assertions.assertEquals(5,lists.size());
 
-        assertTrue(lists.containsKey(0));
-        assertTrue(lists.containsKey(1));
-        assertTrue(lists.containsKey(2));
-        assertTrue(lists.containsKey(3));
-        assertTrue(lists.containsKey(4));
+        Assertions.assertTrue(lists.containsKey(0));
+        Assertions.assertTrue(lists.containsKey(1));
+        Assertions.assertTrue(lists.containsKey(2));
+        Assertions.assertTrue(lists.containsKey(3));
+        Assertions.assertTrue(lists.containsKey(4));
 
         for (Integer i: lists.keySet())
         {
             List<Integer> list = lists.get(i);
 
-            assertEquals(5,list.size());
+            Assertions.assertEquals(5,list.size());
 
             for (Integer j: list)
-                assertEquals(i,j);
+                Assertions.assertEquals(i,j);
         }
     }
 }
