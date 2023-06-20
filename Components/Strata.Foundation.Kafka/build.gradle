@@ -3,10 +3,10 @@ plugins {
 }
 
 sourceSets {
-    main.java.srcDirs = ['java']
-    test.java.srcDirs = ['java']
-    main.resources.srcDirs = ['resources']
-    test.resources.srcDirs = ['resources']
+    main.java.srcDirs = ['main/java']
+    main.resources.srcDirs = ['main/resources']
+    test.java.srcDirs = ['unused']
+    test.resources.srcDirs = ['unused']
 }
 
 apply plugin: 'maven-publish'

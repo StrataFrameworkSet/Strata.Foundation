@@ -4,10 +4,10 @@ plugins {
 }
 
 sourceSets {
-    main.java.srcDirs = ['java','build/generated-java']
-    test.java.srcDirs = ['java']
-    main.resources.srcDirs = ['resources','schema']
-    test.resources.srcDirs = ['resources']
+    main.java.srcDirs = ['main/java','build/generated-java']
+    main.resources.srcDirs = ['main/resources','main/schema']
+    test.java.srcDirs = ['unused']
+    test.resources.srcDirs = ['unused']
 }
 
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
@@ -19,7 +19,7 @@ group 'strata.foundation'
 version "$major$minor$patch"
 
 def genAvro = tasks.register("genAvro", GenerateAvroJavaTask) {
-    source = file("schema/avro")
+    source = file("main/schema/avro")
     outputDir = file("build/generated-java")
     createSetters = true
     createOptionalGetters = false

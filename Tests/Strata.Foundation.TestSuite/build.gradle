@@ -3,10 +3,10 @@ plugins {
 }
 
 sourceSets {
-    main.java.srcDirs = ['java']
-    test.java.srcDirs = ['java']
-    main.resources.srcDirs = ['resources']
-    test.resources.srcDirs = ['resources']
+    main.java.srcDirs = ['main/java']
+    main.resources.srcDirs = ['main/resources']
+    test.java.srcDirs = ['unused']
+    test.resources.srcDirs = ['unused']
 }
 
 apply plugin: 'maven-publish'
@@ -37,6 +37,10 @@ jar {
     dependsOn(':Components:Strata.Foundation.Spring:jar')
     dependsOn(':Components:Strata.Foundation.Chronicle:jar')
     dependsOn(':Components:Strata.Foundation.Kafka:jar')
+    dependsOn(':Tests:Strata.Foundation.CoreTest:jar')
+    dependsOn(':Tests:Strata.Foundation.SpringTest:jar')
+    dependsOn(':Tests:Strata.Foundation.KafkaTest:jar')
+    dependsOn(':Tests:Strata.Foundation.ChronicleTest:jar')
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

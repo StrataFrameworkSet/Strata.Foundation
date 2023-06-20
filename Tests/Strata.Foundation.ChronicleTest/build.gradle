@@ -3,8 +3,8 @@ plugins {
 }
 
 sourceSets {
-    test.java.srcDirs = ['java']
-    test.resources.srcDirs = ['resources']
+    test.java.srcDirs = ['test/java']
+    test.resources.srcDirs = ['test/resources']
     main.java.srcDirs = ['unused']
     main.resources.srcDirs = ['unused']
 }

@@ -4,8 +4,8 @@ plugins {
 }
 
 sourceSets {
-    test.java.srcDirs = ['java','build/generated-java']
-    test.resources.srcDirs = ['resources','schema']
+    test.java.srcDirs = ['test/java','build/generated-java']
+    test.resources.srcDirs = ['test/resources','test/schema']
     main.java.srcDirs = ['unused']
     main.resources.srcDirs = ['unused']
 }
@@ -34,7 +34,7 @@ def importAvroSchema = tasks.register('importAvroSchema', Copy) {
 }
 
 def genAvro = tasks.register("genAvro", GenerateAvroJavaTask) {
-    source = [file("schema"),file("build/imported-schema")]
+    source = [file("test/schema"),file("build/imported-schema")]
     outputDir = file("build/generated-java")
     createSetters = true
     createOptionalGetters = false
