@@ -9,7 +9,7 @@ import strata.foundation.core.action.StandardActionQueue;
 import strata.foundation.core.event.IFooEventReceiver;
 import strata.foundation.core.event.IFooEventSender;
 import strata.foundation.core.inject.AbstractModule;
-import strata.foundation.core.inject.GuiceThreadScope;
+import strata.foundation.core.inject.ThreadScope;
 
 public
 class AvroTestModule
@@ -17,7 +17,7 @@ class AvroTestModule
 {
     public AvroTestModule()
     {
-        setDefaultScope(new GuiceThreadScope());
+        setDefaultScope(new ThreadScope());
     }
 
     @Override

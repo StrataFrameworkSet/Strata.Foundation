@@ -11,7 +11,7 @@ public abstract
 class AbstractModule
     extends com.google.inject.AbstractModule
 {
-    private static Scope defaultScope = new GuiceThreadScope();
+    private static Scope defaultScope = new ThreadScope();
 
     public static void
     setDefaultScope(Scope scope)

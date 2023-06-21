@@ -48,16 +48,8 @@ class ThreadLocalProvider<T>
     ThreadLocalProvider(Provider<T> source)
     {
         itsSource = source;
-        itsInstances = 
-            new ThreadLocal<T>()
-            {
-                @Override
-                protected T 
-                initialValue()
-                {
-                    return itsSource.get();
-                }
-            };
+        itsInstances =
+            ThreadLocal.withInitial(() -> itsSource.get());
     }
 
     /************************************************************************

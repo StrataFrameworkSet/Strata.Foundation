@@ -1,5 +1,5 @@
 // ##########################################################################
-// # File Name:	ThreadScoped.java
+// # File Name:	ThreadScope.java
 // #
 // # Copyright:	2017, Sapientia Systems, LLC. All Rights Reserved.
 // #
@@ -24,21 +24,25 @@
 
 package strata.foundation.core.inject;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.google.inject.Key;
+import com.google.inject.Provider;
+import com.google.inject.Scope;
 
-/****************************************************************************
- * 
- * @author 		
- *     Sapientia Systems
- * @conventions	
- *     <a href="{@docRoot}/NamingConventions.html">Naming Conventions</a>
- */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
 public 
-@interface ThreadScope {}
+class ThreadScope
+    implements Scope
+{
+    public ThreadScope() {}
+
+    @Override
+    public <T> Provider<T> 
+    scope(Key<T> key,Provider<T> source)
+    {
+        return 
+            new GuiceProviderAdapter<T>(
+                new ThreadLocalProvider<T>(source));
+    }
+
+}
 
 // ##########################################################################
