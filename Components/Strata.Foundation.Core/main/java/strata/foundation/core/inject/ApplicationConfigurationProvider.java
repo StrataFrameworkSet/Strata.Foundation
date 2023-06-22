@@ -18,6 +18,20 @@ class ApplicationConfigurationProvider
     private final Logger itsLogger =
         LogManager.getLogger(ApplicationConfigurationProvider.class);
 
+    private final String defaultEnvironment;
+
+    public
+    ApplicationConfigurationProvider()
+    {
+        this("development");
+    }
+
+    public
+    ApplicationConfigurationProvider(String defaultEnv)
+    {
+        defaultEnvironment = defaultEnv;
+    }
+
     @Override
     public IConfiguration
     get()
@@ -40,7 +54,7 @@ class ApplicationConfigurationProvider
         }
     }
 
-    private static String
+    private String
     getEnvironment()
     {
         String deployEnv = System.getenv("DEPLOY_ENV");
@@ -48,7 +62,7 @@ class ApplicationConfigurationProvider
         return
             deployEnv != null
                 ? deployEnv
-                : "development";
+                : defaultEnvironment;
     }
 }
 
