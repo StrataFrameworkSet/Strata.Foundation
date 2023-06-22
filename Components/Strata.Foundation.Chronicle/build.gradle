@@ -34,7 +34,7 @@ publishing {
                     url "https://maven.pkg.github.com/StrataFrameworkSet/repository"
                     credentials {
                         username = "$System.env.REPOSITORY_USER"
-                        password = "$System.env.REPOSISTORY_PASSWORD"
+                        password = "$System.env.REPOSITORY_PASSWORD"
                     }
                 }
             }
