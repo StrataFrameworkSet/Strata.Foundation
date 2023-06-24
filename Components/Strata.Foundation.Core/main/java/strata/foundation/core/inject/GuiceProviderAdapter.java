@@ -24,11 +24,11 @@
 
 package strata.foundation.core.inject;
 
-import com.google.inject.Provider;
+import jakarta.inject.Provider;
 
 public
 class GuiceProviderAdapter<T> 
-    implements Provider<T>
+    implements com.google.inject.Provider<T>
 {
     private final Provider<T> itsAdaptee;
     
