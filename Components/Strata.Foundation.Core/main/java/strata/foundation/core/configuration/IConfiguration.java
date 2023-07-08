@@ -15,11 +15,23 @@ interface IConfiguration
     String
     getProperty(String key);
 
+    Boolean
+    getBooleanProperty(String key);
+
+    Long
+    getLongProperty(String key);
+
     Map<String,Object>
     getProperties(String... prefixes);
 
     boolean
     hasProperty(String key);
+
+    boolean
+    hasBooleanProperty(String key);
+
+    boolean
+    hasLongProperty(String key);
 
     Stream<Pair<String,Object>>
     stream();

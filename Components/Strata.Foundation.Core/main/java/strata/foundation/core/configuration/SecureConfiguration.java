@@ -39,6 +39,36 @@ class SecureConfiguration
     }
 
     @Override
+    public Boolean
+    getBooleanProperty(String key)
+    {
+        if (hasProperty(key))
+        {
+            if (hasBooleanProperty(key))
+                return Boolean.valueOf(getProperty(key));
+
+            throw new ClassCastException("property at '" + key + "' not boolean");
+        }
+
+        return null;
+    }
+
+    @Override
+    public Long
+    getLongProperty(String key)
+    {
+        if (hasProperty(key))
+        {
+            if (hasLongProperty(key))
+                return Long.valueOf(getProperty(key));
+
+            throw new ClassCastException("property at '" + key + "' not long");
+        }
+
+        return null;
+    }
+
+    @Override
     public Map<String,Object>
     getProperties(String... prefixes)
     {
@@ -56,6 +86,20 @@ class SecureConfiguration
     hasProperty(String key)
     {
         return itsProperties.containsKey(key);
+    }
+
+    @Override
+    public boolean
+    hasBooleanProperty(String key)
+    {
+        return hasProperty(key) && isBoolean(getProperty(key));
+    }
+
+    @Override
+    public boolean
+    hasLongProperty(String key)
+    {
+        return hasProperty(key) && isLong(getProperty(key));
     }
 
     @Override
@@ -102,6 +146,29 @@ class SecureConfiguration
                 .anyMatch(prefix -> key.startsWith(prefix));
 
     }
+
+    private boolean
+    isBoolean(String value)
+    {
+        return
+            value.equalsIgnoreCase("true") ||
+            value.equalsIgnoreCase("false");
+    }
+
+    private boolean
+    isLong(String value)
+    {
+        try
+        {
+            Long.parseLong(value);
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("CommitStage")
 public
@@ -39,11 +40,17 @@ class SecureConfigurationTest
             itsTarget.getProperty("unencrypted.property2");
         String encryptedProperty2 =
             itsTarget.getProperty("encrypted.property2");
+        Boolean unencryptedProperty3 = null;
 
         Assertions.assertNotNull(unencryptedProperty1);
         Assertions.assertNotNull(encryptedProperty1);
         Assertions.assertNotNull(unencryptedProperty2);
         Assertions.assertNotNull(encryptedProperty2);
+
+        assertTrue(itsTarget.hasBooleanProperty("unencrypted.property3"));
+        unencryptedProperty3 = itsTarget.getBooleanProperty("unencrypted.property3");
+        assertNotNull(unencryptedProperty2);
+        assertTrue(unencryptedProperty3);
     }
 
     protected InputStream
