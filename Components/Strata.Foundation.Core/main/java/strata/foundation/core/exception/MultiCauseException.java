@@ -10,7 +10,7 @@ import java.util.List;
 
 public
 class MultiCauseException
-    extends Exception
+    extends RuntimeException
 {
     private List<Throwable> itsCauses;
 
