@@ -24,6 +24,19 @@ class OptionalExtension
         return notPresent.get();
     }
 
+    public static <T,U,E extends RuntimeException> U
+    ifPresentOrThrow(
+        Optional<T>   optional,
+        Function<T,U> present,
+        E             exception)
+        throws E
+    {
+        if (optional.isPresent())
+            return present.apply(optional.get());
+
+        throw exception;
+    }
+
     public static <T> void
     ifPresentOrElseNoReturn(
         Optional<T> optional,

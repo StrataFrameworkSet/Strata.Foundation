@@ -4,25 +4,21 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="true" />
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Corretto-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$COMPONENTS_ROOT$" />
-            <option value="$COMPONENTS_ROOT$/Strata.Foundation.Chronicle" />
-            <option value="$COMPONENTS_ROOT$/Strata.Foundation.Core" />
-            <option value="$COMPONENTS_ROOT$/Strata.Foundation.Kafka" />
-            <option value="$COMPONENTS_ROOT$/Strata.Foundation.Spring" />
-            <option value="$TESTS_ROOT$" />
-            <option value="$TESTS_ROOT$/Strata.Foundation.ChronicleTest" />
-            <option value="$TESTS_ROOT$/Strata.Foundation.CoreTest" />
-            <option value="$TESTS_ROOT$/Strata.Foundation.KafkaTest" />
-            <option value="$TESTS_ROOT$/Strata.Foundation.SpringTest" />
-            <option value="$TESTS_ROOT$/Strata.Foundation.TestSuite" />
+            <option value="$PROJECT_DIR$/Components" />
+            <option value="$PROJECT_DIR$/Components/Strata.Foundation.Chronicle" />
+            <option value="$PROJECT_DIR$/Components/Strata.Foundation.Core" />
+            <option value="$PROJECT_DIR$/Components/Strata.Foundation.Kafka" />
+            <option value="$PROJECT_DIR$/Components/Strata.Foundation.Spring" />
+            <option value="$PROJECT_DIR$/Tests" />
+            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.ChronicleTest" />
+            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.CoreTest" />
+            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.KafkaTest" />
+            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.SpringTest" />
+            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.TestSuite" />
           </set>
         </option>
       </GradleProjectSettings>

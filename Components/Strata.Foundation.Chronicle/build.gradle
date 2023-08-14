@@ -24,10 +24,6 @@ publishing {
             artifactId = 'strata-foundation-chronicle'
             from components.java
 
-            artifact sourceJar {
-                classifier "sources"
-            }
-
             repositories {
                 maven {
                     name "GitHubPackages"

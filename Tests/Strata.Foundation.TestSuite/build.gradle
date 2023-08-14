@@ -55,10 +55,6 @@ publishing {
             artifactId = 'strata-foundation-testsuite'
             from components.java
 
-            artifact sourceJar {
-                classifier "sources"
-            }
-
             repositories {
                 maven {
                     name "GitHubPackages"
