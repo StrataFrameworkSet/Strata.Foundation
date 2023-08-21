@@ -1,6 +1,7 @@
 project.buildDir = ".build";
 wrapper.jarFile = ".gradle/wrapper/gradle-wrapper.jar"
 
+
 ext {
     springboot_version = "3.1.0"
     hibernate_version = "5.6.11.Final"

@@ -49,6 +49,19 @@ class OptionalExtension
             notPresent.run();
     }
 
+    public static <T,E extends RuntimeException> void
+    ifPresentOrThrowNoReturn(
+        Optional<T> optional,
+        Consumer<T> present,
+        E           exception)
+        throws E
+    {
+        if (optional.isPresent())
+            present.accept(optional.get());
+
+        throw exception;
+    }
+
     public static <T> void
     ifNotPresent(Optional<T> optional,Runnable task)
     {

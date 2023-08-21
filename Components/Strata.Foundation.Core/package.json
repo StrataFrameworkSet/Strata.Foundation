@@ -1,0 +1,23 @@
+{
+  "name": "strata.foundation.core",
+  "version": "0.0.5",
+  "description": "",
+  "main": "build/dist/index.js",
+  "types": "build/dist/index.d.ts",
+  "scripts": {
+    "clean": "del-cli -f build/dist ./*.tgz",
+    "build": "tsc && npm pack",
+    "publish-package": "npm publish",
+    "new-patch": "npm version patch",
+    "new-minor": "npm version minor",
+    "new-major": "npm version major",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^7.8.1",
+    "typescript": "^5.1.6"
+  }
+}

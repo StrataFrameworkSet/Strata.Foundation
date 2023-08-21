@@ -28,7 +28,6 @@ dependencyResolutionManagement {
         }
     }
 }
-
 rootProject.name = 'Strata.Foundation'
 
 // Components
