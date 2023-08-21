@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id "java-test-fixtures"
     id "com.github.davidmc24.gradle.plugin.avro-base" version "1.3.0"
+    id "com.github.node-gradle.node" version "6.0.0"
 }
 
 sourceSets {
@@ -16,6 +17,7 @@ sourceSets {
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 
 apply plugin: "com.github.davidmc24.gradle.plugin.avro-base"
+apply plugin: "com.github.node-gradle.node"
 
 group 'strata.foundation'
 version '1.0-SNAPSHOT'
@@ -73,4 +75,51 @@ test {
     useJUnitPlatform {
         includeTags("CommitStage")
     }
+}
+
+
+node {
+    download = false
+    npmInstallCommand = "install"
+    nodeProjectDir = file("${project.projectDir}/main/typescript")
+    nodeProxySettings = ProxySettings.SMART
+}
+
+npm_pack {
+
+}
+
+npm_publish {
+
+}
+
+npm_version_patch {
+}
+
+npm_version_minor {
+}
+
+npm_version_major {
+}
+
+task dependencyTypescript(type: NpmTask)
+{
+    args = ['install','strata.foundation.core']
+}
+
+task compileTypescript(type: NpxTask)
+{
+    dependsOn 'dependencyTypescript'
+    command = 'tsc'
+    inputs.files('package.json', 'package-lock.json', 'tsconfig.json')
+    inputs.dir('main/typescript')
+    inputs.dir(fileTree("node_modules").exclude(".cache"))
+    outputs.dir('build/dist')
+}
+
+task testTypescript(type: NpxTask) {
+    dependsOn compileTypescript
+    command = 'jest'
+    inputs.files('package.json', 'package-lock.json', 'tsconfig.json')
+    inputs.dir(fileTree("node_modules").exclude(".cache"))
 }
