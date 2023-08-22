@@ -1,6 +1,6 @@
 import "jest"
-import {IMultiMap} from 'strata.foundation.core';
-import {MultiMap} from 'strata.foundation.core';
+import {IMultiMap} from 'strata.foundation.core/Container';
+import {MultiMap} from 'strata.foundation.core/Container';
 
 describe(
     'MultiMap.put',

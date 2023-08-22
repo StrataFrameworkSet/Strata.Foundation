@@ -1,0 +1,11 @@
+{
+    "name": "Strata.Foundation",
+    "private": true,
+    "scripts": {
+        "clean-components": "cd Components/Strata.Foundation.Core && npm run clean",
+        "clean-tests": "cd Tests/Strata.Foundation.CoreTest && npm run clean",
+        "clean": "npm run clean-components && npm run clean-tests",
+        "build": "cd Components/Strata.Foundation.Core && npm ci && npm run build",
+        "test": "npm run build && cd Tests/Strata.Foundation.CoreTest && npm ci && npm run test"
+    }
+}

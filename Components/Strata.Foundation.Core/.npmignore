@@ -1,0 +1,11 @@
+build/classes/
+build/generated/
+build/generated-java/
+build/libs/
+build/resources/
+build/tmp/
+main/
+node_modules/
+*.tgz
+tsconfig.json
+

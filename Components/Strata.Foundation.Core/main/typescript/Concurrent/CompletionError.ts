@@ -2,16 +2,16 @@ export
 class CompletionError
     extends Error
 {
-    private readonly cause: any;
+    private readonly itsCause: any;
 
     constructor(cause: any)
     {
         super(cause instanceof Error ? cause.message : cause.toString());
-        this.cause = cause;
+        this.itsCause = cause;
     }
 
     getCause(): any
     {
-        return this.cause;
+        return this.itsCause;
     }
 }

@@ -105,7 +105,10 @@ task compileTypescript(type: NpxTask)
     outputs.dir('build/dist')
 }
 
-task packageTypescript(type: NpmTask) {
+task packageTypescript(type: NpxTask) {
     dependsOn compileTypescript
-    args = ['pack','strata.foundation.core']
+    command = 'npm'
+    args = ['pack','strata.foundation.core','--pack-destination=../..']
+    inputs.files('main/typescript/package.json')
+    outputs.dir('./')
 }

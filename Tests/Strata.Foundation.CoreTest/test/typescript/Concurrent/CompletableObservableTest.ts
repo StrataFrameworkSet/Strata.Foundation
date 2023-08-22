@@ -1,6 +1,6 @@
 import "jest"
-import {CompletionContext,ICompletionStage} from 'strata.foundation.core';
-import {CompletableObservable} from "strata.foundation.core";
+import {CompletionContext,ICompletionStage} from 'strata.foundation.core/Concurrent';
+import {CompletableObservable} from "strata.foundation.core/Concurrent";
 import {Observable,of} from "rxjs";
 import {map} from "rxjs/operators";
 

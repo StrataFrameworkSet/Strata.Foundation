@@ -1,0 +1,9 @@
+{
+    "name": "strata.foundation.core",
+    "version": "0.0.6",
+    "scripts": {
+        "increment-major": "npm version major",
+        "increment-minor": "npm version minor",
+        "increment-patch": "npm version patch"
+    }
+}
