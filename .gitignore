@@ -88,3 +88,5 @@ APP_LOG_DIR_IS_UNDEFINED/
 **/dist/
 **/node_modules/
 **/*.tgz
+**/typescript/**/*.js
+**/typescript/**/*.js.map
