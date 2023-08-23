@@ -1,6 +1,7 @@
 {
     "name": "strata.foundation.core",
     "version": "0.0.6",
+    "license": "Apache-2.0",
     "scripts": {
         "increment-major": "npm version major",
         "increment-minor": "npm version minor",

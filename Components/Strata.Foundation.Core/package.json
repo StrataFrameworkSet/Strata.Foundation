@@ -6,11 +6,11 @@
   "scripts": {
     "clean": "del-cli -f build/dist",
     "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
-    "build": "tsc && npm run copy-package && cd build/dist && npm pack",
-    "publish-package": "cd build/dist && npm publish",
-    "new-patch": "npm version patch",
-    "new-minor": "npm version minor",
-    "new-major": "npm version major",
+    "build": "tsc && yarn run copy-package && cd build/dist && yarn pack",
+    "publish-package": "cd build/dist && yarn publish",
+    "new-patch": "yarn version --patch",
+    "new-minor": "yarn version --minor",
+    "new-major": "yarn version --major",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
