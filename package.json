@@ -5,7 +5,7 @@
         "clean-components": "cd Components/Strata.Foundation.Core && yarn run clean",
         "clean-tests": "cd Tests/Strata.Foundation.CoreTest && yarn run clean",
         "clean": "yarn run clean-components && yarn run clean-tests",
-        "build": "cd Components/Strata.Foundation.Core && yarn install && yarn run build",
+        "build": "cd Components/Strata.Foundation.Core && yarn install && yarn run publish-package",
         "test": "yarn run build && cd Tests/Strata.Foundation.CoreTest && yarn install && yarn run test"
     }
 }
