@@ -47,7 +47,6 @@ jobs:
         with:
           node-version: '20.5.1'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm config set //registry.npmjs.org/:_authToken ${NPM_PUBLISH_TOKEN}
       - run: yarn run test
         env:
           NPM_PUBLISH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
