@@ -4,13 +4,12 @@
   "version": "0.0.6",
   "description": "",
   "scripts": {
+    "set-local-registry": "yarn config set registry http://localhost:4873",
+    "set-remote-registry": "yarn config set registry https://registry.npmjs.org",
     "clean": "del-cli -f build/dist",
     "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
-    "build": "tsc && yarn run copy-package && cd build/dist && yarn pack",
-    "publish-package": "cd build/dist && yarn publish",
-    "new-patch": "yarn version --patch",
-    "new-minor": "yarn version --minor",
-    "new-major": "yarn version --major",
+    "build": "tsc && cd main/typescript && yarn run new-build && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",
+    "publish-package": "yarn run build && cd build/dist && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -68,6 +68,8 @@ Desktop.ini
 ######################
 /.build/**
 **/build/**
+.local-npm-repository/
+**/.localpack/
 
 
 ######################
