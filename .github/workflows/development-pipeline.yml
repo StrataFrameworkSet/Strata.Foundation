@@ -10,6 +10,7 @@ on:
 
 env:
   PROPERTIES_ENCRYPTION_KEY: ${{secrets.PROPERTIES_ENCRYPTION_KEY}}
+  NPM_PUBLISH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
 
 jobs:
   run-commit-stage:
