@@ -57,6 +57,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
+          git add Components/Strata.Foundation.Core/main/typescript/package.json
           git commit -m "strata.foundation.core package.json new version"
           git push origin development
 
