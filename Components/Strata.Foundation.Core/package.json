@@ -8,7 +8,7 @@
     "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
     "build": "tsc && cd main/typescript && yarn run new-build && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",
     "authorize": "",
-    "publish-package": "yarn run build && cd build/dist && npm publish",
+    "publish-package": "yarn run build && cd build/dist && yarn publish --non-interactive",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
