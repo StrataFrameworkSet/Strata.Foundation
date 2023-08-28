@@ -30,7 +30,7 @@ jobs:
       - name: Chmod GradleW
         run: chmod a+x gradlew
 
-      - name: Build with Gradle
+      - name: Build Java with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
           gradle-executable: gradlew
@@ -42,11 +42,13 @@ jobs:
         with:
             report_paths: '**/build/test-results/test/TEST-*.xml'
 
-      - name: Build with Node.Js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20.5.1'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Build Typescript with Yarn
       - run: yarn run test
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
