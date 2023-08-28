@@ -55,6 +55,8 @@ jobs:
 
       - name: Commit package.json with New Version
         run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           git commit -m "strata.foundation.core package.json new version"
           git push origin development
 
