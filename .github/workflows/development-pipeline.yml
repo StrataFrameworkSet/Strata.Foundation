@@ -53,4 +53,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
 
+      - name: Commit package.json with New Version
+        run: |
+          git commit -m "strata.foundation.core package.json new version"
+          git push origin development
+
 
