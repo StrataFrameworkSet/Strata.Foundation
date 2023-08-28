@@ -50,7 +50,7 @@ jobs:
         with:
           node-version: '20.5.1'
       - run: npm install -g npm-cli-adduser
-      - run: npm-cli-adduser --username $NPM_USER --password $NPM_PASS --email $NPM_EMAIL
+      - run: npm-cli-adduser --username ${NPM_USER} --password ${NPM_PASS} --email ${NPM_EMAIL}
       - run: yarn run test
 
 
