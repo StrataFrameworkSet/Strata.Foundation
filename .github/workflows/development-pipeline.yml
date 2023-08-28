@@ -10,6 +10,9 @@ on:
 
 env:
   PROPERTIES_ENCRYPTION_KEY: ${{secrets.PROPERTIES_ENCRYPTION_KEY}}
+  NPM_USER: ${{secrets.NPM_USER}}
+  NPM_PASS: ${{secrets.NPM_PASSWORD}}
+  NPM_EMAIL: ${{secrets.NPM_EMAIL}}
 
 jobs:
   run-commit-stage:
@@ -46,8 +49,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.5.1'
-          registry-url: 'https://registry.npmjs.org'
+      - run: npm install -g npm-cli-adduser
+      - run: npm-cli-adduser
       - run: yarn run test
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+
 
