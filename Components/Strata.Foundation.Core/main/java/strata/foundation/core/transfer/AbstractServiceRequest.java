@@ -1,33 +1,35 @@
 //////////////////////////////////////////////////////////////////////////////
-// ServiceRequest.java
+// AbstractServiceRequest.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.transfer;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
 public abstract
-class ServiceRequest
+class AbstractServiceRequest
+    implements Serializable
 {
-    private UUID itsCorrelationId;
+    private UUID    itsRequestId;
     private Instant itsTimestamp;
 
     protected
-    ServiceRequest()
+    AbstractServiceRequest()
     {
-        itsCorrelationId = null;
+        itsRequestId = UUID.randomUUID();
         itsTimestamp = Instant.now();
     }
 
-    public ServiceRequest
-    setCorrelationId(UUID correlationId)
+    public AbstractServiceRequest
+    setRequestId(UUID requestId)
     {
-        itsCorrelationId = correlationId;
+        itsRequestId = requestId;
         return this;
     }
 
-    public ServiceRequest
+    public AbstractServiceRequest
     setTimestamp(Instant timestamp)
     {
         itsTimestamp = timestamp;
@@ -35,7 +37,7 @@ class ServiceRequest
     }
 
     public UUID
-    getCorrelationId() { return itsCorrelationId; }
+    getRequestId() { return itsRequestId; }
 
     public Instant
     getTimestamp()

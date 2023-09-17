@@ -4,18 +4,12 @@
 
 package strata.foundation.core.transfer;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
+import strata.foundation.core.mapper.ObjectMapperSupplier;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,20 +22,7 @@ class ObjectMapperResolver
     public
     ObjectMapperResolver()
     {
-        itsMapper =
-            JsonMapper
-                .builder()
-                .enable( MapperFeature.REQUIRE_SETTERS_FOR_GETTERS )
-                .enable( MapperFeature.ALLOW_EXPLICIT_PROPERTY_RENAMING )
-                .enable( DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES )
-                .enable( SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS )
-                .build();
-
-        itsMapper
-            .registerModule( new SimpleModule())
-            .registerModule(new JavaTimeModule())
-            .registerModule( new Jdk8Module())
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);;
+        itsMapper = new ObjectMapperSupplier().get();
     }
 
     @Override

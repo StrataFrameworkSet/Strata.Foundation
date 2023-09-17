@@ -7,7 +7,6 @@
     "clean": "del-cli -f build/dist",
     "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
     "build": "tsc && cd main/typescript && yarn run new-build && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",
-    "authorize": "",
     "publish-package": "yarn run build && cd build/dist && yarn publish --non-interactive",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,10 +14,12 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "rxjs": "^7.8.1",
-    "typescript": "^5.1.6"
+    "guid-typescript": "^1.0.9",
+    "@js-joda/core": "^5.5.3",
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "typescript": "^5.1.6",
     "shx": "^0.3.4"
   }
 }

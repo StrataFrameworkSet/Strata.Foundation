@@ -1,6 +1,5 @@
 import {ICompletionStage} from "./ICompletionStage";
-import {from,Observable,of} from "rxjs";
-import {map,mergeMap} from 'rxjs/operators';
+import {from,map,mergeMap,Observable,of,firstValueFrom} from "rxjs";
 import {CompletionContext} from "./CompletionContext";
 import {CompletionError} from "./CompletionError";
 

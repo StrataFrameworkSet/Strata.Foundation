@@ -1,16 +1,19 @@
 //////////////////////////////////////////////////////////////////////////////
-// ServiceReply.java
+// AbstractServiceReply.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.transfer;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
 public abstract
-class ServiceReply
+class AbstractServiceReply
+    implements Serializable
 {
-    private UUID          itsCorrelationId;
+    private UUID          itsReplyId;
+    private UUID          itsOriginatingRequestId;
     private Instant       itsTimestamp;
     private boolean       itsSuccessIndicator;
     private String        itsSuccessMessage;
@@ -18,9 +21,10 @@ class ServiceReply
     private ExceptionData itsException;
 
     protected
-    ServiceReply()
+    AbstractServiceReply()
     {
-        itsCorrelationId = null;
+        itsReplyId = UUID.randomUUID();
+        itsOriginatingRequestId = null;
         itsTimestamp = Instant.now();
         itsSuccessIndicator = false;
         itsSuccessMessage = null;
@@ -28,42 +32,65 @@ class ServiceReply
         itsException = null;
     }
 
-    public ServiceReply
-    setCorrelationId(UUID correlationId)
+    protected
+    AbstractServiceReply(AbstractServiceRequest originatingRequest)
     {
-        itsCorrelationId = correlationId;
+        itsReplyId = UUID.randomUUID();
+        itsOriginatingRequestId =
+            originatingRequest != null
+                ? originatingRequest.getRequestId() : null;
+        itsTimestamp = Instant.now();
+        itsSuccessIndicator = false;
+        itsSuccessMessage = null;
+        itsFailureMessage = null;
+        itsException = null;
+    }
+
+    public AbstractServiceReply
+    setReplyId(UUID replyId)
+    {
+        itsReplyId = replyId;
         return this;
     }
 
-    public ServiceReply
+    public AbstractServiceReply
+    setOriginatingRequestId(UUID requestId)
+    {
+        itsOriginatingRequestId = requestId;
+        return this;
+    }
+
+    public AbstractServiceReply
     setTimestamp(Instant timestamp)
     {
         itsTimestamp = timestamp;
         return this;
     }
 
-    public ServiceReply
+    public AbstractServiceReply
     setSuccess(boolean success)
     {
         itsSuccessIndicator = success;
         return this;
     }
 
-    public ServiceReply
+    public AbstractServiceReply
     setSuccessMessage(String successMessage)
     {
         itsSuccessMessage = successMessage;
+        itsFailureMessage = null;
         return this;
     }
 
-    public ServiceReply
+    public AbstractServiceReply
     setFailureMessage(String failureMessage)
     {
         itsFailureMessage = failureMessage;
+        itsSuccessMessage = null;
         return this;
     }
 
-    public ServiceReply
+    public AbstractServiceReply
     setException(ExceptionData exception)
     {
         itsException = exception;
@@ -71,7 +98,10 @@ class ServiceReply
     }
 
     public UUID
-    getCorrelationId() { return itsCorrelationId; }
+    getReplyId() { return itsReplyId; }
+
+    public UUID
+    getOriginatingRequestId() { return itsOriginatingRequestId; }
 
     public Instant
     getTimestamp()

@@ -9,6 +9,6 @@ interface ICompletionStage<T>
 
     exceptionally(func: (error: Error) => T): ICompletionStage<T>;
 
-    subscribe(consumer?: (result: T) => void,handler?: (error: Error) => void): void
+    subscribe(consumer?: (result: T) => void,handler?: (error: Error) => void): void;
 
 }

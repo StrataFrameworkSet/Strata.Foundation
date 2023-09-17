@@ -40,6 +40,6 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'org.springdoc:springdoc-openapi-webmvc-core:1.6.12'
+    api 'org.springdoc:springdoc-openapi-starter-common:2.2.0'
     api 'org.springframework.kafka:spring-kafka:3.0.4'
 }
