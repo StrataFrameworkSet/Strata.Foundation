@@ -58,7 +58,7 @@ class ObjectMapperTest
         AbstractServiceRequest actual =
             target.readValue(
                 target.writeValueAsString(expected),
-                AbstractServiceRequest.class);
+                DoFooRequest.class);
 
         assertEquals(expected,actual);
     }
