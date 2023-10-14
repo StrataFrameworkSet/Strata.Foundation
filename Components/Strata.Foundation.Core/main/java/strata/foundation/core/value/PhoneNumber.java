@@ -4,11 +4,16 @@
 
 package strata.foundation.core.value;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import strata.foundation.core.utility.ICopyable;
+
 import java.io.Serializable;
 
 public
 class PhoneNumber
-    implements Serializable
+    implements ICopyable, Serializable, Comparable<PhoneNumber>
 {
     private String itsPhone;
 
@@ -21,11 +26,32 @@ class PhoneNumber
     private static final String EPP_PATTERN =
         "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$";
 
+    @JsonCreator
     public
-    PhoneNumber(String phoneNumber)
+    PhoneNumber(@JsonProperty("phoneNumber") String phoneNumber)
     {
         validatePhoneNumber(phoneNumber);
         itsPhone = phoneNumber;
+    }
+
+    public
+    PhoneNumber(PhoneNumber other)
+    {
+        itsPhone = other.itsPhone;
+    }
+
+    @Override
+    public PhoneNumber
+    copy()
+    {
+        return new PhoneNumber(this);
+    }
+
+    @Override
+    public int
+    compareTo(PhoneNumber other)
+    {
+        return itsPhone.compareToIgnoreCase(other.itsPhone);
     }
 
     public boolean
@@ -38,8 +64,7 @@ class PhoneNumber
     public boolean
     equals(Object other)
     {
-        return
-            other instanceof PhoneNumber && equals((PhoneNumber)other);
+        return other instanceof PhoneNumber p ? equals(p) : false;
     }
 
     @Override
@@ -50,6 +75,7 @@ class PhoneNumber
     }
 
     @Override
+    @JsonProperty("phoneNumber")
     public String
     toString()
     {

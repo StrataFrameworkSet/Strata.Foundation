@@ -80,8 +80,7 @@ class HashedString
     public boolean
     equals(Object other)
     {
-        return
-            other instanceof HashedString && equals((HashedString)other);
+        return other instanceof HashedString h ? equals(h) : false;
     }
 
     @Override

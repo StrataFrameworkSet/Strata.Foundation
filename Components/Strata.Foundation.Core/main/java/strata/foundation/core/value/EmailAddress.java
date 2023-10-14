@@ -4,11 +4,15 @@
 
 package strata.foundation.core.value;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import strata.foundation.core.utility.ICopyable;
+
 import java.io.Serializable;
 
 public
 class EmailAddress
-    implements Serializable
+    implements ICopyable,Serializable,Comparable<EmailAddress>
 {
     private String itsEmail;
 
@@ -19,35 +23,53 @@ class EmailAddress
     public
     EmailAddress() {}
 
+    @JsonCreator
     public
-    EmailAddress(String emailAddress)
+    EmailAddress(@JsonProperty("emailAddress") String emailAddress)
     {
         validateEmailAddress(emailAddress);
         itsEmail = emailAddress;
     }
 
+    public
+    EmailAddress(EmailAddress other)
+    {
+        itsEmail = other.itsEmail;
+    }
+
+    @Override
+    public EmailAddress
+    copy() { return new EmailAddress(this); }
+
+    @Override
+    public int
+    compareTo(EmailAddress other)
+    {
+        return itsEmail.compareToIgnoreCase(other.itsEmail);
+    }
+
     public boolean
     equals(EmailAddress other)
     {
-        return itsEmail.equals(other.itsEmail);
+        return itsEmail.equalsIgnoreCase(other.itsEmail);
     }
 
     @Override
     public boolean
     equals(Object other)
     {
-        return
-            other instanceof EmailAddress && equals((EmailAddress)other);
+        return other instanceof EmailAddress e ? equals(e) : false;
     }
 
     @Override
     public int
     hashCode()
     {
-        return 47 * itsEmail.hashCode();
+        return 47 * itsEmail.toLowerCase().hashCode();
     }
 
     @Override
+    @JsonProperty("emailAddress")
     public String
     toString()
     {
