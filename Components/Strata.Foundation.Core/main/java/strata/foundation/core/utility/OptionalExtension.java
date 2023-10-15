@@ -68,6 +68,23 @@ class OptionalExtension
         if (!optional.isPresent())
             task.run();
     }
+
+    public static <T extends Comparable<T>> int
+    compare(Optional<T> x,Optional<T> y)
+    {
+        if (x.isPresent())
+        {
+            if (y.isPresent())
+                return x.get().compareTo(y.get());
+
+            return 1; // x > y
+        }
+
+        if (y.isEmpty())
+            return 0; // x == y == empty
+
+        return -1; // x < y
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////
