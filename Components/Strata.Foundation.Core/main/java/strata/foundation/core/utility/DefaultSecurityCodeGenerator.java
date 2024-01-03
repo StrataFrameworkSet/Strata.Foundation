@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// DefaultConfirmationCodeGenerator.java
+// DefaultSecurityCodeGenerator.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Random;
 
 public
-class DefaultConfirmationCodeGenerator
-    implements IConfirmationCodeGenerator
+class DefaultSecurityCodeGenerator
+    implements ISecurityCodeGenerator
 {
     private final int itsLength;
     private final int itsMinAlpha;
@@ -33,14 +33,12 @@ class DefaultConfirmationCodeGenerator
             {'0','1','2','3','4','5','6','7','8','9'}
         };
 
-    public
-    DefaultConfirmationCodeGenerator(int length)
+    public DefaultSecurityCodeGenerator(int length)
     {
         this(length,0,length);
     }
 
-    public
-    DefaultConfirmationCodeGenerator(
+    public DefaultSecurityCodeGenerator(
         int length,
         int minAlpha,
         int minNum)
@@ -56,7 +54,7 @@ class DefaultConfirmationCodeGenerator
 
     @Override
     public String
-    getNextConfirmationCode()
+    getNextSecurityCode()
     {
         Random          random  = new SecureRandom();
         StringBuilder   builder = new StringBuilder();
