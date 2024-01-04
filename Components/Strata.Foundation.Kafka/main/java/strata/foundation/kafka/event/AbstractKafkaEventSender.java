@@ -17,7 +17,6 @@ import strata.foundation.core.event.SendResult;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public abstract
@@ -25,7 +24,6 @@ class AbstractKafkaEventSender<E>
     implements IEventSender<E>
 {
     private final Map<String,Object> itsProperties;
-    private final IActionQueue       itsQueue;
     private final IKeyProvider<E>    itsProvider;
     private final String             itsTopic;
     private final Class<E>           itsType;
@@ -34,16 +32,13 @@ class AbstractKafkaEventSender<E>
     protected
     AbstractKafkaEventSender(
         Map<String,Object> properties,
-        IActionQueue       queue,
         IKeyProvider<E>    provider,
         Class<E>           type,
         String             topic)
     {
         itsProperties = initializeProperties(properties);
-        itsQueue = queue;
         itsProvider = provider;
         itsTopic = topic;
-        itsQueue.register(() -> open(),() -> close());
         itsType = type;
         itsProducer = null;
     }

@@ -7,7 +7,6 @@ package strata.foundation.kafka.event;
 import jakarta.inject.Inject;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.event.FooEvent;
 import strata.foundation.core.event.IFooEventSender;
 
@@ -21,11 +20,10 @@ class KafkaFooEventSender
 {
     @Inject
     public
-    KafkaFooEventSender(IActionQueue q)
+    KafkaFooEventSender()
     {
         super(
             getProperties(),
-            q,
             e -> e.getSource().getId(),
             FooEvent.class,
             "foo.events");

@@ -6,7 +6,6 @@ package strata.foundation.kafka.event;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import strata.foundation.core.action.IActionQueue;
 
 import java.util.Map;
 
@@ -17,14 +16,12 @@ class AbstractKafkaAvroEventSender<E>
     protected
     AbstractKafkaAvroEventSender(
         Map<String,Object> properties,
-        IActionQueue       queue,
         IKeyProvider<E>    provider,
         Class<E>           type,
         String             topic)
     {
         super(
             initializeProperties(properties),
-            queue,
             provider,
             type,
             topic);

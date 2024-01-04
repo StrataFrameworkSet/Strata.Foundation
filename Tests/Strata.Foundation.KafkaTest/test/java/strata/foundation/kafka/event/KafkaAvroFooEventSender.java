@@ -9,7 +9,6 @@ import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import jakarta.inject.Inject;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.event.FooEvent;
 import strata.foundation.core.event.IFooEventSender;
 
@@ -23,11 +22,10 @@ class KafkaAvroFooEventSender
 {
     @Inject
     public
-    KafkaAvroFooEventSender(IActionQueue queue)
+    KafkaAvroFooEventSender()
     {
         super(
             getProperties(),
-            queue,
             e -> e.getSource().getId(),
             FooEvent.class,
             "foo.events.avro");
