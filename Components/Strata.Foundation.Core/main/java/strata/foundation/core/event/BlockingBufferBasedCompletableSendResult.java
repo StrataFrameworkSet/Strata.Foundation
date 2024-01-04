@@ -1,335 +1,301 @@
 //////////////////////////////////////////////////////////////////////////////
-// CompletableSendResult.java
+// BlockingBufferBasedCompletableSendResult.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.event;
 
-import java.util.concurrent.*;
-import java.util.function.*;
+import strata.foundation.core.concurrent.IBlockingBuffer;
+
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Executor;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public
-class CompletableSendResult<E>
+class BlockingBufferBasedCompletableSendResult<E>
     implements ICompletableSendResult<E>
 {
-    private final CompletableFuture<SendResult<E>> implementation;
+    private final IBlockingBuffer<ICompletableSendResult<E>> buffer;
 
     public
-    CompletableSendResult(CompletableFuture<SendResult<E>> imp)
+    BlockingBufferBasedCompletableSendResult(IBlockingBuffer<ICompletableSendResult<E>> source)
     {
-        implementation = imp;
-    }
-
-    public
-    CompletableSendResult(ICompletableSendResult<E> other)
-    {
-        implementation = other.toCompletableFuture();
+        Objects.requireNonNull(source);
+        buffer = source;
     }
 
     @Override
     public <U> CompletionStage<U>
     thenApply(Function<? super SendResult<E>,? extends U> fn)
     {
-        return implementation.thenApply(fn);
+        return getResult().thenApply(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     thenApplyAsync(Function<? super SendResult<E>,? extends U> fn)
     {
-        return implementation.thenApplyAsync(fn);
+        return getResult().thenApplyAsync(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     thenApplyAsync(Function<? super SendResult<E>,? extends U> fn,Executor executor)
     {
-        return implementation.thenApplyAsync(fn,executor);
+        return getResult().thenApplyAsync(fn,executor);
     }
 
     @Override
     public CompletionStage<Void>
     thenAccept(Consumer<? super SendResult<E>> action)
     {
-        return implementation.thenAccept(action);
+        return getResult().thenAccept(action);
     }
 
     @Override
     public CompletionStage<Void>
     thenAcceptAsync(Consumer<? super SendResult<E>> action)
     {
-        return implementation.thenAcceptAsync(action);
+        return getResult().thenAcceptAsync(action);
     }
 
     @Override
     public CompletionStage<Void>
     thenAcceptAsync(Consumer<? super SendResult<E>> action,Executor executor)
     {
-        return implementation.thenAcceptAsync(action,executor);
+        return getResult().thenAcceptAsync(action,executor);
     }
 
     @Override
     public CompletionStage<Void>
     thenRun(Runnable action)
     {
-        return implementation.thenRun(action);
+        return getResult().thenRun(action);
     }
 
     @Override
     public CompletionStage<Void>
     thenRunAsync(Runnable action)
     {
-        return implementation.thenRunAsync(action);
+        return getResult().thenRunAsync(action);
     }
 
     @Override
     public CompletionStage<Void>
     thenRunAsync(Runnable action,Executor executor)
     {
-        return implementation.thenRunAsync(action,executor);
+        return getResult().thenRunAsync(action,executor);
     }
 
     @Override
     public <U,V> CompletionStage<V>
     thenCombine(CompletionStage<? extends U> other,BiFunction<? super SendResult<E>,? super U,? extends V> fn)
     {
-        return implementation.thenCombine(other,fn);
+        return getResult().thenCombine(other,fn);
     }
 
     @Override
     public <U,V> CompletionStage<V>
     thenCombineAsync(CompletionStage<? extends U> other,BiFunction<? super SendResult<E>,? super U,? extends V> fn)
     {
-        return implementation.thenCombineAsync(other,fn);
+        return getResult().thenCombineAsync(other,fn);
     }
 
     @Override
     public <U,V> CompletionStage<V>
     thenCombineAsync(CompletionStage<? extends U> other,BiFunction<? super SendResult<E>,? super U,? extends V> fn,Executor executor)
     {
-        return implementation.thenCombineAsync(other,fn,executor);
+        return getResult().thenCombineAsync(other,fn,executor);
     }
 
     @Override
     public <U> CompletionStage<Void>
     thenAcceptBoth(CompletionStage<? extends U> other,BiConsumer<? super SendResult<E>,? super U> action)
     {
-        return implementation.thenAcceptBoth(other,action);
+        return getResult().thenAcceptBoth(other,action);
     }
 
     @Override
     public <U> CompletionStage<Void>
     thenAcceptBothAsync(CompletionStage<? extends U> other,BiConsumer<? super SendResult<E>,? super U> action)
     {
-        return implementation.thenAcceptBothAsync(other,action);
+        return getResult().thenAcceptBothAsync(other,action);
     }
 
     @Override
     public <U> CompletionStage<Void>
     thenAcceptBothAsync(CompletionStage<? extends U> other,BiConsumer<? super SendResult<E>,? super U> action,Executor executor)
     {
-        return implementation.thenAcceptBothAsync(other,action,executor);
+        return getResult().thenAcceptBothAsync(other,action,executor);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterBoth(CompletionStage<?> other,Runnable action)
     {
-        return implementation.runAfterBoth(other,action);
+        return getResult().runAfterBoth(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterBothAsync(CompletionStage<?> other,Runnable action)
     {
-        return implementation.runAfterBothAsync(other,action);
+        return getResult().runAfterBothAsync(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterBothAsync(CompletionStage<?> other,Runnable action,Executor executor)
     {
-        return implementation.runAfterBothAsync(other,action,executor);
+        return getResult().runAfterBothAsync(other,action,executor);
     }
 
     @Override
     public <U> CompletionStage<U>
     applyToEither(CompletionStage<? extends SendResult<E>> other,Function<? super SendResult<E>,U> fn)
     {
-        return implementation.applyToEither(other,fn);
+        return getResult().applyToEither(other,fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     applyToEitherAsync(CompletionStage<? extends SendResult<E>> other,Function<? super SendResult<E>,U> fn)
     {
-        return implementation.applyToEitherAsync(other,fn);
+        return getResult().applyToEitherAsync(other,fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     applyToEitherAsync(CompletionStage<? extends SendResult<E>> other,Function<? super SendResult<E>,U> fn,Executor executor)
     {
-        return implementation.applyToEitherAsync(other,fn,executor);
+        return getResult().applyToEitherAsync(other,fn,executor);
     }
 
     @Override
     public CompletionStage<Void>
     acceptEither(CompletionStage<? extends SendResult<E>> other,Consumer<? super SendResult<E>> action)
     {
-        return implementation.acceptEither(other,action);
+        return getResult().acceptEither(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     acceptEitherAsync(CompletionStage<? extends SendResult<E>> other,Consumer<? super SendResult<E>> action)
     {
-        return implementation.acceptEitherAsync(other,action);
+        return getResult().acceptEitherAsync(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     acceptEitherAsync(CompletionStage<? extends SendResult<E>> other,Consumer<? super SendResult<E>> action,Executor executor)
     {
-        return implementation.acceptEitherAsync(other,action,executor);
+        return getResult().acceptEitherAsync(other,action,executor);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterEither(CompletionStage<?> other,Runnable action)
     {
-        return implementation.runAfterEither(other,action);
+        return getResult().runAfterEither(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterEitherAsync(CompletionStage<?> other,Runnable action)
     {
-        return implementation.runAfterEitherAsync(other,action);
+        return getResult().runAfterEitherAsync(other,action);
     }
 
     @Override
     public CompletionStage<Void>
     runAfterEitherAsync(CompletionStage<?> other,Runnable action,Executor executor)
     {
-        return implementation.runAfterEitherAsync(other,action,executor);
+        return getResult().runAfterEitherAsync(other,action,executor);
     }
 
     @Override
     public <U> CompletionStage<U>
     thenCompose(Function<? super SendResult<E>,? extends CompletionStage<U>> fn)
     {
-        return implementation.thenCompose(fn);
+        return getResult().thenCompose(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     thenComposeAsync(Function<? super SendResult<E>,? extends CompletionStage<U>> fn)
     {
-        return implementation.thenComposeAsync(fn);
+        return getResult().thenComposeAsync(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     thenComposeAsync(Function<? super SendResult<E>,? extends CompletionStage<U>> fn,Executor executor)
     {
-        return implementation.thenComposeAsync(fn,executor);
+        return getResult().thenComposeAsync(fn,executor);
     }
 
     @Override
     public <U> CompletionStage<U>
     handle(BiFunction<? super SendResult<E>,Throwable,? extends U> fn)
     {
-        return implementation.handle(fn);
+        return getResult().handle(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     handleAsync(BiFunction<? super SendResult<E>,Throwable,? extends U> fn)
     {
-        return implementation.handleAsync(fn);
+        return getResult().handleAsync(fn);
     }
 
     @Override
     public <U> CompletionStage<U>
     handleAsync(BiFunction<? super SendResult<E>,Throwable,? extends U> fn,Executor executor)
     {
-        return implementation.handleAsync(fn,executor);
+        return getResult().handleAsync(fn,executor);
     }
 
     @Override
-    public CompletableSendResult<E>
+    public CompletionStage<SendResult<E>>
     whenComplete(BiConsumer<? super SendResult<E>,? super Throwable> action)
     {
-        return
-            new CompletableSendResult<>(
-                implementation.whenComplete(action));
+        return getResult().whenComplete(action);
     }
 
     @Override
-    public CompletableSendResult<E>
+    public CompletionStage<SendResult<E>>
     whenCompleteAsync(BiConsumer<? super SendResult<E>,? super Throwable> action)
     {
-        return
-            new CompletableSendResult<>(
-                implementation.whenCompleteAsync(action));
+        return getResult().whenCompleteAsync(action);
     }
 
     @Override
-    public CompletableSendResult<E>
+    public CompletionStage<SendResult<E>>
     whenCompleteAsync(BiConsumer<? super SendResult<E>,? super Throwable> action,Executor executor)
     {
-        return
-            new CompletableSendResult<>(
-                implementation.whenCompleteAsync(action,executor));
+        return getResult().whenCompleteAsync(action,executor);
     }
 
     @Override
-    public CompletableSendResult<E>
+    public CompletionStage<SendResult<E>>
     exceptionally(Function<Throwable,? extends SendResult<E>> fn)
     {
-        return
-            new CompletableSendResult<>(
-                implementation.exceptionally(fn));
+        return getResult().exceptionally(fn);
     }
 
     @Override
     public CompletableFuture<SendResult<E>>
     toCompletableFuture()
     {
-        return implementation;
+        return getResult().toCompletableFuture();
     }
 
-    public static <E> CompletableSendResult<E>
-    supplyAsync(Supplier<SendResult<E>> supplier)
-    {
-        return new CompletableSendResult<>(CompletableFuture.supplyAsync(supplier));
-    }
-
-    public static <E> CompletableSendResult<E>
-    supplyAsync(Supplier<SendResult<E>> supplier,Executor executor)
-    {
-        return
-            new CompletableSendResult<>(
-                CompletableFuture.supplyAsync(supplier,executor));
-    }
-
-    public static <E> CompletableSendResult<E>
-    completedWith(SendResult<E> value)
-    {
-        return
-            new CompletableSendResult<>(
-                CompletableFuture.completedFuture(value));
-    }
-
-
-    public static <E> CompletableSendResult<E>
-    completedWith(Throwable exception)
-    {
-        return
-            new CompletableSendResult<>(
-                CompletableFuture.failedFuture(exception));
-    }
-
+    protected ICompletableSendResult<E>
+    getResult() { return buffer.get(); }
 }
 
 //////////////////////////////////////////////////////////////////////////////
