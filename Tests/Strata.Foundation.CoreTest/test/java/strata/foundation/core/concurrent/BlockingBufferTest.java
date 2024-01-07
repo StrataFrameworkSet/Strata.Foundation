@@ -35,7 +35,7 @@ class BlockingBufferTest
     {
         writer.schedule(
             () -> subject.accept("XXXXXX"),
-            1,
+            5,
             TimeUnit.SECONDS);
 
         assertEquals("XXXXXX",subject.get());
