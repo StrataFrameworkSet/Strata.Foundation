@@ -58,8 +58,8 @@ class OptionalExtension
     {
         if (optional.isPresent())
             present.accept(optional.get());
-
-        throw exception;
+        else
+            throw exception;
     }
 
     public static <T> void

@@ -34,7 +34,7 @@ class ExceptionData
     }
 
     public ExceptionData
-    setExceptionCode(int exceptionCode)
+    setExceptionCode(Integer exceptionCode)
     {
         itsExceptionCode = exceptionCode;
         return this;

@@ -57,7 +57,7 @@ class PhoneNumber
     public boolean
     equals(PhoneNumber other)
     {
-        return itsPhone.equals(other.itsPhone);
+        return getDigitsOnly().equals(other.getDigitsOnly());
     }
 
     @Override
