@@ -40,6 +40,12 @@ class PostalAddress
     }
 
     public
+    PostalAddress()
+    {
+        this(null,null,null,null,null,null);
+    }
+
+    public
     PostalAddress(PostalAddress other)
     {
         this(
