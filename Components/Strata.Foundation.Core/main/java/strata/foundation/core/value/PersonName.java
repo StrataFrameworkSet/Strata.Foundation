@@ -17,10 +17,10 @@ public
 class PersonName
     implements ICopyable,Serializable,Comparable<PersonName>
 {
-    private Optional<String> title;
-    private String           firstName;
-    private Optional<String> middleName;
-    private String           lastName;
+    private String title;
+    private String firstName;
+    private String middleName;
+    private String lastName;
 
     public
     PersonName(String first,String last)
@@ -42,9 +42,9 @@ class PersonName
         @JsonProperty("middleName") String middle,
         @JsonProperty("lastName")   String last)
     {
-        title = Optional.ofNullable(t);
+        title = t;
         firstName = Objects.requireNonNull(first);
-        middleName = Optional.ofNullable(middle);
+        middleName = middle;
         lastName = Objects.requireNonNull(last);
     }
 
@@ -98,13 +98,13 @@ class PersonName
     }
 
     public Optional<String>
-    getTitle() { return title; }
+    getTitle() { return Optional.ofNullable(title); }
 
     public String
     getFirstName() { return firstName; }
 
     public Optional<String>
-    getMiddleName() { return middleName; }
+    getMiddleName() { return Optional.ofNullable(middleName); }
 
     public String
     getLastName() { return lastName; }
@@ -114,10 +114,10 @@ class PersonName
     {
         StringBuilder builder = new StringBuilder();
 
-        title.ifPresent(t -> builder.append(t).append(' '));
-        builder.append(firstName).append(' ');
-        middleName.ifPresent(m -> builder.append(m).append(' '));
-        builder.append(lastName);
+        getTitle().ifPresent(t -> builder.append(t).append(' '));
+        builder.append(getFirstName()).append(' ');
+        getMiddleName().ifPresent(m -> builder.append(m).append(' '));
+        builder.append(getLastName());
 
         return builder.toString();
     }
