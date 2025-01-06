@@ -1,5 +1,6 @@
 import {Instant} from "@js-joda/core";
 import {AbstractServiceRequest} from "./AbstractServiceRequest";
+import {Guid} from "guid-typescript";
 
 export
 abstract class AbstractServiceRequestBuilder<R extends AbstractServiceRequest>
@@ -9,7 +10,7 @@ abstract class AbstractServiceRequestBuilder<R extends AbstractServiceRequest>
 
     protected constructor()
     {
-        this.requestId = null;
+        this.requestId = Guid.create().toString();
         this.timestamp = Instant.now();
     }
 

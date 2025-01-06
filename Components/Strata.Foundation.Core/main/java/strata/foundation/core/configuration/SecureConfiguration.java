@@ -108,15 +108,9 @@ class SecureConfiguration
     {
         return
             itsProperties
-                .entrySet()
+                .keySet()
                 .stream()
-                .map(
-                    entry ->
-                        Pair.create(
-                            entry
-                                .getKey()
-                                .toString(),
-                            entry.getValue()));
+                .map(key -> Pair.create(key.toString(),itsProperties.get(key)));
     }
 
     protected StandardPBEStringEncryptor

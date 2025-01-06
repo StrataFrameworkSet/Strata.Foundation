@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import strata.foundation.core.mapper.ObjectMapperSupplier;
+import strata.foundation.core.value.EmailAddress;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -59,6 +60,17 @@ class ObjectMapperTest
             target.readValue(
                 target.writeValueAsString(expected),
                 DoFooRequest.class);
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void
+    testSerializeEmailAddress() throws Exception
+    {
+        EmailAddress expected = new EmailAddress("john.doe@xyz.com");
+        String expectedOutput = target.writeValueAsString(expected);
+        EmailAddress actual = target.readValue(expectedOutput,EmailAddress.class);
 
         assertEquals(expected,actual);
     }

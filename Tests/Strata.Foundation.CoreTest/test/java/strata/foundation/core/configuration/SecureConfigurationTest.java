@@ -53,6 +53,14 @@ class SecureConfigurationTest
         assertTrue(unencryptedProperty3);
     }
 
+    @Test
+    public void
+    testStream() throws Exception
+    {
+        itsTarget
+            .stream()
+            .forEach(property -> System.out.println(property.getFirst()+"="+property.getSecond()));
+    }
     protected InputStream
     getPropertiesStream()
     {
