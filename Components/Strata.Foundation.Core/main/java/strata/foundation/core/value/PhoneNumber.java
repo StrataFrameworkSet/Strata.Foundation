@@ -5,8 +5,8 @@
 package strata.foundation.core.value;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import strata.foundation.core.utility.ICopyable;
 
 import java.io.Serializable;
@@ -82,6 +82,7 @@ class PhoneNumber
         return itsPhone;
     }
 
+    @JsonIgnore
     public String
     getDigitsOnly()
     {
