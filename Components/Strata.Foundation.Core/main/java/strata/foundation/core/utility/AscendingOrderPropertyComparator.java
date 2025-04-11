@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// AscendingOrderSorter.java
+// AscendingOrderPropertyComparator.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -7,12 +7,19 @@ package strata.foundation.core.utility;
 import java.util.function.Function;
 
 public
-class AscendingOrderSorter<T,P extends Comparable<P>>
-    implements IPropertySorter<T,P>
+class AscendingOrderPropertyComparator<T,P extends Comparable<P>>
+    implements IPropertyComparator<T,P>
 {
+    private final Function<T,P> selector;
+
+    public AscendingOrderPropertyComparator(Function<T,P> selector)
+    {
+        this.selector = selector;
+    }
+
     @Override
     public int
-    compare(T a,T b,Function<T,P> selector)
+    compare(T a,T b)
     {
         return selector.apply(a).compareTo(selector.apply(b));
     }

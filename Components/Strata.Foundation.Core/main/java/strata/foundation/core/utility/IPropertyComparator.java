@@ -1,16 +1,14 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// IPropertySorter.java
+// IPropertyComparator.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
-import java.util.function.Function;
-
 public
-interface IPropertySorter<T,P extends Comparable<P>>
+interface IPropertyComparator<T,P extends Comparable<P>>
 {
     int
-    compare(T a,T b,Function<T,P> selector);
+    compare(T a,T b);
 }
 
 //////////////////////////////////////////////////////////////////////////////
