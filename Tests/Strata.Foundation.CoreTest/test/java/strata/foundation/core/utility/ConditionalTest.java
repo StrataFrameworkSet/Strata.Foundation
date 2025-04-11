@@ -2,7 +2,7 @@
 // ConditionalTest.java
 //////////////////////////////////////////////////////////////////////////////
 
-package utility;
+package strata.foundation.core.utility;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -75,6 +75,8 @@ class ConditionalTest
         trueCondition
             .ifTrue(() -> {actual.setItem(expected);});
 
+        assertEquals(expected,actual.getItem());
+
         falseCondition
             .ifTrue(() -> {throw new IllegalStateException();});
     }
@@ -88,6 +90,8 @@ class ConditionalTest
 
         falseCondition
             .ifFalse(() -> {actual.setItem(expected);});
+
+        assertEquals(expected,actual.getItem());
 
         trueCondition
             .ifFalse(() -> {throw new IllegalStateException();});

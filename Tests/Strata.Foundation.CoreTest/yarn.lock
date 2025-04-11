@@ -2275,10 +2275,10 @@ stack-utils@^2.0.3:
   dependencies:
     escape-string-regexp "^2.0.0"
 
-strata.foundation.core@^0.0.0-snapshot.19:
-  version "0.0.0-snapshot.21"
-  resolved "https://registry.npmjs.org/strata.foundation.core/-/strata.foundation.core-0.0.0-snapshot.21.tgz#e45b1a294e0f13621c4c3a9a6bc07bc303914738"
-  integrity sha512-X3VdQs37mIjR43JUI1hkO0rnuH0VfhD/KcxeiFXd/g5YGAvXWP1nkF4OpOjXUv6gcw0X1vUZs9vaLGWdOccpNw==
+strata.foundation.core@0.0.0-snapshot:
+  version "0.0.0-snapshot.1744411255190"
+  resolved "https://registry.npmjs.org/strata.foundation.core/-/strata.foundation.core-0.0.0-snapshot.1744411255190.tgz#d81a68a0144b4b66f69200ec1db9e323d9ded58f"
+  integrity sha512-dztfmi9LBGR7ufDKHuSKZCREDF4dArpqbg8uZ8re6s4JVaZbFlckpo+Y3BzWpTf8AosmrKqaCHfv5etpw+3Xlg==
   dependencies:
     "@js-joda/core" "^5.5.3"
     guid-typescript "^1.0.9"

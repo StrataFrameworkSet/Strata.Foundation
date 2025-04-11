@@ -150,7 +150,7 @@ class AbstractMultiMap<K,V>
     }
 
     @Override
-    public Collection<Map.Entry<K,Collection<V>>>
+    public Collection<Entry<K,Collection<V>>>
     entrySet()
     {
         return mappings.entrySet();
