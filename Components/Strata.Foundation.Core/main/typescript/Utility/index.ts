@@ -6,6 +6,7 @@ export {LambdaConsumer} from "./LambdaConsumer";
 export {LambdaSupplier} from "./LambdaSupplier";
 export {LambdaRunnable} from "./LambdaRunnable";
 export {LambdaFunction} from "./LambdaFunction";
+export {LambdaPredicate} from "./LambdaPredicate";
 export {Holder} from './Holder';
 export {Optional} from "./Optional";
 export {Conditional} from "./Conditional";

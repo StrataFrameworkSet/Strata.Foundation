@@ -5,6 +5,7 @@ import {IConsumerOrLambda, LambdaConsumer} from "./LambdaConsumer";
 import {IFunctionOrLambda, LambdaFunction} from "./LambdaFunction";
 import {ISupplierOrLambda, LambdaSupplier} from "./LambdaSupplier";
 import {IRunnableOrLambda, LambdaRunnable} from "./LambdaRunnable";
+import {IPredicateOrLambda, LambdaPredicate} from "./LambdaPredicate";
 
 export
 class Optional<T>
@@ -87,6 +88,17 @@ class Optional<T>
             return this.subject;
 
         throw LambdaSupplier.of(supplier).get();
+    }
+
+    filter(predicate: IPredicateOrLambda<T>): Optional<T>
+    {
+        if (predicate == null)
+            throw new NullPointerException("predicate is null");
+
+        if (this.isPresent() && LambdaPredicate.of(predicate).test(this.subject))
+            return this;
+
+        return Optional.empty();
     }
 
     map<U>(mapper: IFunctionOrLambda<T,U>): Optional<U>
