@@ -1,4 +1,5 @@
 import {ISupplier} from "./ISupplier";
+import {NullPointerException} from "./NullPointerException";
 
 export type ISupplierOrLambda<T> = ISupplier<T> | (() => T);
 
@@ -10,6 +11,9 @@ class LambdaSupplier<T>
 
     constructor(input: ISupplierOrLambda<T>)
     {
+        if (input == null)
+            throw new NullPointerException("input is null");
+
         if (LambdaSupplier.isSupplier(input))
             this.lambda = () => (<ISupplier<T>>input).get();
         else

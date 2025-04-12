@@ -1,4 +1,5 @@
 import {IRunnable} from "./IRunnable";
+import {NullPointerException} from "./NullPointerException";
 
 export type IRunnableOrLambda = IRunnable | (() => void);
 
@@ -10,6 +11,9 @@ class LambdaRunnable
 
     constructor(input: IRunnableOrLambda)
     {
+        if (input == null)
+            throw new NullPointerException("input is null");
+
         if (LambdaRunnable.isRunnable(input))
             this.lambda = () => (<IRunnable>input).run();
         else

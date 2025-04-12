@@ -1,4 +1,5 @@
 import {IFunction} from "./IFunction";
+import {NullPointerException} from "./NullPointerException";
 
 export type IFunctionOrLambda<I,O> = IFunction<I,O> | ((input: I) => O);
 
@@ -10,6 +11,9 @@ class LambdaFunction<I,O>
 
     constructor(input: IFunctionOrLambda<I,O>)
     {
+        if (input == null)
+            throw new NullPointerException("input is null");
+
         if (LambdaFunction.isFunction(input))
             this.lambda = (x: I) => (<IFunction<I,O>>input).apply(x);
         else

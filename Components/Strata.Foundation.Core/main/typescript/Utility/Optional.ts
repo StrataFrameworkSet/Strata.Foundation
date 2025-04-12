@@ -103,6 +103,9 @@ class Optional<T>
 
     map<U>(mapper: IFunctionOrLambda<T,U>): Optional<U>
     {
+        if (mapper == null)
+            throw new NullPointerException("mapper is null");
+
         if (this.isPresent())
             return Optional.ofNullable(
                 LambdaFunction.of(mapper).apply(this.subject));
@@ -112,6 +115,9 @@ class Optional<T>
 
     flatMap<U>(mapper: IFunctionOrLambda<T,Optional<U>>): Optional<U>
     {
+        if (mapper == null)
+            throw new NullPointerException("mapper is null");
+
         if (this.isPresent())
         {
             const output: Optional<U> =

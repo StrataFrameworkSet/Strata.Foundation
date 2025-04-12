@@ -1,4 +1,5 @@
 import {IConsumer} from "./IConsumer";
+import {NullPointerException} from "./NullPointerException";
 
 export type IConsumerOrLambda<T> = IConsumer<T> | ((value: T) => void);
 
@@ -10,6 +11,9 @@ class LambdaConsumer<T>
 
     constructor(input: IConsumerOrLambda<T>)
     {
+        if (input == null)
+            throw new NullPointerException("input is null");
+
         if (LambdaConsumer.isConsumer(input))
             this.lambda = (value: T) => (<IConsumer<T>>input).accept(value);
 

@@ -1,4 +1,5 @@
 import {IPredicate} from "./IPredicate";
+import {NullPointerException} from "./NullPointerException";
 
 export type IPredicateOrLambda<T> = IPredicate<T> | ((value: T) => boolean);
 
@@ -10,6 +11,9 @@ class LambdaPredicate<T>
 
     constructor(input: IPredicateOrLambda<T>)
     {
+        if (input == null)
+            throw new NullPointerException("input is null");
+
         if (LambdaPredicate.isPredicate(input))
             this.lambda = (value: T) => (<IPredicate<T>>input).test(value);
         else
