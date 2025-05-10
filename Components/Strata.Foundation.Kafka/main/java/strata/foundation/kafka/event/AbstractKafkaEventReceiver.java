@@ -35,7 +35,7 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         Class<E>           t,
         String             topic)
     {
-        itsProperties = initializeProperties(p);
+        itsProperties = initializeProperties(p,t);
         itsType       = t;
         itsTopic      = topic;
         itsConsumer   = null;
@@ -120,12 +120,20 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     protected KafkaConsumer<String,E>
     createConsumer()
     {
-        return new KafkaConsumer<String,E>(itsProperties);
+        return new KafkaConsumer<>(itsProperties);
     }
 
-    private static Map<String,Object>
-    initializeProperties(Map<String,Object> properties)
+    private static <E> Map<String,Object>
+    initializeProperties(Map<String,Object> properties,Class<E> type)
     {
+        new ClassBasedGroupIdSupplier<>(type,properties)
+            .get()
+            .ifPresent(
+                groupId ->
+                    properties.put(
+                        ConsumerConfig.GROUP_ID_CONFIG,
+                        groupId));
+
         properties.put(
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
             StringDeserializer.class.getName());

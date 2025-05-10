@@ -36,7 +36,7 @@ class KafkaConfigurationProvider
     public static final String RETRIES_KEY = "kafka.retries";
     public static final String ACKS_KEY = "kafka.acks";
     public static final String CLIENT_ID_KEY = "kafka.client.id";
-    public static final String GROUP_ID_KEY = "kafka.group.id";
+    public static final String GROUP_ID_PREFIX_KEY = "kafka.group.id.";
 
     private final IConfiguration     source;
     private final Map<String,Object> configuration;
@@ -161,10 +161,9 @@ class KafkaConfigurationProvider
     initializeReceiver()
         throws IllegalArgumentException
     {
-        if (source.hasProperty(GROUP_ID_KEY))
-            configuration.put(
-                ConsumerConfig.GROUP_ID_CONFIG,
-                source.getProperty(GROUP_ID_KEY));
+        source
+            .getProperties(GROUP_ID_PREFIX_KEY)
+            .forEach((key,value) -> configuration.put(key,value));
 
         configuration.put(
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
@@ -208,6 +207,7 @@ class KafkaConfigurationProvider
                 new IllegalArgumentException(
                     "properties does not contain key: " + SCHEMA_REGISTRY_API_SECRET);
     }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////
