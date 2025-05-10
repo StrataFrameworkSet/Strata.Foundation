@@ -57,6 +57,8 @@ tasks.named("compileJava").configure {
 dependencies {
     testImplementation(testFixtures(project(':Tests:Strata.Foundation.CoreTest')))
     testImplementation project(':Components:Strata.Foundation.Kafka')
+    testImplementation 'org.slf4j:slf4j-reload4j:2.0.17'
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.24.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'

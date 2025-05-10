@@ -15,6 +15,9 @@ interface IConfiguration
     String
     getProperty(String key);
 
+    String
+    getProperty(String key, String defaultValue);
+
     Boolean
     getBooleanProperty(String key);
 

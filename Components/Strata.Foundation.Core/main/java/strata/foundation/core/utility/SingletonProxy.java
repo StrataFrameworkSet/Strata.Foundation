@@ -19,7 +19,7 @@ class SingletonProxy
 	implements InvocationHandler
 {
 	private static Map<Object,Object> theirInstances
-										= new HashMap<Object,Object>();
+										= new HashMap<>();
 	private Object itsInstance;
 	
 	/************************************************************************

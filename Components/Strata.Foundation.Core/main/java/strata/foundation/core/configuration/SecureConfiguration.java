@@ -39,6 +39,13 @@ class SecureConfiguration
     }
 
     @Override
+    public String
+    getProperty(String key,String defaultValue)
+    {
+        return itsProperties.getProperty(key,defaultValue);
+    }
+
+    @Override
     public Boolean
     getBooleanProperty(String key)
     {

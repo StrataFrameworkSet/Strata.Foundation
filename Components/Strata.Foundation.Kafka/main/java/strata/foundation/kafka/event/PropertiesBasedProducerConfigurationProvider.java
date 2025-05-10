@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public
 class PropertiesBasedProducerConfigurationProvider
-    implements IConfigurationProvider
+    implements IKafkaConfigurationProvider
 {
     private final Properties itsProperties;
     private final String     itsBootstrapServersKey;
@@ -60,7 +60,7 @@ class PropertiesBasedProducerConfigurationProvider
     get()
     {
         return
-            new HashMap<String,Object>()
+            new HashMap<>()
             {{
                 put(
                     ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,

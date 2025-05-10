@@ -1,0 +1,24 @@
+//////////////////////////////////////////////////////////////////////////////
+// SingletonFactorySupplier.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.reflect;
+
+public
+class SingletonFactorySupplier
+    implements IFactorySupplier
+{
+    private static final IFactory instance = new SimpleFactory();
+
+    public
+    SingletonFactorySupplier() {}
+
+    @Override
+    public IFactory
+    get()
+    {
+        return instance;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////

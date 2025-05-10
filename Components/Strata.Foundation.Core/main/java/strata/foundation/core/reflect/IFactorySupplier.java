@@ -1,16 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
-// IConfigurationProvider.java
+// IFactorySupplier.java
 //////////////////////////////////////////////////////////////////////////////
 
-package strata.foundation.kafka.event;
+package strata.foundation.core.reflect;
 
-import com.google.inject.Provider;
-
-import java.util.Map;
+import java.util.function.Supplier;
 
 public
-interface IConfigurationProvider
-    extends Provider<Map<String,Object>>
-{}
+interface IFactorySupplier
+    extends Supplier<IFactory> {}
 
 //////////////////////////////////////////////////////////////////////////////

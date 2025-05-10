@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public
 class PropertiesBasedConsumerConfigurationProvider
-    implements IConfigurationProvider
+    implements IKafkaConfigurationProvider
 {
     private final Properties itsProperties;
     private final String     itsBootstrapServersKey;

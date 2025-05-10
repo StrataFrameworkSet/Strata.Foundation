@@ -6,9 +6,11 @@ package strata.foundation.kafka.event;
 
 import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.action.StandardActionQueue;
+import strata.foundation.core.configuration.IConfiguration;
 import strata.foundation.core.event.IFooEventReceiver;
 import strata.foundation.core.event.IFooEventSender;
 import strata.foundation.core.inject.AbstractModule;
+import strata.foundation.core.inject.ApplicationConfigurationProvider;
 import strata.foundation.core.inject.ThreadScope;
 
 public
@@ -36,6 +38,13 @@ class AvroTestModule
             .to(KafkaAvroFooEventReceiver.class)
             .in(getDefaultScope());
 
+        bind(IKafkaConfigurationProvider.class)
+            .to(KafkaConfigurationProvider.class)
+            .in(getDefaultScope());
+
+        bind(IConfiguration.class)
+            .toProvider(new ApplicationConfigurationProvider("test"))
+            .in(getDefaultScope());
     }
 }
 

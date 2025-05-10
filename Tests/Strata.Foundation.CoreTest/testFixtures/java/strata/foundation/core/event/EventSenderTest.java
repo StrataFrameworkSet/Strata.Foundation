@@ -28,19 +28,21 @@ class EventSenderTest
 
     @BeforeEach
     public void
-    setUp()
+    setUp() throws Exception
     {
         Injector injector = Guice.createInjector(getModule());
 
         itsTarget = injector.getInstance(IFooEventSender.class);
         itsReceiver = injector.getInstance(IFooEventReceiver.class);
         itsActionQueue = injector.getInstance(IActionQueue.class);
+        itsTarget.open();
     }
 
     @AfterEach
     public void
-    tearDown()
+    tearDown() throws Exception
     {
+        itsTarget.close();
         itsReceiver.stopListening();
     }
 
@@ -73,7 +75,7 @@ class EventSenderTest
 
         itsTarget.send(expected);
         itsActionQueue.execute();
-        sleep(7);
+        sleep(10);
         assertFalse(itsReceiver.isListening(),"Should have stopped listening at this point");
         listener.checkAssertions();
     }
@@ -124,7 +126,7 @@ class EventSenderTest
         itsTarget.send(expected1);
         itsTarget.send(expected2);
         itsActionQueue.execute();
-        sleep(7);
+        sleep(10);
         assertFalse(itsReceiver.isListening(),"Should have stopped listening at this point");
         listener.checkAssertions();
     }

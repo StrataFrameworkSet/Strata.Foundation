@@ -6,10 +6,10 @@ package strata.foundation.core.reflect;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public
+public abstract
 class AbstractFactory
     implements IFactory
 {
@@ -18,7 +18,7 @@ class AbstractFactory
     protected
     AbstractFactory()
     {
-        constructors = new HashMap<>();
+        constructors = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -44,15 +44,8 @@ class AbstractFactory
         throw new InstantiationException("No suitable constructor found for " + type);
     }
 
-    @Override
-    public <T> boolean
-    hasConstructorFor(Class<T> type)
-    {
-        return constructors.containsKey(type);
-    }
-
-    protected <T> void
-    insertConstructorFor(Class<T> type,Constructor<? extends T> constructor)
+    public <T> IFactory
+    insertConstructor(Class<T> type,Constructor<? extends T> constructor)
     {
         Class<? extends T> declaringClass = constructor.getDeclaringClass();
 
@@ -62,6 +55,15 @@ class AbstractFactory
             throw
                 new ClassCastException(
                     declaringClass.getName() + " is not assignable to " + type.getName());
+
+        return this;
+    }
+
+    @Override
+    public <T> boolean
+    hasConstructorFor(Class<T> type)
+    {
+        return constructors.containsKey(type);
     }
 }
 

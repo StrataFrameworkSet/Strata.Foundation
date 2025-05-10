@@ -78,8 +78,8 @@ class FooEventListener
             EventIdentifiersData actualIds = actual.getIdentifiers();
             FooData              actualSource = actual.getSource();
 
-            assertEquals("EventIds !=",expectedIds.getEventId(),actualIds.getEventId());
-            assertEquals("CorrelationIds !=",expectedIds.getCorrelationId(),actualIds.getCorrelationId());
+            assertEquals(expectedIds.getEventId(),actualIds.getEventId(),"EventIds !=");
+            assertEquals(expectedIds.getCorrelationId(),actualIds.getCorrelationId(),"CorrelationIds !=");
             assertEquals(expectedIds.getTimestamp(),actualIds.getTimestamp(),"Timestamps !=");
             assertEquals(expectedSource.getId(),actualSource.getId(),"Ids !=");
             assertEquals(expectedSource.getX(),actualSource.getX(),"Xs !=");
