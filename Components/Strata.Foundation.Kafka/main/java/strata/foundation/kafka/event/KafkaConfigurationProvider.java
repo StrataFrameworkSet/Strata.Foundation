@@ -24,6 +24,7 @@ class KafkaConfigurationProvider
     public static final String CONFIGURATION_KIND_KEY = "KAFKA_CONFIGURATION_KIND";
     public static final String BOOTSTRAP_SERVERS_KEY = "kafka.bootstrap.servers";
     public static final String SCHEMA_REGISTRY_URL_KEY = "kafka.schema.registry.url";
+    public static final String SECURITY_PROTOCOL_KEY = "kafka.security.protocol";
     public static final String API_KEY_KEY = "kafka.api.key";
     public static final String API_SECRET_KEY = "kafka.api.secret";
     public static final String SCHEMA_REGISTRY_API_KEY = "kafka.schema.registry.api.key";
@@ -99,7 +100,9 @@ class KafkaConfigurationProvider
 
         configuration.put(
             CommonClientConfigs.SECURITY_PROTOCOL_CONFIG,
-            "SASL_SSL");
+            source.getProperty(
+                SECURITY_PROTOCOL_KEY,
+                "SASL_SSL"));
         configuration.put(
             SaslConfigs.SASL_MECHANISM,
             "PLAIN");
