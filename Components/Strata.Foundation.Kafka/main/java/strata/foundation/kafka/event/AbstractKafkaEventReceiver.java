@@ -15,7 +15,7 @@ import strata.foundation.core.event.AbstractEventReceiver;
 import strata.foundation.core.event.IEventListener;
 
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -102,7 +102,8 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     {
         try
         {
-            itsConsumer.subscribe(Arrays.asList(itsTopic));
+            itsLogger.debug("Entering event listening loop.");
+            itsConsumer.subscribe(Collections.singletonList(itsTopic));
             getListener()
                 .ifPresent(listener -> listener.onStart());
 
@@ -111,7 +112,7 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
                 ConsumerRecords<String,E> records =
                     itsConsumer.poll(Duration.ofMillis(100));
 
-                itsLogger.info("Received {} records.",records.count());
+                itsLogger.info("Received {} events.",records.count());
 
                 for (ConsumerRecord<String,E> record: records)
                 {
@@ -133,12 +134,14 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         catch (WakeupException wakeup) {}
         catch (Throwable exception)
         {
-            itsLogger.error("Exception in runListeningLoop",exception);
+            itsLogger.error("Exception in event listening loop",exception);
         }
         finally
         {
             getListener()
                 .ifPresent(listener -> listener.onStop());
+
+            itsLogger.debug("Exiting event listening loop.");
 
             if (itsConsumer != null)
                 itsConsumer.close();

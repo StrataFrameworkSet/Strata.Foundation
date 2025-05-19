@@ -8,7 +8,8 @@ public
 interface IEventListener<E>
 {
     default void
-    onStart() throws StartError {}
+    onStart() throws StartException
+    {}
 
     default void
     onStop() {}

@@ -1,27 +1,27 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// StartError.java
+// StartException.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.event;
 
 public
-class StartError
-    extends Error
+class StartException
+    extends RuntimeException
 {
     public
-    StartError(String message)
+    StartException(String message)
     {
         super(message);
     }
 
     public
-    StartError(String message,Throwable cause)
+    StartException(String message,Throwable cause)
     {
         super(message,cause);
     }
 
     public
-    StartError(Throwable cause)
+    StartException(Throwable cause)
     {
         super(cause);
     }
