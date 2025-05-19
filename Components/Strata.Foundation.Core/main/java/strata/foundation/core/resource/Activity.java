@@ -1,5 +1,5 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// ResourceManager.java
+// Activity.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.resource;
@@ -7,13 +7,13 @@ package strata.foundation.core.resource;
 import java.util.Objects;
 
 public
-class ResourceManager<R extends IResource>
+class Activity<R extends IResource>
     implements AutoCloseable
 {
     private final R resource;
 
     public
-    ResourceManager(R resource)
+    Activity(R resource)
         throws OpenFailedException
     {
         Objects.requireNonNull(resource, "resource must not be null");
@@ -48,10 +48,10 @@ class ResourceManager<R extends IResource>
         }
     }
 
-    public static <R extends IResource> ResourceManager<R>
+    public static <R extends IResource> Activity<R>
     of(R resource)
     {
-        return new ResourceManager<>(resource);
+        return new Activity<>(resource);
     }
 }
 

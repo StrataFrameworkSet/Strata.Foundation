@@ -9,8 +9,11 @@ interface IResource
     extends AutoCloseable
 {
     void
-    open()
-        throws Exception;
+    open() throws ResourceException;
+
+    @Override
+    void
+    close() throws ResourceException;
 
     boolean
     isOpen();
