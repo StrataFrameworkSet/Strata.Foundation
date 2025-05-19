@@ -4,12 +4,10 @@
 
 package strata.foundation.core.concurrent;
 
-import java.util.concurrent.CompletionStage;
-
 public
 interface IClosable
 {
-    CompletionStage<Void>
+    ICompletableVoid
     close();
 }
 

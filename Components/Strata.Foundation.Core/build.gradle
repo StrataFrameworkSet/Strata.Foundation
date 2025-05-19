@@ -60,7 +60,7 @@ publishing {
 }
 
 dependencies {
-    api 'com.google.inject:guice:6.0.0'
+    api 'com.google.inject:guice:7.0.0'
     api 'org.jasypt:jasypt:1.9.3'
     api 'org.apache.avro:avro:1.11.1'
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2'

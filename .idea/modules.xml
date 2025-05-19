@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Components/Strata.Foundation.Spring/Strata.Foundation.Components.Strata.Foundation.Spring.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Components/Strata.Foundation.Spring/Strata.Foundation.Components.Strata.Foundation.Spring.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tests/Strata.Foundation.SpringTest/Strata.Foundation.Tests.Strata.Foundation.SpringTest.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Tests/Strata.Foundation.SpringTest/Strata.Foundation.Tests.Strata.Foundation.SpringTest.test.iml" />
+    </modules>
+  </component>
+</project>

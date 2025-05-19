@@ -6,6 +6,8 @@ package strata.foundation.core.container;
 
 import strata.foundation.core.utility.HashCodeBuilder;
 
+import java.util.Objects;
+
 public 
 class Triple<F,S,T>
 {
@@ -35,15 +37,11 @@ class Triple<F,S,T>
     public boolean 
     equals(Object other)
     {
-        if ( other instanceof Triple<?,?,?> )
-        {
-            Triple<?,?,?> triple = (Triple<?,?,?>)other;
-            
+        if (other instanceof Triple<?,?,?> triple)
             return
-                itsFirst.equals( triple.getFirst() ) &&
-                itsSecond.equals( triple.getSecond() ) &&
-                itsThird.equals( triple.getThird() );
-        }
+                Objects.equals(itsFirst,triple.getFirst()) &&
+                Objects.equals(itsSecond,triple.getSecond()) &&
+                Objects.equals(itsThird,triple.getThird());
         
         return false;
     }
@@ -57,9 +55,9 @@ class Triple<F,S,T>
     {
         return
             new HashCodeBuilder(43)
-                .append( itsFirst.toString() )
-                .append( itsSecond.toString() )
-                .append( itsThird.toString() )
+                .append(Objects.toString(itsFirst,""))
+                .append(Objects.toString(itsSecond,""))
+                .append(Objects.toString(itsThird,""))
                 .getHashCode();
     }
 
@@ -70,11 +68,9 @@ class Triple<F,S,T>
     public String
     toString()
     {
-        return 
-            itsFirst.toString() + "," + 
-            itsSecond.toString() + "," +
-            itsThird.toString();
+        return itsFirst + "," + itsSecond + "," + itsThird;
     }
+
     /************************************************************************
      *  
      *

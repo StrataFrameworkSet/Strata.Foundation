@@ -29,26 +29,18 @@ class Quadruple<T1,T2,T3,T4>
     equals(Quadruple<T1,T2,T3,T4> other)
     {
         return
-            itsFirst.equals(other.getFirst()) &&
-            itsSecond.equals(other.getSecond()) &&
-            itsThird.equals(other.getThird()) &&
-            itsFourth.equals(other.getFourth());
+            Objects.equals(itsFirst,other.getFirst()) &&
+            Objects.equals(itsSecond,other.getSecond()) &&
+            Objects.equals(itsThird,other.getThird()) &&
+            Objects.equals(itsFourth,other.getFourth());
     }
 
     @Override
     public boolean 
     equals(Object other)
     {
-        if ( other instanceof Quadruple<?,?,?,?> )
-        {
-            Quadruple<?,?,?,?> quadruple = (Quadruple<?,?,?,?>)other;
-            
-            return
-                itsFirst.equals(quadruple.getFirst()) &&
-                itsSecond.equals(quadruple.getSecond()) &&
-                itsThird.equals(quadruple.getThird()) &&
-                itsFourth.equals(quadruple.getFourth());
-        }
+        if (other instanceof Quadruple<?,?,?,?> quadruple)
+            return equals(quadruple);
         
         return false;
     }
@@ -59,10 +51,10 @@ class Quadruple<T1,T2,T3,T4>
     {
         return
             new HashCodeBuilder(43)
-                .append(itsFirst != null ? itsFirst.toString() : "")
-                .append(itsSecond != null ? itsSecond.toString() : "")
-                .append(itsThird != null ? itsThird.toString() : "" )
-                .append(itsFourth != null ? itsFourth.toString() : "")
+                .append(Objects.toString(itsFirst,""))
+                .append(Objects.toString(itsSecond,""))
+                .append(Objects.toString(itsThird,""))
+                .append(Objects.toString(itsFourth,""))
                 .getHashCode();
     }
 

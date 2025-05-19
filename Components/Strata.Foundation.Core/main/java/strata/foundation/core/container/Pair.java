@@ -6,6 +6,8 @@ package strata.foundation.core.container;
 
 import strata.foundation.core.utility.HashCodeBuilder;
 
+import java.util.Objects;
+
 public 
 class Pair<F,S>
 {
@@ -32,14 +34,10 @@ class Pair<F,S>
     public boolean 
     equals(Object other)
     {
-        if ( other instanceof Pair<?,?> )
-        {
-            Pair<?,?> pair = (Pair<?,?>)other;
-            
+        if (other instanceof Pair<?,?> pair)
             return
-                itsFirst.equals( pair.getFirst() ) &&
-                itsSecond.equals( pair.getSecond() );
-        }
+                Objects.equals(itsFirst,pair.getFirst()) &&
+                Objects.equals(itsSecond,pair.getSecond());
         
         return false;
     }
@@ -53,8 +51,8 @@ class Pair<F,S>
     {
         return
             new HashCodeBuilder(43)
-                .append( itsFirst.toString() )
-                .append( itsSecond.toString() )
+                .append(Objects.toString(itsFirst,""))
+                .append(Objects.toString(itsSecond,""))
                 .getHashCode();
     }
 
@@ -65,7 +63,7 @@ class Pair<F,S>
     public String
     toString()
     {
-        return itsFirst.toString() + "," + itsSecond.toString();
+        return itsFirst + "," + itsSecond;
     }
 
     /************************************************************************

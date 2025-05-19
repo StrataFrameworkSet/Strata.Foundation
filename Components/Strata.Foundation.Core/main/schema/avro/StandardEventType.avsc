@@ -2,5 +2,5 @@
     "type": "enum",
     "namespace" : "strata.foundation.core.event",
     "name": "StandardEventType",
-    "symbols" : ["CREATED","UPDATED","DELETED","EXCEPTION"]
+    "symbols" : ["CREATED","UPDATED","DELETED","DESTROYED","EXCEPTION"]
 }

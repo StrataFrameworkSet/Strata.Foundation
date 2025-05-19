@@ -1,0 +1,17 @@
+/// ///////////////////////////////////////////////////////////////////////////
+// ICompletableResultFactory.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.concurrent;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+
+public
+interface ICompletableResultFactory<
+    T,
+    R extends CompletedResult<T>,
+    C extends ICompletableResult<T,R>>
+    extends Function<CompletableFuture<R>,C> {}
+
+//////////////////////////////////////////////////////////////////////////////
