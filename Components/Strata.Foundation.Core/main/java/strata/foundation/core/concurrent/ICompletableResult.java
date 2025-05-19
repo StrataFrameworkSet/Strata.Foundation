@@ -8,6 +8,10 @@ import java.util.concurrent.CompletionStage;
 
 public
 interface ICompletableResult<T,R extends CompletedResult<T>>
-    extends CompletionStage<R> {}
+    extends CompletionStage<R>
+{
+    R
+    join();
+}
 
 //////////////////////////////////////////////////////////////////////////////

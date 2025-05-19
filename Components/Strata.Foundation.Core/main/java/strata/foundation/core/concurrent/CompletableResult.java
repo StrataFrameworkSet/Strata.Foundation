@@ -15,7 +15,8 @@ class CompletableResult<T,R extends CompletedResult<T>>
 {
     private final CompletableFuture<R> future;
 
-    public CompletableResult(CompletableFuture<R> future)
+    public
+    CompletableResult(CompletableFuture<R> future)
     {
         this.future = future;
     }
@@ -332,6 +333,13 @@ class CompletableResult<T,R extends CompletedResult<T>>
     toCompletableFuture()
     {
         return future;
+    }
+
+    @Override
+    public R
+    join()
+    {
+        return toCompletableFuture().join();
     }
 
     public static <
