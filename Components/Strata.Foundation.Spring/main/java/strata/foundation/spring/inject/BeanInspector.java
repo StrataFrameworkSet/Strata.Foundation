@@ -165,6 +165,7 @@ class BeanInspector
                                 .from(method,SearchStrategy.TYPE_HIERARCHY)
                                 .stream()
                                 .map(MergedAnnotation::synthesize)
+                                .filter(annotation -> isQualifier(annotation))
                                 .filter(annotation -> hasValue(annotation))
                                 .map(annotation -> getValue(annotation))
                                 .forEach(qualifiers::add);
@@ -191,6 +192,7 @@ class BeanInspector
                     .from(beanClass,SearchStrategy.TYPE_HIERARCHY)
                     .stream()
                     .map(MergedAnnotation::synthesize)
+                    .filter(annotation -> isQualifier(annotation))
                     .filter(annotation -> hasValue(annotation))
                     .map(annotation -> getValue(annotation))
                     .forEach(qualifiers::add);
@@ -225,6 +227,21 @@ class BeanInspector
         }
 
         return hierarchy;
+    }
+
+    protected boolean
+    isQualifier(Annotation annotation)
+    {
+        return
+            Qualifier
+                .class
+                .isAssignableFrom(annotation.annotationType()) ||
+            Named
+                .class
+                .isAssignableFrom(annotation.annotationType()) ||
+            jakarta.inject.Qualifier
+                .class
+                    .isAssignableFrom(annotation.annotationType());
     }
 
     protected boolean
