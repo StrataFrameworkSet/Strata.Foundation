@@ -47,7 +47,7 @@ class CompletableActivity<R extends ICompletableResource>
             resource
                 .open()
                 .thenAccept(
-                    openResult -> processCommand(openResult));
+                    openResult -> throwIfNeeded(openResult));
     }
 
     protected void
@@ -60,11 +60,11 @@ class CompletableActivity<R extends ICompletableResource>
             resource
                 .close()
                 .thenAccept(
-                    openResult -> processCommand(openResult));
+                    openResult -> throwIfNeeded(openResult));
     }
 
     protected void
-    processCommand(CompletedResult<Void> result)
+    throwIfNeeded(CompletedResult<Void> result)
         throws CompletionException
     {
         result.throwIfExceptionPresent();

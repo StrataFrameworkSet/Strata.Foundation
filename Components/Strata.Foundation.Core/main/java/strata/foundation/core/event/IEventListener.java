@@ -7,6 +7,12 @@ package strata.foundation.core.event;
 public
 interface IEventListener<E>
 {
+    default void
+    onStart() {}
+
+    default void
+    onStop() {}
+
     void
     onEvent(E event);
 

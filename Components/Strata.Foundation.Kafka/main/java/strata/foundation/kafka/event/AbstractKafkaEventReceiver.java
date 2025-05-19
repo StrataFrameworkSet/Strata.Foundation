@@ -9,9 +9,12 @@ import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import strata.foundation.core.event.AbstractEventReceiver;
 import strata.foundation.core.event.IEventListener;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -26,8 +29,9 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     private final Class<E>           itsType;
     private final String             itsTopic;
     private Consumer<String,E>       itsConsumer;
-    private ExecutorService          itsExecutor;
-    private AtomicBoolean            itsListening;
+    private final ExecutorService    itsExecutor;
+    private final AtomicBoolean      itsListening;
+    private final Logger             itsLogger;
 
     public
     AbstractKafkaEventReceiver(
@@ -41,6 +45,7 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         itsConsumer   = null;
         itsExecutor   = Executors.newSingleThreadExecutor();
         itsListening  = new AtomicBoolean(false);
+        itsLogger     = LogManager.getLogger(getClass());
     }
 
     @Override
@@ -48,56 +53,23 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     startListening()
     {
         if (isListening())
+        {
+            itsLogger.warn("Already listening for events.");
             return;
+        }
 
         if (!hasListener())
-            throw new IllegalStateException("No listener.");
+        {
+            itsLogger.error("Cannot start listening for events: no listener.");
+            throw
+                new IllegalStateException(
+                    "Cannot start listening for events: no listener.");
+        }
 
+        itsLogger.info("Started listening for events.");
         itsListening.set(true);
         itsConsumer = createConsumer();
-        itsExecutor.execute(
-            () ->
-            {
-                try
-                {
-                    itsConsumer.subscribe(Arrays.asList(itsTopic));
-
-                    while (itsListening.get())
-                    {
-                        ConsumerRecords<String,E> records =
-                            itsConsumer.poll(100);
-
-                        for (ConsumerRecord<String,E> record: records)
-                        {
-                            try
-                            {
-                                 getListener()
-                                     .ifPresent(
-                                         listener -> listener.onEvent(record.value()));
-                            }
-                            catch (Exception exception)
-                            {
-                                getListener()
-                                    .ifPresent(
-                                        listener -> listener.onException(exception));
-                            }
-                        }
-                    }
-                }
-                catch (WakeupException wakeup) {}
-                catch (Throwable exception)
-                {
-                    exception.printStackTrace();
-                }
-                finally
-                {
-                    if (itsConsumer != null)
-                        itsConsumer.close();
-
-                    itsConsumer = null;
-                }
-            }
-        );
+        itsExecutor.execute(this::runListeningLoop);
      }
 
     @Override
@@ -108,19 +80,71 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
 
         if (itsConsumer != null)
             itsConsumer.wakeup();
+
+        itsLogger.info("Stopped listening for events.");
     }
 
     @Override
     public boolean
     isListening()
     {
-        return (itsListening.get() == true) && (itsConsumer != null);
+        return (itsListening.get()) && (itsConsumer != null);
     }
 
     protected KafkaConsumer<String,E>
     createConsumer()
     {
         return new KafkaConsumer<>(itsProperties);
+    }
+
+    protected void
+    runListeningLoop()
+    {
+        try
+        {
+            itsConsumer.subscribe(Arrays.asList(itsTopic));
+            getListener()
+                .ifPresent(listener -> listener.onStart());
+
+            while (itsListening.get())
+            {
+                ConsumerRecords<String,E> records =
+                    itsConsumer.poll(Duration.ofMillis(100));
+
+                itsLogger.info("Received {} records.",records.count());
+
+                for (ConsumerRecord<String,E> record: records)
+                {
+                    try
+                    {
+                        getListener()
+                            .ifPresent(
+                                listener -> listener.onEvent(record.value()));
+                    }
+                    catch (Exception exception)
+                    {
+                        getListener()
+                            .ifPresent(
+                                listener -> listener.onException(exception));
+                    }
+                }
+            }
+        }
+        catch (WakeupException wakeup) {}
+        catch (Throwable exception)
+        {
+            itsLogger.error("Exception in runListeningLoop",exception);
+        }
+        finally
+        {
+            getListener()
+                .ifPresent(listener -> listener.onStop());
+
+            if (itsConsumer != null)
+                itsConsumer.close();
+
+            itsConsumer = null;
+        }
     }
 
     private static <E> Map<String,Object>
