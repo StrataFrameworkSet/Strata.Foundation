@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import strata.foundation.core.action.IActionQueue;
+import strata.foundation.core.utility.OptionalExtension;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -21,10 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public abstract
 class EventSenderTest
 {
-    private Module            itsModule;
-    private IFooEventSender   itsTarget;
-    private IFooEventReceiver itsReceiver;
-    private IActionQueue      itsActionQueue;
+    private Module                 itsModule;
+    private IFooEventSender        itsTarget;
+    private IFooEventReceiver      itsReceiver;
+    private IFooEventReceiverGroup itsGroup;
+    private IActionQueue           itsActionQueue;
 
     @BeforeEach
     public void
@@ -34,6 +36,7 @@ class EventSenderTest
 
         itsTarget = injector.getInstance(IFooEventSender.class);
         itsReceiver = injector.getInstance(IFooEventReceiver.class);
+        itsGroup = injector.getInstance(IFooEventReceiverGroup.class);
         itsActionQueue = injector.getInstance(IActionQueue.class);
         itsTarget.open();
     }
@@ -44,6 +47,7 @@ class EventSenderTest
     {
         itsTarget.close();
         itsReceiver.stopListening();
+        itsGroup.stopListening();
     }
 
     @Test
@@ -129,6 +133,74 @@ class EventSenderTest
         sleep(10);
         assertFalse(itsReceiver.isListening(),"Should have stopped listening at this point");
         listener.checkAssertions();
+    }
+
+    @Test
+    public void
+    testSendManyReceiveWithGroup()
+        throws Exception
+    {
+        FooEvent expected1 =
+            FooEvent.newBuilder()
+                .setIdentifiers(
+                    EventIdentifiersData.newBuilder()
+                        .setEventId(UUID.randomUUID().toString())
+                        .setCorrelationId("1")
+                        .setTimestamp(Instant.now())
+                        .build())
+                .setEventType(StandardEventType.CREATED)
+                .setSource(
+                    FooData.newBuilder()
+                        .setId("ABCDEFGHIJK")
+                        .setX("!@#$%^&*")
+                        .setY(23).build())
+                .build();
+        FooEvent expected2 =
+            FooEvent.newBuilder()
+                .setIdentifiers(
+                    EventIdentifiersData.newBuilder()
+                        .setEventId(UUID.randomUUID().toString())
+                        .setCorrelationId("2")
+                        .setTimestamp(Instant.now())
+                        .build())
+                .setEventType(StandardEventType.CREATED)
+                .setSource(
+                    FooData.newBuilder()
+                        .setId("ABCDEFGHIJK")
+                        .setX("!@#$%^&*")
+                        .setY(23).build())
+                .build();
+
+        itsGroup
+            .stream()
+            .forEach(
+                receiver ->
+                    receiver
+                        .getListener()
+                        .ifPresent(
+                            listener ->
+                                ((FooEventListener)listener)
+                                    .insertExpected(expected1)
+                                    .insertExpected(expected2)));
+
+        itsGroup.startListening();
+        assertTrue(itsGroup.isListening());
+
+        itsTarget.send(expected1);
+        itsTarget.send(expected2);
+        itsActionQueue.execute();
+        sleep(15);
+        assertFalse(itsGroup.isListening(),"Should have stopped listening at this point");
+        itsGroup
+            .stream()
+            .anyMatch(
+                receiver ->
+                    OptionalExtension
+                        .ifPresentOrElse(
+                            receiver.getListener(),
+                            listener ->
+                                ((FooEventListener)listener).receivedActual(),
+                            () -> false));
     }
 
     protected abstract Module

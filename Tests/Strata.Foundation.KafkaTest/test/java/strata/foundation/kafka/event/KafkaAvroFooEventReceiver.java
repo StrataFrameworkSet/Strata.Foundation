@@ -27,6 +27,7 @@ class KafkaAvroFooEventReceiver
     {
         super(provider.get(),FooEvent.class,"strata.fooevent.avro");
     }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////
