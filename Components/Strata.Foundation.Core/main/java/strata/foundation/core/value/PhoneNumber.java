@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.ICopyable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public
 class PhoneNumber
@@ -30,6 +31,7 @@ class PhoneNumber
     public
     PhoneNumber(@JsonProperty("phoneNumber") String phoneNumber)
     {
+        Objects.requireNonNull(phoneNumber, "phoneNumber cannot be null");
         validatePhoneNumber(phoneNumber);
         itsPhone = phoneNumber;
     }
@@ -96,6 +98,12 @@ class PhoneNumber
                     StringBuilder::append,
                     StringBuilder::append)
                 .toString();
+    }
+
+    public static PhoneNumber
+    of(String phoneNumber)
+    {
+        return new PhoneNumber(phoneNumber);
     }
 
     private static void

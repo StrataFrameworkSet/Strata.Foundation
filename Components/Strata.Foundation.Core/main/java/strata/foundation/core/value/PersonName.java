@@ -121,6 +121,18 @@ class PersonName
 
         return builder.toString();
     }
+
+    public static PersonName
+    of(String first,String last)
+    {
+        return new PersonName(first,last);
+    }
+
+    public static PersonName
+    of(String first,String middle,String last)
+    {
+        return new PersonName(first,middle,last);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////

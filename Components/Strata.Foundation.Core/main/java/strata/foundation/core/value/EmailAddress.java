@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.ICopyable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public
 class EmailAddress
@@ -27,6 +28,7 @@ class EmailAddress
     public
     EmailAddress(@JsonProperty("emailAddress") String emailAddress)
     {
+        Objects.requireNonNull(emailAddress, "emailAddress cannot be null");
         validateEmailAddress(emailAddress);
         itsEmail = emailAddress;
     }
@@ -74,6 +76,12 @@ class EmailAddress
     toString()
     {
         return itsEmail;
+    }
+
+    public static EmailAddress
+    of(String emailAddress)
+    {
+        return new EmailAddress(emailAddress);
     }
 
     private static void
