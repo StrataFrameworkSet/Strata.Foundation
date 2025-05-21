@@ -12,11 +12,6 @@ interface IEventProcessor<E>
     void
     process(Collection<E> events)
         throws ProcessingException;
-
-
-    default void
-    process(E event)
-        throws ProcessingException {}
 }
 
 //////////////////////////////////////////////////////////////////////////////
