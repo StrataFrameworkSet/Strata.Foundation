@@ -15,7 +15,9 @@ import strata.foundation.core.event.AbstractEventReceiver;
 import strata.foundation.core.event.IEventListener;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -111,24 +113,13 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
             {
                 ConsumerRecords<String,E> records =
                     itsConsumer.poll(Duration.ofMillis(100));
+                List<E> events = new ArrayList<>();
 
                 itsLogger.info("Received {} events.",records.count());
 
-                for (ConsumerRecord<String,E> record: records)
-                {
-                    try
-                    {
-                        getListener()
-                            .ifPresent(
-                                listener -> listener.onEvent(record.value()));
-                    }
-                    catch (Exception exception)
-                    {
-                        getListener()
-                            .ifPresent(
-                                listener -> listener.onException(exception));
-                    }
-                }
+                records.forEach(e -> events.add(e.value()));
+                    getListener()
+                        .ifPresent(listener -> listener.onEvents(events));
             }
         }
         catch (WakeupException wakeup) {}

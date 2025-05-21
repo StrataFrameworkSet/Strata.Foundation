@@ -4,12 +4,19 @@
 
 package strata.foundation.core.event;
 
+import java.util.Collection;
+
 public
 interface IEventProcessor<E>
 {
     void
-    process(E event)
+    process(Collection<E> events)
         throws ProcessingException;
+
+
+    default void
+    process(E event)
+        throws ProcessingException {}
 }
 
 //////////////////////////////////////////////////////////////////////////////

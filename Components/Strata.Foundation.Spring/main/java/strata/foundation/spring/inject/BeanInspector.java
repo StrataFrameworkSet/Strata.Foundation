@@ -15,6 +15,8 @@ import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.annotation.MergedAnnotations.SearchStrategy;
 import strata.foundation.core.container.Pair;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -153,7 +155,7 @@ class BeanInspector
         {
             try
             {
-                Class<?> factoryClass = factory.getType(factoryBeanName);
+                Class<?> factoryClass = getTypeNoThrow(factory,factoryBeanName);
 
                 if (factoryClass != null)
                 {
@@ -178,13 +180,17 @@ class BeanInspector
             }
             catch (Exception e)
             {
-                System.err.println("getQualifiers 1: " + e.getMessage());
+                StringWriter stackTracer = new StringWriter();
+
+                e.printStackTrace(new PrintWriter(stackTracer));
+                System.err.println("getQualifiers 1: " + stackTracer);
             }
         }
 
         try
         {
-            Class<?> beanClass = factory.getType(definition.getBeanClassName());
+            Class<?> beanClass =
+                getTypeNoThrow(factory,definition.getBeanClassName());
 
             if (beanClass != null)
             {
@@ -203,13 +209,31 @@ class BeanInspector
         }
         catch (Exception e)
         {
-            System.err.println("getQualifiers 2: " + e.getMessage());
+            StringWriter stackTracer = new StringWriter();
+
+            e.printStackTrace(new PrintWriter(stackTracer));
+            System.err.println("getQualifiers 2: " + stackTracer);
         }
 
         return qualifiers;
     }
 
-    public Set<Class<?>>
+    protected Class<?>
+    getTypeNoThrow(
+        ConfigurableListableBeanFactory factory,
+        String                          beanName)
+    {
+        try
+        {
+            return factory.getType(beanName);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    protected Set<Class<?>>
     getHierarchy(Class<?> type)
     {
         Set<Class<?>> hierarchy = new HashSet<>();
