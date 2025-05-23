@@ -10,25 +10,13 @@ public
 interface IEventListener<E>
 {
     default void
-    onStart() throws StartException
-    {}
+    onStart() throws StartException {}
 
     default void
     onStop() {}
 
-    default void
-    onEvents(Collection<E> events)
-    {
-        events.forEach(
-            event ->
-                {
-                    try { onEvent(event); }
-                    catch (Exception e) { onException(e); }
-                });
-    }
-
     void
-    onEvent(E event);
+    onEvents(Collection<E> events);
 
     void
     onException(Exception exception);

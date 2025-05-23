@@ -8,8 +8,12 @@ import strata.foundation.core.event.AbstractEventReceiver;
 import strata.foundation.core.event.IEventListener;
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.ExcerptTailer;
+import strata.foundation.core.time.Stopwatch;
 
+import java.time.Duration;
 import java.util.Optional;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,6 +28,8 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
     private Optional<ExcerptTailer>  tailer;
     private ExecutorService          executor;
     private AtomicBoolean            listening;
+    private final Queue<E>           events;
+    private final Stopwatch          stopwatch;
 
     public
     ChronicleEventReceiver(Class<E> type,String nm,ChronicleQueue q)
@@ -33,6 +39,8 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
         queue = q;
         executor = Executors.newSingleThreadExecutor();
         listening = new AtomicBoolean(false);
+        events = new ConcurrentLinkedQueue<>();
+        stopwatch = new Stopwatch();
 
         if (queue.isClosed())
             throw new IllegalStateException("Cannot receive on a closed queue");
@@ -84,6 +92,8 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
     private void
     runLoop()
     {
+        stopwatch.start();
+
         while (listening.get())
         {
             tailer.ifPresentOrElse(
@@ -115,12 +125,27 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
     {
         try
         {
-            listener.onEvent(event);
+            events.add(event);
+
+            if (mustProcess())
+            {
+                listener.onEvents(events);
+                events.clear();
+                stopwatch.restart();
+            }
         }
         catch (Exception e)
         {
             listener.onException(e);
         }
+    }
+
+    private boolean
+    mustProcess()
+    {
+        return
+            stopwatch.hasElapsed(Duration.ofMillis(250)) ||
+            events.size() > 50;
     }
 }
 

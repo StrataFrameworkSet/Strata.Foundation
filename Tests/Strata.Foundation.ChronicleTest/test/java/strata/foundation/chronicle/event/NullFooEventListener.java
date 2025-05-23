@@ -4,6 +4,8 @@
 
 package strata.foundation.chronicle.event;
 
+import java.util.Collection;
+
 import static org.junit.jupiter.api.Assertions.fail;
 
 public
@@ -16,7 +18,7 @@ class NullFooEventListener
 
     @Override
     public void
-    onEvent(FooEvent event) {}
+    onEvents(Collection<FooEvent> event) {}
 
     @Override
     public void

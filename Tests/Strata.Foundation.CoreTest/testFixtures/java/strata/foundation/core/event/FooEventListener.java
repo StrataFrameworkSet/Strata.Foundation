@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public
 class FooEventListener
+    extends IteratedEventListener<FooEvent>
     implements IFooEventListener
 {
     private final IFooEventReceiver itsReceiver;
@@ -27,7 +28,7 @@ class FooEventListener
     }
 
     @Override
-    public void
+    protected void
     onEvent(FooEvent actual)
     {
         System.out.println("onEvent");
