@@ -179,13 +179,19 @@ class KafkaConfigurationProvider
                 "io.confluent.kafka.serializers.KafkaAvroDeserializer"));
         if (source.hasProperty(POLL_INTERVAL_KEY))
         {
+            Integer maxPollInterval =
+                Long
+                    .valueOf(
+                        source.getLongProperty(POLL_INTERVAL_KEY) +
+                        Duration.ofMinutes(5).toMillis())
+                    .intValue();
+
             configuration.put(
                 POLL_INTERVAL_KEY,
                 source.getLongProperty(POLL_INTERVAL_KEY));
             configuration.put(
                 ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,
-                source.getLongProperty(POLL_INTERVAL_KEY) +
-                    Duration.ofMinutes(5).toMillis());
+                maxPollInterval);
         }
     }
 
