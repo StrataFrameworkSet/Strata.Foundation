@@ -1,5 +1,5 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// Activity.java
+// OpenExtent.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.resource;
@@ -7,13 +7,13 @@ package strata.foundation.core.resource;
 import java.util.Objects;
 
 public
-class Activity<R extends IResource>
+class OpenExtent<R extends IResource>
     implements AutoCloseable
 {
     private final R resource;
 
     public
-    Activity(R resource)
+    OpenExtent(R resource)
         throws OpenFailedException
     {
         Objects.requireNonNull(resource, "resource must not be null");
@@ -48,10 +48,10 @@ class Activity<R extends IResource>
         }
     }
 
-    public static <R extends IResource> Activity<R>
+    public static <R extends IResource> OpenExtent<R>
     of(R resource)
     {
-        return new Activity<>(resource);
+        return new OpenExtent<>(resource);
     }
 }
 

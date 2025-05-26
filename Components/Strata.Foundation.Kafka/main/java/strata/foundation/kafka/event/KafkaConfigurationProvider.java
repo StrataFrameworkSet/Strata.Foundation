@@ -13,6 +13,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.SaslConfigs;
 import strata.foundation.core.configuration.IConfiguration;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -34,6 +35,7 @@ class KafkaConfigurationProvider
     public static final String KEY_DESERIALIZER_KEY = "kafka.key.deserializer";
     public static final String VALUE_DESERIALIZER_KEY = "kafka.value.deserializer";
     public static final String RETRIES_KEY = "kafka.retries";
+    public static final String POLL_INTERVAL_KEY = "kafka.poll.interval.ms";
     public static final String ACKS_KEY = "kafka.acks";
     public static final String CLIENT_ID_KEY = "kafka.client.id";
     public static final String GROUP_ID_PREFIX_KEY = "kafka.group.id.";
@@ -175,6 +177,16 @@ class KafkaConfigurationProvider
             source.getProperty(
                 VALUE_DESERIALIZER_KEY,
                 "io.confluent.kafka.serializers.KafkaAvroDeserializer"));
+        if (source.hasProperty(POLL_INTERVAL_KEY))
+        {
+            configuration.put(
+                POLL_INTERVAL_KEY,
+                source.getLongProperty(POLL_INTERVAL_KEY));
+            configuration.put(
+                ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,
+                source.getLongProperty(POLL_INTERVAL_KEY) +
+                    Duration.ofMinutes(5).toMillis());
+        }
     }
 
 

@@ -33,6 +33,7 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     private Consumer<String,E>       itsConsumer;
     private final ExecutorService    itsExecutor;
     private final AtomicBoolean      itsListening;
+    private final Duration           itsPollInterval;
     private final Logger             itsLogger;
 
     public
@@ -41,13 +42,22 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         Class<E>           t,
         String             topic)
     {
-        itsProperties = initializeProperties(p,t);
-        itsType       = t;
-        itsTopic      = topic;
-        itsConsumer   = null;
-        itsExecutor   = Executors.newSingleThreadExecutor();
-        itsListening  = new AtomicBoolean(false);
-        itsLogger     = LogManager.getLogger(getClass());
+        itsProperties   = initializeProperties(p,t);
+        itsType         = t;
+        itsTopic        = topic;
+        itsConsumer     = null;
+        itsExecutor     = Executors.newSingleThreadExecutor();
+        itsListening    = new AtomicBoolean(false);
+        itsLogger       = LogManager.getLogger(getClass());
+
+        itsPollInterval =
+            Duration.ofMillis(
+                (long)
+                    itsProperties
+                        .getOrDefault(
+                            KafkaConfigurationProvider.POLL_INTERVAL_KEY,
+                            100L));
+
     }
 
     @Override
@@ -105,21 +115,23 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         try
         {
             itsLogger.debug("Entering event listening loop.");
+            itsLogger.debug("Subscribing to topic '{}'.",itsTopic);
             itsConsumer.subscribe(Collections.singletonList(itsTopic));
-            getListener()
-                .ifPresent(listener -> listener.onStart());
+            getListener().ifPresent(listener -> listener.onStart());
+
+            itsLogger.debug(
+                "Polling for events every {} ms.",
+                itsPollInterval.toMillis());
 
             while (itsListening.get())
             {
-                ConsumerRecords<String,E> records =
-                    itsConsumer.poll(Duration.ofMillis(100));
-                List<E> events = new ArrayList<>();
+                ConsumerRecords<String,E> records = itsConsumer.poll(itsPollInterval);
+                List<E>                   events = new ArrayList<>();
 
                 itsLogger.info("Received {} events.",records.count());
 
                 records.forEach(e -> events.add(e.value()));
-                    getListener()
-                        .ifPresent(listener -> listener.onEvents(events));
+                getListener().ifPresent(listener -> listener.onEvents(events));
             }
         }
         catch (WakeupException wakeup) {}
@@ -129,8 +141,7 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         }
         finally
         {
-            getListener()
-                .ifPresent(listener -> listener.onStop());
+            getListener().ifPresent(listener -> listener.onStop());
 
             itsLogger.debug("Exiting event listening loop.");
 
@@ -181,6 +192,9 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
                         KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG +
                             " must be configured");
         }
+
+        if (!properties.containsKey(KafkaConfigurationProvider.POLL_INTERVAL_KEY))
+            properties.put(KafkaConfigurationProvider.POLL_INTERVAL_KEY,100L);
 
         return properties;
     }
