@@ -70,7 +70,15 @@ class Stopwatch
     public boolean
     hasElapsed(Duration duration)
     {
-        Duration elapsed = Duration.between(startTime,stopTime);
+        Instant startingTime =
+            this.startTime != null
+                ? this.startTime
+                : Instant.now();
+        Instant stoppingTime =
+            this.stopTime != null
+                ? this.stopTime
+                : Instant.now();
+        Duration elapsed = Duration.between(startingTime,stoppingTime);
 
         return elapsed.compareTo(duration) >= 0;
     }

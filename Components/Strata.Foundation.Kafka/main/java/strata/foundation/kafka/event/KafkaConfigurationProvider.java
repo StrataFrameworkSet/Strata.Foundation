@@ -133,7 +133,11 @@ class KafkaConfigurationProvider
             CommonClientConfigs.CLIENT_ID_CONFIG,
             source.getProperty(
                 CLIENT_ID_KEY,
-                "strata-client-" + UUID.randomUUID().toString()));
+                "strata-client-" +
+                    UUID
+                        .randomUUID()
+                        .toString()
+                        .substring(0,6)));
     }
 
     protected void

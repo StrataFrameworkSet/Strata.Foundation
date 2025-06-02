@@ -8,13 +8,13 @@ import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
-import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.event.CompletableSendResult;
 import strata.foundation.core.event.ICompletableSendResult;
 import strata.foundation.core.event.IEventSender;
 import strata.foundation.core.event.SendResult;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.Future;
@@ -133,6 +133,15 @@ class AbstractKafkaEventSender<E>
     private static Map<String,Object>
     initializeProperties(Map<String,Object> properties)
     {
+        if (properties.containsKey(ProducerConfig.CLIENT_ID_CONFIG))
+            properties.put(
+                ProducerConfig.CLIENT_ID_CONFIG,
+                properties.get(ProducerConfig.CLIENT_ID_CONFIG) + "-" +
+                    UUID
+                        .randomUUID()
+                        .toString()
+                        .substring(0,6));
+
         properties.put(
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
             StringSerializer.class.getName());

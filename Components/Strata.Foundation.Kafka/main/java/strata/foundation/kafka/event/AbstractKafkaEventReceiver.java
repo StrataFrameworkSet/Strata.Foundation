@@ -15,10 +15,7 @@ import strata.foundation.core.event.AbstractEventReceiver;
 import strata.foundation.core.event.IEventListener;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -155,6 +152,15 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
     private static <E> Map<String,Object>
     initializeProperties(Map<String,Object> properties,Class<E> type)
     {
+        if (properties.containsKey(ConsumerConfig.CLIENT_ID_CONFIG))
+            properties.put(
+                ConsumerConfig.CLIENT_ID_CONFIG,
+                properties.get(ConsumerConfig.CLIENT_ID_CONFIG) + "-" +
+                    UUID
+                        .randomUUID()
+                        .toString()
+                        .substring(0,6));
+
         new ClassBasedGroupIdSupplier<>(type,properties)
             .get()
             .ifPresent(
