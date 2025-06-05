@@ -34,10 +34,16 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
     public
     ChronicleEventReceiver(Class<E> type,String nm,ChronicleQueue q)
     {
+        this(type,nm,q,Executors.newSingleThreadExecutor());
+    }
+
+    public
+    ChronicleEventReceiver(Class<E> type,String nm,ChronicleQueue q,ExecutorService e)
+    {
         eventType = type;
         name = nm;
         queue = q;
-        executor = Executors.newSingleThreadExecutor();
+        executor = e;
         listening = new AtomicBoolean(false);
         events = new ConcurrentLinkedQueue<>();
         stopwatch = new Stopwatch();

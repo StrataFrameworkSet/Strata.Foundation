@@ -39,11 +39,21 @@ class AbstractKafkaEventReceiver<E,L extends IEventListener<E>>
         Class<E>           t,
         String             topic)
     {
+        this(p,t,topic,Executors.newSingleThreadExecutor());
+    }
+
+    public
+    AbstractKafkaEventReceiver(
+        Map<String,Object> p,
+        Class<E>           t,
+        String             topic,
+        ExecutorService    executor)
+    {
         itsProperties   = initializeProperties(p,t);
         itsType         = t;
         itsTopic        = topic;
         itsConsumer     = null;
-        itsExecutor     = Executors.newSingleThreadExecutor();
+        itsExecutor     = executor;
         itsListening    = new AtomicBoolean(false);
         itsLogger       = LogManager.getLogger(getClass());
 

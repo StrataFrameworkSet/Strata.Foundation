@@ -9,6 +9,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import strata.foundation.core.event.IEventListener;
 
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 public abstract
 class AbstractKafkaAvroEventReceiver<E,L extends IEventListener<E>>
@@ -21,6 +22,16 @@ class AbstractKafkaAvroEventReceiver<E,L extends IEventListener<E>>
         String             topic)
     {
         super(initializeProperties(properties),type,topic);
+    }
+
+    protected
+    AbstractKafkaAvroEventReceiver(
+        Map<String,Object> properties,
+        Class<E>           type,
+        String             topic,
+        ExecutorService    executor)
+    {
+        super(initializeProperties(properties),type,topic,executor);
     }
 
     private static Map<String,Object>
