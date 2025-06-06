@@ -77,6 +77,15 @@ interface IIdentifierGenerator
      */
     String
     getNextStringId();
+
+    /************************************************************************
+     * Generates a string-based identifier of the specified length.
+     *
+     * @param  length length of the identifier
+     * @return string-based identifier
+     */
+    String
+    getNextStringId(int length);
 }
 
 // ##########################################################################

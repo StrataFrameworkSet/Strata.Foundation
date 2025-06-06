@@ -122,6 +122,17 @@ class DefaultIdentifierGenerator
         return UUID.randomUUID().toString();
     }
 
+    @Override
+    public String
+    getNextStringId(int length)
+    {
+        return
+            UUID
+                .randomUUID()
+                .toString()
+                .replace("-", "")
+                .substring(0, Math.min(length, 32));
+    }
 }
 
 // ##########################################################################
