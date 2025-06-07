@@ -7,6 +7,7 @@ package strata.foundation.core.concurrent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public
@@ -16,6 +17,7 @@ class BlockingQueueReceiver<T,C extends Consumer<T>>
     private IBlockingQueue<T>     queue;
     private final ExecutorService executor;
     private final AtomicBoolean   consuming;
+    private final AtomicReference<Throwable> exception;
 
     public
     BlockingQueueReceiver(IBlockingQueue<T> queue)
@@ -30,6 +32,7 @@ class BlockingQueueReceiver<T,C extends Consumer<T>>
         this.queue = queue;
         this.executor = executor;
         this.consuming = new AtomicBoolean(false);
+        this.exception = new AtomicReference<>(null);
     }
 
     @Override
@@ -52,6 +55,12 @@ class BlockingQueueReceiver<T,C extends Consumer<T>>
         {
             throw new StartFailedException("Failed to start consuming.", e);
         }
+
+        if (exception.get() != null)
+            throw
+                new StartFailedException(
+                    "Failed to start consuming.",
+                    exception.getAndSet(null));
     }
 
     @Override
@@ -91,7 +100,9 @@ class BlockingQueueReceiver<T,C extends Consumer<T>>
             }
             catch (Exception e)
             {
-                throw new ConsumeFailedException("Failed to consume.", e);
+                exception.set(
+                    new ConsumeFailedException("Failed to consume.", e));
+                consuming.set(false);
             }
         }
     }
