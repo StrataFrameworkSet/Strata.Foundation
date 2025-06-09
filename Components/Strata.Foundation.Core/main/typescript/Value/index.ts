@@ -4,3 +4,5 @@ export {PersonName} from "./PersonName";
 export {PersonNameBuilder} from "./PersonNameBuilder";
 export {PostalAddress} from "./PostalAddress";
 export {PostalAddressBuilder} from "./PostalAddressBuilder";
+export {GeoLocation} from "./GeoLocation";
+export {GeoLocationBuilder} from "./GeoLocationBuilder";
