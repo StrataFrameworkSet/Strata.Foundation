@@ -11,16 +11,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import strata.foundation.core.inject.IInjector;
+import strata.foundation.core.reflect.TypeLiteral;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("CommitStage")
 public
 class SpringInjectorTest
 {
     private static ApplicationContext context;
-    private IInjector injector;
+    private IInjector                 injector;
 
     @BeforeAll
     public static void
@@ -119,6 +122,24 @@ class SpringInjectorTest
         assertEquals("Supplier D",supplierD.get());
     }
 
+    @Test
+    public void
+    testGetInstanceTypeLiteral()
+    {
+        List<String> strings =
+            injector.getInstance(new TypeLiteral<>() {});
+        Optional<List<String>> optional =
+            injector.getInstance(new TypeLiteral<>() {});
+        Optional<List<Integer>> wrong =
+            injector.getInstance(new TypeLiteral<>() {});
+
+        assertNotNull(strings);
+        assertEquals(List.of("A","B","C"),strings);
+        assertNotNull(optional);
+        assertTrue(optional.isPresent());
+        optional.ifPresent(list -> assertEquals(List.of("X","Y","Z"),list));
+        assertNull(wrong);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////

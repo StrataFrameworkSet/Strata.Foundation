@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import strata.foundation.core.inject.IInjector;
 
+import java.util.List;
+import java.util.Optional;
+
 @Configuration
 @Import({ScopeConfiguration.class})
 public
@@ -74,6 +77,22 @@ class TestConfiguration
     supplierD()
     {
         return () -> "Supplier D";
+    }
+
+    @Bean
+    @SingletonScoped
+    public List<String>
+    listOfStrings()
+    {
+        return List.of("A", "B", "C");
+    }
+
+    @Bean
+    @SingletonScoped
+    public Optional<List<String>>
+    optionalListOfStrings()
+    {
+        return Optional.of(List.of("X", "Y", "Z"));
     }
 
     @Bean

@@ -2276,9 +2276,9 @@ stack-utils@^2.0.3:
     escape-string-regexp "^2.0.0"
 
 strata.foundation.core@0.0.0-snapshot:
-  version "0.0.0-snapshot.1744493936211"
-  resolved "https://registry.npmjs.org/strata.foundation.core/-/strata.foundation.core-0.0.0-snapshot.1744493936211.tgz#9b9e2f104c49de1f0358d1cfb3c91fb783c4144e"
-  integrity sha512-mSMUxGoCtJc8BOsS017sUiT3HIFEkyyrEfc3aPPdMVLhdmcjJf1VT6CCErKqsE5J40Dhyn/94r9zAro6D814zQ==
+  version "0.0.0-snapshot.1749498827965"
+  resolved "https://registry.npmjs.org/strata.foundation.core/-/strata.foundation.core-0.0.0-snapshot.1749498827965.tgz#3f31ee14671dcae42611486fb47cadf26085bf88"
+  integrity sha512-qvrUCt6gd6vHIhEaBePMTgFkx+Xjni/r3OYPkbNeXI4IWUvtX3O9Yq/rRa9rFAFOwTKXU9bI90m5PopnXryscg==
   dependencies:
     "@js-joda/core" "^5.5.3"
     guid-typescript "^1.0.9"
