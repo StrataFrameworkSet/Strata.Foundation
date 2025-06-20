@@ -14,6 +14,12 @@ interface IGeoLocationMapper
 {
     Optional<GeoLocation>
     map(PostalAddress address);
+
+    Optional<GeoLocation>
+    map(String postalCode);
+
+    Optional<GeoLocation>
+    map(String city, String state);
 }
 
 //////////////////////////////////////////////////////////////////////////////
