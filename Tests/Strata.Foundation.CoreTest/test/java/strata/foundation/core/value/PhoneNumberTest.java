@@ -81,6 +81,7 @@ class PhoneNumberTest
             mapper.readValue(
                 mapper.writeValueAsString(expected),PhoneNumber.class);
 
+        System.out.println(mapper.writeValueAsString(expected));
         assertEquals(expected,actual);
     }
 

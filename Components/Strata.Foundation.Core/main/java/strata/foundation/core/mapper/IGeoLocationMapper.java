@@ -19,7 +19,7 @@ interface IGeoLocationMapper
     map(String postalCode);
 
     Optional<GeoLocation>
-    map(String city, String state);
+    map(String city,String state);
 }
 
 //////////////////////////////////////////////////////////////////////////////
