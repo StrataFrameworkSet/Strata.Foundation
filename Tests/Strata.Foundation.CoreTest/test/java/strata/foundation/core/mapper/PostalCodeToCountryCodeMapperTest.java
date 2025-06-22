@@ -148,6 +148,7 @@ class PostalCodeToCountryCodeMapperTest
             Arguments.of(Locale.CANADA, "KIAOB1"),   // Contains "I" (not used)
 
             // UK - invalid formats
+            Arguments.of(new Locale("en", "GB"), "S1A 1AA"),   // Incomplete outward code
             Arguments.of(new Locale("en", "GB"), "SW1A 1A"),   // Incomplete inward code
             Arguments.of(new Locale("en", "GB"), "SW1AA1A"),   // Invalid format
             Arguments.of(new Locale("en", "GB"), "SW1A 1AAA"), // Too long
