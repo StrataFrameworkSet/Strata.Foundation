@@ -112,18 +112,38 @@ class BasicPostalCodeToCountryCodeMapper
         Map<String,Set<String>> map = new HashMap<>();
 
         // UK and dependencies
+        final String OUTWARD_CODE_REGEX =
+            "(" +
+            // common outward codes
+            "((A[BL]?|B[ABDHLNRSTX]?|C[ABFHMORTVW]|D[ADEGHLNTY]|E[HNX]|F[KY]|G[LU]?|H[ADGPRSUX]|I[GPV]|K[ATWY]|L[ADELNSU]?|M[EKL]?|N[EGNPRW]|O[LX]|P[AEHLOR]|R[GHM]|S[AEGKLMNOPRSTY]?|T[ADFNQRSW]|UB|W[ADFNRSV]|XX|YO|ZE)\\d{1,2})|" +
+            // London specific outward codes
+            "((E[1-9][0-9]?|E1W|EC[1-4][AMNPRVY]|EC50)|N[1-9][0-9]?|N1[CP]|NW[1-9][0-9]?|NW1W|SE[1-9][0-9]?|SE1P|SW1[AEHPVWXY]|SW[2-9][0-9]?|W1[ABCDFGHJKSTUW]|W[2-9][0-9]?|WC1[ABEHNRVX]|WC2[ABEHNR])" +
+            ")";
+
+        final String INWARD_CODE_REGEX = "([0-9][ABD-HJLN-UW-Z]{2})";
+        final String SPECIAL_CODE_REGEX = "(GIR[ ]?0AA|BFPO[ ]?\\d{1,4}|XM4[ ]?5HQ)";
+        final String OVERSEAS_TERRITORIES_REGEX = "((AI[ \\-]?2640)|(ASCN|STHL|TDCU|BBND|BIQQ|FIQQ|PCRN|SIQQ|TKCA)[ ]?1ZZ|GX11[ ]?1AA)";
+        final String UK_POSTAL_CODE_REGEX =
+            String.format(
+                "%s[ ]?%s|%s|%s",
+                OUTWARD_CODE_REGEX,
+                INWARD_CODE_REGEX,
+                SPECIAL_CODE_REGEX,
+                OVERSEAS_TERRITORIES_REGEX);
+
         map.put(
-            "GIR[ ]?0AA|((AB|AL|B[ABDHLNRSTX]?|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH[1-9]?|CM|CO|CR[0-9]?|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E[1-9CN]|EC[1-4]|EH|EN|EX|FK|FY|G[1-9]|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L[1-9]|LA|LD|LE|LL|LN|LS|LU|M[1-9]|ME|MK|ML|N[1-9CEGW]|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S[1-9EOYW]|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W[1-9C]|WA|WC[1-2]|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}",
+            //"GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR[0-9]?|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E[1-9CN]|EC[1-4]|EH|EN|EX|FK|FY|G[1-9]|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L[1-9]|LA|LD|LE|LL|LN|LS|LU|M[1-9]|ME|MK|ML|N[1-9CEGW]|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S[1-9EOYW]|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W[1-9C]|WA|WC[1-2]|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?))[ ]?(\\d[ABD-HJLN-UW-Z]{2})|BFPO[ ]?\\d{1,4}",
+            UK_POSTAL_CODE_REGEX,
             Set.of("GB"));
         map.put(
             "JE\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}",
-            Set.of("JE"));
+            Set.of("JE","GB"));
         map.put(
             "GY\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}",
-            Set.of("GG"));
+            Set.of("GG","GB"));
         map.put(
             "IM\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}",
-            Set.of("IM"));
+            Set.of("IM","GB"));
 
         // North America
         map.put(
