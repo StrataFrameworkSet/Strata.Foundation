@@ -95,10 +95,7 @@ jobs:
 
       - name: Run Integration Tests
         run: |
-          docker run --rm \
-            -v ${{github.workspace}}:/app \
-            -w /app \
-            ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT \
+          docker run ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT \
             --package=strata.foundation --tags=IntegrationStage
 
   run-acceptance-stage:
@@ -118,12 +115,9 @@ jobs:
       - name: Pull Docker image
         run: docker pull ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT
 
-      - name: Run Integration Tests
+      - name: Run Acceptance Tests
         run: |
-          docker run --rm \
-            -v ${{github.workspace}}:/app \
-            -w /app \
-            ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT \
+          docker run ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT \
             --package=strata.foundation --tags=AcceptanceStage
 
 
