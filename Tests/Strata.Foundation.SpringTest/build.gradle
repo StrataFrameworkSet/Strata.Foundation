@@ -54,6 +54,37 @@ tasks.named("compileJava").configure {
     source(genAvro)
 }
 
+tasks.named("genAvro").configure {
+    source(importAvroSchema)
+}
+
+tasks.named("compileJava").configure {
+    source(genAvro)
+}
+
+tasks.register('testJar', Jar) {
+    archiveClassifier = 'tests'
+    from sourceSets.test.output
+
+    from sourceSets.test.resources
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named("testJar").configure {
+    dependsOn testClasses
+    dependsOn genAvro
+}
+
+configurations {
+    testArtifacts
+}
+
+artifacts {
+    archives testJar
+    testArtifacts testJar
+}
+
 dependencies {
     testImplementation project(':Components:Strata.Foundation.Spring')
     testImplementation project(':Tests:Strata.Foundation.CoreTest')

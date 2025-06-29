@@ -40,5 +40,5 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'net.openhft:chronicle-queue:5.21.99'
+    api 'net.openhft:chronicle-queue:5.26ea9'
 }

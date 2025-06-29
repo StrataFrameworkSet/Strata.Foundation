@@ -4,8 +4,6 @@
 
 package strata.foundation.core.testrunner;
 
-import org.junit.platform.engine.DiscoverySelector;
-import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
@@ -29,7 +27,7 @@ public class JunitTestRunner
         if (tag == null || packageName == null)
         {
             System.err.println(
-                "Usage: java -jar <jarfile> --tag=<tagName> --package=<packageName>");
+                "Usage: java -jar <jarfile> --tags=<tagName> --package=<packageName>");
             System.exit(1);
         }
 
@@ -41,9 +39,9 @@ public class JunitTestRunner
     {
         for (String arg: args)
         {
-            if (arg.startsWith("-tag="))
+            if (arg.startsWith("--tags="))
             {
-                return arg.substring(5);
+                return arg.substring(7);
             }
         }
         return null;
@@ -54,38 +52,70 @@ public class JunitTestRunner
     {
         for (String arg: args)
         {
-            if (arg.startsWith("-package="))
+            if (arg.startsWith("--package="))
             {
-                return arg.substring(5);
+                return arg.substring(10);
             }
         }
         return null;
     }
 
     private static void
-    runTests(String tag, String packageName)
+    runTests(String tags,String packageName)
     {
         LauncherDiscoveryRequest request =
             LauncherDiscoveryRequestBuilder
                 .request()
                 .selectors(selectPackage(packageName))
-                .filters(includeTags(tag))
+                .filters(includeTags(tags.split(",")))
                 .build();
-        Launcher                  launcher = LauncherFactory.create();
+        Launcher launcher = LauncherFactory.create();
         SummaryGeneratingListener listener = new SummaryGeneratingListener();
-        TestExecutionSummary      summary = null;
-        PrintWriter               out = new PrintWriter(System.out);
+        TestExecutionSummary summary = null;
+        PrintWriter out = new PrintWriter(System.out);
 
-        launcher.registerTestExecutionListeners(listener);
+        launcher.registerTestExecutionListeners(listener,new TestExecutionReporter());
+        printRequestDetails(request,tags,packageName);
         launcher.execute(request);
 
         summary = listener.getSummary();
         summary.printTo(out);
-        out.flush();
 
         if (summary.getTestsFailedCount() > 0)
+        {
+            summary.printFailuresTo(out);
             System.exit(1);
+        }
+
+        out.flush();
+        System.exit(0);
+    }
+
+    private static void
+    printRequestDetails(LauncherDiscoveryRequest request,String tags,String packageName)
+    {
+        System.out.println("\n=== LauncherDiscoveryRequest Configuration ===");
+        System.out.println("Root package (recursive): " + packageName);
+        System.out.println("Tags filter: " + tags);
+
+        // Print selectors
+        System.out.println("\nSelectors:");
+        request.getSelectorsByType(org.junit.platform.engine.discovery.PackageSelector.class)
+            .forEach(selector -> System.out.println("  - Package: " + selector.getPackageName()));
+        request.getSelectorsByType(org.junit.platform.engine.discovery.ClassSelector.class)
+            .forEach(selector -> System.out.println("  - Class: " + selector.getClassName()));
+        request.getSelectorsByType(org.junit.platform.engine.discovery.MethodSelector.class)
+            .forEach(selector -> System.out.println("  - Method: " + selector.getClassName() + "#" + selector.getMethodName()));
+
+        // Print filters
+        System.out.println("\nEngine filters:");
+        request.getEngineFilters().forEach(filter -> System.out.println("  - " + filter));
+
+        System.out.println("\nPost-discovery filters:");
+        request.getPostDiscoveryFilters().forEach(filter -> System.out.println("  - " + filter));
+
+        System.out.println("============================================\n");
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////
+/// ///////////////////////////////////////////////////////////////////////////

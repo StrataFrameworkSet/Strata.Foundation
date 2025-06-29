@@ -119,7 +119,6 @@ class BasicPostalCodeToCountryCodeMapper
             // London specific outward codes
             "((E[1-9][0-9]?|E1W|EC[1-4][AMNPRVY]|EC50)|N[1-9][0-9]?|N1[CP]|NW[1-9][0-9]?|NW1W|SE[1-9][0-9]?|SE1P|SW1[AEHPVWXY]|SW[2-9][0-9]?|W1[ABCDFGHJKSTUW]|W[2-9][0-9]?|WC1[ABEHNRVX]|WC2[ABEHNR])" +
             ")";
-
         final String INWARD_CODE_REGEX = "([0-9][ABD-HJLN-UW-Z]{2})";
         final String SPECIAL_CODE_REGEX = "(GIR[ ]?0AA|BFPO[ ]?\\d{1,4}|XM4[ ]?5HQ)";
         final String OVERSEAS_TERRITORIES_REGEX = "((AI[ \\-]?2640)|(ASCN|STHL|TDCU|BBND|BIQQ|FIQQ|PCRN|SIQQ|TKCA)[ ]?1ZZ|GX11[ ]?1AA)";

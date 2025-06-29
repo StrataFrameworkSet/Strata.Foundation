@@ -149,6 +149,7 @@ class MulticastedChronicleEventSenderTest
                 .filter(result -> !result.isSuccess())
                 .collect(Collectors.toList()).isEmpty());
 
+        Thread.sleep(2000);
         assertReceived(sent);
     }
 

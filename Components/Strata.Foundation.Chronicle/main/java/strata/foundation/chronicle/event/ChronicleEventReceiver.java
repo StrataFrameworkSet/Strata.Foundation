@@ -149,9 +149,7 @@ class ChronicleEventReceiver<E,L extends IEventListener<E>>
     private boolean
     mustProcess()
     {
-        return
-            stopwatch.hasElapsed(Duration.ofMillis(250)) ||
-            events.size() > 50;
+        return true;
     }
 }
 

@@ -6,6 +6,7 @@ package strata.foundation.chronicle.event;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import strata.foundation.core.event.ICompletableSendResult;
 import strata.foundation.core.event.SendResult;
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.RollCycles;
@@ -21,8 +22,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static strata.foundation.core.concurrent.Awaiter.await;
 
 @Tag("IntegrationStage")
@@ -86,7 +86,7 @@ class ChronicleEventSenderTest
                 new FooEvent("AAA",1),
                 new FooEvent("BBB",2),
                 new FooEvent("CCC",3));
-        List<CompletionStage<SendResult<FooEvent>>> results =
+        List<ICompletableSendResult<FooEvent>> results =
             sent
                 .stream()
                 .map(event -> sender.send(event))
@@ -97,8 +97,17 @@ class ChronicleEventSenderTest
                 .stream()
                 .map(result -> await(result))
                 .filter(result -> !result.isSuccess())
-                .collect(Collectors.toList()).isEmpty());
+                .collect(Collectors.toList()).isEmpty(),
+            results
+                .stream()
+                .map(result -> await(result))
+                .map(SendResult::getException)
+                .filter(exception -> exception.isPresent())
+                .map(exception -> exception.get())
+                .map(Throwable::getMessage)
+                .collect(Collectors.joining(", ")));
 
+        Thread.sleep(2000);
         assertReceived(sent);
     }
 
@@ -132,7 +141,16 @@ class ChronicleEventSenderTest
     protected void
     assertReceived(List<FooEvent> sent)
     {
-        assertIterableEquals(sent,received);
+        assertEquals(sent.size(),received.size());
+
+        for (int i=0; i < sent.size(); i++)
+        {
+            FooEvent expected = sent.get(i);
+            FooEvent actual = received.get(i);
+
+            assertEquals(expected,actual);
+        }
+        //assertIterableEquals(sent,received);
     }
 
     private FooEvent

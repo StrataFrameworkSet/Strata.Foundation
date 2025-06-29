@@ -6,6 +6,7 @@ package strata.foundation.chronicle.event;
 
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.ExcerptAppender;
+import strata.foundation.core.concurrent.CurrentThreadExecutor;
 import strata.foundation.core.event.CompletableSendResult;
 import strata.foundation.core.event.ICompletableSendResult;
 import strata.foundation.core.event.IEventSender;
@@ -13,6 +14,8 @@ import strata.foundation.core.event.SendResult;
 import strata.foundation.core.utility.OptionalExtension;
 
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public
 class ChronicleEventSender<E>
@@ -20,12 +23,14 @@ class ChronicleEventSender<E>
 {
     private ChronicleQueue            queue;
     private Optional<ExcerptAppender> appender;
+    private final ExecutorService     executor;
 
     public
     ChronicleEventSender(ChronicleQueue q)
     {
         queue    = q;
         appender = Optional.empty();
+        executor = Executors.newSingleThreadExecutor();
 
         if (queue.isClosed())
             throw new IllegalStateException("Cannot send on a closed queue");
@@ -57,7 +62,9 @@ class ChronicleEventSender<E>
                 .ifPresentOrElse(
                     appender,
                     a ->
-                        CompletableSendResult.supplyAsync(() -> appendToQueue(a,event)),
+                        CompletableSendResult.supplyAsync(
+                            () -> appendToQueue(a,event),
+                            executor),
                     () ->
                         CompletableSendResult.completedWith(
                             new SendResult<>(

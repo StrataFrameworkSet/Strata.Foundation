@@ -53,6 +53,28 @@ tasks.named("genAvro").configure {
 tasks.named("compileJava").configure {
     source(genAvro)
 }
+tasks.register('testJar', Jar) {
+    archiveClassifier = 'tests'
+    from sourceSets.test.output
+
+    from sourceSets.test.resources
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named("testJar").configure {
+    dependsOn testClasses
+    dependsOn genAvro
+}
+
+configurations {
+    testArtifacts
+}
+
+artifacts {
+    archives testJar
+    testArtifacts testJar
+}
 
 dependencies {
     testImplementation(testFixtures(project(':Tests:Strata.Foundation.CoreTest')))
