@@ -6,6 +6,7 @@
   "scripts": {
     "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
     "clean": "del-cli -f build/dist ./*.tgz",
+    "deep-clean": "yarn run clean && del-cli -f node_modules && del-cli -f yarn.lock",
     "dev-init": "yarn --dev install",
     "build-init": "yarn run dev-init && yarn run clean && yarn install && yarn upgrade --pattern strata",
     "build": "yarn run build-init && tsc && cd main/typescript && yarn run increment-snapshot && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",

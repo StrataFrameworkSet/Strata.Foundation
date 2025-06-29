@@ -2,10 +2,20 @@
     "name": "Strata.Foundation",
     "private": true,
     "scripts": {
+        "dev-init": "yarn --dev install",
         "clean-components": "cd Components/Strata.Foundation.Core && yarn run clean",
         "clean-tests": "cd Tests/Strata.Foundation.CoreTest && yarn run clean",
-        "clean": "yarn run clean-components && yarn run clean-tests",
-        "build": "cd Components/Strata.Foundation.Core && yarn install && yarn run publish-package",
+        "clean": "yarn run dev-init && yarn run clean-components && yarn run clean-tests",
+        "deep-clean-components": "cd Components/Strata.Foundation.Core && yarn run deep-clean",
+        "deep-clean-tests": "cd Tests/Strata.Foundation.CoreTest && yarn run deep-clean",
+        "deep-clean": "yarn run clean && yarn run deep-clean-components && yarn run deep-clean-tests",
+        "build": "yarn run dev-init && cd Components/Strata.Foundation.Core && yarn install && yarn run publish-package",
         "test": "yarn run build && cd Tests/Strata.Foundation.CoreTest && yarn install && yarn run test"
+    },
+    "devDependencies": {
+        "npm-prerelease-timestamp": "^1.0.1",
+        "del-cli": "^5.1.0",
+        "shx": "^0.3.4",
+        "typescript": "^5.1.6"
     }
 }

@@ -1,8 +1,6 @@
 ######################
 # Intellij
 ######################
-#.idea/**
-#*.iml
 *.iws
 *.ipr
 *.ids
@@ -68,8 +66,8 @@ Desktop.ini
 ######################
 /.build/**
 **/build/**
-.local-npm-repository/
-**/.localpack/
+**/node_modules
+**/.node_modules
 
 
 ######################
@@ -87,8 +85,11 @@ APP_LOG_DIR_IS_UNDEFINED/
 *.*~
 *~
 .merge_file*
-**/dist/
-**/node_modules/
-**/*.tgz
-**/typescript/**/*.js
-**/typescript/**/*.js.map
+yarn.lock
+*.lock
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
