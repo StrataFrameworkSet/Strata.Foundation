@@ -87,8 +87,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{vars.REPOSITORY_USER}}
+          password: ${{secrets.REPOSITORY_PASSWORD}}
 
       - name: Pull Docker image
         run: docker pull ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT
@@ -112,8 +112,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{vars.REPOSITORY_USER}}
+          password: ${{secrets.REPOSITORY_PASSWORD}}
 
       - name: Pull Docker image
         run: docker pull ghcr.io/johnliebenau/strata/strata-foundation-testsuite:1.0.0-SNAPSHOT
