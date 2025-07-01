@@ -107,3 +107,7 @@ task printJibClasspath {
         classpath.each { println it }
     }
 }
+
+tasks.named('build') {
+    finalizedBy('jib')
+}
