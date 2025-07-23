@@ -139,7 +139,7 @@ class Optional<T>
 
     isEmpty(): boolean
     {
-        return this.isPresent();
+        return !this.isPresent();
     }
 
     static of<T>(subject: T): Optional<T>
