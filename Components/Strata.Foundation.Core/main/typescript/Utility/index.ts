@@ -2,6 +2,7 @@ export {IConsumer} from './IConsumer';
 export {ISupplier} from './ISupplier';
 export {IRunnable} from './IRunnable';
 export {IFunction} from "./IFunction";
+export {IPredicate} from "./IPredicate";
 export {LambdaConsumer} from "./LambdaConsumer";
 export {LambdaSupplier} from "./LambdaSupplier";
 export {LambdaRunnable} from "./LambdaRunnable";
