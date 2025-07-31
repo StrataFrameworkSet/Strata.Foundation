@@ -237,4 +237,31 @@ describe(
                 }
                 catch (e) {}
             });
+        it(
+            "testOfNullable",
+            () =>
+            {
+                const presentIsTrue: Optional<string> = Optional.ofNullable("optional is present");
+                const presentIsFalse1: Optional<string> = Optional.ofNullable(null);
+                const presentIsFalse2: Optional<string> = Optional.ofNullable(undefined);
+                const expected: string = "optional is present";
+
+                expect(presentIsTrue.isPresent()).toBeTruthy();
+                expect(presentIsFalse1.isPresent()).toBeFalsy();
+                expect(presentIsFalse2.isPresent()).toBeFalsy();
+                expect(presentIsTrue.isEmpty()).toBeFalsy();
+                expect(presentIsFalse1.isEmpty()).toBeTruthy();
+                expect(presentIsFalse2.isEmpty()).toBeTruthy();
+
+                presentIsTrue
+                    .ifPresent(actual => expect(actual).toBe(expected));
+
+                presentIsFalse1
+                    .ifPresent(actual => {throw new Error(actual);});
+
+                presentIsFalse2
+                    .ifPresent(actual => {throw new Error(actual);});
+
+            });
+
     });
