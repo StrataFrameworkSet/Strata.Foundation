@@ -1,5 +1,5 @@
 import "jest"
-import {Optional}  from "strata.foundation.core/Utility";
+import {IConsumer, LambdaConsumer, Optional} from "strata.foundation.core/Utility";
 import {Holder, NoSuchElementException} from "strata.foundation.core/Utility";
 
 describe(
@@ -33,6 +33,7 @@ describe(
                 const presentIsTrue: Optional<string> = Optional.of("optional is present");
                 const presentIsFalse: Optional<string> = Optional.empty();
                 const expected: string = "optional is present";
+                const consumer: IConsumer<string> = LambdaConsumer.of(actual => expect(actual).toBe(expected));
 
                 expect(presentIsTrue.isPresent()).toBeTruthy();
                 expect(presentIsFalse.isPresent()).toBeFalsy();
@@ -40,7 +41,7 @@ describe(
                 expect(presentIsFalse.isEmpty()).toBeTruthy();
 
                 presentIsTrue
-                    .ifPresent(actual => expect(actual).toBe(expected));
+                    .ifPresent(consumer);
 
                 presentIsFalse
                     .ifPresent(actual => {throw new Error(actual);});

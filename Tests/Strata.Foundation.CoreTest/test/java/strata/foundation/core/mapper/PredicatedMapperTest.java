@@ -19,7 +19,7 @@ class PredicatedMapperTest
     public void
     testGet()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of("input X",String.class)
                 .addMapping(
@@ -36,7 +36,7 @@ class PredicatedMapperTest
                     input -> "mapped C");
 
                 String expected = "mapped X";
-                Optional<String> actual = subject.get();
+                Optional<String> actual = mapper.get();
 
         assertTrue(actual.isPresent());
         assertEquals(expected,actual.get());
@@ -46,7 +46,7 @@ class PredicatedMapperTest
     public void
     testGetWhenEmpty()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of("input X",String.class)
                 .addMapping(
@@ -59,7 +59,7 @@ class PredicatedMapperTest
                     input -> input.equals("input C"),
                     input -> "mapped C");
 
-        Optional<String> actual = subject.get();
+        Optional<String> actual = mapper.get();
 
         assertFalse(actual.isPresent());
     }
@@ -68,7 +68,7 @@ class PredicatedMapperTest
     public void
     testMapInputFromConstructor()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of("input X",String.class)
                 .addMapping(
@@ -85,7 +85,7 @@ class PredicatedMapperTest
                     input -> "mapped C");
 
         String expected = "mapped X";
-        Optional<String> actual = subject.map();
+        Optional<String> actual = mapper.map();
 
         assertTrue(actual.isPresent());
         assertEquals(expected,actual.get());
@@ -96,7 +96,7 @@ class PredicatedMapperTest
     public void
     testWhenEmptyInputFromConstructor()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of("input X",String.class)
                 .addMapping(
@@ -109,7 +109,7 @@ class PredicatedMapperTest
                     input -> input.equals("input C"),
                     input -> "mapped C");
 
-        Optional<String> actual = subject.map();
+        Optional<String> actual = mapper.map();
 
         assertFalse(actual.isPresent());
     }
@@ -118,7 +118,7 @@ class PredicatedMapperTest
     public void
     testMap()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of(String.class,String.class)
                 .addMapping(
@@ -135,18 +135,21 @@ class PredicatedMapperTest
                     input -> "mapped C");
 
         String expected = "mapped X";
-        Optional<String> actual = subject.map("input X");
+        Optional<String> actual = mapper.map("input X");
 
         assertTrue(actual.isPresent());
         assertEquals(expected,actual.get());
 
+        mapper
+            .map("inpup X")
+            .ifPresent(actualValue -> assertEquals(expected,actualValue));
     }
 
     @Test
     public void
     testWhenEmpty()
     {
-        PredicatedMapper<String,String> subject =
+        PredicatedMapper<String,String> mapper =
             PredicatedMapper
                 .of(String.class,String.class)
                 .addMapping(
@@ -159,9 +162,84 @@ class PredicatedMapperTest
                     input -> input.equals("input C"),
                     input -> "mapped C");
 
-        Optional<String> actual = subject.map("input X");
+        Optional<String> actual = mapper.map("input X");
 
         assertFalse(actual.isPresent());
+    }
+
+    @Test
+    public void
+    testConstructors()
+    {
+        PredicatedMapper<String,String> mapper1 =
+            new PredicatedMapper<>();
+
+        mapper1
+            .addMapping(
+                input -> input.equals("input A"),
+                input -> "mapped A")
+            .addMapping(
+                input -> input.equals("input B"),
+                input -> "mapped B")
+            .addMapping(
+                input -> input.equals("input C"),
+                input -> "mapped C");
+
+        assertNotNull(mapper1);
+
+        PredicatedMapper<String,String> mapper2 =
+            new PredicatedMapper<String,String>()
+                .addMapping(
+                    input -> input.equals("input A"),
+                    input -> "mapped A")
+                .addMapping(
+                    input -> input.equals("input B"),
+                    input -> "mapped B")
+                .addMapping(
+                    input -> input.equals("input C"),
+                    input -> "mapped C");
+
+
+
+        assertNotNull(mapper2);
+    }
+
+
+    @Test
+    public void
+    testOf()
+    {
+        PredicatedMapper<String,String> mapper1 =
+            PredicatedMapper
+                .<String,String>of()
+                .addMapping(
+                    input -> input.equals("input A"),
+                    input -> "mapped A")
+                .addMapping(
+                    input -> input.equals("input B"),
+                    input -> "mapped B")
+                .addMapping(
+                    input -> input.equals("input C"),
+                    input -> "mapped C");
+
+        assertNotNull(mapper1);
+
+        PredicatedMapper<String,String> mapper2 =
+            PredicatedMapper
+                .<String,String>of("input X")
+                .addMapping(
+                    input -> input.equals("input A"),
+                    input -> "mapped A")
+                .addMapping(
+                    input -> input.equals("input B"),
+                    input -> "mapped B")
+                .addMapping(
+                    input -> input.equals("input C"),
+                    input -> "mapped C");
+
+
+
+        assertNotNull(mapper2);
     }
 
 }

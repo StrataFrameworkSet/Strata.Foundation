@@ -7,3 +7,8 @@ export {PostalAddressBuilder} from "./PostalAddressBuilder";
 export {PostalCode} from "./PostalCode";
 export {GeoLocation} from "./GeoLocation";
 export {GeoLocationBuilder} from "./GeoLocationBuilder";
+export {IFormatter} from "./IFormatter";
+export {LambdaFormatter} from "./LambdaFormatter";
+export {IPersonNameFormatter} from "./IPersonNameFormatter";
+export {BasicPersonNameFormatter} from "./BasicPersonNameFormatter";
+export {IPostalAddressFormatter} from "./IPostalAddressFormatter";

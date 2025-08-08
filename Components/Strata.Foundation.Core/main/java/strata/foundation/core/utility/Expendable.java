@@ -1,0 +1,245 @@
+//////////////////////////////////////////////////////////////////////////////
+// Expendable.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.utility;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+public
+class Expendable<T>
+    implements Supplier<T>
+{
+    private final int                     allowed;
+    private Optional<ExpendableContext<T>> context;
+
+    public Expendable()
+    {
+        this(null,0);
+    }
+
+    public Expendable(T value)
+    {
+        this(value,1);
+    }
+
+    public Expendable(T value,int allowed)
+    {
+        if (value != null)
+        {
+            this.allowed = Math.max(1,allowed);
+            this.context = Optional.of(new ExpendableContext<>(value,this.allowed));
+        }
+        else
+        {
+            this.allowed = 0;
+            this.context = Optional.empty();
+        }
+    }
+
+    @Override
+    public int
+    hashCode()
+    {
+        return Objects.hash(allowed,context);
+    }
+
+    @Override
+    public T
+    get()
+    {
+        return
+            context
+                .map(c -> this.apply(c,value -> value))
+                .orElseThrow();
+    }
+
+    public void
+    ifPresent(Consumer<T> consumer)
+    {
+        context.ifPresent(c -> accept(c,consumer));
+    }
+
+    public <U> U
+    ifPresentOrElse(Function<T,U> present,Supplier<U> notPresent)
+    {
+        return
+            context
+                .map(c -> this.apply(c,present))
+                .orElseGet(notPresent);
+    }
+
+    public <U,E extends RuntimeException> U
+    ifPresentOrThrow(Function<T,U> present,E exception)
+        throws E
+    {
+        return
+            context
+                .map(c -> this.apply(c,present))
+                .orElseThrow(() -> exception);
+    }
+
+    public void
+    ifPresentOrElseNoReturn(Consumer<T> present,Runnable notPresent)
+    {
+        if (context.isPresent())
+            context.ifPresent(c -> this.accept(c,present));
+        else
+            notPresent.run();
+    }
+
+    public <E extends RuntimeException> void
+    ifPresentOrThrowNoReturn(Consumer<T> present,E exception)
+        throws E
+    {
+        if (context.isPresent())
+            context.ifPresent(c -> this.accept(c,present));
+        else
+            throw exception;
+    }
+
+    public void
+    ifNotPresent(Runnable notPresent)
+    {
+        if (!context.isPresent())
+            notPresent.run();
+    }
+
+    public Expendable<T>
+    filter(Predicate<T> predicate)
+    {
+        return
+            context
+                .filter(c -> predicate.test(c.getValue()))
+                .map(c -> new Expendable<>(c.getValue(),allowed))
+                .orElseGet(() -> Expendable.empty());
+    }
+
+    public <U> Expendable<U>
+    map(Function<T,U> mapper)
+    {
+        return
+            context
+                .map(c -> new Expendable<>(this.apply(c,mapper),allowed))
+                .orElseGet(() -> Expendable.empty());
+    }
+
+    public <U> Expendable<U>
+    flatMap(Function<T,Expendable<U>> mapper)
+    {
+        return
+            context
+                .map(c -> this.apply(c,mapper))
+                .orElseGet(() -> Expendable.empty());
+    }
+
+    public T
+    orElse(T other)
+    {
+        return
+            context
+                .map(c -> this.apply(c,value -> value))
+                .orElse(other);
+    }
+
+    public T
+    orElseGet(Supplier<T> other)
+    {
+        return
+            context
+                .map(c -> this.apply(c,value -> value))
+                .orElseGet(other);
+    }
+
+    public T
+    orElseThrow(Supplier<? extends RuntimeException> exceptionSupplier)
+    {
+        return
+            context
+                .map(c -> this.apply(c,value -> value))
+                .orElseThrow(exceptionSupplier);
+    }
+
+    public boolean
+    isPresent()
+    {
+        return context.isPresent();
+    }
+
+    public boolean
+    isEmpty()
+    {
+        return context.isEmpty();
+    }
+
+    public boolean
+    isExpended()
+    {
+        return
+            context
+                .orElse(new ExpendableContext<>(null,0))
+                .isExpended();
+    }
+
+    public int
+    getAllowed() { return allowed; }
+
+    public int
+    getRemaining()
+    {
+        return
+            context
+                .map(ExpendableContext::getRemaining)
+                .orElse(0);
+    }
+
+    public static <T> Expendable<T>
+    of(T value)
+    {
+        return of(value,1);
+    }
+
+    public static <T> Expendable<T>
+    of(T value,int allowed)
+    {
+        return new Expendable<>(value,allowed);
+    }
+
+    public static <T> Expendable<T>
+    empty()
+    {
+        return of(null,0);
+    }
+
+    private void
+    accept(ExpendableContext<T> context,Consumer<T> consumer)
+    {
+        consumer.accept(context.getValue());
+        context.decrementRemaining();
+
+        if (context.isExpended())
+            this.context = Optional.empty();
+    }
+
+
+    private <U> U
+    apply(ExpendableContext<T> context,Function<T,U> function)
+    {
+        U output = function.apply(context.getValue());
+
+        context.decrementRemaining();
+
+        if (context.isExpended())
+            this.context = Optional.empty();
+
+        return output;
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////

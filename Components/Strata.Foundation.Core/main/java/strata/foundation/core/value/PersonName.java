@@ -133,6 +133,12 @@ class PersonName
     {
         return new PersonName(first,middle,last);
     }
+
+    public static PersonName
+    of(String title,String first,String middle,String last)
+    {
+        return new PersonName(title,first,middle,last);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////

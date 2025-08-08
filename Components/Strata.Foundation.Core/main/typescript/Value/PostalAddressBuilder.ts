@@ -58,13 +58,14 @@ class PostalAddressBuilder
 
     build(): PostalAddress
     {
+        /*
         if (!this.address) throw Error("Address must be non-null");
         if (!this.street) throw Error("Street must be non-null");
         if (!this.city) throw Error("City must be non-null");
         if (!this.state) throw Error("State must be non-null");
         if (!this.countryCode) throw Error("CountryCode must be non-null");
         if (!this.postalCode) throw Error("PostalCode must be non-null");
-
+        */
         return {
             address: this.address,
             street: this.street,

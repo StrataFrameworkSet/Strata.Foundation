@@ -87,15 +87,27 @@ class PredicatedMapper<I,O>
     }
 
     public static <I,O> PredicatedMapper<I,O>
-    of(Class<I> inputType,Class<O> outputType)
+    of()
     {
         return new PredicatedMapper<>();
     }
 
     public static <I,O> PredicatedMapper<I,O>
-    of(I input,Class<O> outputType)
+    of(Class<I> inputType,Class<O> outputType)
+    {
+        return of();
+    }
+
+    public static <I,O> PredicatedMapper<I,O>
+    of(I input)
     {
         return new PredicatedMapper<>(input);
+    }
+
+    public static <I,O> PredicatedMapper<I,O>
+    of(I input,Class<O> outputType)
+    {
+        return of(input);
     }
 }
 

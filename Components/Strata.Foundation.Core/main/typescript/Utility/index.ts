@@ -10,6 +10,7 @@ export {LambdaFunction} from "./LambdaFunction";
 export {LambdaPredicate} from "./LambdaPredicate";
 export {Holder} from './Holder';
 export {Optional} from "./Optional";
+export {Expendable} from "./Expendable";
 export {Conditional} from "./Conditional";
 export {NoSuchElementException} from "./NoSuchElementException";
 export {NullPointerException} from "./NullPointerException";

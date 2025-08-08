@@ -16,8 +16,8 @@ class LambdaConsumer<T>
 
         if (LambdaConsumer.isConsumer(input))
             this.lambda = (value: T) => (<IConsumer<T>>input).accept(value);
-
-        this.lambda = <(value: T) => void>input;
+        else
+            this.lambda = <(value: T) => void>input;
     }
 
     accept(value: T): void
