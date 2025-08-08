@@ -7,6 +7,7 @@ class PersonNameBuilder
     private firstName: string;
     private middleName?: string;
     private lastName: string;
+    private suffix?: string;
 
     constructor()
     {
@@ -14,6 +15,7 @@ class PersonNameBuilder
         this.firstName = null;
         this.middleName = undefined;
         this.lastName = null;
+        this.suffix = undefined;
     }
 
     setTitle(title: string): PersonNameBuilder
@@ -40,12 +42,19 @@ class PersonNameBuilder
         return this;
     }
 
+    setSuffix(suffix: string): PersonNameBuilder
+    {
+        this.suffix = suffix;
+        return this;
+    }
+
     clear(): PersonNameBuilder
     {
         this.title = undefined;
         this.firstName = null;
         this.middleName = undefined;
         this.lastName = null;
+        this.suffix = undefined;
         return this;
     }
 
@@ -69,6 +78,11 @@ class PersonNameBuilder
         return this.lastName;
     }
 
+    getSuffix(): string|undefined
+    {
+        return this.suffix;
+    }
+
     hasTitle(): boolean
     {
         return this.title != undefined;
@@ -89,13 +103,19 @@ class PersonNameBuilder
         return this.lastName != null;
     }
 
+    hasSuffix(): boolean
+    {
+        return this.suffix != undefined;
+    }
+
     build(): PersonName
     {
         return {
             title: this.title,
             firstName: this.firstName,
             middleName: this.middleName,
-            lastName: this.lastName
+            lastName: this.lastName,
+            suffix: this.suffix
         };
     }
 }

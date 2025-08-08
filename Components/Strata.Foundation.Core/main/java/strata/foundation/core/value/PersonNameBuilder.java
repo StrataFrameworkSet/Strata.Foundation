@@ -14,6 +14,7 @@ class PersonNameBuilder
     private String itsFirstName;
     private String itsMiddleName;
     private String itsLastName;
+    private String itsSuffix;
 
     public
     PersonNameBuilder()
@@ -22,6 +23,7 @@ class PersonNameBuilder
         itsFirstName = null;
         itsMiddleName = null;
         itsLastName = null;
+        itsSuffix = null;
     }
 
     public PersonNameBuilder
@@ -53,12 +55,20 @@ class PersonNameBuilder
     }
 
     public PersonNameBuilder
+    setSuffix(String suffix)
+    {
+        itsSuffix = suffix;
+        return this;
+    }
+
+    public PersonNameBuilder
     clear()
     {
         itsTitle = null;
         itsFirstName = null;
         itsMiddleName = null;
         itsLastName = null;
+        itsSuffix = null;
         return this;
     }
 
@@ -74,6 +84,9 @@ class PersonNameBuilder
     public String
     getLastName() { return Objects.requireNonNull(itsLastName); }
 
+    public Optional<String>
+    getSuffix() { return Optional.ofNullable(itsSuffix); }
+
     public boolean
     hasTitle() { return Objects.nonNull(itsTitle); }
 
@@ -86,10 +99,19 @@ class PersonNameBuilder
     public boolean
     hasLastName() { return Objects.nonNull(itsLastName); }
 
+    public boolean
+    hasSuffix() { return Objects.nonNull(itsSuffix); }
+
     public PersonName
     build()
     {
-        return new PersonName(itsTitle,itsFirstName,itsMiddleName,itsLastName);
+        return
+            new PersonName(
+                itsTitle,
+                itsFirstName,
+                itsMiddleName,
+                itsLastName,
+                itsSuffix);
     }
 }
 

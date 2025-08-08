@@ -1,17 +1,11 @@
 import {IPersonNameFormatter} from "./IPersonNameFormatter";
 import {PersonName} from "./PersonName";
-import {Expendable} from "../Utility";
 
 export
 class BasicPersonNameFormatter
     implements IPersonNameFormatter
 {
-    private nameSuffix: Expendable<string>;
-
-    public constructor(nameSuffix?: string)
-    {
-        this.nameSuffix = Expendable.of(nameSuffix);
-    }
+    public constructor() {}
 
     public format(value: PersonName): string
     {
@@ -27,13 +21,9 @@ class BasicPersonNameFormatter
 
         output += value.lastName;
 
-        this.nameSuffix.ifPresent(suffix => output += ", " + suffix);
-        return output;
-    }
+        if (value.suffix)
+            output += ", " + value.suffix;
 
-    public setNameSuffix(nameSuffix: string): IPersonNameFormatter
-    {
-        this.nameSuffix = Expendable.of(nameSuffix);
-        return this;
+        return output;
     }
 }

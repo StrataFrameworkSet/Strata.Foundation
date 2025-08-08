@@ -21,31 +21,34 @@ class PersonName
     private String firstName;
     private String middleName;
     private String lastName;
+    private String suffix;
 
     public
     PersonName(String first,String last)
     {
-        this(null,first,null,last);
+        this(null,first,null,last,null);
     }
 
     public
     PersonName(String first,String middle,String last)
     {
-        this(null,first,middle,last);
+        this(null,first,middle,last,null);
     }
 
     @JsonCreator
     public
     PersonName(
-        @JsonProperty("title")      String t,
+        @JsonProperty("title")      String title,
         @JsonProperty("firstName")  String first,
         @JsonProperty("middleName") String middle,
-        @JsonProperty("lastName")   String last)
+        @JsonProperty("lastName")   String last,
+        @JsonProperty("suffix")     String suffix)
     {
-        title = t;
-        firstName = Objects.requireNonNull(first);
-        middleName = middle;
-        lastName = Objects.requireNonNull(last);
+        this.title = title;
+        this.firstName = Objects.requireNonNull(first);
+        this.middleName = middle;
+        this.lastName = Objects.requireNonNull(last);
+        this.suffix = suffix;
     }
 
     public
@@ -109,6 +112,9 @@ class PersonName
     public String
     getLastName() { return lastName; }
 
+    public Optional<String>
+    getSuffix() { return Optional.ofNullable(suffix); }
+
     public String
     toString()
     {
@@ -118,6 +124,7 @@ class PersonName
         builder.append(getFirstName()).append(' ');
         getMiddleName().ifPresent(m -> builder.append(m).append(' '));
         builder.append(getLastName());
+        getSuffix().ifPresent(s -> builder.append(", ").append(s));
 
         return builder.toString();
     }
@@ -137,8 +144,15 @@ class PersonName
     public static PersonName
     of(String title,String first,String middle,String last)
     {
-        return new PersonName(title,first,middle,last);
+        return new PersonName(title,first,middle,last,null);
     }
+
+    public static PersonName
+    of(String title,String first,String middle,String last,String suffix)
+    {
+        return new PersonName(title,first,middle,last,suffix);
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////

@@ -9,12 +9,12 @@ describe(
             "formats name with all components",
             () => {
                 const formatter: BasicPersonNameFormatter = new BasicPersonNameFormatter();
-                formatter.setNameSuffix("Jr.");
                 const name: PersonName = new PersonNameBuilder()
                     .setTitle("Dr.")
                     .setFirstName("John")
                     .setMiddleName("William")
                     .setLastName("Doe")
+                    .setSuffix("Jr.")
                     .build();
 
                 const expected: string = "Dr. John William Doe, Jr.";
@@ -41,10 +41,10 @@ describe(
             "formats name with suffix only",
             () => {
                 const formatter: BasicPersonNameFormatter = new BasicPersonNameFormatter();
-                formatter.setNameSuffix("Jr.");
                 const name: PersonName = new PersonNameBuilder()
                     .setFirstName("John")
                     .setLastName("Doe")
+                    .setSuffix("Jr.")
                     .build();
 
                 const expected: string = "John Doe, Jr.";

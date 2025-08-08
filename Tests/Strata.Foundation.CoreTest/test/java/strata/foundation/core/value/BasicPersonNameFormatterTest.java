@@ -40,12 +40,20 @@ class BasicPersonNameFormatterTest
     public void
     testFormat(PersonName name,String suffix,String expected)
     {
-        String actual =
-            formatter
-                .setNameSuffix(suffix)
-                .format(name);
+        PersonNameBuilder builder = new PersonNameBuilder();
 
-        assertEquals(expected, actual, "Formatted name did not match expected output");
+        name
+            .getTitle()
+            .ifPresent(title -> builder.setTitle(title));
+        name
+            .getMiddleName()
+            .ifPresent(middleName -> builder.setMiddleName(middleName));
+
+        builder
+            .setFirstName(name.getFirstName())
+            .setLastName(name.getLastName())
+            .setSuffix(suffix);
+        assertEquals(expected,formatter.format(builder.build()), "Formatted name did not match expected output");
     }
 
     private static Stream<Arguments>
