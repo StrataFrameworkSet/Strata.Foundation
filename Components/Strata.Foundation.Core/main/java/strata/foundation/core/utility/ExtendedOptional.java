@@ -13,11 +13,12 @@ import java.util.function.Supplier;
 
 public
 class ExtendedOptional<T>
-    implements Supplier<T>
+    implements IOptional<T>
 {
     private Optional<T> optional;
 
-    public ExtendedOptional()
+    public
+    ExtendedOptional()
     {
         this(Optional.empty());
     }
@@ -48,12 +49,14 @@ class ExtendedOptional<T>
         return optional.get();
     }
 
+    @Override
     public void
     ifPresent(Consumer<T> consumer)
     {
         optional.ifPresent(consumer);
     }
 
+    @Override
     public <U> U
     ifPresentOrElse(Function<T,U> present,Supplier<U> notPresent)
     {
@@ -63,6 +66,7 @@ class ExtendedOptional<T>
                 .orElseGet(notPresent);
     }
 
+    @Override
     public <U,E extends RuntimeException> U
     ifPresentOrThrow(Function<T,U> present,E exception)
         throws E
@@ -73,12 +77,14 @@ class ExtendedOptional<T>
                 .orElseThrow(() -> exception);
     }
 
+    @Override
     public void
     ifPresentOrElseNoReturn(Consumer<T> present,Runnable notPresent)
     {
         optional.ifPresentOrElse(v -> present.accept(v), notPresent);
     }
 
+    @Override
     public <E extends RuntimeException> void
     ifPresentOrThrowNoReturn(Consumer<T> present,E exception)
         throws E
@@ -88,6 +94,7 @@ class ExtendedOptional<T>
             () -> { throw exception; });
     }
 
+    @Override
     public void
     ifNotPresent(Runnable notPresent)
     {
@@ -95,6 +102,7 @@ class ExtendedOptional<T>
             notPresent.run();
     }
 
+    @Override
     public ExtendedOptional<T>
     filter(Predicate<T> predicate)
     {
@@ -105,6 +113,7 @@ class ExtendedOptional<T>
                 .orElseGet(() -> ExtendedOptional.empty());
     }
 
+    @Override
     public <U> ExtendedOptional<U>
     map(Function<T,U> mapper)
     {
@@ -114,44 +123,51 @@ class ExtendedOptional<T>
                 .orElseGet(() -> ExtendedOptional.empty());
     }
 
+    @Override
     public <U> ExtendedOptional<U>
-    flatMap(Function<T,ExtendedOptional<U>> mapper)
+    flatMap(Function<T,? extends IOptional<U>> mapper)
     {
         return
             new ExtendedOptional<>(
                 optional.flatMap(v -> mapper.apply(v).toOptional()));
     }
 
+    @Override
     public T
     orElse(T other)
     {
         return optional.orElse(other);
     }
 
+    @Override
     public T
     orElseGet(Supplier<T> other)
     {
         return optional.orElseGet(other);
     }
 
+    @Override
     public T
     orElseThrow(Supplier<? extends RuntimeException> exceptionSupplier)
     {
         return optional.orElseThrow(exceptionSupplier);
     }
 
+    @Override
     public boolean
     isPresent()
     {
         return optional.isPresent();
     }
 
+    @Override
     public boolean
     isEmpty()
     {
         return optional.isEmpty();
     }
 
+    @Override
     public Optional<T>
     toOptional() { return optional;}
 

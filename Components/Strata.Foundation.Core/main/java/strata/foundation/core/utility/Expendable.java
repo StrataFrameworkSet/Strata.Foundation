@@ -13,22 +13,25 @@ import java.util.function.Supplier;
 
 public
 class Expendable<T>
-    implements Supplier<T>
+    implements IOptional<T>
 {
-    private final int                     allowed;
+    private final int                      allowed;
     private Optional<ExpendableContext<T>> context;
 
-    public Expendable()
+    public
+    Expendable()
     {
         this(null,0);
     }
 
-    public Expendable(T value)
+    public
+    Expendable(T value)
     {
         this(value,1);
     }
 
-    public Expendable(T value,int allowed)
+    public
+    Expendable(T value,int allowed)
     {
         if (value != null)
         {
@@ -59,12 +62,14 @@ class Expendable<T>
                 .orElseThrow();
     }
 
+    @Override
     public void
     ifPresent(Consumer<T> consumer)
     {
         context.ifPresent(c -> accept(c,consumer));
     }
 
+    @Override
     public <U> U
     ifPresentOrElse(Function<T,U> present,Supplier<U> notPresent)
     {
@@ -74,6 +79,7 @@ class Expendable<T>
                 .orElseGet(notPresent);
     }
 
+    @Override
     public <U,E extends RuntimeException> U
     ifPresentOrThrow(Function<T,U> present,E exception)
         throws E
@@ -84,6 +90,7 @@ class Expendable<T>
                 .orElseThrow(() -> exception);
     }
 
+    @Override
     public void
     ifPresentOrElseNoReturn(Consumer<T> present,Runnable notPresent)
     {
@@ -93,6 +100,7 @@ class Expendable<T>
             notPresent.run();
     }
 
+    @Override
     public <E extends RuntimeException> void
     ifPresentOrThrowNoReturn(Consumer<T> present,E exception)
         throws E
@@ -103,6 +111,7 @@ class Expendable<T>
             throw exception;
     }
 
+    @Override
     public void
     ifNotPresent(Runnable notPresent)
     {
@@ -110,6 +119,7 @@ class Expendable<T>
             notPresent.run();
     }
 
+    @Override
     public Expendable<T>
     filter(Predicate<T> predicate)
     {
@@ -120,6 +130,7 @@ class Expendable<T>
                 .orElseGet(() -> Expendable.empty());
     }
 
+    @Override
     public <U> Expendable<U>
     map(Function<T,U> mapper)
     {
@@ -129,15 +140,17 @@ class Expendable<T>
                 .orElseGet(() -> Expendable.empty());
     }
 
+    @Override
     public <U> Expendable<U>
-    flatMap(Function<T,Expendable<U>> mapper)
+    flatMap(Function<T,? extends IOptional<U>> mapper)
     {
         return
             context
-                .map(c -> this.apply(c,mapper))
-                .orElseGet(() -> Expendable.empty());
+                .map(c -> this.applyFlatMap(c,mapper))
+                .orElse(Expendable.empty());
     }
 
+    @Override
     public T
     orElse(T other)
     {
@@ -147,6 +160,7 @@ class Expendable<T>
                 .orElse(other);
     }
 
+    @Override
     public T
     orElseGet(Supplier<T> other)
     {
@@ -156,6 +170,7 @@ class Expendable<T>
                 .orElseGet(other);
     }
 
+    @Override
     public T
     orElseThrow(Supplier<? extends RuntimeException> exceptionSupplier)
     {
@@ -165,16 +180,24 @@ class Expendable<T>
                 .orElseThrow(exceptionSupplier);
     }
 
+    @Override
     public boolean
     isPresent()
     {
         return context.isPresent();
     }
 
+    @Override
     public boolean
     isEmpty()
     {
         return context.isEmpty();
+    }
+
+    @Override
+    public Optional<T> toOptional()
+    {
+        return Optional.empty();
     }
 
     public boolean
@@ -231,6 +254,19 @@ class Expendable<T>
     apply(ExpendableContext<T> context,Function<T,U> function)
     {
         U output = function.apply(context.getValue());
+
+        context.decrementRemaining();
+
+        if (context.isExpended())
+            this.context = Optional.empty();
+
+        return output;
+    }
+
+    private <U> Expendable<U>
+    applyFlatMap(ExpendableContext<T> context,Function<T,? extends IOptional<U>> function)
+    {
+        Expendable<U> output = (Expendable<U>)function.apply(context.getValue());
 
         context.decrementRemaining();
 
