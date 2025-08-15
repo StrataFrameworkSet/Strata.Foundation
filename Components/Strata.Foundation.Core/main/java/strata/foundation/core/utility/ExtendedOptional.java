@@ -76,20 +76,16 @@ class ExtendedOptional<T>
     public void
     ifPresentOrElseNoReturn(Consumer<T> present,Runnable notPresent)
     {
-        if (optional.isPresent())
-            optional.ifPresent(v -> present.accept(v));
-        else
-            notPresent.run();
+        optional.ifPresentOrElse(v -> present.accept(v), notPresent);
     }
 
     public <E extends RuntimeException> void
     ifPresentOrThrowNoReturn(Consumer<T> present,E exception)
         throws E
     {
-        if (optional.isPresent())
-            optional.ifPresent(v -> present.accept(v));
-        else
-            throw exception;
+        optional.ifPresentOrElse(
+            v -> present.accept(v),
+            () -> { throw exception; });
     }
 
     public void
