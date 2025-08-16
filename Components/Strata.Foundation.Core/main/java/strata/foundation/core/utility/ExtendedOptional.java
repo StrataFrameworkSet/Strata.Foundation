@@ -124,8 +124,8 @@ class ExtendedOptional<T>
     }
 
     @Override
-    public <U> ExtendedOptional<U>
-    flatMap(Function<T,? extends IOptional<U>> mapper)
+    public <U,O extends IOptional<U>> ExtendedOptional<U>
+    flatMap(Function<T,O> mapper)
     {
         return
             new ExtendedOptional<>(

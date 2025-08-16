@@ -38,8 +38,8 @@ interface IOptional<T>
     <U> IOptional<U>
     map(Function<T,U> mapper);
 
-    <U> IOptional<U>
-    flatMap(Function<T,? extends IOptional<U>> mapper);
+    <U,O extends IOptional<U>> IOptional<U>
+    flatMap(Function<T,O> mapper);
 
     IOptional<T>
     or(Supplier<? extends IOptional<T>> supplier);

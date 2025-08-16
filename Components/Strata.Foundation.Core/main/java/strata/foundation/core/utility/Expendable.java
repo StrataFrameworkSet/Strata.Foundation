@@ -141,12 +141,12 @@ class Expendable<T>
     }
 
     @Override
-    public <U> Expendable<U>
-    flatMap(Function<T,? extends IOptional<U>> mapper)
+    public <U,O extends IOptional<U>> Expendable<U>
+    flatMap(Function<T,O> mapper)
     {
         return
             context
-                .map(c -> this.applyFlatMap(c,mapper))
+                .map(c -> this.applyForFlatMap(c,mapper))
                 .orElse(Expendable.empty());
     }
 
@@ -280,7 +280,9 @@ class Expendable<T>
     }
 
     private <U> Expendable<U>
-    applyFlatMap(ExpendableContext<T> context,Function<T,? extends IOptional<U>> function)
+    applyForFlatMap(
+        ExpendableContext<T>               context,
+        Function<T,? extends IOptional<U>> function)
     {
         Expendable<U> output = (Expendable<U>)function.apply(context.getValue());
 

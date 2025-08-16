@@ -33,7 +33,7 @@ interface IOptional<T>
 
     map<U>(mapper: IFunctionOrLambda<T,U>): IOptional<U>;
 
-    flatMap<O,U>(mapper: IFunctionOrLambda<T,IOptional<U>>): IOptional<U>;
+    flatMap<U>(mapper: IFunctionOrLambda<T,IOptional<U>>): IOptional<U>;
 
     isPresent(): boolean;
 
