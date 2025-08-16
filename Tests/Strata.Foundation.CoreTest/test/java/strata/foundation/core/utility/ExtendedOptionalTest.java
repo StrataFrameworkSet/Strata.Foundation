@@ -201,6 +201,35 @@ class ExtendedOptionalTest
 
     @Test
     public void
+    testOr()
+    {
+        ExtendedOptional<String> subject1 = ExtendedOptional.empty();
+        ExtendedOptional<String> subject2 = ExtendedOptional.of("subject2");
+
+        assertTrue(
+            subject1
+                .or(() -> ExtendedOptional.of("default"))
+                .isPresent());
+        assertEquals(
+            "default",
+            subject1
+                .or(() -> ExtendedOptional.of("default"))
+                .get());
+
+        assertTrue(
+            subject2
+                .or(() -> ExtendedOptional.of("default"))
+                .isPresent());
+        assertEquals(
+            "subject2",
+            subject2
+                .or(() -> ExtendedOptional.of("default"))
+                .get());
+
+    }
+
+    @Test
+    public void
     testOrElse()
     {
         ExtendedOptional<String> subject1 = ExtendedOptional.empty();

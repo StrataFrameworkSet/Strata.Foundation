@@ -398,6 +398,35 @@ class ExpendableTest
 
     @Test
     public void
+    testOr()
+    {
+        Expendable<String> subject1 = Expendable.empty();
+        Expendable<String> subject2 = Expendable.of("subject2");
+
+        assertTrue(
+            subject1
+                .or(() -> Expendable.of("default"))
+                .isPresent());
+        assertEquals(
+            "default",
+            subject1
+                .or(() -> Expendable.of("default"))
+                .get());
+
+        assertTrue(
+            subject2
+                .or(() -> Expendable.of("default"))
+                .isPresent());
+        assertEquals(
+            "subject2",
+            subject2
+                .or(() -> Expendable.of("default"))
+                .get());
+
+    }
+
+    @Test
+    public void
     testOrElse()
     {
         Expendable<String> subject1 = Expendable.empty();

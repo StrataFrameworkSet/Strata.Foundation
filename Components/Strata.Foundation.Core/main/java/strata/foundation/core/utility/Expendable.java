@@ -4,6 +4,7 @@
 
 package strata.foundation.core.utility;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -151,8 +152,8 @@ class Expendable<T>
     }
 
     @Override
-    public Expendable<T>
-    or(Supplier<? extends IOptional<T>> supplier)
+    public <O extends IOptional<T>> Expendable<T>
+    or(Supplier<O> supplier)
     {
         Objects.requireNonNull(supplier, "Supplier must not be null");
 
@@ -188,7 +189,17 @@ class Expendable<T>
 
     @Override
     public T
-    orElseThrow(Supplier<? extends RuntimeException> exceptionSupplier)
+    orElseThrow() throws NoSuchElementException
+    {
+        return
+            context
+                .map(c -> this.apply(c,value -> value))
+                .orElseThrow();
+    }
+
+    @Override
+    public <E extends RuntimeException> T
+    orElseThrow(Supplier<E> exceptionSupplier)
     {
         return
             context

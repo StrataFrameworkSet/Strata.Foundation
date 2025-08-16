@@ -4,6 +4,7 @@
 
 package strata.foundation.core.utility;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -41,8 +42,8 @@ interface IOptional<T>
     <U,O extends IOptional<U>> IOptional<U>
     flatMap(Function<T,O> mapper);
 
-    IOptional<T>
-    or(Supplier<? extends IOptional<T>> supplier);
+    <O extends IOptional<T>> IOptional<T>
+    or(Supplier<O> supplier);
 
     T
     orElse(T other);
@@ -51,7 +52,10 @@ interface IOptional<T>
     orElseGet(Supplier<T> other);
 
     T
-    orElseThrow(Supplier<? extends RuntimeException> exceptionSupplier);
+    orElseThrow() throws NoSuchElementException;
+
+    <E extends RuntimeException> T
+    orElseThrow(Supplier<E> exceptionSupplier) throws E;
 
     boolean
     isPresent();
