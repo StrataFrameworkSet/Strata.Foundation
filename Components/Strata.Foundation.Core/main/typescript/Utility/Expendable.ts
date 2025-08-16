@@ -1,6 +1,6 @@
+import {IOptional} from "./IOptional";
 import {ExpendableContext} from "./ExpendableContext";
 import {Optional} from "./Optional";
-import {ISupplier} from "./ISupplier";
 import {IConsumerOrLambda, LambdaConsumer} from "./LambdaConsumer";
 import {IFunctionOrLambda, LambdaFunction} from "./LambdaFunction";
 import {NoSuchElementException} from "./NoSuchElementException";
@@ -10,7 +10,7 @@ import {IPredicateOrLambda, LambdaPredicate} from "./LambdaPredicate";
 
 export
 class Expendable<T>
-    implements ISupplier<T>
+    implements IOptional<T>
 {
     private readonly allowed: number;
     private          context: Optional<ExpendableContext<T>>;
@@ -96,11 +96,19 @@ class Expendable<T>
             .orElse(Expendable.empty());
     }
 
-    public flatMap<U>(mapper: IFunctionOrLambda<T,Expendable<U>>): Expendable<U>
+    public flatMap<U>(mapper: IFunctionOrLambda<T,IOptional<U>>): Expendable<U>
     {
         return this.context
             .map(context => this.apply(context, mapper))
-            .orElse(Expendable.empty());
+            .orElse(Expendable.empty()) as Expendable<U>;
+    }
+
+    or(supplier: ISupplierOrLambda<IOptional<T>>): Expendable<T>
+    {
+        if (this.isPresent())
+            return this;
+
+        return LambdaSupplier.of(supplier).get() as Expendable<T>;
     }
 
     public orElse(other: T): T
@@ -122,6 +130,13 @@ class Expendable<T>
         return this.context
             .map(context => this.apply(context,(value:T) => value))
             .orElseThrow(exception);
+    }
+
+    orElseGetThrow(supplier: ISupplierOrLambda<Error>): T
+    {
+        return this.context
+            .map(context => this.apply(context,(value:T) => value))
+            .orElseGetThrow(supplier);
     }
 
     public isPresent(): boolean

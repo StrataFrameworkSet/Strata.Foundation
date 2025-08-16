@@ -1,15 +1,15 @@
-import {ISupplier} from "./ISupplier";
-import {NoSuchElementException} from "./NoSuchElementException";
-import {NullPointerException} from "./NullPointerException";
+import {IOptional} from "./IOptional";
 import {IConsumerOrLambda, LambdaConsumer} from "./LambdaConsumer";
 import {IFunctionOrLambda, LambdaFunction} from "./LambdaFunction";
 import {ISupplierOrLambda, LambdaSupplier} from "./LambdaSupplier";
 import {IRunnableOrLambda, LambdaRunnable} from "./LambdaRunnable";
 import {IPredicateOrLambda, LambdaPredicate} from "./LambdaPredicate";
+import {NoSuchElementException} from "./NoSuchElementException";
+import {NullPointerException} from "./NullPointerException";
 
 export
 class Optional<T>
-    implements ISupplier<T>
+    implements IOptional<T>
 {
     private readonly subject: T;
 
@@ -113,18 +113,18 @@ class Optional<T>
         return Optional.empty();
     }
 
-    flatMap<U>(mapper: IFunctionOrLambda<T,Optional<U>>): Optional<U>
+    flatMap<O,U>(mapper: IFunctionOrLambda<T,IOptional<U>>): Optional<U>
     {
         if (mapper == null)
             throw new NullPointerException("mapper is null");
 
         if (this.isPresent())
         {
-            const output: Optional<U> =
+            const output: IOptional<U> =
                 LambdaFunction.of(mapper).apply(this.subject);
 
             if (output != null)
-                return output;
+                return output as Optional<U>;
 
             throw new NullPointerException("mapper output is null");
         }

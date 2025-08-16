@@ -133,6 +133,21 @@ class ExtendedOptional<T>
     }
 
     @Override
+    public ExtendedOptional<T>
+    or(Supplier<? extends IOptional<T>> supplier)
+    {
+        Objects.requireNonNull(supplier, "Supplier must not be null");
+
+        return
+            optional.isPresent()
+                ? this
+                : new ExtendedOptional<>(
+                    supplier
+                        .get()
+                        .toOptional());
+    }
+
+    @Override
     public T
     orElse(T other)
     {

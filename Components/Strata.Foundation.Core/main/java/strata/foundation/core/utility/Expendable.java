@@ -151,6 +151,22 @@ class Expendable<T>
     }
 
     @Override
+    public Expendable<T>
+    or(Supplier<? extends IOptional<T>> supplier)
+    {
+        Objects.requireNonNull(supplier, "Supplier must not be null");
+
+        return
+            context.isPresent()
+                ? this
+                : new Expendable<>(
+                    supplier
+                        .get()
+                        .orElse(null),
+                    allowed);
+    }
+
+    @Override
     public T
     orElse(T other)
     {
