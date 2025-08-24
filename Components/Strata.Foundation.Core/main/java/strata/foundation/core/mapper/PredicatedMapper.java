@@ -4,110 +4,82 @@
 
 package strata.foundation.core.mapper;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import strata.foundation.core.collection.IMultiMap;
+import strata.foundation.core.collection.ListValuedMultiMap;
+
+import java.util.*;
 
 public
-class PredicatedMapper<I,O>
-    implements Supplier<Optional<O>>
+class PredicatedMapper
 {
-    private Optional<I> input;
-    private final Map<Predicate<I>,Function<I,O>> mappings;
+    private final IMultiMap<MappingKey,PredicatedMapping> mappings;
 
     public
     PredicatedMapper()
     {
-        this(null);
+        this(new ListValuedMultiMap<>());
     }
 
     public
-    PredicatedMapper(I input)
+    PredicatedMapper(IMultiMap<MappingKey,PredicatedMapping> mappings)
     {
-        this.input = Optional.ofNullable(input);
-        this.mappings = new HashMap<>();
+        this.mappings = mappings;
     }
 
-
-    public PredicatedMapper<I,O>
-    addMapping(Predicate<I> predicate,Function<I,O> mapper)
-        throws NullPointerException
+    public <I,O> PredicatedMappingBuilder<I,O>
+    beginTypeMap(Class<I> inputType,Class<O> outputType)
     {
-        Objects.requireNonNull(predicate,"predicate cannot be null");
-        Objects.requireNonNull(mapper,"mapper cannot be null");
-
-        mappings.put(predicate,mapper);
-        return this;
+        return new PredicatedMappingBuilder<>(inputType,outputType,this);
     }
 
-    public PredicatedMapper<I,O>
-    clearMappings()
+    public PredicatedMapper
+    clear()
     {
         mappings.clear();
         return this;
     }
 
-    @Override
-
-    public Optional<O>
-    get()
+    public PredicatedMapper
+    clear(MappingKey key)
     {
-        return map();
+        mappings.remove(key);
+        return this;
     }
 
-    public Optional<O>
-    map()
+    public <I,O> Optional<O>
+    map(I input,Class<O> outputType)
     {
-        if (input.isPresent())
+        if (input != null)
         {
-            I value = input.get();
+            List<PredicatedMapping> candidates =
+                mappings
+                    .flatten()
+                    .stream()
+                    .filter(m -> m.getKey().matches(input.getClass(),outputType))
+                    .map(entry -> entry.getValue())
+                    .filter(mapping -> mapping.test(input))
+                    .toList();
 
-            for (Map.Entry<Predicate<I>,Function<I,O>> entry: mappings.entrySet())
+            for (PredicatedMapping mapping: candidates)
             {
-                Predicate<I> predicate = entry.getKey();
-                Function<I,O> mapper = entry.getValue();
+                try
+                {
+                    O output = mapping.apply(input);
 
-                if (predicate.test(value))
-                    return Optional.ofNullable(mapper.apply(value));
+                    if (output != null)
+                        return Optional.of(output);
+                }
+                catch (ClassCastException ex) {}
             }
         }
 
         return Optional.empty();
     }
 
-    public Optional<O>
-    map(I input)
+    public IMultiMap<MappingKey,PredicatedMapping>
+    getMappings()
     {
-        this.input = Optional.ofNullable(input);
-        return map();
-    }
-
-    public static <I,O> PredicatedMapper<I,O>
-    of()
-    {
-        return new PredicatedMapper<>();
-    }
-
-    public static <I,O> PredicatedMapper<I,O>
-    of(Class<I> inputType,Class<O> outputType)
-    {
-        return of();
-    }
-
-    public static <I,O> PredicatedMapper<I,O>
-    of(I input)
-    {
-        return new PredicatedMapper<>(input);
-    }
-
-    public static <I,O> PredicatedMapper<I,O>
-    of(I input,Class<O> outputType)
-    {
-        return of(input);
+        return mappings;
     }
 }
 
