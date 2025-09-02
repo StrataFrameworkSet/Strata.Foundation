@@ -11,6 +11,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public
 class StoppableBlockingQueue<T>
@@ -327,6 +329,13 @@ class StoppableBlockingQueue<T>
             .forEach(context -> sink.add(getElement(context)));
 
         return transferred;
+    }
+
+    @Override
+    public Spliterator<T>
+    spliterator()
+    {
+        return new StoppableBlockingQueueSpliterator<>(this);
     }
 
     @Override

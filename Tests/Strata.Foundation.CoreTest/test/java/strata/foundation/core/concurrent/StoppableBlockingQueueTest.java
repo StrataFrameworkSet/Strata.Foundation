@@ -64,6 +64,20 @@ class StoppableBlockingQueueTest
 
     }
 
+    @Test
+    public void
+    testStream() throws InterruptedException
+    {
+        executor.execute(this::produce);
+        executor.execute(this::stream);
+        executor.shutdown();
+
+        while(!executor.awaitTermination(1,TimeUnit.SECONDS))
+            System.out.print(".");
+
+        System.out.println();
+    }
+
     private void
     produce()
     {
@@ -148,6 +162,15 @@ class StoppableBlockingQueueTest
                 return;
             }
         }
+    }
+
+    private void
+    stream()
+    {
+        queue
+            .stream()
+            .forEach(element -> System.out.println("Consumed: " + element));
+
     }
 
     private void

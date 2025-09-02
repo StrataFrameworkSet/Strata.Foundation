@@ -24,7 +24,11 @@ abstract class AbstractObjectReader
 
     read<T extends ISerializable>(): T
     {
-        console.log("read(): " + this.root);
+        console.log("read(): " + JSON.stringify(this.root));
+
+        if (this.root == null)
+            return null;
+
         const output: T =
             AbstractObjectReader.create<T>(
                 this.readString("typename"));
@@ -93,6 +97,12 @@ abstract class AbstractObjectReader
     {
         this.push(this.root[key]);
         console.log("readObject(" + key + "): " + this.root);
+
+        if (this.root == null)
+        {
+            this.pop();
+            return null;
+        }
 
         const output: T = AbstractObjectReader.create<T>(
             this.readString("typename"));

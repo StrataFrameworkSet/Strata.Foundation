@@ -7,6 +7,7 @@ package strata.foundation.core.concurrent;
 import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public
 interface IBlockingQueue<T>

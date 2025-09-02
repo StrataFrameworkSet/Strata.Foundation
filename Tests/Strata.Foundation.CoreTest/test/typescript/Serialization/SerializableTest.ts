@@ -14,6 +14,14 @@ describe(
     () =>
     {
         it(
+            "testReadWithNullInput",
+            () =>
+            {
+                const foobar: FooBar = new JsonObjectReader(null).read<FooBar>();
+
+                expect(foobar).toBeNull();
+            });
+        it(
             "testWriteAndRead",
             () =>
             {

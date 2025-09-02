@@ -55,7 +55,11 @@ class PredicatedMapper
                 mappings
                     .flatten()
                     .stream()
-                    .filter(m -> m.getKey().matches(input.getClass(),outputType))
+                    .filter(
+                        entry ->
+                            entry
+                                .getKey()
+                                .matches(input.getClass(),outputType))
                     .map(entry -> entry.getValue())
                     .filter(mapping -> mapping.test(input))
                     .toList();
@@ -67,7 +71,7 @@ class PredicatedMapper
                     O output = mapping.apply(input);
 
                     if (output != null)
-                        return Optional.of(output);
+                        return Optional.of(outputType.cast(output));
                 }
                 catch (ClassCastException ex) {}
             }

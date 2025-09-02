@@ -10,6 +10,7 @@ class FooBar
     private foo: Foo;
     private bar: string[];
     private baz: Map<string,Foo>;
+    private buz: Thing;
 
     static
     {
@@ -32,6 +33,8 @@ class FooBar
             baz = new Map<string,Foo>();
         else
             this.baz = baz;
+
+        this.buz = {valueA:"hello", valueB: 42};
     }
 
     public writeTo(writer: IObjectWriter): void
@@ -39,6 +42,7 @@ class FooBar
         writer.writeObject("foo",this.foo);
         writer.writeArray("bar", this.bar);
         writer.writeMap("baz", this.baz);
+        writer.writeString("buz", JSON.stringify(this.buz));
     }
 
     public readFrom(reader: IObjectReader): void
@@ -46,6 +50,7 @@ class FooBar
         this.foo = reader.readObject<Foo>("foo");
         this.bar = reader.readArray("bar");
         this.baz = reader.readMap<string,Foo>("baz");
+        this.buz = JSON.parse(reader.readString("buz"));
     }
 
     public getTypeName(): string { return "FooBar"; }
