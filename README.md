@@ -318,8 +318,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/StrataFrameworkSet/Strata.Foundation/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/StrataFrameworkSet/Strata.Foundation/discussions)
-- **Wiki**: [Project Wiki](https://github.com/StrataFrameworkSet/Strata.Foundation/wiki)
 
 ## Project Status
 
