@@ -23,19 +23,6 @@ The Strata.Foundation framework follows a modular architecture with clear separa
 
 ![Strata Foundation Components](Strata-Foundation-Components.png)
 
-```
-┌─────────────────────────────────────┐
-│          Application Layer          │
-├─────────────────────────────────────┤
-│  Strata.Foundation.Spring/Guice     │
-│  Strata.Foundation.Kafka/Chronicle  │
-├─────────────────────────────────────┤
-│       Strata.Foundation.Core        │
-├─────────────────────────────────────┤
-│           JVM Platform              │
-└─────────────────────────────────────┘
-```
-
 Each component builds upon the core abstractions while providing specialized functionality for specific use cases and technologies.
 
 ## Components
