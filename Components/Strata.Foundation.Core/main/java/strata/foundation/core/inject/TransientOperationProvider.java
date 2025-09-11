@@ -11,14 +11,15 @@ public
 class TransientOperationProvider
     implements IOperationProvider
 {
-    private final Injector itsInjector;
+    private final IInjector itsInjector;
 
     @Inject
     public
-    TransientOperationProvider(Injector injector)
+    TransientOperationProvider(IInjector injector)
     {
         itsInjector = injector;
     }
+
     @Override
     public Operation
     get()

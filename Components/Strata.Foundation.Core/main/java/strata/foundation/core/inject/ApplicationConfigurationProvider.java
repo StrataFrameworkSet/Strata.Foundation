@@ -4,12 +4,12 @@
 
 package strata.foundation.core.inject;
 
+import jakarta.inject.Provider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import strata.foundation.core.configuration.IConfiguration;
 import strata.foundation.core.configuration.SecureConfiguration;
 
-import com.google.inject.Provider;
 
 public
 class ApplicationConfigurationProvider

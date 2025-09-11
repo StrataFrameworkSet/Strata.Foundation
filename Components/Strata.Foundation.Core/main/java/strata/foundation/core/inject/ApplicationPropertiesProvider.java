@@ -4,7 +4,7 @@
 
 package strata.foundation.core.inject;
 
-import com.google.inject.Provider;
+import jakarta.inject.Provider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

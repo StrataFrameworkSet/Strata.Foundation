@@ -3,10 +3,10 @@ plugins {
 }
 
 sourceSets {
-    main.java.srcDirs = ['main/java']
-    main.resources.srcDirs = ['main/resources']
-    test.java.srcDirs = ['unused']
-    test.resources.srcDirs = ['unused']
+    main.java.srcDirs = ['src/main/java']
+    main.resources.srcDirs = ['src/main/resources']
+    test.java.srcDirs = ['src/unused']
+    test.resources.srcDirs = ['src/unused']
 }
 
 apply plugin: 'maven-publish'
@@ -20,8 +20,8 @@ task sourceJar(type: Jar) {
 
 publishing {
     publications {
-        StrataFoundationSpring(MavenPublication) {
-            artifactId = 'strata-foundation-spring'
+        StrataFoundationGuice(MavenPublication) {
+            artifactId = 'strata-foundation-guice'
             from components.java
 
             repositories {
@@ -40,6 +40,6 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'org.springdoc:springdoc-openapi-starter-common:2.2.0'
-    api 'org.springframework.kafka:spring-kafka:3.3.9'
+    api 'com.google.inject:guice:7.0.0'
+    api 'jakarta.inject:jakarta.inject-api:2.0.1'
 }

@@ -4,7 +4,8 @@
 
 package strata.foundation.core.inject;
 
-import com.google.inject.Provider;
+
+import jakarta.inject.Provider;
 
 public
 interface IOperationProvider

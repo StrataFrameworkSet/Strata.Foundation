@@ -4,18 +4,18 @@
 
 package strata.foundation.core.inject;
 
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.TypeLiteral;
+import strata.foundation.core.reflect.TypeLiteral;
+
+import java.lang.annotation.Annotation;
 
 public
 class Operation
     implements AutoCloseable
 {
-    private final Injector  itsInjector;
+    private final IInjector  itsInjector;
 
     public
-    Operation(Injector injector)
+    Operation(IInjector injector)
     {
         itsInjector = injector;
         OperationContext.beginScope();
@@ -30,13 +30,43 @@ class Operation
     public <T> T
     getInstance(TypeLiteral<T> type)
     {
-        return (T)itsInjector.getInstance(Key.get(type));
+        return itsInjector.getInstance(type);
     }
 
     public <T> T
-    getInstance(Key<T> key)
+    getInstance(Class<T> type,Class<? extends Annotation> annotationType)
     {
-        return itsInjector.getInstance(key);
+        return itsInjector.getInstance(type,annotationType);
+    }
+
+    public <T> T
+    getInstance(TypeLiteral<T> type,Class<? extends Annotation> annotationType)
+    {
+        return itsInjector.getInstance(type,annotationType);
+    }
+
+    public <T> T
+    getInstance(Class<T> type,Annotation annotation)
+    {
+        return itsInjector.getInstance(type,annotation);
+    }
+
+    public <T> T
+    getInstance(TypeLiteral<T> type,Annotation annotation)
+    {
+        return itsInjector.getInstance(type,annotation);
+    }
+
+    public <T> T
+    getInstance(Class<T> type,String name)
+    {
+        return itsInjector.getInstance(type,name);
+    }
+
+    public <T> T
+    getInstance(TypeLiteral<T> type,String name)
+    {
+        return itsInjector.getInstance(type,name);
     }
 
     @Override

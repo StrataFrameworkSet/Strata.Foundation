@@ -142,6 +142,16 @@ class Conditional
             falseAction.run();
     }
 
+    public Boolean
+    orElse(Supplier<Boolean> elseSupplier)
+    {
+        if (condition)
+            return true;
+
+        return elseSupplier.get();
+    }
+
+
     public Conditional
     and(Conditional other)
     {

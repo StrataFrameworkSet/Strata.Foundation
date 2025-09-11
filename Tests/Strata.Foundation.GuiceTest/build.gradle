@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+sourceSets {
+    test.java.srcDirs = ['src/test/java']
+    test.resources.srcDirs = ['src/test/resources']
+    main.java.srcDirs = ['src/unused']
+    main.resources.srcDirs = ['src/unused']
+}
+
+apply plugin: "java"
+
+dependencies {
+    testImplementation project(':Components:Strata.Foundation.Guice')
+    testImplementation project(':Tests:Strata.Foundation.CoreTest')
+    testImplementation "org.junit.jupiter:junit-jupiter:$junit_jupiter_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
+}
+
+test {
+    useJUnitPlatform {
+        includeTags("CommitStage")
+    }
+}

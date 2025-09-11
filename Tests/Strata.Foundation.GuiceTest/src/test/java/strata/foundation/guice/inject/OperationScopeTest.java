@@ -2,11 +2,13 @@
 // OperationScopeTest.java
 //////////////////////////////////////////////////////////////////////////////
 
-package strata.foundation.core.inject;
+package strata.foundation.guice.inject;
 
 import com.google.inject.Guice;
-
+import com.google.inject.Injector;
 import org.junit.jupiter.api.*;
+import strata.foundation.core.inject.IOperationProvider;
+import strata.foundation.core.inject.Operation;
 import strata.foundation.core.reflect.TypeLiteral;
 
 import java.util.Arrays;
@@ -24,7 +26,7 @@ class OperationScopeTest
     public void
     setUp()
     {
-        IInjector injector = new GuiceInjector(Guice.createInjector(new TestModule()));
+        Injector injector = Guice.createInjector(new TestModule());
 
         itsProvider = injector.getInstance(IOperationProvider.class);
     }
@@ -47,8 +49,7 @@ class OperationScopeTest
             try (Operation operation = itsProvider.get())
             {
                 List<Integer> list =
-                    operation.getInstance(
-                        new TypeLiteral<>() {});
+                    operation.getInstance(new TypeLiteral<>(){});
 
                 list.addAll(Arrays.asList(i,i,i,i,i));
                 lists.put(i,list);
