@@ -6,6 +6,11 @@
 
 Foundational components and utilities for building robust, scalable enterprise applications in the Strata Framework Set. This library provides core abstractions, dependency injection capabilities, event handling, and integration support for Spring Framework and Apache Kafka.
 
+## Purpose
+- Provide a unified developer experience across popular frameworks, libraries, and language platforms.
+- Reduce impedance mismatch between different technologies.
+- Facilitate rapid development of enterprise-grade applications with best practices and design patterns.
+
 ## Features
 
 - **Core Abstractions**: Essential interfaces and utilities for enterprise application development
