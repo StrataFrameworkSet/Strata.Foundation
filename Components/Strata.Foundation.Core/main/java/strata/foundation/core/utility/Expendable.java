@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public
 class Expendable<T>
-    implements IOptional<T>
+    implements IOptionable<T>
 {
     private final int                      allowed;
     private Optional<ExpendableContext<T>> context;
@@ -142,7 +142,7 @@ class Expendable<T>
     }
 
     @Override
-    public <U,O extends IOptional<U>> Expendable<U>
+    public <U,O extends IOptionable<U>> Expendable<U>
     flatMap(Function<T,O> mapper)
     {
         return
@@ -152,7 +152,7 @@ class Expendable<T>
     }
 
     @Override
-    public <O extends IOptional<T>> Expendable<T>
+    public <O extends IOptionable<T>> Expendable<T>
     or(Supplier<O> supplier)
     {
         Objects.requireNonNull(supplier, "Supplier must not be null");
@@ -293,7 +293,7 @@ class Expendable<T>
     private <U> Expendable<U>
     applyForFlatMap(
         ExpendableContext<T>               context,
-        Function<T,? extends IOptional<U>> function)
+        Function<T,? extends IOptionable<U>> function)
     {
         Expendable<U> output = (Expendable<U>)function.apply(context.getValue());
 

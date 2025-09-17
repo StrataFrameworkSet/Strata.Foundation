@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public
 class ExtendedOptional<T>
-    implements IOptional<T>
+    implements IOptionable<T>
 {
     private Optional<T> optional;
 
@@ -125,7 +125,7 @@ class ExtendedOptional<T>
     }
 
     @Override
-    public <U,O extends IOptional<U>> ExtendedOptional<U>
+    public <U,O extends IOptionable<U>> ExtendedOptional<U>
     flatMap(Function<T,O> mapper)
     {
         return
@@ -134,7 +134,7 @@ class ExtendedOptional<T>
     }
 
     @Override
-    public <O extends IOptional<T>> ExtendedOptional<T>
+    public <O extends IOptionable<T>> ExtendedOptional<T>
     or(Supplier<O> supplier)
     {
         Objects.requireNonNull(supplier, "Supplier must not be null");

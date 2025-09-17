@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// IOptional.java
+// IOptionable.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public
-interface IOptional<T>
+interface IOptionable<T>
     extends Supplier<T>
 {
     void
@@ -33,16 +33,16 @@ interface IOptional<T>
     void
     ifNotPresent(Runnable notPresent);
 
-    IOptional<T>
+    IOptionable<T>
     filter(Predicate<T> predicate);
 
-    <U> IOptional<U>
+    <U> IOptionable<U>
     map(Function<T,U> mapper);
 
-    <U,O extends IOptional<U>> IOptional<U>
+    <U,O extends IOptionable<U>> IOptionable<U>
     flatMap(Function<T,O> mapper);
 
-    <O extends IOptional<T>> IOptional<T>
+    <O extends IOptionable<T>> IOptionable<T>
     or(Supplier<O> supplier);
 
     T
