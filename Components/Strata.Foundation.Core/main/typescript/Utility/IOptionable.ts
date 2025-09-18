@@ -6,7 +6,7 @@ import {IRunnableOrLambda} from "./LambdaRunnable";
 import {IPredicateOrLambda} from "./LambdaPredicate";
 
 export
-interface IOptional<T>
+interface IOptionable<T>
     extends ISupplier<T>
 {
     ifPresent(consumer: IConsumerOrLambda<T>): void;
@@ -19,7 +19,7 @@ interface IOptional<T>
         consumer: IConsumerOrLambda<T>,
         action: IRunnableOrLambda): void;
 
-    or(supplier: ISupplierOrLambda<IOptional<T>>): IOptional<T>;
+    or(supplier: ISupplierOrLambda<IOptionable<T>>): IOptionable<T>;
 
     orElse(alternative: T): T;
 
@@ -29,11 +29,11 @@ interface IOptional<T>
 
     orElseGetThrow(supplier: ISupplierOrLambda<Error>): T;
 
-    filter(predicate: IPredicateOrLambda<T>): IOptional<T>;
+    filter(predicate: IPredicateOrLambda<T>): IOptionable<T>;
 
-    map<U>(mapper: IFunctionOrLambda<T,U>): IOptional<U>;
+    map<U>(mapper: IFunctionOrLambda<T,U>): IOptionable<U>;
 
-    flatMap<U>(mapper: IFunctionOrLambda<T,IOptional<U>>): IOptional<U>;
+    flatMap<U>(mapper: IFunctionOrLambda<T,IOptionable<U>>): IOptionable<U>;
 
     isPresent(): boolean;
 

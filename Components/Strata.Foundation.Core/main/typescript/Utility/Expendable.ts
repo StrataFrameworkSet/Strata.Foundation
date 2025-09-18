@@ -1,4 +1,4 @@
-import {IOptional} from "./IOptional";
+import {IOptionable} from "./IOptionable";
 import {ExpendableContext} from "./ExpendableContext";
 import {Optional} from "./Optional";
 import {IConsumerOrLambda, LambdaConsumer} from "./LambdaConsumer";
@@ -10,7 +10,7 @@ import {IPredicateOrLambda, LambdaPredicate} from "./LambdaPredicate";
 
 export
 class Expendable<T>
-    implements IOptional<T>
+    implements IOptionable<T>
 {
     private readonly allowed: number;
     private          context: Optional<ExpendableContext<T>>;
@@ -96,14 +96,14 @@ class Expendable<T>
             .orElse(Expendable.empty());
     }
 
-    public flatMap<U>(mapper: IFunctionOrLambda<T,IOptional<U>>): Expendable<U>
+    public flatMap<U>(mapper: IFunctionOrLambda<T,IOptionable<U>>): Expendable<U>
     {
         return this.context
             .map(context => this.apply(context, mapper))
             .orElse(Expendable.empty()) as Expendable<U>;
     }
 
-    or(supplier: ISupplierOrLambda<IOptional<T>>): Expendable<T>
+    or(supplier: ISupplierOrLambda<IOptionable<T>>): Expendable<T>
     {
         if (this.isPresent())
             return this;
