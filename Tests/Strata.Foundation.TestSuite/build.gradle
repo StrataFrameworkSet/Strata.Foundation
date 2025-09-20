@@ -54,7 +54,7 @@ publishing {
 
 jib {
     from {
-        image = "amazoncorretto:17.0.7-alpine"
+        image = "amazoncorretto:22-alpine"
         auth {
             username = "$System.env.DOCKER_USER"
             password = "$System.env.DOCKER_PASSWORD"
