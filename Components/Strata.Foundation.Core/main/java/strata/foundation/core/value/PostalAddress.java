@@ -32,12 +32,12 @@ class PostalAddress
         @JsonProperty("countryCode") final String countryCode,
         @JsonProperty("postalCode")  final String postalCode)
     {
-        itsAddress     = address;
-        itsStreet      = street;
-        itsCity        = city;
-        itsState       = state;
-        itsCountryCode = countryCode;
-        itsPostalCode  = postalCode;
+        itsAddress     = Objects.toString(address,"");
+        itsStreet      = Objects.toString(street,"");
+        itsCity        = Objects.toString(city,"");
+        itsState       = Objects.toString(state,"");
+        itsCountryCode = Objects.toString(countryCode,"");
+        itsPostalCode  = Objects.toString(postalCode,"");
     }
 
     public
