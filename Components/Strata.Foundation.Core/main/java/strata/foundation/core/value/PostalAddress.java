@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.ICopyable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public
 class PostalAddress
@@ -69,37 +70,55 @@ class PostalAddress
     compareTo(PostalAddress other)
     {
         int result =
-            itsPostalCode.compareToIgnoreCase( other.itsPostalCode );
+            Objects.compare(
+                itsPostalCode,
+                other.itsPostalCode,
+                String::compareToIgnoreCase );
 
         if ( result != 0 )
             return result;
 
         result =
-            itsCountryCode.compareToIgnoreCase( other.itsCountryCode );
+            Objects.compare(
+                itsCountryCode,
+                other.itsCountryCode,
+                String::compareToIgnoreCase);
 
         if ( result != 0 )
             return result;
 
         result =
-            itsState.compareToIgnoreCase( other.itsState );
+            Objects.compare(
+                itsState,
+                other.itsState,
+                String::compareToIgnoreCase );
 
         if ( result != 0 )
             return result;
 
         result =
-            itsCity.compareToIgnoreCase( other.itsCity );
+            Objects.compare(
+                itsCity,
+                other.itsCity,
+                String::compareToIgnoreCase);
 
         if ( result != 0 )
             return result;
 
         result =
-            itsStreet.compareToIgnoreCase( other.itsStreet );
+            Objects.compare(
+                itsStreet,
+                other.itsStreet,
+                String::compareToIgnoreCase);
 
         if ( result != 0 )
             return result;
 
         result =
-            itsAddress.compareToIgnoreCase( other.itsAddress );
+            Objects.compare(
+                itsAddress,
+                other.itsAddress,
+                String::compareToIgnoreCase);
 
         return result;
     }
