@@ -4,6 +4,9 @@
 
 package strata.foundation.core.utility;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
@@ -97,9 +100,9 @@ class ExtendedOptional<T>
 
     @Override
     public void
-    ifNotPresent(Runnable notPresent)
+    ifEmpty(Runnable notPresent)
     {
-        if (!optional.isPresent())
+        if (optional.isEmpty())
             notPresent.run();
     }
 
@@ -193,6 +196,31 @@ class ExtendedOptional<T>
     @Override
     public Optional<T>
     toOptional() { return optional;}
+
+    private void
+    writeObject(ObjectOutputStream out)
+        throws IOException
+    {
+        if (optional.isPresent())
+        {
+            out.writeBoolean(true);
+            out.writeObject(optional.get());
+        }
+        else
+            out.writeBoolean(false);
+    }
+
+    private void
+    readObject(ObjectInputStream in)
+        throws IOException,ClassNotFoundException
+    {
+        boolean isPresent = in.readBoolean();
+
+        if (isPresent)
+            optional = Optional.ofNullable((T)in.readObject());
+        else
+            optional = Optional.empty();
+    }
 
     public static <T> ExtendedOptional<T>
     of(T value)

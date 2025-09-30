@@ -4,6 +4,9 @@
 
 package strata.foundation.core.utility;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
@@ -114,9 +117,9 @@ class Expendable<T>
 
     @Override
     public void
-    ifNotPresent(Runnable notPresent)
+    ifEmpty(Runnable notPresent)
     {
-        if (!context.isPresent())
+        if (context.isEmpty())
             notPresent.run();
     }
 
@@ -246,6 +249,31 @@ class Expendable<T>
             context
                 .map(ExpendableContext::getRemaining)
                 .orElse(0);
+    }
+
+    private void
+    writeObject(ObjectOutputStream out)
+        throws IOException
+    {
+        if (context.isPresent())
+        {
+            out.writeBoolean(true);
+            out.writeObject(context.get());
+        }
+        else
+            out.writeBoolean(false);
+    }
+
+    private void
+    readObject(ObjectInputStream in)
+        throws IOException,ClassNotFoundException
+    {
+        boolean isPresent = in.readBoolean();
+
+        if (isPresent)
+            context = Optional.ofNullable((ExpendableContext<T>)in.readObject());
+        else
+            context = Optional.empty();
     }
 
     public static <T> Expendable<T>

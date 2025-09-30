@@ -4,13 +4,17 @@
 
 package strata.foundation.core.utility;
 
+import java.io.Serializable;
+
 class ExpendableContext<T>
+    implements Serializable
 {
     private final T   value;
     private final int allowed;
     private int       remaining;
 
-    public ExpendableContext(T value,int allowed)
+    public
+    ExpendableContext(T value,int allowed)
     {
         this.value = value;
         this.allowed = allowed;

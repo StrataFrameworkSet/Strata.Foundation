@@ -7,6 +7,10 @@ package strata.foundation.core.utility;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -525,6 +529,54 @@ class ExpendableTest
 
         assertTrue(subject3.isExpended());
     }
+
+    @Test
+    public void
+    testSerialization()
+    {
+        Expendable<String> subject1 = Expendable.empty();
+        Expendable<String> subject2 = Expendable.of("subject2",2);
+
+        try
+        {
+            byte[] serialized1 = serialize(subject1);
+            Expendable<String> deserialized1 = deserialize(serialized1);
+            assertTrue(deserialized1.isEmpty());
+
+            byte[] serialized2 = serialize(subject2);
+            Expendable<String> deserialized2 = deserialize(serialized2);
+            assertTrue(deserialized2.isPresent());
+            assertEquals("subject2", deserialized2.get());
+        }
+        catch (Exception e)
+        {
+            fail("Serialization failed: " + e.getMessage());
+        }
+    }
+
+    private <T> byte[]
+    serialize(Expendable<T> input) throws Exception
+    {
+        try (
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(byteOut))
+        {
+            out.writeObject(input);
+            return byteOut.toByteArray();
+        }
+    }
+
+    private <T> Expendable<T>
+    deserialize(byte[] data) throws Exception
+    {
+        try (
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(data);
+            ObjectInputStream in = new ObjectInputStream(byteIn))
+        {
+            return (Expendable<T>)in.readObject();
+        }
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////

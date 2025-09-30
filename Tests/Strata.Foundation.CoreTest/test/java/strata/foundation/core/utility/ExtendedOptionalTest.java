@@ -7,6 +7,10 @@ package strata.foundation.core.utility;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -266,6 +270,52 @@ class ExtendedOptionalTest
 
         assertEquals("subject2", subject2.orElseThrow(
             () -> new NoSuchElementException("subject 2 is empty")));
+    }
+
+    @Test
+    public void
+    testSerialization()
+    {
+        ExtendedOptional<String> subject1 = ExtendedOptional.empty();
+        ExtendedOptional<String> subject2 = ExtendedOptional.of("subject2");
+
+        try
+        {
+            byte[] serialized1 = serialize(subject1);
+            ExtendedOptional<String> deserialized1 = deserialize(serialized1);
+            assertTrue(deserialized1.isEmpty());
+
+            byte[] serialized2 = serialize(subject2);
+            ExtendedOptional<String> deserialized2 = deserialize(serialized2);
+            assertTrue(deserialized2.isPresent());
+            assertEquals("subject2", deserialized2.get());
+        }
+        catch (Exception e)
+        {
+            fail("Serialization failed: " + e.getMessage());
+        }
+    }
+
+    private <T> byte[]
+    serialize(ExtendedOptional<T> input) throws Exception
+    {
+        try (
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(byteOut))
+        {
+            out.writeObject(input);
+            return byteOut.toByteArray();
+        }
+    }
+
+    private <T> ExtendedOptional<T>
+    deserialize(byte[] data) throws Exception
+    {
+        try (ByteArrayInputStream byteIn = new ByteArrayInputStream(data);
+             ObjectInputStream in = new ObjectInputStream(byteIn))
+        {
+            return (ExtendedOptional<T>)in.readObject();
+        }
     }
 }
 

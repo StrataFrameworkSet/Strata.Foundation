@@ -4,6 +4,7 @@
 
 package strata.foundation.core.utility;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -13,7 +14,7 @@ import java.util.function.Supplier;
 
 public
 interface IOptionable<T>
-    extends Supplier<T>
+    extends Supplier<T>, Serializable
 {
     void
     ifPresent(Consumer<T> consumer);
@@ -31,7 +32,7 @@ interface IOptionable<T>
     ifPresentOrThrowNoReturn(Consumer<T> present,E exception) throws E;
 
     void
-    ifNotPresent(Runnable notPresent);
+    ifEmpty(Runnable notPresent);
 
     IOptionable<T>
     filter(Predicate<T> predicate);
