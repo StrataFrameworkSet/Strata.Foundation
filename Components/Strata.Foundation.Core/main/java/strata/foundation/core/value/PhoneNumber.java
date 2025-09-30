@@ -19,7 +19,7 @@ class PhoneNumber
     private String itsPhone;
 
     private static final String NANP_PATTERN =
-        "^([1][-.\\s]?)?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
+        "^(\\+?[1][-.\\s]?)?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
 
     private static final String ITU_T_PATTERN =
         "^\\+(?:[0-9] ?){6,14}[0-9]$";
