@@ -57,6 +57,16 @@ class Expendable<T>
     }
 
     @Override
+    public boolean
+    equals(Object other)
+    {
+        return
+            (other instanceof Expendable) &&
+            Objects.equals(allowed,((Expendable<?>)other).allowed) &&
+            Objects.equals(context,((Expendable<?>)other).context);
+    }
+
+    @Override
     public T
     get()
     {

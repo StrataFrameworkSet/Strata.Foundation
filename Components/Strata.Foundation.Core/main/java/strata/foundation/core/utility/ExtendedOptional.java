@@ -47,6 +47,15 @@ class ExtendedOptional<T>
     }
 
     @Override
+    public boolean
+    equals(Object other)
+    {
+        return
+            other instanceof ExtendedOptional eo &&
+            Objects.equals(optional,eo.optional);
+    }
+
+    @Override
     public T
     get()
     {
