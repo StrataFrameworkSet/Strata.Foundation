@@ -1,5 +1,5 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// IRetryAgent.java
+// IRetryExecutor.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -10,18 +10,18 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public
-interface IRetryAgent
+interface IRetryExecutor
 {
-    IRetryAgent
+    IRetryExecutor
     setMaxAttempts(int maxAttempts);
 
-    IRetryAgent
+    IRetryExecutor
     setRetryDelay(long delayMillis);
 
-    IRetryAgent
+    IRetryExecutor
     setBackoffStrategy(BackoffStrategy strategy);
 
-    IRetryAgent
+    IRetryExecutor
     setBackoffFactor(double backoffFactor);
 
     int
@@ -37,19 +37,19 @@ interface IRetryAgent
     getBackoffFactor();
 
     void
-    runRetryable(Runnable runnable);
+    executeRun(Runnable runnable);
 
     <O> O
-    callRetryable(Callable<O> callable);
+    executeCall(Callable<O> callable);
 
     <I> void
-    acceptRetryable(Consumer<I> consumer,I input);
+    executeAccept(Consumer<I> consumer,I input);
 
     <O> O
-    getRetryable(Supplier<O> supplier);
+    executeGet(Supplier<O> supplier);
 
     <I,O> O
-    applyRetryable(Function<I,O> function,I input);
+    executeApply(Function<I,O> function,I input);
 }
 
 //////////////////////////////////////////////////////////////////////////////

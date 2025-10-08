@@ -1,5 +1,5 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// BasicRetryAgent.java
+// BasicRetryExecutor.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -10,22 +10,20 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public
-class BasicRetryAgent
-    implements IRetryAgent
+class BasicRetryExecutor
+    implements IRetryExecutor
 {
     private int             maxAttempts;
     private long            delayMillis;
     private BackoffStrategy backoffStrategy;
     private double          backoffFactor;
 
-    public
-    BasicRetryAgent()
+    public BasicRetryExecutor()
     {
         this(5,50L,2.0);
     }
 
-    public
-    BasicRetryAgent(int maxAttempts,long delayMillis,double backoffFactor)
+    public BasicRetryExecutor(int maxAttempts,long delayMillis,double backoffFactor)
     {
         this.maxAttempts   = maxAttempts;
         this.delayMillis   = delayMillis;
@@ -34,7 +32,7 @@ class BasicRetryAgent
     }
 
     @Override
-    public IRetryAgent
+    public IRetryExecutor
     setMaxAttempts(int maxAttempts)
     {
         this.maxAttempts = maxAttempts;
@@ -42,7 +40,7 @@ class BasicRetryAgent
     }
 
     @Override
-    public IRetryAgent
+    public IRetryExecutor
     setRetryDelay(long delayMillis)
     {
         this.delayMillis = delayMillis;
@@ -50,7 +48,7 @@ class BasicRetryAgent
     }
 
     @Override
-    public IRetryAgent
+    public IRetryExecutor
     setBackoffStrategy(BackoffStrategy strategy)
     {
         this.backoffStrategy = strategy;
@@ -58,7 +56,7 @@ class BasicRetryAgent
     }
 
     @Override
-    public IRetryAgent
+    public IRetryExecutor
     setBackoffFactor(double backoffFactor)
     {
         this.backoffFactor = backoffFactor;
@@ -95,7 +93,7 @@ class BasicRetryAgent
 
     @Override
     public void
-    runRetryable(Runnable runnable)
+    executeRun(Runnable runnable)
     {
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -116,7 +114,7 @@ class BasicRetryAgent
 
     @Override
     public <O> O
-    callRetryable(Callable<O> callable)
+    executeCall(Callable<O> callable)
     {
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -138,7 +136,7 @@ class BasicRetryAgent
 
     @Override
     public <I> void
-    acceptRetryable(Consumer<I> consumer,I input)
+    executeAccept(Consumer<I> consumer,I input)
     {
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -159,7 +157,7 @@ class BasicRetryAgent
 
     @Override
     public <O> O
-    getRetryable(Supplier<O> supplier)
+    executeGet(Supplier<O> supplier)
     {
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -181,7 +179,7 @@ class BasicRetryAgent
 
     @Override
     public <I,O> O
-    applyRetryable(Function<I,O> function,I input)
+    executeApply(Function<I,O> function,I input)
     {
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -209,10 +207,20 @@ class BasicRetryAgent
         {
             long calculatedDelay = 0L;
 
-            if (backoffStrategy == BackoffStrategy.EXPONENTIAL)
-                calculatedDelay = (long)(delayMillis * Math.pow(backoffFactor,attempt-1));
-            else
-                calculatedDelay = (long)(delayMillis * backoffFactor * attempt);
+            switch (backoffStrategy)
+            {
+                case NONE:
+                    calculatedDelay = delayMillis * attempt;
+                    break;
+
+                case EXPONENTIAL:
+                    calculatedDelay = (long)(delayMillis * Math.pow(backoffFactor,attempt-1));
+                    break;
+
+                case LINEAR:
+                    calculatedDelay = (long)(delayMillis * backoffFactor * attempt);
+                    break;
+            }
 
             Thread.sleep(calculatedDelay);
         }

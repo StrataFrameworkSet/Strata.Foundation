@@ -1,5 +1,5 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// RetryAgentTest.java
+// RetryExecutorTest.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -14,16 +14,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Tag("CommitStage")
 public
-class RetryAgentTest
+class RetryExecutorTest
 {
-    private IRetryAgent retryAgent;
+    private IRetryExecutor retryAgent;
 
     @BeforeEach
     public void
     setUp()
     {
         retryAgent =
-            new BasicRetryAgent()
+            new BasicRetryExecutor()
                 .setMaxAttempts(10)
                 .setRetryDelay(50L)
                 .setBackoffStrategy(BackoffStrategy.EXPONENTIAL)
@@ -38,7 +38,7 @@ class RetryAgentTest
         Stopwatch     stopwatch = new Stopwatch();
 
         stopwatch.start();
-        retryAgent.runRetryable(
+        retryAgent.executeRun(
             () ->
             {
                 Duration duration =
@@ -61,7 +61,7 @@ class RetryAgentTest
         AtomicInteger counter = new AtomicInteger(1);
 
         String result =
-            retryAgent.callRetryable(
+            retryAgent.executeCall(
                 () ->
                 {
                     if (counter.getAndIncrement() < 3)
@@ -78,7 +78,7 @@ class RetryAgentTest
     {
         AtomicInteger counter = new AtomicInteger(1);
 
-        retryAgent.acceptRetryable(
+        retryAgent.executeAccept(
             value ->
             {
                 if (counter.getAndIncrement() < 3)
@@ -94,7 +94,7 @@ class RetryAgentTest
         AtomicInteger counter = new AtomicInteger(1);
 
         String result =
-            retryAgent.getRetryable(
+            retryAgent.executeGet(
                 () ->
                     {
                     if (counter.getAndIncrement() < 3)
@@ -112,7 +112,7 @@ class RetryAgentTest
         AtomicInteger counter = new AtomicInteger(1);
 
         String result =
-            retryAgent.applyRetryable(
+            retryAgent.executeApply(
                 value ->
                     {
                     if (counter.getAndIncrement() < 3)

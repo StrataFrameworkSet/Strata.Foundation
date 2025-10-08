@@ -7,8 +7,9 @@ package strata.foundation.core.utility;
 public
 enum BackoffStrategy
 {
-    LINEAR,
-    EXPONENTIAL
+    NONE,
+    EXPONENTIAL,
+    LINEAR
 }
 
 //////////////////////////////////////////////////////////////////////////////
