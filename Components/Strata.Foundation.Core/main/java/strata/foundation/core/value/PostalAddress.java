@@ -15,12 +15,12 @@ public
 class PostalAddress
     implements ICopyable,Serializable,Comparable<PostalAddress>
 {
-    private String itsAddress;
-    private String itsStreet;
-    private String itsCity;
-    private String itsState;
-    private String itsCountryCode;
-    private String itsPostalCode;
+    private String address;
+    private String street;
+    private String city;
+    private String state;
+    private String countryCode;
+    private String postalCode;
 
     @JsonCreator
     public
@@ -32,12 +32,12 @@ class PostalAddress
         @JsonProperty("countryCode") final String countryCode,
         @JsonProperty("postalCode")  final String postalCode)
     {
-        itsAddress     = Objects.toString(address,"");
-        itsStreet      = Objects.toString(street,"");
-        itsCity        = Objects.toString(city,"");
-        itsState       = Objects.toString(state,"");
-        itsCountryCode = Objects.toString(countryCode,"");
-        itsPostalCode  = Objects.toString(postalCode,"");
+        this.address = Objects.toString(address,"");
+        this.street = Objects.toString(street,"");
+        this.city = Objects.toString(city,"");
+        this.state = Objects.toString(state,"");
+        this.countryCode = Objects.toString(countryCode,"");
+        this.postalCode = Objects.toString(postalCode,"");
     }
 
     public
@@ -50,12 +50,12 @@ class PostalAddress
     PostalAddress(PostalAddress other)
     {
         this(
-            other.itsAddress,
-            other.itsStreet,
-            other.itsCity,
-            other.itsState,
-            other.itsCountryCode,
-            other.itsPostalCode );
+            other.address,
+            other.street,
+            other.city,
+            other.state,
+            other.countryCode,
+            other.postalCode);
     }
 
     @Override
@@ -71,8 +71,8 @@ class PostalAddress
     {
         int result =
             Objects.compare(
-                itsPostalCode,
-                other.itsPostalCode,
+                postalCode,
+                other.postalCode,
                 String::compareToIgnoreCase );
 
         if ( result != 0 )
@@ -80,8 +80,8 @@ class PostalAddress
 
         result =
             Objects.compare(
-                itsCountryCode,
-                other.itsCountryCode,
+                countryCode,
+                other.countryCode,
                 String::compareToIgnoreCase);
 
         if ( result != 0 )
@@ -89,8 +89,8 @@ class PostalAddress
 
         result =
             Objects.compare(
-                itsState,
-                other.itsState,
+                state,
+                other.state,
                 String::compareToIgnoreCase );
 
         if ( result != 0 )
@@ -98,8 +98,8 @@ class PostalAddress
 
         result =
             Objects.compare(
-                itsCity,
-                other.itsCity,
+                city,
+                other.city,
                 String::compareToIgnoreCase);
 
         if ( result != 0 )
@@ -107,8 +107,8 @@ class PostalAddress
 
         result =
             Objects.compare(
-                itsStreet,
-                other.itsStreet,
+                street,
+                other.street,
                 String::compareToIgnoreCase);
 
         if ( result != 0 )
@@ -116,8 +116,8 @@ class PostalAddress
 
         result =
             Objects.compare(
-                itsAddress,
-                other.itsAddress,
+                address,
+                other.address,
                 String::compareToIgnoreCase);
 
         return result;
@@ -139,12 +139,12 @@ class PostalAddress
     {
         int hash = 31;
 
-        hash = 31 * hash + itsAddress.hashCode();
-        hash = 31 * hash + itsStreet.hashCode();
-        hash = 31 * hash + itsCity.hashCode();
-        hash = 31 * hash + itsState.hashCode();
-        hash = 31 * hash + itsCountryCode.hashCode();
-        hash = 31 * hash + itsPostalCode.hashCode();
+        hash = 31 * hash + address.hashCode();
+        hash = 31 * hash + street.hashCode();
+        hash = 31 * hash + city.hashCode();
+        hash = 31 * hash + state.hashCode();
+        hash = 31 * hash + countryCode.hashCode();
+        hash = 31 * hash + postalCode.hashCode();
 
         return hash;
     }
@@ -156,17 +156,17 @@ class PostalAddress
         StringBuilder builder = new StringBuilder();
 
         builder
-            .append(  itsAddress )
+            .append(address)
             .append( ' ' )
-            .append( itsStreet )
+            .append(street)
             .append(  '\n' )
-            .append(  itsCity )
+            .append(city)
             .append( ' ' )
-            .append( itsState )
+            .append(state)
             .append( ' ' )
-            .append( itsCountryCode )
+            .append(countryCode)
             .append(  ' ' )
-            .append( itsPostalCode );
+            .append(postalCode);
 
         return builder.toString();
     }
@@ -174,37 +174,37 @@ class PostalAddress
     public String
     getAddress()
     {
-        return itsAddress;
+        return address;
     }
 
     public String
     getStreet()
     {
-        return itsStreet;
+        return street;
     }
 
     public String
     getCity()
     {
-        return itsCity;
+        return city;
     }
 
     public String
     getState()
     {
-        return itsState;
+        return state;
     }
 
     public String
     getCountryCode()
     {
-        return itsCountryCode;
+        return countryCode;
     }
 
     public String
     getPostalCode()
     {
-        return itsPostalCode;
+        return postalCode;
     }
 }
 
