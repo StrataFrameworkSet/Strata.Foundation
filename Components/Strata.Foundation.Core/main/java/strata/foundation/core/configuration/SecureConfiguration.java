@@ -7,7 +7,7 @@ package strata.foundation.core.configuration;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.properties.EncryptableProperties;
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 
 import java.io.IOException;
 import java.io.InputStream;

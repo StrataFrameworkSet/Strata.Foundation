@@ -2,7 +2,7 @@
 // # File Name:	CollectionHelper.java
 // ##########################################################################
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import strata.foundation.core.utility.IMatcher;
 

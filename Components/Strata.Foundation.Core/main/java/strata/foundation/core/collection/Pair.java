@@ -2,7 +2,7 @@
 // # File Name:	Pair.java
 // ##########################################################################
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import strata.foundation.core.utility.HashCodeBuilder;
 
@@ -95,10 +95,17 @@ class Pair<F,S>
      * @param second
      * @return
      */
+    @Deprecated
     public static <F,S> Pair<F,S>
     create(final F first,final S second)
     {
         return new Pair<F,S>( first,second );
+    }
+
+    public static <F,S> Pair<F,S>
+    of(final F first,final S second)
+    {
+        return new Pair<>(first,second);
     }
 }
 

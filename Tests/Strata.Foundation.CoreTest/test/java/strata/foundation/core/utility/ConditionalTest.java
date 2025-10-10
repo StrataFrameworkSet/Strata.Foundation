@@ -7,8 +7,6 @@ package strata.foundation.core.utility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import strata.foundation.core.container.Holder;
-import strata.foundation.core.utility.Conditional;
 
 import java.util.NoSuchElementException;
 

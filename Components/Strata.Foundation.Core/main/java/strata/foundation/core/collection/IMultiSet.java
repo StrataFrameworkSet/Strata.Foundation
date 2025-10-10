@@ -4,8 +4,6 @@
 
 package strata.foundation.core.collection;
 
-import strata.foundation.core.container.Pair;
-
 import java.util.Set;
 import java.util.stream.Stream;
 

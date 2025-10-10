@@ -2,7 +2,7 @@
 // # File Name:	Triple.java
 // ##########################################################################
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import strata.foundation.core.utility.HashCodeBuilder;
 
@@ -95,8 +95,15 @@ class Quadruple<T1,T2,T3,T4>
     public T4
     getFourth() { return itsFourth; }
 
+    @Deprecated
     public static <T1,T2,T3,T4> Quadruple<T1,T2,T3,T4>
     create(final T1 first,final T2 second,final T3 third,final T4 fourth)
+    {
+        return new Quadruple<>(first,second,third,fourth);
+    }
+
+    public static <T1,T2,T3,T4> Quadruple<T1,T2,T3,T4>
+    of(final T1 first,final T2 second,final T3 third,final T4 fourth)
     {
         return new Quadruple<>(first,second,third,fourth);
     }

@@ -2,7 +2,7 @@
 // IPersistentMap.java
 //////////////////////////////////////////////////////////////////////////////
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import java.util.Collection;
 import java.util.Optional;

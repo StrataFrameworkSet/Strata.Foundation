@@ -2,7 +2,7 @@
 // # File Name:	Triple.java
 // ##########################################################################
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import strata.foundation.core.utility.HashCodeBuilder;
 
@@ -111,10 +111,17 @@ class Triple<F,S,T>
      * @param second
      * @return
      */
+    @Deprecated
     public static <F,S,T> Triple<F,S,T>
     create(final F first,final S second,final T third)
     {
-        return new Triple<F,S,T>( first,second,third );
+        return new Triple<>(first,second,third);
+    }
+
+    public static <F,S,T> Triple<F,S,T>
+    of(final F first,final S second,final T third)
+    {
+        return new Triple<>(first,second,third);
     }
 }
 

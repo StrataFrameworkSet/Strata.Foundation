@@ -2,7 +2,7 @@
 // Holder.java
 //////////////////////////////////////////////////////////////////////////////
 
-package strata.foundation.core.container;
+package strata.foundation.core.utility;
 
 public
 class Holder<T>

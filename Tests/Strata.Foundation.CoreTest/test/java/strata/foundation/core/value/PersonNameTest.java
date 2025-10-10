@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import strata.foundation.core.container.Quadruple;
+import strata.foundation.core.collection.Quadruple;
 import strata.foundation.core.mapper.ObjectMapperSupplier;
 
 import java.util.stream.Stream;
@@ -27,9 +27,9 @@ class PersonNameTest
     {
         return
             Stream.of(
-                Quadruple.create(null,"John","Friedrich","Liebenau"),
-                Quadruple.create("Dr","Ayham",null,"Al-Zoebi"),
-                Quadruple.create(null,"Aghyan",null,"Al-Zuabi"));
+                Quadruple.of(null,"John","Friedrich","Liebenau"),
+                Quadruple.of("Dr","Ayham",null,"Al-Zoebi"),
+                Quadruple.of(null,"Aghyan",null,"Al-Zuabi"));
     }
 
 
@@ -38,9 +38,9 @@ class PersonNameTest
     {
         return
             Stream.of(
-                Quadruple.create(null,null,"Friedrich","Liebenau"),
-                Quadruple.create("Dr","Ayham",null,null),
-                Quadruple.create(null,null,null,null));
+                Quadruple.of(null,null,"Friedrich","Liebenau"),
+                Quadruple.of("Dr","Ayham",null,null),
+                Quadruple.of(null,null,null,null));
     }
 
     @ParameterizedTest

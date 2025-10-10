@@ -4,7 +4,7 @@
 
 package strata.foundation.core.mapper;
 
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 
 import java.util.HashMap;
 import java.util.Locale;

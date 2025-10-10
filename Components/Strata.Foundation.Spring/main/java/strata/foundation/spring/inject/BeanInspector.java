@@ -13,7 +13,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.MergedAnnotation;
 import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.annotation.MergedAnnotations.SearchStrategy;
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -44,7 +44,7 @@ class BeanInspector
             .stream(context.getBeanDefinitionNames())
             .map(
                 beanName ->
-                    Pair.create(beanName,factory.getBeanDefinition(beanName)))
+                    Pair.of(beanName,factory.getBeanDefinition(beanName)))
             .map(
                 nameAndDefinition ->
                     getTypesAndQualifiers(
@@ -76,7 +76,7 @@ class BeanInspector
                         qualifier ->
                             entries.add(
                                 Map.entry(
-                                    Pair.create(t,qualifier),beanName))));
+                                    Pair.of(t,qualifier),beanName))));
 
         return entries;
     }

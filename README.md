@@ -41,7 +41,7 @@ The foundational component that provides essential abstractions and utilities fo
 - `strata.foundation.core.collection` - Enhanced collection utilities and extensions
 - `strata.foundation.core.concurrent` - Concurrency utilities and thread-safe operations
 - `strata.foundation.core.configuration` - Configuration management abstractions
-- `strata.foundation.core.container` - Advanced container types (MultiMap, MultiSet, Pair, Triple, Quadruple, Holder)
+- `strata.foundation.core.collection` - Advanced collection types (MultiMap, MultiSet, Pair, Triple, Quadruple)
 - `strata.foundation.core.event` - Event system abstractions (senders, receivers, completable results)
 - `strata.foundation.core.exception` - Exception handling utilities and custom exceptions
 - `strata.foundation.core.inject` - Dependency injection abstractions and IoC container interfaces
@@ -49,7 +49,6 @@ The foundational component that provides essential abstractions and utilities fo
 - `strata.foundation.core.pool` - Resource pooling and lifecycle management
 - `strata.foundation.core.reflect` - Type-safe reflection utilities and type literals
 - `strata.foundation.core.resource` - Resource management and lifecycle abstractions
-- `strata.foundation.core.stream` - Enhanced stream processing capabilities
 - `strata.foundation.core.testrunner` - Testing utilities and test runner abstractions
 - `strata.foundation.core.time` - Time and temporal utilities
 - `strata.foundation.core.transfer` - Data transfer objects and serialization support
@@ -248,9 +247,10 @@ ChronicleEventSender<MyEvent> chronicleSender = new ChronicleEventSender<>();
 
 ```java
 import strata.foundation.core.container.MultiMap;
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 
-MultiMap<String, Integer> multiMap = new MultiMap<>();
+MultiMap<String,Integer> multiMap = new SetValuedMultiMap<>();
+
 multiMap.put("key", 1);
 multiMap.put("key", 2);
 
@@ -314,5 +314,3 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## Project Status
 
 This project is under active development. The current version is 1.0-SNAPSHOT and is not yet considered stable for production use.
-
-

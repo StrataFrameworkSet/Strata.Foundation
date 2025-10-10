@@ -4,7 +4,7 @@
 
 package strata.foundation.core.configuration;
 
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 
 import java.util.Map;
 import java.util.stream.Stream;

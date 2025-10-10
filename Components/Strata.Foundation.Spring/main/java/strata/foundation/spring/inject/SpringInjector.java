@@ -12,12 +12,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.ResolvableType;
-import strata.foundation.core.container.Pair;
+import strata.foundation.core.collection.Pair;
 import strata.foundation.core.inject.IInjector;
 import strata.foundation.core.reflect.TypeLiteral;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public
@@ -157,7 +156,7 @@ class SpringInjector
         catch (Exception e)
         {
             String beanName =
-                typeQualifierToBeanNames.get(Pair.create(type,name));
+                typeQualifierToBeanNames.get(Pair.of(type,name));
 
             return
                 beanName != null
@@ -183,7 +182,7 @@ class SpringInjector
         catch (Exception e)
         {
             String beanName =
-                typeQualifierToBeanNames.get(Pair.create(type.getRawType(),name));
+                typeQualifierToBeanNames.get(Pair.of(type.getRawType(),name));
 
             return
                 beanName != null && names.contains(beanName)

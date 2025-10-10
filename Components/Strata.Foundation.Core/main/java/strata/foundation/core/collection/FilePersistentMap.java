@@ -2,7 +2,7 @@
 // FilePersistentMap.java
 //////////////////////////////////////////////////////////////////////////////
 
-package strata.foundation.core.container;
+package strata.foundation.core.collection;
 
 import java.io.RandomAccessFile;
 import java.util.Collection;

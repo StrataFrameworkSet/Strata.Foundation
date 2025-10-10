@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import strata.foundation.core.container.Pair;
-import strata.foundation.core.inject.IInjector;
+import strata.foundation.core.collection.Pair;
 
 import java.util.Map;
 
