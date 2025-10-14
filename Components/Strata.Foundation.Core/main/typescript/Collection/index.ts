@@ -1,2 +1,3 @@
 export {IMultiMap} from './IMultiMap';
-export {MultiMap} from './MultiMap';
+export {MultiMapEntry} from './MultiMapEntry';
+export {MapEntry} from './MapEntry';
