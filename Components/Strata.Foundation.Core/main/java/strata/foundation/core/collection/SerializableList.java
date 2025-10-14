@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // SerializableList.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -30,13 +30,6 @@ class SerializableList<T>
         super(c);
     }
 
-    public
-    SerializableList(Iterable<T> iterable)
-    {
-        for (T item : iterable)
-            add(item);
-    }
-
     public static <T> SerializableList<T>
     of(Collection<? extends T> c)
     {
@@ -44,9 +37,14 @@ class SerializableList<T>
     }
 
     public static <T> SerializableList<T>
-    of(Iterable<T> iterable)
+    ofIterable(Iterable<T> iterable)
     {
-        return new SerializableList<>(iterable);
+        SerializableList<T> list = new SerializableList<>();
+
+        for (T item : iterable)
+            list.add(item);
+
+        return list;
     }
 
     private void
@@ -58,6 +56,7 @@ class SerializableList<T>
             out.writeObject(item);
     }
 
+    @SuppressWarnings("unchecked")
     private void
     readObject(ObjectInputStream in)
         throws IOException, ClassNotFoundException
@@ -66,7 +65,7 @@ class SerializableList<T>
 
         clear();
 
-        for (int i = 0; i < size; ++i)
+        for (int i = 0;i < size;++i)
             add((T)in.readObject());
     }
 }
