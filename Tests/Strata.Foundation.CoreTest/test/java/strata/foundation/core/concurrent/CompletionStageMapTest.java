@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutorService;
@@ -99,7 +100,7 @@ class CompletionStageMapTest
         subject.put("B",expectedB);
         subject.put("C",expectedC);
 
-        joined = subject.joinAll();
+        joined = subject.joinAll(String.class);
 
         assertEquals(3,joined.size());
         assertEquals("Apple",joined.get("A"));
@@ -128,10 +129,11 @@ class CompletionStageMapTest
 
         Thread.sleep(100);
 
-        joined = subject.joinAll();
+        joined = subject.joinAll(String.class);
 
         assertEquals(1,joined.size());
         assertEquals("Cherry",joined.get("C"));
+
     }
 
     private String

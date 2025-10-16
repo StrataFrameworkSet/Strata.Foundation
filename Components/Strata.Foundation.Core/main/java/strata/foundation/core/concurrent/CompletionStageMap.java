@@ -5,16 +5,19 @@
 package strata.foundation.core.concurrent;
 
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 public
 class CompletionStageMap<K,V>
+    implements IMultiJoiner<K>
 {
     private final Map<K,CompletionStage<V>> pending;
 
-    public
-    CompletionStageMap()
+    public CompletionStageMap()
     {
         pending = new ConcurrentHashMap<>();
     }
@@ -41,7 +44,10 @@ class CompletionStageMap<K,V>
     }
 
     public CompletionStage<V>
-    get(K key) { return pending.get(key); }
+    get(K key)
+    {
+        return pending.get(key);
+    }
 
     public boolean
     containsKey(K key)
@@ -56,20 +62,33 @@ class CompletionStageMap<K,V>
     }
 
     public boolean
-    isEmpty() { return pending.isEmpty(); }
+    isEmpty()
+    {
+        return pending.isEmpty();
+    }
 
-    public Map<K,V>
+    @Override
+    public Map<K,Object>
     joinAll()
     {
         return
-            pending
-                .entrySet()
-                .stream()
-                .map(entry -> Map.entry(entry.getKey(),entry.getValue().toCompletableFuture()))
-                .map(entry -> Map.entry(entry.getKey(),entry.getValue().join()))
+            doJoinAll()
                 .collect(
                     ConcurrentHashMap::new,
                     (m,e) -> m.put(e.getKey(),e.getValue()),
+                    Map::putAll);
+    }
+
+    @Override
+    public <R> Map<K,R>
+    joinAll(Class<R> resultType)
+    {
+        return
+            doJoinAll()
+                .filter(entry -> resultType.isAssignableFrom(entry.getValue().getClass()))
+                .collect(
+                    ConcurrentHashMap::new,
+                    (m,e) -> m.put(e.getKey(),resultType.cast(e.getValue())),
                     Map::putAll);
     }
 
@@ -83,6 +102,17 @@ class CompletionStageMap<K,V>
     isDone(CompletionStage<V> stage)
     {
         return stage.toCompletableFuture().isDone();
+    }
+
+    private Stream<Entry<K,V>>
+    doJoinAll()
+    {
+        return
+            pending
+                .entrySet()
+                .stream()
+                .map(entry -> Map.entry(entry.getKey(),entry.getValue().toCompletableFuture()))
+                .map(entry -> Map.entry(entry.getKey(),entry.getValue().join()));
     }
 }
 
