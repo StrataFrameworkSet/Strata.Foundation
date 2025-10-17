@@ -4,16 +4,18 @@
 
 package strata.foundation.core.concurrent;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
 
 public
 class CompletionStageMap<K,V>
+    implements Serializable
 {
-    private final Map<K,CompletionStage<V>> pending;
+    private Map<K,CompletionStage<V>> pending;
 
     public
     CompletionStageMap()
@@ -93,6 +95,16 @@ class CompletionStageMap<K,V>
         return stage.toCompletableFuture().isDone();
     }
 
+    private void
+    writeObject(ObjectOutputStream out)
+    {
+    }
+
+    private void
+    readObject(ObjectInputStream in)
+    {
+        pending = new ConcurrentHashMap<>();
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////
