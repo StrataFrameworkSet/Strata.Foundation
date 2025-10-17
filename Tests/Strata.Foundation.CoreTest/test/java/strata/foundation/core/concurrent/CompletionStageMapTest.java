@@ -100,7 +100,7 @@ class CompletionStageMapTest
         subject.put("B",expectedB);
         subject.put("C",expectedC);
 
-        joined = subject.joinAll(String.class);
+        joined = subject.joinAll();
 
         assertEquals(3,joined.size());
         assertEquals("Apple",joined.get("A"));
@@ -129,7 +129,7 @@ class CompletionStageMapTest
 
         Thread.sleep(100);
 
-        joined = subject.joinAll(String.class);
+        joined = subject.joinAll();
 
         assertEquals(1,joined.size());
         assertEquals("Cherry",joined.get("C"));
