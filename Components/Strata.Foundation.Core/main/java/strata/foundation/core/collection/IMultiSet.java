@@ -4,12 +4,13 @@
 
 package strata.foundation.core.collection;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.stream.Stream;
 
 public
 interface IMultiSet<T extends Comparable<T>>
-    extends Iterable<Pair<T,Long>>, Comparable<IMultiSet<T>>
+    extends Iterable<Pair<T,Long>>, Comparable<IMultiSet<T>>, Serializable
 {
     IMultiSet<T>
     add(T element);

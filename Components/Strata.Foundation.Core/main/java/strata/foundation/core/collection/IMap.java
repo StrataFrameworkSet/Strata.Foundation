@@ -1,13 +1,14 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// ISequencedCollection.java
+// IMap.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.collection;
 
-import java.util.SequencedCollection;
+import java.io.Serializable;
+import java.util.Map;
 
 public
-interface ISequencedCollection<T>
-    extends ICollection<T>, SequencedCollection<T> {}
+interface IMap<K,V>
+    extends Map<K,V>, Serializable {}
 
 //////////////////////////////////////////////////////////////////////////////

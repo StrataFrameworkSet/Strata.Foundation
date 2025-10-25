@@ -1,13 +1,14 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// ISequencedCollection.java
+// ISortedSet.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.collection;
 
-import java.util.SequencedCollection;
+import java.util.NavigableSet;
+import java.util.SortedSet;
 
 public
-interface ISequencedCollection<T>
-    extends ICollection<T>, SequencedCollection<T> {}
+interface ISortedSet<T extends Comparable<? super T>>
+    extends ISequencedCollection<T>, SortedSet<T>, NavigableSet<T> {}
 
 //////////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
 
 package strata.foundation.core.collection;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 
 public
 interface IMultiMap<K,V>
-    extends Iterable<Entry<K,Collection<V>>>
+    extends Iterable<Entry<K,Collection<V>>>, Serializable
 {
     IMultiMap<K,V>
     put(K key,V value);

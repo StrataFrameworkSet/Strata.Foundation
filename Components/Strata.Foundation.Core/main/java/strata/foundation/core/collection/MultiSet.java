@@ -4,6 +4,10 @@
 
 package strata.foundation.core.collection;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serial;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
@@ -229,14 +233,6 @@ class MultiSet<T extends Comparable<T>>
                 .map(entry -> Pair.create(entry.getKey(), entry.getValue().get()));
     }
 
-    /************************************************************************
-     * Finds the lexical direction of a comparison between two multisets.
-     *
-     * @param other multiset being lexically compared to this multiset
-     * @return -1 if this multiset is lexically < the other multiset
-     *          1 if this multiset is lexically >= the other multiset
-     *
-     */
     private long
     getLexicalDirection(IMultiSet<T> other)
     {
@@ -260,6 +256,36 @@ class MultiSet<T extends Comparable<T>>
 
     }
 
+    @Serial
+    private void
+    writeObject(ObjectOutputStream out)
+        throws IOException
+    {
+        out.writeInt(mappings.size());
+        for (Map.Entry<T,AtomicLong> entry: mappings.entrySet())
+        {
+            out.writeObject(entry.getKey());
+            out.writeLong(entry.getValue().get());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Serial
+    private void
+    readObject(ObjectInputStream in)
+        throws IOException, ClassNotFoundException
+    {
+        int size = in.readInt();
+
+        mappings.clear();
+
+        for (int i = 0;i < size;++i)
+        {
+            T    key = (T)in.readObject();
+            long value = in.readLong();
+            mappings.put(key,new AtomicLong(value));
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////

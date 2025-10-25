@@ -1,13 +1,14 @@
 /// ///////////////////////////////////////////////////////////////////////////
-// ISequencedCollection.java
+// ICollection.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.collection;
 
-import java.util.SequencedCollection;
+import java.io.Serializable;
+import java.util.Collection;
 
 public
-interface ISequencedCollection<T>
-    extends ICollection<T>, SequencedCollection<T> {}
+interface ICollection<T>
+    extends Collection<T>, Serializable {}
 
 //////////////////////////////////////////////////////////////////////////////
