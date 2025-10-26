@@ -38,6 +38,13 @@ class ImmutableMultiSet<T extends Comparable<T>>
 
     @Override
     public IMultiSet<T>
+    addAll(IMultiSet<T> other)
+    {
+        throw new UnsupportedOperationException("ImmutableMultiSet cannot be modified");
+    }
+
+    @Override
+    public IMultiSet<T>
     remove(T element)
     {
         throw new UnsupportedOperationException("ImmutableMultiSet cannot be modified");
