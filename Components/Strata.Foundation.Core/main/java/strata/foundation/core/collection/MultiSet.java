@@ -67,6 +67,25 @@ class MultiSet<T extends Comparable<T>>
 
     @Override
     public IMultiSet<T>
+    addAll(IMultiSet<T> other)
+    {
+        for (T element: other.getUnderlying())
+        {
+            if (getMultiplicity(element) == 0L)
+                add(element,other.getMultiplicity(element));
+            else
+                add(
+                    element,
+                    Long.max(
+                        getMultiplicity(element),
+                        other.getMultiplicity(element)));
+        }
+
+        return this;
+    }
+
+    @Override
+    public IMultiSet<T>
     remove(T element)
     {
         add(element, -1L);

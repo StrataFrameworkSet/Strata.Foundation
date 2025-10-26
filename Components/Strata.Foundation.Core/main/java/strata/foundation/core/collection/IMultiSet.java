@@ -19,6 +19,9 @@ interface IMultiSet<T extends Comparable<T>>
     add(T element,Long multiplicity);
 
     IMultiSet<T>
+    addAll(IMultiSet<T> other);
+
+    IMultiSet<T>
     remove(T element);
 
     IMultiSet<T>
