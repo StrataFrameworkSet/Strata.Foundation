@@ -1,0 +1,26 @@
+/// ///////////////////////////////////////////////////////////////////////////
+// TypeCast.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.reflect;
+
+public
+class TypeCast<T>
+{
+    private final Class<T> type;
+
+    public
+    TypeCast(Class<T> type)
+    {
+        this.type = type;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> Class<T>
+    cast(Class<?> rawType)
+    {
+        return (Class<T>)rawType;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////

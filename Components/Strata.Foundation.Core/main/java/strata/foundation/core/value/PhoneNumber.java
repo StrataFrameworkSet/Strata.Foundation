@@ -16,7 +16,7 @@ public
 class PhoneNumber
     implements ICopyable, Serializable, Comparable<PhoneNumber>
 {
-    private String itsPhone;
+    private String phone;
 
     private static final String NANP_PATTERN =
         "^(\\+?[1][-.\\s]?)?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
@@ -27,19 +27,21 @@ class PhoneNumber
     private static final String EPP_PATTERN =
         "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$";
 
+    private static final String ALL_DIGITS_PATTERN = "^[0-9]{7,17}$";
+
     @JsonCreator
     public
     PhoneNumber(@JsonProperty("phoneNumber") String phoneNumber)
     {
         Objects.requireNonNull(phoneNumber, "phoneNumber cannot be null");
         validatePhoneNumber(phoneNumber);
-        itsPhone = phoneNumber;
+        phone = phoneNumber;
     }
 
     public
     PhoneNumber(PhoneNumber other)
     {
-        itsPhone = other.itsPhone;
+        phone = other.phone;
     }
 
     @Override
@@ -53,7 +55,7 @@ class PhoneNumber
     public int
     compareTo(PhoneNumber other)
     {
-        return itsPhone.compareToIgnoreCase(other.itsPhone);
+        return phone.compareToIgnoreCase(other.phone);
     }
 
     public boolean
@@ -73,7 +75,7 @@ class PhoneNumber
     public int
     hashCode()
     {
-        return 51 * itsPhone.hashCode();
+        return 51 * phone.hashCode();
     }
 
     @Override
@@ -81,7 +83,7 @@ class PhoneNumber
     public String
     toString()
     {
-        return itsPhone;
+        return phone;
     }
 
     @JsonIgnore
@@ -89,7 +91,7 @@ class PhoneNumber
     getDigitsOnly()
     {
         return
-            itsPhone
+            phone
                 .chars()
                 .mapToObj(c -> (char)c)
                 .filter(Character::isDigit)
@@ -125,6 +127,9 @@ class PhoneNumber
             return true;
 
         if (input.matches(EPP_PATTERN))
+            return true;
+
+        if (input.matches(ALL_DIGITS_PATTERN))
             return true;
 
         return false;

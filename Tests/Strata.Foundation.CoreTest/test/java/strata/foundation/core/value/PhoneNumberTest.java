@@ -99,6 +99,7 @@ class PhoneNumberTest
     {
         return
             Stream.of(
+                "011813116437555",
                 // NANP format examples (North American Numbering Plan)
                 "2355551234",
                 "235-555-1234",
@@ -125,6 +126,7 @@ class PhoneNumberTest
                 "+1 (235) 555 1234",
 
                 // ITU-T format examples (International format)
+                "+011 813 116 437 555",
                 "+44 20 7946 0958",     // UK
                 "+33 1 42 86 83 26",    // France
                 "+49 30 12345678",      // Germany
