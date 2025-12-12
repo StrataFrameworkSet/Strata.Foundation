@@ -67,6 +67,8 @@ jobs:
 
       - name: Build Typescript with Yarn
         run: yarn run test
+        with:
+          registry-url: 'https://registry.npmjs.org/'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
 
