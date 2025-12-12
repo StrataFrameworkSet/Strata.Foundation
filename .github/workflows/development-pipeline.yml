@@ -62,6 +62,7 @@ jobs:
 
       - name: Install dependencies with Yarn
         run: |
+          npm config set //registry.npmjs.org/:_authToken ${{secrets.NODE_AUTH_TOKEN}}
           yarn config set registry https://registry.npmjs.org/
           yarn install --frozen-lockfile
         env:
