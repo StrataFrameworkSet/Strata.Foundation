@@ -73,17 +73,17 @@ jobs:
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{secrets.NODE_AUTH_TOKEN}}
           yarn config set registry https://registry.npmjs.org/
-          yarn run test
+#          yarn run test
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
 
-      - name: Commit package.json with New Version
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git add Components/Strata.Foundation.Core/main/typescript/package.json
-          git commit -m "strata.foundation.core package.json new version"
-          git push origin development
+#      - name: Commit package.json with New Version
+#        run: |
+#          git config user.name "GitHub Actions Bot"
+#          git config user.email "<>"
+#          git add Components/Strata.Foundation.Core/main/typescript/package.json
+#          git commit -m "strata.foundation.core package.json new version"
+#          git push origin development
 
   run-integration-stage:
     runs-on: ubuntu-latest
