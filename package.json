@@ -13,9 +13,10 @@
         "test": "yarn run build && cd Tests/Strata.Foundation.CoreTest && yarn install && yarn run test"
     },
     "devDependencies": {
-        "npm-prerelease-timestamp": "^1.0.1",
         "del-cli": "^5.1.0",
+        "npm-prerelease-timestamp": "^1.0.1",
         "shx": "^0.3.4",
         "typescript": "^5.1.6"
-    }
+    },
+    "version": "0.0.0"
 }
