@@ -39,6 +39,24 @@ class Strings
                 : value;
     }
 
+    public static String
+    trimNonEmptyOrNull(String value)
+    {
+        return
+            isNullOrEmpty(value)
+                ? null
+                : value.trim();
+    }
+
+    public static String
+    trimNonBlankOrNull(String value)
+    {
+        return
+            isNullOrBlank(value)
+                ? null
+                : value.trim();
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////

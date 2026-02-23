@@ -1,0 +1,30 @@
+{
+  "name": "strata.foundation.websocket",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "copy-package": "shx cp main/typescript/package.json build/dist/package.json",
+    "clean": "del-cli -f build/dist ./*.tgz",
+    "deep-clean": "yarn run clean && del-cli -f node_modules && del-cli -f yarn.lock",
+    "dev-init": "yarn --dev install",
+    "build-init": "yarn run dev-init && yarn run clean && yarn install && yarn upgrade --pattern strata",
+    "build": "yarn run build-init && tsc && cd main/typescript && yarn run increment-snapshot && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",
+    "publish-package": "yarn run build && cd build/dist && yarn publish --non-interactive --tag 0.0.0-snapshot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@js-joda/core": "^5.5.3",
+    "guid-typescript": "^1.0.9",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "del-cli": "^5.1.0",
+    "npm-prerelease-timestamp": "^1.0.1",
+    "shx": "^0.3.4",
+    "typescript": "^5.1.6"
+  }
+}

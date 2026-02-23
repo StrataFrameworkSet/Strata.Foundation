@@ -45,11 +45,11 @@ class PersonName
         @JsonProperty("lastName")   String last,
         @JsonProperty("suffix")     String suffix)
     {
-        this.title = Strings.toNonBlankOrNull(title);
-        this.firstName = Objects.requireNonNull(first);
-        this.middleName = Strings.toNonBlankOrNull(middle);
-        this.lastName = Objects.requireNonNull(last);
-        this.suffix = Strings.toNonBlankOrNull(suffix);
+        this.title = Strings.trimNonBlankOrNull(title);
+        this.firstName = Objects.requireNonNull(first).trim();
+        this.middleName = Strings.trimNonBlankOrNull(middle);
+        this.lastName = Objects.requireNonNull(last).trim();
+        this.suffix = Strings.trimNonBlankOrNull(suffix);
     }
 
     public
