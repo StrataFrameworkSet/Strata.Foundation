@@ -7,8 +7,8 @@
         "outDir": "build/dist"
     },
     "include": [
-        "main/typescript/**/*",
-        "main/typescript/typings/**/*"
+        "src/main/typescript/**/*",
+        "src/main/typescript/typings/**/*"
     ],
     "exclude": [
         "node_modules",
