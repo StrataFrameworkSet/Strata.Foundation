@@ -16,7 +16,6 @@ class WebSocketAdapter<E>
     public Mono<Void>
     handle(WebSocketSession session)
     {
-        session.se
         return null;
     }
 }

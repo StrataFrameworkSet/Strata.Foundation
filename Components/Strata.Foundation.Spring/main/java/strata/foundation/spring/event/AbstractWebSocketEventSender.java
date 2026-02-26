@@ -50,6 +50,8 @@ class AbstractWebSocketEventSender<K,E>
     send(E event)
     {
         return
+            null;
+            /*
             new CompletableSendResult<>(
                 client
                     .execute(uri,session -> session.send()event)
@@ -60,6 +62,8 @@ class AbstractWebSocketEventSender<K,E>
                                     .getProducerRecord()
                                     .value()))
                     .exceptionally(exception -> new SendResult<>(exception)));
+
+             */
         }
 
     @Override
