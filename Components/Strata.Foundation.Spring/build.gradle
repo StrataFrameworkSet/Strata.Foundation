@@ -40,7 +40,7 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'org.springdoc:springdoc-openapi-starter-common:2.2.0'
-    api 'org.springframework.kafka:spring-kafka:3.3.9'
-    api 'org.springframework:spring-webflux:7.0.5'
+    api "org.springdoc:springdoc-openapi-starter-common:$springdoc_version"
+    api "org.springframework.kafka:spring-kafka:$spring_kafka_version"
+    api "org.springframework:spring-webflux:$spring_version"
 }

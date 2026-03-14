@@ -40,5 +40,5 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'jakarta.websocket:jakarta.websocket-all:2.3.0-M2'
+    api "jakarta.websocket:jakarta.websocket-all:$jakarta_websocket_version"
 }

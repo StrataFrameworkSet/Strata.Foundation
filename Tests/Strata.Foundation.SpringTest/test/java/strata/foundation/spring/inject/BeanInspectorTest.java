@@ -45,11 +45,11 @@ class BeanInspectorTest
         Map<Pair<Class<?>,String>,String> qualifiedBeanNames =
             inspector.getQualifiedBeanNames();
         Pair<Class<?>,String> keyA =
-            Pair.create(IStringSupplier.class,"Supplier-A");
+            Pair.of(IStringSupplier.class,"Supplier-A");
         Pair<Class<?>,String> keyB =
-            Pair.create(IStringSupplier.class,"Supplier-B");
+            Pair.of(IStringSupplier.class,"Supplier-B");
         Pair<Class<?>,String> keyC =
-            Pair.create(IStringSupplier.class,"Supplier-C");
+            Pair.of(IStringSupplier.class,"Supplier-C");
 
         assertFalse(qualifiedBeanNames.isEmpty());
 

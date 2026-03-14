@@ -40,6 +40,6 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'com.google.inject:guice:7.0.0'
-    api 'jakarta.inject:jakarta.inject-api:2.0.1'
+    api "com.google.inject:guice:$guice_version"
+    //api "jakarta.inject:jakarta.inject-api:$jakarta_inject_version"
 }

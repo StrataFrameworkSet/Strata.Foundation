@@ -40,6 +40,6 @@ publishing {
 
 dependencies {
     api project(':Components:Strata.Foundation.Core')
-    api 'org.apache.kafka:kafka_2.13:3.4.0'
-    api 'io.confluent:kafka-avro-serializer:5.3.0'
+    api "org.apache.kafka:kafka_2.13:$confluent_kafka_version"
+    api "io.confluent:kafka-avro-serializer:$confluent_avro_version"
 }

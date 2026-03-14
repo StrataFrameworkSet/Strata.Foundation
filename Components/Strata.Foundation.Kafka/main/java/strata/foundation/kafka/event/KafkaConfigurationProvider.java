@@ -4,7 +4,7 @@
 
 package strata.foundation.kafka.event;
 
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import jakarta.inject.Inject;
 import org.apache.kafka.clients.CommonClientConfigs;
@@ -120,10 +120,10 @@ class KafkaConfigurationProvider
                 .append("';")
                 .toString());
         configuration.put(
-            AbstractKafkaAvroSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE,
+            AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE,
             "USER_INFO");
         configuration.put(
-            AbstractKafkaAvroSerDeConfig.USER_INFO_CONFIG,
+            AbstractKafkaSchemaSerDeConfig.USER_INFO_CONFIG,
             new StringBuilder()
                 .append(source.getProperty(SCHEMA_REGISTRY_API_KEY))
                 .append(":")

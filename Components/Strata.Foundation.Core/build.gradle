@@ -60,14 +60,14 @@ publishing {
 }
 
 dependencies {
-    api 'com.google.inject:guice:7.0.0'
-    api 'org.jasypt:jasypt:1.9.3'
-    api 'org.apache.avro:avro:1.11.1'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
-    api 'org.apache.logging.log4j:log4j-api:2.20.0'
-    api 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    api 'jakarta.inject:jakarta.inject-api:2.0.1'
+    api "com.google.inject:guice:$guice_version"
+    api "org.jasypt:jasypt:$jasypt_version"
+    api "org.apache.avro:avro:$avro_version"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jackson_version"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version"
+    api "org.apache.logging.log4j:log4j-api:$log4j_version"
+    api "jakarta.ws.rs:jakarta.ws.rs-api:$jakarta_ws_rs_version"
+    api "jakarta.inject:jakarta.inject-api:$jakarta_inject_version"
     api "org.junit.platform:junit-platform-launcher:$junit_platform_version"
 
 }
