@@ -4,13 +4,12 @@
 
 package strata.foundation.core.utility;
 
-import com.google.common.primitives.Chars;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public
 class DefaultPasswordGenerator
@@ -98,7 +97,10 @@ class DefaultPasswordGenerator
     shuffle(String input,Random random)
     {
         List<Character> characters =
-            Chars.asList(input.toCharArray());
+            input
+                .chars()
+                .mapToObj(c -> (char)c)
+                .collect(Collectors.toList());
         StringBuilder output = new StringBuilder();
 
         Collections.shuffle(characters,random);

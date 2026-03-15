@@ -4,8 +4,8 @@
 
 package strata.foundation.core.inject;
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
+
+import jakarta.inject.Inject;
 
 public
 class TransientOperationProvider

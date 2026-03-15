@@ -4,7 +4,7 @@
 
 package strata.foundation.kafka.event;
 
-import com.google.inject.Provider;
+import jakarta.inject.Provider;
 
 import java.util.Map;
 import java.util.function.Supplier;

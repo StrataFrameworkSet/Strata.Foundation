@@ -4,13 +4,11 @@
 
 package strata.foundation.core.event;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import strata.foundation.core.action.IActionQueue;
+import strata.foundation.core.inject.IInjector;
 import strata.foundation.core.utility.OptionalExtension;
 
 import java.time.Instant;
@@ -22,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public abstract
 class EventSenderTest
 {
-    private Module                 itsModule;
+    private IInjector              itsInjector;
     private IFooEventSender        itsTarget;
     private IFooEventReceiver      itsReceiver;
     private IFooEventReceiverGroup itsGroup;
@@ -32,12 +30,12 @@ class EventSenderTest
     public void
     setUp() throws Exception
     {
-        Injector injector = Guice.createInjector(getModule());
+        itsInjector = getInjector();
 
-        itsTarget = injector.getInstance(IFooEventSender.class);
-        itsReceiver = injector.getInstance(IFooEventReceiver.class);
-        itsGroup = injector.getInstance(IFooEventReceiverGroup.class);
-        itsActionQueue = injector.getInstance(IActionQueue.class);
+        itsTarget = itsInjector.getInstance(IFooEventSender.class);
+        itsReceiver = itsInjector.getInstance(IFooEventReceiver.class);
+        itsGroup = itsInjector.getInstance(IFooEventReceiverGroup.class);
+        itsActionQueue = itsInjector.getInstance(IActionQueue.class);
         itsTarget.open();
     }
 
@@ -203,8 +201,8 @@ class EventSenderTest
                             () -> false));
     }
 
-    protected abstract Module
-    getModule();
+    protected abstract IInjector
+    getInjector();
 
     protected void
     sleep(int seconds)

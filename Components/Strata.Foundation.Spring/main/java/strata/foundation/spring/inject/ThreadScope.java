@@ -53,7 +53,7 @@ class ThreadScope
         if (THREAD_KEY.equals(key))
             return Thread.currentThread();
         else if (THREAD_ID_KEY.equals(key))
-            return Thread.currentThread().getId();
+            return Thread.currentThread().threadId();
         else if (THREAD_NAME_KEY.equals(key))
             return Thread.currentThread().getName();
 

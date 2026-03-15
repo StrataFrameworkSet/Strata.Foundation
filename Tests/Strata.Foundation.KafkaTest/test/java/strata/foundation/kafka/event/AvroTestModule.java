@@ -10,9 +10,9 @@ import strata.foundation.core.configuration.IConfiguration;
 import strata.foundation.core.event.IFooEventReceiver;
 import strata.foundation.core.event.IFooEventReceiverGroup;
 import strata.foundation.core.event.IFooEventSender;
-import strata.foundation.core.inject.AbstractModule;
 import strata.foundation.core.inject.ApplicationConfigurationProvider;
-import strata.foundation.core.inject.ThreadScope;
+import strata.foundation.guice.inject.AbstractModule;
+import strata.foundation.guice.inject.ThreadScope;
 
 public
 class AvroTestModule

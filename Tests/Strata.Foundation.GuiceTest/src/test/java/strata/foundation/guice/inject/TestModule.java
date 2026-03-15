@@ -6,7 +6,6 @@ package strata.foundation.guice.inject;
 
 import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
-import strata.foundation.core.inject.GuiceInjector;
 import strata.foundation.core.inject.IInjector;
 import strata.foundation.core.inject.IOperationProvider;
 import strata.foundation.core.inject.TransientOperationProvider;

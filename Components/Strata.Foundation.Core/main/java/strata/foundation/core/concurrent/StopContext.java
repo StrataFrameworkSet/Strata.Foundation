@@ -4,7 +4,7 @@
 
 package strata.foundation.core.concurrent;
 
-import com.google.common.base.Objects;
+import java.util.Objects;
 
 public
 class StopContext<T>
@@ -35,7 +35,7 @@ class StopContext<T>
     public int
     hashCode()
     {
-        return Objects.hashCode(element,stopIndicator);
+        return Objects.hash(element,stopIndicator);
     }
 
     @Override
@@ -44,8 +44,8 @@ class StopContext<T>
     {
         return
             other instanceof StopContext<?> context &&
-            Objects.equal(element, context.element) &&
-            Objects.equal(stopIndicator, context.stopIndicator);
+            Objects.equals(element, context.element) &&
+            Objects.equals(stopIndicator, context.stopIndicator);
     }
 
     public T

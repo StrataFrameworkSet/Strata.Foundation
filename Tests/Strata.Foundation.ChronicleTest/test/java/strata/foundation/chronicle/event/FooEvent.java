@@ -4,8 +4,9 @@
 
 package strata.foundation.chronicle.event;
 
-import com.google.common.base.Objects;
 import net.openhft.chronicle.wire.Marshallable;
+
+import java.util.Objects;
 
 public
 class FooEvent
@@ -30,7 +31,7 @@ class FooEvent
     public int
     hashCode()
     {
-        return Objects.hashCode(x, y);
+        return Objects.hash(x, y);
     }
 
     @Override

@@ -8,8 +8,8 @@ import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.action.StandardActionQueue;
 import strata.foundation.core.event.IFooEventReceiver;
 import strata.foundation.core.event.IFooEventSender;
-import strata.foundation.core.inject.AbstractModule;
-import strata.foundation.core.inject.ThreadScope;
+import strata.foundation.guice.inject.AbstractModule;
+import strata.foundation.guice.inject.ThreadScope;
 
 public
 class JsonTestModule
