@@ -1,0 +1,20 @@
+/// ///////////////////////////////////////////////////////////////////////////
+// IEnvironmentValueProvider.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.inject;
+
+import jakarta.inject.Provider;
+
+import java.util.Optional;
+import java.util.function.Supplier;
+
+public
+interface IEnvironmentValueProvider
+    extends Provider<Optional<String>> 
+{
+    Supplier<? extends RuntimeException>
+    getException();
+}
+
+//////////////////////////////////////////////////////////////////////////////

@@ -8,6 +8,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.properties.EncryptableProperties;
 import strata.foundation.core.collection.Pair;
+import strata.foundation.core.inject.EnvironmentValueProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,8 +85,8 @@ class SecureConfiguration
                 .filter(pair -> matchPrefixes(pair.getFirst(),prefixes))
                 .collect(
                     Collectors.toMap(
-                        pair -> pair.getFirst(),
-                        pair -> pair.getSecond()));
+                        Pair::getFirst,
+                        Pair::getSecond));
     }
 
     @Override
@@ -117,7 +118,7 @@ class SecureConfiguration
             itsProperties
                 .keySet()
                 .stream()
-                .map(key -> Pair.create(key.toString(),itsProperties.get(key)));
+                .map(key -> Pair.of(key.toString(),itsProperties.get(key)));
     }
 
     protected StandardPBEStringEncryptor
@@ -135,7 +136,11 @@ class SecureConfiguration
     protected String
     getPropertiesEncryptionKey()
     {
-        return System.getenv("PROPERTIES_ENCRYPTION_KEY");
+        return
+            EnvironmentValueProvider
+                .ofVariable("PROPERTIES_ENCRYPTION_KEY")
+                .get()
+                .orElseThrow(() -> new RuntimeException("missing environment variable 'PROPERTIES_ENCRYPTION_KEY'"));
     }
 
     protected boolean
@@ -144,7 +149,7 @@ class SecureConfiguration
         return
             Arrays
                 .stream(prefixes)
-                .anyMatch(prefix -> key.startsWith(prefix));
+                .anyMatch(key::startsWith);
 
     }
 

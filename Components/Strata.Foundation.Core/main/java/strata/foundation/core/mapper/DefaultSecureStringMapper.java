@@ -7,6 +7,8 @@ package strata.foundation.core.mapper;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
+import strata.foundation.core.inject.EnvironmentValueProvider;
+import strata.foundation.core.inject.IEnvironmentValueProvider;
 
 import java.util.Objects;
 
@@ -19,7 +21,15 @@ class DefaultSecureStringMapper
     public
     DefaultSecureStringMapper()
     {
-        this(getPropertiesEncryptionKey());
+        this(
+            EnvironmentValueProvider
+                .ofVariable("PROPERTIES_ENCRYPTION_KEY"));
+    }
+
+    public
+    DefaultSecureStringMapper(IEnvironmentValueProvider provider)
+    {
+        this(getEncryptionKey(provider));
     }
 
     public
@@ -60,10 +70,14 @@ class DefaultSecureStringMapper
         return encrypter;
     }
 
+
     private static String
-    getPropertiesEncryptionKey()
+    getEncryptionKey(IEnvironmentValueProvider provider)
     {
-        return System.getenv("PROPERTIES_ENCRYPTION_KEY");
+        return
+            provider
+                .get()
+                .orElseThrow(provider.getException());
     }
 
 }

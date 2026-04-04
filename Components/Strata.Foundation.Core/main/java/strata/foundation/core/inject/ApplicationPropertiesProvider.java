@@ -44,12 +44,11 @@ class ApplicationPropertiesProvider
     private static String
     getEnvironment()
     {
-        String deployEnv = System.getenv("DEPLOY_ENV");
-
         return
-            deployEnv != null
-                ? deployEnv
-                : "development";
+            EnvironmentValueProvider
+                .ofVariable("DEPLOY_ENV")
+                .get()
+                .orElse("development");
     }
 }
 

@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
+import strata.foundation.core.inject.EnvironmentValueProvider;
+import strata.foundation.core.inject.IEnvironmentValueProvider;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -24,7 +26,15 @@ class DefaultSecureMapper<T extends Serializable>
     public
     DefaultSecureMapper(Class<T> type)
     {
-        this(type,getPropertiesEncryptionKey());
+        this(
+            type,
+            EnvironmentValueProvider.ofVariable("PROPERTIES_ENCRYPTION_KEY"));
+    }
+
+    public
+    DefaultSecureMapper(Class<T> type,IEnvironmentValueProvider provider)
+    {
+        this(type,getEncryptionKey(provider));
     }
 
     public
@@ -82,9 +92,12 @@ class DefaultSecureMapper<T extends Serializable>
     }
 
     private static String
-    getPropertiesEncryptionKey()
+    getEncryptionKey(IEnvironmentValueProvider provider)
     {
-        return System.getenv("PROPERTIES_ENCRYPTION_KEY");
+        return
+            provider
+                .get()
+                .orElseThrow(provider.getException());
     }
 
 }
