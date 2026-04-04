@@ -36,7 +36,6 @@ include 'Components:Strata.Foundation.Guice'
 include 'Components:Strata.Foundation.Spring'
 include 'Components:Strata.Foundation.Kafka'
 include 'Components:Strata.Foundation.Chronicle'
-include 'Components:Strata.Foundation.WebSocket'
 
 // Tests
 include 'Tests:Strata.Foundation.CoreTest'
@@ -44,5 +43,4 @@ include 'Tests:Strata.Foundation.GuiceTest'
 include 'Tests:Strata.Foundation.SpringTest'
 include 'Tests:Strata.Foundation.KafkaTest'
 include 'Tests:Strata.Foundation.ChronicleTest'
-include 'Tests:Strata.Foundation.WebSocketTest'
 include 'Tests:Strata.Foundation.TestSuite'

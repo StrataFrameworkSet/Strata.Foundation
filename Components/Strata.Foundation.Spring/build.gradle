@@ -42,5 +42,5 @@ dependencies {
     api project(':Components:Strata.Foundation.Core')
     api "org.springdoc:springdoc-openapi-starter-common:$springdoc_version"
     api "org.springframework.kafka:spring-kafka:$spring_kafka_version"
-    api "org.springframework:spring-webflux:$spring_version"
+    //api "org.springframework:spring-webflux:$spring_version"
 }
