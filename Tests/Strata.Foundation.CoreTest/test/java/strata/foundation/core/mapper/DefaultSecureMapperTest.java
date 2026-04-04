@@ -142,7 +142,7 @@ class DefaultSecureMapperTest
         ISecureMapper<PersonName> mapper =
             new DefaultSecureMapper<>(
                 PersonName.class,
-                System.getenv("PROPERTIES_ENCRYPTION_KEY"));
+                "my-explicitly-provided-key-1234567890");
 
         PersonName input     = new PersonName("Alice","Wonder");
         String     encrypted = mapper.mapEncrypted(input);
