@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/Components/Strata.Foundation.Guice" />
             <option value="$PROJECT_DIR$/Components/Strata.Foundation.Kafka" />
             <option value="$PROJECT_DIR$/Components/Strata.Foundation.Spring" />
-            <option value="$PROJECT_DIR$/Components/Strata.Foundation.WebSocket" />
             <option value="$PROJECT_DIR$/Tests" />
             <option value="$PROJECT_DIR$/Tests/Strata.Foundation.ChronicleTest" />
             <option value="$PROJECT_DIR$/Tests/Strata.Foundation.CoreTest" />
@@ -22,7 +21,6 @@
             <option value="$PROJECT_DIR$/Tests/Strata.Foundation.KafkaTest" />
             <option value="$PROJECT_DIR$/Tests/Strata.Foundation.SpringTest" />
             <option value="$PROJECT_DIR$/Tests/Strata.Foundation.TestSuite" />
-            <option value="$PROJECT_DIR$/Tests/Strata.Foundation.WebSocketTest" />
           </set>
         </option>
       </GradleProjectSettings>
