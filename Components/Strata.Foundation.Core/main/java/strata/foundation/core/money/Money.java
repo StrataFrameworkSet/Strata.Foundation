@@ -22,11 +22,13 @@ class Money
     private BigDecimal      number;
     private MonetaryContext context;
 
+    public
     Money()
     {
         this(BasicCurrencyUnit.USD,BigDecimal.ZERO);
     }
 
+    public
     @JsonCreator
     Money(@JsonProperty("money") String currencyCodeAndNumber)
     {
