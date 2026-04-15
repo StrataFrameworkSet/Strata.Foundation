@@ -122,11 +122,37 @@ class Money
     }
 
     @Override
+    @JsonIgnore
     public int
     signum()
     {
         return number.signum();
     }
+
+    @Override
+    @JsonIgnore
+    public boolean
+    isZero() { return MonetaryAmount.super.isZero(); }
+
+    @Override
+    @JsonIgnore
+    public boolean
+    isNegative() { return MonetaryAmount.super.isNegative(); }
+
+    @Override
+    @JsonIgnore
+    public boolean
+    isNegativeOrZero() { return MonetaryAmount.super.isNegativeOrZero(); }
+
+    @Override
+    @JsonIgnore
+    public boolean
+    isPositive() { return MonetaryAmount.super.isPositive(); }
+
+    @Override
+    @JsonIgnore
+    public boolean
+    isPositiveOrZero() { return MonetaryAmount.super.isPositiveOrZero(); }
 
     @Override
     public MonetaryAmount
