@@ -1,0 +1,81 @@
+//////////////////////////////////////////////////////////////////////////////
+// DefaultEnvironment.java
+//////////////////////////////////////////////////////////////////////////////
+
+package strata.foundation.core.utility;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
+public
+class DefaultEnvironment
+    implements IEnvironment
+{
+    private Map<String,String> defaults;
+
+    public
+    DefaultEnvironment()
+    {
+        this(Map.of());
+    }
+
+    public
+    DefaultEnvironment(Map<String,String> defaults)
+    {
+        this.defaults = new HashMap<>(defaults);
+    }
+
+    @Override
+    public String
+    get(String variableName)
+        throws NoSuchElementException
+    {
+        String value = System.getenv(variableName);
+
+        if (Objects.nonNull(value))
+            return value;
+
+        if (defaults.containsKey(variableName))
+            return defaults.get(variableName);
+
+        throw new NoSuchElementException(variableName);
+    }
+
+    public DefaultEnvironment
+    setDefaults(Map<String,String> defaults)
+    {
+        this.defaults = new HashMap<>(defaults);
+        return this;
+    }
+
+    public DefaultEnvironment
+    setDefault(String variableName,String value)
+    {
+        defaults.put(variableName,value);
+        return this;
+    }
+
+    public DefaultEnvironment
+    clearDefault(String variableName)
+    {
+        defaults.remove(variableName);
+        return this;
+    }
+
+    public DefaultEnvironment
+    clearDefaults()
+    {
+        defaults.clear();
+        return this;
+    }
+
+    public static DefaultEnvironment
+    of(Map<String,String> defaults)
+    {
+        return new DefaultEnvironment(defaults);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
