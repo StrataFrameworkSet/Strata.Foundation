@@ -155,7 +155,7 @@ class Money
     isPositiveOrZero() { return MonetaryAmount.super.isPositiveOrZero(); }
 
     @Override
-    public MonetaryAmount
+    public Money
     add(MonetaryAmount monetaryAmount)
     {
         requireSameCurrency(monetaryAmount);
@@ -163,7 +163,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     subtract(MonetaryAmount monetaryAmount)
     {
         requireSameCurrency(monetaryAmount);
@@ -171,28 +171,28 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     multiply(long l)
     {
         return new Money(currency,number.multiply(BigDecimal.valueOf(l)));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     multiply(double v)
     {
         return new Money(currency,number.multiply(BigDecimal.valueOf(v)));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     multiply(Number multiplicand)
     {
         return new Money(currency,number.multiply(toBigDecimal(multiplicand)));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divide(long l)
     {
         return new Money(
@@ -203,7 +203,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divide(double v)
     {
         return new Money(
@@ -214,7 +214,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divide(Number divisor)
     {
         return new Money(
@@ -225,21 +225,21 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     remainder(long l)
     {
         return new Money(currency,number.remainder(BigDecimal.valueOf(l)));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     remainder(double v)
     {
         return new Money(currency,number.remainder(BigDecimal.valueOf(v)));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     remainder(Number divisor)
     {
         return new Money(currency,number.remainder(toBigDecimal(divisor)));
@@ -287,7 +287,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divideToIntegralValue(long l)
     {
         return new Money(
@@ -296,7 +296,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divideToIntegralValue(double v)
     {
         return new Money(
@@ -305,7 +305,7 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     divideToIntegralValue(Number divisor)
     {
         return new Money(
@@ -314,35 +314,35 @@ class Money
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     scaleByPowerOfTen(int i)
     {
         return new Money(currency,number.scaleByPowerOfTen(i));
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     abs()
     {
         return new Money(currency,number.abs());
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     negate()
     {
         return new Money(currency,number.negate());
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     plus()
     {
         return new Money(currency,number.plus());
     }
 
     @Override
-    public MonetaryAmount
+    public Money
     stripTrailingZeros()
     {
         return new Money(currency,number.stripTrailingZeros());
