@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HexFormat;
+import java.util.Objects;
 import java.util.UUID;
 
 public
@@ -113,6 +115,15 @@ class HashedString
     public byte[]
     getSalt() { return itsSalt; }
 
+    public String
+    getHexValue()
+    {
+        return
+            HexFormat
+                .of()
+                .formatHex(itsValue);
+    }
+
     public boolean
     matches(String unhashedValue)
     {
@@ -123,6 +134,39 @@ class HashedString
     matches(byte[] unhashedValue)
     {
         return Arrays.equals(itsValue,hash(unhashedValue,itsSalt));
+    }
+
+    public static HashedString
+    of(String unhashedValue)
+    {
+        return new HashedString(unhashedValue);
+    }
+
+    public static HashedString
+    of(String unhashedValue,byte[] salt)
+    {
+        return new HashedString(unhashedValue,salt);
+    }
+
+    public static HashedString
+    ofFixed(String unhashedValue)
+    {
+        return
+            new HashedString(
+                unhashedValue,
+                getHashKey().getBytes(StandardCharsets.UTF_8));
+    }
+
+    public static HashedString
+    of(byte[] value,byte[] salt,boolean hashed)
+    {
+        return new HashedString(value,salt,hashed);
+    }
+
+    public static HashedString
+    ofFixed(byte[] value,byte[] salt)
+    {
+        return new HashedString(value,salt,true);
     }
 
     protected byte[]
@@ -151,6 +195,14 @@ class HashedString
         {
             throw new UnsupportedOperationException(e);
         }
+    }
+
+    private static String
+    getHashKey()
+    {
+        String key = System.getenv("HASHED_STRING_KEY");
+
+        return Objects.nonNull(key) ? key : "S@U6&pV<!uKU(9Pw";
     }
 }
 

@@ -32,12 +32,19 @@ class HashedStringTest
         Assertions.assertFalse(bar.matches("XXXXXXX"));
     }
 
-    @Disabled
     @Test
     public void
-    testToString()
+    testOfFixed()
     {
-        Assertions.assertEquals(foo.toString(),"");
+        HashedString foo = HashedString.ofFixed("XXXXXXX");
+        HashedString bar = HashedString.ofFixed("YYYYYYY");
+        HashedString baz = HashedString.ofFixed("YYYYYYY");
+
+        Assertions.assertTrue(foo.matches("XXXXXXX"));
+        Assertions.assertFalse(foo.matches("XXXXXXY"));
+        Assertions.assertFalse(bar.matches("XXXXXXX"));
+        Assertions.assertEquals(bar,baz);
+        Assertions.assertEquals(bar.toString(),baz.toString());
     }
 
 }
