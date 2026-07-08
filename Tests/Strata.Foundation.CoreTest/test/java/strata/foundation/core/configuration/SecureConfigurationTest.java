@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("CommitStage")
 public
@@ -61,6 +60,19 @@ class SecureConfigurationTest
             .stream()
             .forEach(property -> System.out.println(property.getFirst()+"="+property.getSecond()));
     }
+    @Test
+    public void
+    testLoadWithNullInputStream()
+        throws Exception
+    {
+        IConfiguration config =
+            new SecureConfiguration(getPropertiesStream(),null);
+
+        assertNotNull(config);
+        assertTrue(config.hasProperty("unencrypted.property1"));
+        assertEquals("foobar",config.getProperty("unencrypted.property1"));
+    }
+
     protected InputStream
     getPropertiesStream()
     {

@@ -25,11 +25,14 @@ class SecureConfiguration
     private final Properties itsProperties;
 
     public
-    SecureConfiguration(InputStream input)
+    SecureConfiguration(InputStream... inputs)
         throws IOException
     {
         itsProperties = new EncryptableProperties(createEncrypter());
-        itsProperties.load(input);
+
+        for (InputStream input : inputs)
+            if (input != null)
+                itsProperties.load(input);
     }
 
     @Override
