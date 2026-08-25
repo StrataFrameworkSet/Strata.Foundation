@@ -24,7 +24,7 @@ class Consumed<I>
 
     getInput(): I { return this.input; }
 
-    getThrowable(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
+    getException(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
 
     isSuccess(): boolean { return this.throwable == null; }
 

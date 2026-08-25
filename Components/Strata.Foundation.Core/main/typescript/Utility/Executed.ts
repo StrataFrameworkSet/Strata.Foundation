@@ -20,7 +20,7 @@ class Executed
 
     getMethod(): string { return this.method; }
 
-    getThrowable(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
+    getException(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
 
     isSuccess(): boolean { return this.throwable == null; }
 

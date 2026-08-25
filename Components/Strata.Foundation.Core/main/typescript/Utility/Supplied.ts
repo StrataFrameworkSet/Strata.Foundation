@@ -24,7 +24,7 @@ class Supplied<O>
 
     getOutput(): Optional<O> { return Optional.ofNullable<O>(this.output); }
 
-    getThrowable(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
+    getException(): Optional<Error> { return Optional.ofNullable<Error>(this.throwable); }
 
     isSuccess(): boolean { return this.output != null; }
 

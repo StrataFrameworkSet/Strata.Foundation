@@ -15,7 +15,7 @@ describe(
                 expect(result.isFailure()).toBeFalsy();
                 expect(result.getMethod()).toBe("testMethod");
                 expect(result.getInput()).toBe("testInput");
-                expect(result.getThrowable().isEmpty()).toBeTruthy();
+                expect(result.getException().isEmpty()).toBeTruthy();
             });
         it(
             "testFailureCreation",
@@ -28,8 +28,8 @@ describe(
                 expect(result.isFailure()).toBeTruthy();
                 expect(result.getMethod()).toBe("testMethod");
                 expect(result.getInput()).toBe("testInput");
-                expect(result.getThrowable().isPresent()).toBeTruthy();
-                expect(result.getThrowable().get().message).toBe("test error");
+                expect(result.getException().isPresent()).toBeTruthy();
+                expect(result.getException().get().message).toBe("test error");
             });
         it(
             "testNullMethod",
@@ -67,6 +67,6 @@ describe(
 
                 expect(result.isSuccess()).toBeFalsy();
                 expect(result.isFailure()).toBeTruthy();
-                expect(result.getThrowable().isPresent()).toBeTruthy();
+                expect(result.getException().isPresent()).toBeTruthy();
             });
     });

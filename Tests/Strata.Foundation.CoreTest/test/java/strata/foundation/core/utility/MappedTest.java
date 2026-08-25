@@ -37,7 +37,7 @@ class MappedTest
         assertEquals("testInput",success.getInput());
         assertTrue(success.getOutput().isPresent());
         assertEquals("testOutput",success.getOutput().get());
-        assertFalse(success.getThrowable().isPresent());
+        assertFalse(success.getException().isPresent());
     }
 
     @Test
@@ -49,8 +49,8 @@ class MappedTest
         assertEquals("testMethod",failure.getMethod());
         assertEquals("testInput",failure.getInput());
         assertFalse(failure.getOutput().isPresent());
-        assertTrue(failure.getThrowable().isPresent());
-        assertEquals("test error",failure.getThrowable().get().getMessage());
+        assertTrue(failure.getException().isPresent());
+        assertEquals("test error",failure.getException().get().getMessage());
     }
 
     @Test
@@ -86,7 +86,7 @@ class MappedTest
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
         assertFalse(result.getOutput().isPresent());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 
     @Test
@@ -97,7 +97,7 @@ class MappedTest
 
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 }
 

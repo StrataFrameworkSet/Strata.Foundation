@@ -36,7 +36,7 @@ class SuppliedTest
         assertEquals("testMethod",success.getMethod());
         assertTrue(success.getOutput().isPresent());
         assertEquals("testOutput",success.getOutput().get());
-        assertFalse(success.getThrowable().isPresent());
+        assertFalse(success.getException().isPresent());
     }
 
     @Test
@@ -47,8 +47,8 @@ class SuppliedTest
         assertTrue(failure.isFailure());
         assertEquals("testMethod",failure.getMethod());
         assertFalse(failure.getOutput().isPresent());
-        assertTrue(failure.getThrowable().isPresent());
-        assertEquals("test error",failure.getThrowable().get().getMessage());
+        assertTrue(failure.getException().isPresent());
+        assertEquals("test error",failure.getException().get().getMessage());
     }
 
     @Test
@@ -72,7 +72,7 @@ class SuppliedTest
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
         assertFalse(result.getOutput().isPresent());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 
     @Test
@@ -83,7 +83,7 @@ class SuppliedTest
 
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 }
 

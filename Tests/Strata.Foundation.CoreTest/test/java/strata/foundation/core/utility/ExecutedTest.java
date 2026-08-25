@@ -34,7 +34,7 @@ class ExecutedTest
         assertTrue(success.isSuccess());
         assertFalse(success.isFailure());
         assertEquals("testMethod",success.getMethod());
-        assertFalse(success.getThrowable().isPresent());
+        assertFalse(success.getException().isPresent());
     }
 
     @Test
@@ -44,8 +44,8 @@ class ExecutedTest
         assertFalse(failure.isSuccess());
         assertTrue(failure.isFailure());
         assertEquals("testMethod",failure.getMethod());
-        assertTrue(failure.getThrowable().isPresent());
-        assertEquals("test error",failure.getThrowable().get().getMessage());
+        assertTrue(failure.getException().isPresent());
+        assertEquals("test error",failure.getException().get().getMessage());
     }
 
     @Test
@@ -80,7 +80,7 @@ class ExecutedTest
 
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 }
 

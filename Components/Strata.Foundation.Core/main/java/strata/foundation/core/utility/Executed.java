@@ -40,7 +40,7 @@ class Executed
     getMethod() { return method; }
 
     public Optional<Throwable>
-    getThrowable() { return Optional.ofNullable(throwable); }
+    getException() { return Optional.ofNullable(throwable); }
 
     public boolean
     isSuccess() { return this.throwable == null; }

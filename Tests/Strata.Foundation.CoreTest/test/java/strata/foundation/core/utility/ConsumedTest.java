@@ -35,7 +35,7 @@ class ConsumedTest
         assertFalse(success.isFailure());
         assertEquals("testMethod",success.getMethod());
         assertEquals("testInput",success.getInput());
-        assertFalse(success.getThrowable().isPresent());
+        assertFalse(success.getException().isPresent());
     }
 
     @Test
@@ -46,8 +46,8 @@ class ConsumedTest
         assertTrue(failure.isFailure());
         assertEquals("testMethod",failure.getMethod());
         assertEquals("testInput",failure.getInput());
-        assertTrue(failure.getThrowable().isPresent());
-        assertEquals("test error",failure.getThrowable().get().getMessage());
+        assertTrue(failure.getException().isPresent());
+        assertEquals("test error",failure.getException().get().getMessage());
     }
 
     @Test
@@ -82,7 +82,7 @@ class ConsumedTest
 
         assertFalse(result.isSuccess());
         assertTrue(result.isFailure());
-        assertTrue(result.getThrowable().isPresent());
+        assertTrue(result.getException().isPresent());
     }
 }
 

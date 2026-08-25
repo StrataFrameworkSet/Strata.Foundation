@@ -56,7 +56,7 @@ class Supplied<O>
     getOutput() { return Optional.ofNullable(output); }
 
     public Optional<Throwable>
-    getThrowable() { return Optional.ofNullable(throwable); }
+    getException() { return Optional.ofNullable(throwable); }
 
     public boolean
     isSuccess() { return this.output != null; }

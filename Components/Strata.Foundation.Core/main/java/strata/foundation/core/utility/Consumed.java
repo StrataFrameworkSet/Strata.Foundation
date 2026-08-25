@@ -46,7 +46,7 @@ class Consumed<I>
     getInput() { return input; }
 
     public Optional<Throwable>
-    getThrowable() { return Optional.ofNullable(throwable); }
+    getException() { return Optional.ofNullable(throwable); }
 
     public boolean
     isSuccess() { return this.throwable == null; }
