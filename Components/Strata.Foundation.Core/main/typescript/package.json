@@ -1,6 +1,6 @@
 {
   "name": "strata.foundation.core",
-  "version": "0.0.0-snapshot.1776224020120",
+  "version": "0.0.0-snapshot.1787698979436",
   "description": "The core framework for Strata Foundation. Provides functionality for advanced containers and concurrency mechanisms.",
   "license": "Apache-2.0",
   "scripts": {

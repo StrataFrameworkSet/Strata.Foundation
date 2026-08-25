@@ -14,3 +14,7 @@ export {Expendable} from "./Expendable";
 export {Conditional} from "./Conditional";
 export {NoSuchElementException} from "./NoSuchElementException";
 export {NullPointerException} from "./NullPointerException";
+export {Executed} from "./Executed";
+export {Consumed} from "./Consumed";
+export {Supplied} from "./Supplied";
+export {Mapped} from "./Mapped";
