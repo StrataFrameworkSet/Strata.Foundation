@@ -35,8 +35,9 @@ tasks.named("compileJava").configure {
     source(genAvro)
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 publishing {
