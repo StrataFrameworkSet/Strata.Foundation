@@ -9,17 +9,20 @@ import java.util.Optional;
 
 /**
  * <p>
- * Represents the result of invoking a method that maps an input value to
- * an output value, capturing the method's name, the input that was mapped,
- * and either the resulting output or the {@link Throwable} thrown while
- * producing it. Exactly one of output or throwable is present, and
- * {@link #isSuccess()} / {@link #isFailure()} indicate which outcome
- * occurred.
+ * Result produced by an operation that accepts an input and returns
+ * an output, capturing the method name, the input value, and either
+ * the resulting output or the {@link Throwable} thrown while
+ * producing it. This covers any transform scenario —
+ * {@link java.util.function.Function} applications, type
+ * converters, serializers, parsers, or any method that maps one
+ * value to another. Exactly one of output or exception is present;
+ * {@link #isSuccess()} and {@link #isFailure()} indicate which
+ * outcome occurred.
  * </p>
  * <h4>Type Parameters</h4>
  * <ul>
- * <li>{@code <I>} - the type of the input value that was mapped</li>
- * <li>{@code <O>} - the type of the output value produced by the mapping</li>
+ * <li>{@code <I>} - the type of the input value passed to the operation</li>
+ * <li>{@code <O>} - the type of the output value produced by the operation</li>
  * </ul>
  * <p>
  * <h4>Examples</h4>

@@ -9,13 +9,15 @@ import java.util.Optional;
 
 /**
  * <p>
- * Captures the outcome of invoking a {@link java.util.function.Consumer}
- * with a given input, recording the name of the method that was invoked,
- * the input value, and, when the invocation failed, the resulting
- * {@link Throwable}.
+ * Result produced by an operation that accepts an input but returns
+ * no output, capturing the method name, the input value, and, when
+ * the invocation failed, the resulting {@link Throwable}. This
+ * covers any consume-only scenario — {@link java.util.function.Consumer}
+ * invocations, event dispatchers, loggers, validators that throw on
+ * failure, or any void method that receives a single argument.
  * </p>
  * <h4>Type Parameter</h4>
- * {@code <I>} - the type of the input passed to the consumer
+ * {@code <I>} - the type of the input consumed by the operation
  * <p>
  * <h4>Examples</h4>
  * <pre>

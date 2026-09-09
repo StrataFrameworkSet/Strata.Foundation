@@ -9,9 +9,12 @@ import java.util.Optional;
 
 /**
  * <p>
- * Captures the outcome of invoking a method that takes no distinguished
- * input, recording the name of the method that was invoked and, when the
- * invocation failed, the resulting {@link Throwable}.
+ * Result produced by an operation that accepts no input and returns
+ * no output, capturing the method name and, when the invocation
+ * failed, the resulting {@link Throwable}. This covers any
+ * fire-and-forget scenario — {@link Runnable} execution, cache
+ * invalidation, connection resets, lifecycle hooks, or any void
+ * method invoked without arguments.
  * </p>
  * <p>
  * <h4>Examples</h4>

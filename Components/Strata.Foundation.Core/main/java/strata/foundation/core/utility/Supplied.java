@@ -9,23 +9,28 @@ import java.util.Optional;
 
 /**
  * <p>
- * Represents the outcome of invoking a named method that either produces an
- * output value or fails with a {@link Throwable}, capturing the method name
- * alongside whichever of the two occurred. Exactly one of the output or the
- * exception is expected to be non-null; {@link #isSuccess()} and
- * {@link #isFailure()} report which case applies, and {@link #getOutput()}
- * and {@link #getException()} expose the result as an {@link Optional}.
+ * Result produced by an operation that accepts no input but returns
+ * an output value, capturing the method name and either the output
+ * or the {@link Throwable} thrown while producing it. This covers
+ * any produce-without-input scenario —
+ * {@link java.util.function.Supplier} invocations, factory methods,
+ * configuration lookups, or any no-argument method that returns a
+ * value. Exactly one of output or exception is present;
+ * {@link #isSuccess()} and {@link #isFailure()} indicate which
+ * outcome occurred.
  * </p>
  * <h4>Type Parameter</h4>
  * {@code <O>} - the type of the output value produced on success
  * <p>
  * <h4>Examples</h4>
  * <pre>
- * Supplied&lt;String&gt; result = Supplied.of("loadConfig", "value");
+ * Supplied&lt;String&gt; result = Supplied.of("loadConfig","value");
+ *
  * if (result.isSuccess())
  *     System.out.println(result.getOutput().get());
  *
- * Supplied&lt;String&gt; failure = Supplied.of("loadConfig", new RuntimeException("boom"));
+ * Supplied&lt;String&gt; failure =
+ *     Supplied.of("loadConfig",new RuntimeException("boom"));
  * </pre>
  * </p>
  */
