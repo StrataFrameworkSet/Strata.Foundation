@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // BlockingQueueReceiver.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -10,6 +10,33 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
+/**
+ * <p>
+ * Implementation of {@link IReceiver} that consumes messages from
+ * an {@link IBlockingQueue} on a background thread using an
+ * {@link java.util.concurrent.ExecutorService}.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <T>} - message type</li>
+ * <li>{@code <C>} - consumer type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation and consumption
+ * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
+ * BlockingQueueReceiver&lt;String,Consumer&lt;String&gt;&gt; receiver =
+ *     new BlockingQueueReceiver&lt;&gt;(queue);
+ *
+ * receiver.startConsuming(msg -&gt; System.out.println(msg));
+ * // ... later ...
+ * receiver.stopConsuming();
+ * </pre>
+ * </p>
+ */
 public
 class BlockingQueueReceiver<T,C extends Consumer<T>>
     extends AbstractReceiver<T,C>

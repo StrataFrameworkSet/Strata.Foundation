@@ -16,6 +16,42 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * <p>
+ * Base class for requests sent to a service operation. Carries the
+ * bookkeeping common to every request: a unique {@link #getRequestId()
+ * request identifier}, a {@link #getTimestamp() timestamp}, and request
+ * {@link #getHeaders() headers} and {@link #getCookies() cookies}.
+ * Subclasses add whatever payload is specific to a given service operation,
+ * and typically pass {@code this} to an {@link AbstractServiceReply}
+ * constructor so the reply can record which request it originated from.
+ * </p>
+ * <p>
+ * Instances are mutable via a fluent setter API (each setter returns {@code
+ * this}) and implement {@link Serializable} so requests can cross process or
+ * transport boundaries.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * class GetCustomerRequest extends AbstractServiceRequest
+ * {
+ *     private String customerId;
+ *
+ *     GetCustomerRequest setCustomerId(String customerId)
+ *     {
+ *         this.customerId = customerId;
+ *         return this;
+ *     }
+ * }
+ *
+ * GetCustomerRequest request =
+ *     new GetCustomerRequest()
+ *         .setCustomerId("12345")
+ *         .addHeader("X-Correlation-Id",UUID.randomUUID().toString());
+ * </pre>
+ * </p>
+ */
 public abstract
 class AbstractServiceRequest
     implements Serializable

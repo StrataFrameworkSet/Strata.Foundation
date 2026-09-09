@@ -7,6 +7,25 @@ package strata.foundation.core.utility;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * <p>
+ * Captures the outcome of invoking a {@link java.util.function.Consumer}
+ * with a given input, recording the name of the method that was invoked,
+ * the input value, and, when the invocation failed, the resulting
+ * {@link Throwable}.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <I>} - the type of the input passed to the consumer
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Consumed&lt;String&gt; result = Consumed.of("process",input);
+ *
+ * if (result.isFailure())
+ *     log(result.getException());
+ * </pre>
+ * </p>
+ */
 public
 class Consumed<I>
 {

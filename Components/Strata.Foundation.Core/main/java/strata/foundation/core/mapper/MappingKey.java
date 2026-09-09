@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // MappingKey.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,24 @@ package strata.foundation.core.mapper;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ * Immutable key identifying a mapping from one type to another, used
+ * to index the predicated mapping rules registered with a
+ * {@link PredicatedMapper}. Two keys are equal when their input and
+ * output types are the same, and keys are ordered by input type name
+ * and then output type name.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * MappingKey key = MappingKey.of(String.class,Integer.class);
+ *
+ * boolean matches = key.matches(String.class,Integer.class);
+ * // matches is true
+ * </pre>
+ * </p>
+ */
 public
 class MappingKey
     implements Comparable<MappingKey>

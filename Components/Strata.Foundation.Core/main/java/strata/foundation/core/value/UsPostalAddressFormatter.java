@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // UsPostalAddressFormatter.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,26 @@ package strata.foundation.core.value;
 
 import strata.foundation.core.utility.Expendable;
 
+/**
+ * <p>
+ * An {@link IPostalAddressFormatter} that renders a {@link PostalAddress}
+ * according to <a href="https://en.wikipedia.org/wiki/Address#United_States">
+ * United States postal addressing conventions</a>: an optional addressee
+ * name on its own line, followed by the street address, and then the city,
+ * state, and postal code on a final line. The addressee is optional and may
+ * be set at construction time or later via {@link #setAddressee(String)}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PostalAddress address = new PostalAddress("123","Main St","Anytown","CA","US","90210");
+ *
+ * UsPostalAddressFormatter formatter = new UsPostalAddressFormatter("Jane Doe");
+ * String formatted = formatter.format(address);
+ * // "Jane Doe\n123 Main St\nAnytown, CA 90210"
+ * </pre>
+ * </p>
+ */
 public
 class UsPostalAddressFormatter
     implements IPostalAddressFormatter

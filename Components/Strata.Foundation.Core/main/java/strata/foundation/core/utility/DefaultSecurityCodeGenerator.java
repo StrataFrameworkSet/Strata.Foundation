@@ -9,6 +9,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * Default {@link ISecurityCodeGenerator} implementation that generates
+ * random security codes of a fixed length composed from alphabetic and
+ * numeric characters, guaranteeing a configurable minimum number of each
+ * character type.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * ISecurityCodeGenerator generator = new DefaultSecurityCodeGenerator(6,0,6);
+ *
+ * String code = generator.getNextSecurityCode();
+ * </pre>
+ * </p>
+ */
 public
 class DefaultSecurityCodeGenerator
     implements ISecurityCodeGenerator

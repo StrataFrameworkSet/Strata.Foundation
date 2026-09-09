@@ -4,11 +4,24 @@
 
 package strata.foundation.core.concurrent;
 
-/****************************************************************************
- * Implements the {@code ISynchronizer} interface as a <b>Null Object</b> 
- * that does not do anything.
+/**
+ * <p>
+ * Null Object implementation of {@link ISynchronizer} that performs
+ * no actual synchronization, suitable for single-threaded contexts
+ * or testing.
+ * See: <a href="https://en.wikipedia.org/wiki/Null_object_pattern">Null object pattern (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Use when synchronization is not needed
+ * ISynchronizer sync = new NullSynchronizer();
+ * sync.lockForReading();   // no-op
+ * sync.unlockFromReading(); // no-op
+ * </pre>
+ * </p>
  */
-public 
+public
 class NullSynchronizer
     implements ISynchronizer
 {

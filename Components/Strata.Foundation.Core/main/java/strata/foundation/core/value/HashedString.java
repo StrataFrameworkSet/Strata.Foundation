@@ -13,6 +13,32 @@ import java.util.HexFormat;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * <p>
+ * An immutable value type holding a salted <a
+ * href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">
+ * cryptographic hash</a> (SHA-256) of a string, together with the salt
+ * used to produce it. A random salt is generated automatically when one
+ * is not supplied, and the original, unhashed value is never retained.
+ * </p>
+ * <p>
+ * Because the source value cannot be recovered, comparisons against a
+ * candidate plaintext are done via {@link #matches(String)} or {@link
+ * #matches(byte[])} rather than by direct equality of hashes, and
+ * equality between two {@code HashedString} instances requires both the
+ * hashed value and the salt to match. Instances implement {@link
+ * java.io.Serializable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * HashedString hashed = HashedString.of("correct horse battery staple");
+ *
+ * boolean matches = hashed.matches("correct horse battery staple");
+ * String hex = hashed.getHexValue();
+ * </pre>
+ * </p>
+ */
 public
 class HashedString
     implements Serializable

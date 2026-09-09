@@ -18,6 +18,32 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * Implementation of {@link IConfiguration} that loads properties from
+ * {@link java.io.InputStream} sources using Jasypt
+ * {@link java.util.Properties} encryption for transparent decryption
+ * of {@code ENC(...)} values. Provides typed property access,
+ * prefix-based filtering, existence checks, and streaming inherited
+ * from {@link IConfiguration}. Encryption uses
+ * PBEWithHMACSHA512AndAES_256 with a key sourced from the
+ * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Loading from classpath resource
+ * InputStream input = getClass().getResourceAsStream("/application.properties");
+ * IConfiguration config = new SecureConfiguration(input);
+ *
+ * // Transparent decryption of ENC(...) values
+ * String password = config.getProperty("db.password");
+ *
+ * // Multiple input sources (merged)
+ * IConfiguration config = new SecureConfiguration(baseInput,overrideInput);
+ * </pre>
+ * </p>
+ */
 public
 class SecureConfiguration
     implements IConfiguration

@@ -10,6 +10,31 @@ import java.io.ObjectOutputStream;
 import java.io.Serial;
 import java.util.*;
 
+/**
+ * <p>
+ * Serializable implementation of {@link ISet} that extends
+ * {@link java.util.HashSet} to combine standard set behavior
+ * with Strata collection serialization support.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from existing collection
+ * ISet&lt;String&gt; set = SerializableSet.of(Set.of("a","b","c"));
+ *
+ * // Creation from iterable
+ * ISet&lt;String&gt; set = SerializableSet.ofIterable(someIterable);
+ *
+ * // Direct construction
+ * SerializableSet&lt;String&gt; set = new SerializableSet&lt;&gt;();
+ * set.add("item");
+ * </pre>
+ * </p>
+ */
 public
 class SerializableSet<T>
     extends HashSet<T>

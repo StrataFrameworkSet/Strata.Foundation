@@ -1,6 +1,6 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // JunitTestRunner.java
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.testrunner;
 
@@ -16,6 +16,28 @@ import java.io.PrintWriter;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;
 import static org.junit.platform.launcher.TagFilter.includeTags;
 
+/**
+ * <p>
+ * A command-line entry point that discovers and runs JUnit Platform tests
+ * for a given package, filtered by one or more tags. It builds a
+ * {@link org.junit.platform.launcher.LauncherDiscoveryRequest} from the
+ * supplied {@code --package} and {@code --tags} arguments, registers a
+ * {@link org.junit.platform.launcher.listeners.SummaryGeneratingListener}
+ * together with a {@link TestExecutionReporter} on a
+ * {@link org.junit.platform.launcher.Launcher}, executes the discovered
+ * tests, and prints a summary (and any failures) to standard output. The
+ * process exits with status {@code 1} if any test fails, or if the required
+ * command-line arguments are missing, and {@code 0} otherwise.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * java -jar strata-foundation-core.jar \
+ *     --package=strata.foundation.core \
+ *     --tags=unit,fast
+ * </pre>
+ * </p>
+ */
 public class JunitTestRunner
 {
     public static void

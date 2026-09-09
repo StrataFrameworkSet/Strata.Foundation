@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // BasicRetryExecutor.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -9,6 +9,24 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Default {@link IRetryExecutor} implementation that retries a failed
+ * operation up to a configured maximum number of attempts, pausing between
+ * attempts according to a configurable {@link BackoffStrategy} and backoff
+ * factor.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IRetryExecutor executor =
+ *     new BasicRetryExecutor(5,50L,2.0)
+ *         .setBackoffStrategy(BackoffStrategy.EXPONENTIAL);
+ *
+ * executor.executeRun(() -&gt; connect());
+ * </pre>
+ * </p>
+ */
 public
 class BasicRetryExecutor
     implements IRetryExecutor

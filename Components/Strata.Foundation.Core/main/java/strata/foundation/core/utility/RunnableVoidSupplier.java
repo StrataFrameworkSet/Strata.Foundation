@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // RunnableVoidSupplier.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,22 @@ package strata.foundation.core.utility;
 
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Adapts a {@link Runnable} action into a {@link java.util.function.Supplier}
+ * of {@link Void}, allowing a void, no-argument action to be used anywhere a
+ * {@code Supplier<Void>} is required. Calling {@link #get()} runs the
+ * wrapped {@code Runnable} and always returns {@code null}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Supplier&lt;Void&gt; supplier =
+ *     new RunnableVoidSupplier(() -&gt; System.out.println("running"));
+ * supplier.get();
+ * </pre>
+ * </p>
+ */
 public
 class RunnableVoidSupplier
     implements Supplier<Void>

@@ -1,17 +1,44 @@
-// ##########################################################################
-// # File Name:	ICopyable.java
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
 /**
- * A more natural alternative to Cloneable and Object.clone().
- * Also takes advantage of Java 6's covariant return feature:
- * extending interfaces and implementing classes can extend
- * the return class of the {@code copy()} method to types 
- * that extend or implement ICopyable.
+ * <p>
+ * A more natural, type-safe alternative to {@link Cloneable} and
+ * {@code Object.clone()}. Implementations of the
+ * <a href="https://en.wikipedia.org/wiki/Prototype_pattern">Prototype pattern (Wikipedia)</a>
+ * expose a {@code copy()} method that returns a new instance holding an
+ * equivalent copy of the object's state. Because Java supports covariant
+ * return types, extending interfaces and implementing classes may narrow the
+ * return type of {@code copy()} to a more specific type that itself extends
+ * or implements {@code ICopyable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * class Point implements ICopyable
+ * {
+ *     private final int x, y;
+ *
+ *     Point(int x, int y)
+ *     {
+ *         this.x = x;
+ *         this.y = y;
+ *     }
+ *
+ *     public Point copy()
+ *     {
+ *         return new Point(x, y);
+ *     }
+ * }
+ *
+ * Point original = new Point(1, 2);
+ * Point clone    = original.copy();
+ * </pre>
+ * </p>
  */
-public 
+public
 interface ICopyable
 {
 	/************************************************************************
@@ -24,4 +51,4 @@ interface ICopyable
 }
 
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

@@ -10,6 +10,31 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * <p>
+ * Serializable implementation of {@link IList} that extends
+ * {@link java.util.ArrayList} to combine standard list behavior
+ * with Strata collection serialization support.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from existing collection
+ * IList&lt;String&gt; list = SerializableList.of(List.of("a","b","c"));
+ *
+ * // Creation from iterable
+ * IList&lt;String&gt; list = SerializableList.ofIterable(someIterable);
+ *
+ * // Direct construction
+ * SerializableList&lt;String&gt; list = new SerializableList&lt;&gt;();
+ * list.add("item");
+ * </pre>
+ * </p>
+ */
 public
 class SerializableList<T>
     extends ArrayList<T>

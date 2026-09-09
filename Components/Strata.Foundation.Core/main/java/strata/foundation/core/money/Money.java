@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Money.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -14,6 +14,33 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Immutable implementation of {@link javax.money.MonetaryAmount} that
+ * represents a monetary value with a {@link javax.money.CurrencyUnit}
+ * and a {@link java.math.BigDecimal} amount. Supports arithmetic
+ * operations, comparison, and JSON serialization.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation using factory methods
+ * Money price = Money.of(BasicCurrencyUnit.USD,29.99);
+ * Money tax   = Money.of(BasicCurrencyUnit.USD,2.50);
+ *
+ * // Arithmetic
+ * Money total    = price.add(tax);
+ * Money doubled  = price.multiply(2);
+ * Money negated  = price.negate();
+ *
+ * // Comparison
+ * boolean cheaper = price.isLessThan(total);
+ *
+ * // JSON deserialization
+ * Money parsed = new Money("USD29.99");
+ * </pre>
+ * </p>
+ */
 public
 class Money
     implements MonetaryAmount,Serializable

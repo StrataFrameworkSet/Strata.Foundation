@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // StopContext.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,29 @@ package strata.foundation.core.concurrent;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ * Wrapper that pairs an element with a stop indicator for
+ * poison-pill based graceful shutdown of blocking queues.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Normal element
+ * StopContext&lt;String&gt; normal = StopContext.of("data");
+ * String value = normal.getElement();
+ * boolean stop = normal.mustStop(); // false
+ *
+ * // Poison pill (stop signal)
+ * StopContext&lt;String&gt; poison = StopContext.stop();
+ * boolean stop = poison.mustStop(); // true
+ * </pre>
+ * </p>
+ */
 public
 class StopContext<T>
 {

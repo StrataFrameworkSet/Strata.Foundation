@@ -1,9 +1,29 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // StartFailedException.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.concurrent;
 
+/**
+ * <p>
+ * Thrown when an {@link IReceiver} fails to start its
+ * consumption loop.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Caught during receiver startup
+ * try
+ * {
+ *     receiver.startConsuming(consumer);
+ * }
+ * catch (StartFailedException e)
+ * {
+ *     Throwable cause = e.getCause();
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class StartFailedException
     extends RuntimeException

@@ -1,11 +1,28 @@
-// ##########################################################################
-// # File Name:	HashCodeBuilder.java
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+// HashCodeBuilder.java
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
 import java.util.Optional;
 
+/**
+ * <p>
+ * Incrementally builds a hash code by combining property values using a
+ * consistent prime-multiplier algorithm, avoiding the need to hand-write
+ * {@link Object#hashCode()} implementations.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * int hashCode =
+ *     new HashCodeBuilder()
+ *         .append(name)
+ *         .append(age)
+ *         .getHashCode();
+ * </pre>
+ * </p>
+ */
 public
 class HashCodeBuilder
 {
@@ -75,4 +92,4 @@ class HashCodeBuilder
     }
 }
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

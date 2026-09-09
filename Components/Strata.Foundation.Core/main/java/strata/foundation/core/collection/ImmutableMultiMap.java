@@ -9,6 +9,36 @@ import java.util.Map.Entry;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * Immutable decorator for {@link IMultiMap} that delegates read
+ * operations to the wrapped source and throws
+ * {@link UnsupportedOperationException} on all mutating operations.
+ * See: <a href="https://en.wikipedia.org/wiki/Immutable_object">Immutable object (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from mutable source
+ * IMultiMap&lt;String,Integer&gt; mutable = new ListValuedMultiMap&lt;&gt;();
+ * mutable.put("a",1).put("b",2);
+ * IMultiMap&lt;String,Integer&gt; immutable = ImmutableMultiMap.of(mutable);
+ *
+ * // Read operations succeed
+ * Collection&lt;Integer&gt; values = immutable.get("a");
+ *
+ * // Mutating operations throw UnsupportedOperationException
+ * // immutable.put("c",3); // throws
+ * </pre>
+ * </p>
+ */
 public
 class ImmutableMultiMap<K,V>
     implements IMultiMap<K,V>

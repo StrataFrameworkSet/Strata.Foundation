@@ -1,6 +1,5 @@
-// ##########################################################################
-// # File Name:	SingletonProxy.java
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
@@ -12,10 +11,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A dynamic proxy class that manages singletons for any type.
+ * <p>
+ * A dynamic proxy that manages singleton instances for arbitrary types,
+ * implementing the <a href="https://en.wikipedia.org/wiki/Singleton_pattern">Singleton pattern (Wikipedia)</a>
+ * via Java's {@link java.lang.reflect.InvocationHandler} and
+ * {@link java.lang.reflect.Proxy}. Singleton instances are registered per
+ * class with {@link #setInstance(Class, Object)} and retrieved with
+ * {@link #getInstance(Class)}, which returns a dynamic proxy that forwards
+ * every method invocation to the underlying registered instance.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * SingletonProxy.setInstance(MyService.class, new MyServiceImpl());
+ * MyService service = SingletonProxy.getInstance(MyService.class);
+ * service.doWork();
+ * SingletonProxy.clearInstance(MyService.class);
+ * </pre>
+ * </p>
  */
-public 
-class SingletonProxy 
+public
+class SingletonProxy
 	implements InvocationHandler
 {
 	private static Map<Object,Object> theirInstances
@@ -132,4 +148,4 @@ class SingletonProxy
 }
 
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

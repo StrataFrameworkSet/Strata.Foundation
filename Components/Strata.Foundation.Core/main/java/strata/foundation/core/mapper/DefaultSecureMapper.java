@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // DefaultSecureMapper.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -15,6 +15,30 @@ import strata.foundation.core.inject.IEnvironmentValueProvider;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Default implementation of {@link ISecureMapper} that encrypts and
+ * decrypts values of type {@code T} by first serializing the value to
+ * JSON using a Jackson {@link ObjectMapper} and then encrypting the
+ * resulting string with a Jasypt {@link StandardPBEStringEncryptor}
+ * configured with the {@code PBEWithHMACSHA512AndAES_256} algorithm.
+ * The encryption key is either supplied directly or resolved from an
+ * {@link IEnvironmentValueProvider}, defaulting to the
+ * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the {@link Serializable} type of value being encrypted and decrypted
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * DefaultSecureMapper&lt;Customer&gt; mapper =
+ *     new DefaultSecureMapper&lt;&gt;(Customer.class,"my-secret-key");
+ *
+ * String encrypted = mapper.mapEncrypted(customer);
+ * Customer decrypted = mapper.mapDecrypted(encrypted);
+ * </pre>
+ * </p>
+ */
 public
 class DefaultSecureMapper<T extends Serializable>
     implements ISecureMapper<T>

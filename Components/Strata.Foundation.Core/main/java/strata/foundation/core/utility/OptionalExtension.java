@@ -9,6 +9,27 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * A utility class providing extension-style helper methods for
+ * {@link java.util.Optional} that are not part of its standard API, such
+ * as branching on presence/absence with a return value, throwing a custom
+ * exception when a value is absent, and comparing two {@code Optional}
+ * values by their contained {@link Comparable} value.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Optional&lt;String&gt; name = Optional.of("Ada");
+ * String greeting = OptionalExtension.ifPresentOrElse(
+ *     name,
+ *     n -&gt; "Hello, " + n,
+ *     () -&gt; "Hello, stranger");
+ *
+ * OptionalExtension.ifNotPresent(Optional.empty(), () -&gt; System.out.println("empty"));
+ * </pre>
+ * </p>
+ */
 public
 class OptionalExtension
 {

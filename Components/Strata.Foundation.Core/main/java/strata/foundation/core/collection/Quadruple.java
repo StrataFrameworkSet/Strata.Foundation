@@ -1,5 +1,5 @@
 // ##########################################################################
-// # File Name:	Triple.java
+// # File Name:	Quadruple.java
 // ##########################################################################
 
 package strata.foundation.core.collection;
@@ -8,7 +8,35 @@ import strata.foundation.core.utility.HashCodeBuilder;
 
 import java.util.Objects;
 
-public 
+/**
+ * <p>
+ * Container for a quadruple of data elements.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <T1>} - first element of Quadruple</li>
+ * <li>{@code <T2>} - second element of Quadruple</li>
+ * <li>{@code <T3>} - third element of Quadruple</li>
+ * <li>{@code <T4>} - fourth element of Quadruple</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * Quadruple&lt;Integer,String,Boolean,Double&gt; quad =
+ *     Quadruple.of(1,"foo",true,3.14);
+ *
+ * // Selectors
+ * Integer first  = quad.getFirst();
+ * String  second = quad.getSecond();
+ * Boolean third  = quad.getThird();
+ * Double  fourth = quad.getFourth();
+ * </pre>
+ * </p>
+ */
+public
 class Quadruple<T1,T2,T3,T4>
 {
     private final T1 itsFirst;

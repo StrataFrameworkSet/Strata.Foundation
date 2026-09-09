@@ -7,6 +7,27 @@ package strata.foundation.core.event;
 import java.util.concurrent.*;
 import java.util.function.*;
 
+/**
+ * <p>
+ * Implementation of {@link ICompletableSendResult} that wraps a
+ * {@link java.util.concurrent.CompletableFuture} for tracking
+ * asynchronous event send outcomes.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <E>} - event type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Async send result
+ * ICompletableSendResult&lt;String&gt; result =
+ *     CompletableSendResult.supplyAsync(() -&gt; SendResult.of("event"));
+ *
+ * result.thenAccept(r -&gt; System.out.println("Sent: " + r.getEvent()));
+ * </pre>
+ * </p>
+ */
 public
 class CompletableSendResult<E>
     implements ICompletableSendResult<E>

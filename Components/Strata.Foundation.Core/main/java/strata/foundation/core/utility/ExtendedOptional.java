@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// Expendable.java
+// ExtendedOptional.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -15,6 +15,24 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * {@link IOptionable} implementation backed by a standard {@link Optional},
+ * adapting it to the {@code IOptionable} contract so it can be used
+ * interchangeably with other {@code IOptionable} implementations such as
+ * {@link Expendable}.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type of the wrapped value
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * ExtendedOptional&lt;String&gt; value = ExtendedOptional.of("hello");
+ *
+ * value.ifPresent(System.out::println);
+ * </pre>
+ * </p>
+ */
 public
 class ExtendedOptional<T>
     implements IOptionable<T>

@@ -9,6 +9,29 @@ import strata.foundation.core.concurrent.ThreadLocalStack;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>
+ * Thread-local metadata and instance storage for an active {@link Operation}.
+ * Scopes are maintained as a stack per thread so that nested operations each
+ * get their own instance map, with a permanent global scope beneath them.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * OperationContext.beginScope();
+ * try
+ * {
+ *     OperationContext.setInstance(IConfiguration.class,configuration);
+ *     IConfiguration current =
+ *         OperationContext.getInstance(IConfiguration.class);
+ * }
+ * finally
+ * {
+ *     OperationContext.endScope();
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class OperationContext
 {

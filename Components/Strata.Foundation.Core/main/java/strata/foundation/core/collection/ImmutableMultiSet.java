@@ -7,6 +7,33 @@ package strata.foundation.core.collection;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * Immutable decorator for {@link IMultiSet} that delegates read
+ * operations to the wrapped source and throws
+ * {@link UnsupportedOperationException} on all mutating operations.
+ * See: <a href="https://en.wikipedia.org/wiki/Immutable_object">Immutable object (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type, must be {@link java.lang.Comparable}
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from mutable source
+ * IMultiSet&lt;String&gt; mutable = new MultiSet&lt;&gt;();
+ * mutable.add("apple",5L);
+ * IMultiSet&lt;String&gt; immutable = ImmutableMultiSet.of(mutable);
+ *
+ * // Read operations succeed
+ * long count = immutable.getMultiplicity("apple");
+ *
+ * // Mutating operations throw UnsupportedOperationException
+ * // immutable.add("banana"); // throws
+ * </pre>
+ * </p>
+ */
 public
 class ImmutableMultiSet<T extends Comparable<T>>
     implements IMultiSet<T>

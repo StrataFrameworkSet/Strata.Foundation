@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // PredicatedMapper.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -9,6 +9,30 @@ import strata.foundation.core.collection.ListValuedMultiMap;
 
 import java.util.*;
 
+/**
+ * <p>
+ * Registry of predicated mapping rules, keyed by input and output type,
+ * that maps an input value to an output value by trying each
+ * registered {@link PredicatedMapping} whose type matches until one
+ * whose predicate accepts the input successfully produces a non-null
+ * result. Mapping rules are registered fluently via
+ * {@link #beginTypeMap(Class,Class)}, which returns a
+ * {@link PredicatedMappingBuilder} for adding one or more predicate and
+ * mapping function pairs for a given input/output type combination.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PredicatedMapper mapper = new PredicatedMapper();
+ *
+ * mapper
+ *     .beginTypeMap(String.class,Integer.class)
+ *     .addMapping(s -&gt; s.matches("\\d+"),Integer::parseInt);
+ *
+ * Optional&lt;Integer&gt; result = mapper.map("42",Integer.class);
+ * </pre>
+ * </p>
+ */
 public
 class PredicatedMapper
 {

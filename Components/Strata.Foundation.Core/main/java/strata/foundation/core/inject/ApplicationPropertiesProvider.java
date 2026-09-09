@@ -10,6 +10,22 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
+/**
+ * <p>
+ * A {@link jakarta.inject.Provider} of {@link java.util.Properties} that
+ * loads a {@code &lt;environment&gt;.properties} resource selected by the
+ * {@code DEPLOY_ENV} environment variable, falling back to
+ * {@code "development"} when it is not set.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Provider&lt;Properties&gt; provider = new ApplicationPropertiesProvider();
+ *
+ * Properties properties = provider.get();
+ * </pre>
+ * </p>
+ */
 public
 class ApplicationPropertiesProvider
     implements Provider<Properties>

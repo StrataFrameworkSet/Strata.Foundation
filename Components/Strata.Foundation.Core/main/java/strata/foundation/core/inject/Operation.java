@@ -8,6 +8,24 @@ import strata.foundation.core.reflect.TypeLiteral;
 
 import java.lang.annotation.Annotation;
 
+/**
+ * <p>
+ * An {@link AutoCloseable} scope wrapper for a unit-of-work operation.
+ * Opening an {@code Operation} begins an {@link OperationContext} scope and
+ * closing it ends that scope, while instance resolution is delegated to the
+ * {@link IInjector} supplied at construction.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * try (Operation operation = new Operation(injector))
+ * {
+ *     IConfiguration configuration =
+ *         operation.getInstance(IConfiguration.class);
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class Operation
     implements AutoCloseable

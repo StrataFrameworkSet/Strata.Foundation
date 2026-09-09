@@ -7,6 +7,30 @@ package strata.foundation.core.concurrent;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * <p>
+ * Single-element implementation of {@link IBlockingBuffer} using
+ * {@link java.util.concurrent.CountDownLatch} for blocking synchronization
+ * between producer and consumer.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Producer-consumer handoff
+ * IBlockingBuffer&lt;String&gt; buffer = new BlockingBuffer&lt;&gt;();
+ *
+ * // Producer (non-blocking)
+ * buffer.accept("data");
+ *
+ * // Consumer (blocks until data available)
+ * String value = buffer.get();
+ * </pre>
+ * </p>
+ */
 public
 class BlockingBuffer<T>
     implements IBlockingBuffer<T>

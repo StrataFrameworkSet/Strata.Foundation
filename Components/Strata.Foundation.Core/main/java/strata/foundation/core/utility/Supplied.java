@@ -7,6 +7,28 @@ package strata.foundation.core.utility;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * <p>
+ * Represents the outcome of invoking a named method that either produces an
+ * output value or fails with a {@link Throwable}, capturing the method name
+ * alongside whichever of the two occurred. Exactly one of the output or the
+ * exception is expected to be non-null; {@link #isSuccess()} and
+ * {@link #isFailure()} report which case applies, and {@link #getOutput()}
+ * and {@link #getException()} expose the result as an {@link Optional}.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <O>} - the type of the output value produced on success
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Supplied&lt;String&gt; result = Supplied.of("loadConfig", "value");
+ * if (result.isSuccess())
+ *     System.out.println(result.getOutput().get());
+ *
+ * Supplied&lt;String&gt; failure = Supplied.of("loadConfig", new RuntimeException("boom"));
+ * </pre>
+ * </p>
+ */
 public
 class Supplied<O>
 {

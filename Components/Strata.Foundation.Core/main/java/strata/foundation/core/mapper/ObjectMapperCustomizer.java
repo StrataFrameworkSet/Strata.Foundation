@@ -13,6 +13,28 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.avro.specific.SpecificRecordBase;
 
+/**
+ * <p>
+ * Default implementation of {@link IObjectMapperCustomizer} that
+ * applies this framework's standard Jackson {@link ObjectMapper}
+ * configuration: requiring setters for getters, allowing explicit
+ * property renaming, failing on {@code null} for primitives, eager
+ * serializer fetching, ordering map entries by key, writing dates in
+ * ISO-8601 rather than as timestamps, registering the
+ * {@link JavaTimeModule} and {@link Jdk8Module}, and mixing in
+ * {@link IExcludeAvroFieldsMixin} for Avro
+ * {@link SpecificRecordBase} types so their {@code schema} and
+ * {@code specificData} properties are excluded from serialization.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IObjectMapperCustomizer customizer = new ObjectMapperCustomizer();
+ *
+ * ObjectMapper mapper = customizer.customize(new ObjectMapper());
+ * </pre>
+ * </p>
+ */
 public
 class ObjectMapperCustomizer
     implements IObjectMapperCustomizer

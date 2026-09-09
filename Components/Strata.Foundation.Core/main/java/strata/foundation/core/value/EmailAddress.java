@@ -11,6 +11,31 @@ import strata.foundation.core.utility.ICopyable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <p>
+ * An immutable value type representing a validated
+ * <a href="https://en.wikipedia.org/wiki/Email_address">email address</a>.
+ * The supplied string is checked on construction against a
+ * local-part/domain pattern, rejecting values that do not resemble a
+ * well-formed email address.
+ * </p>
+ * <p>
+ * Equality and hashing are case-insensitive, and ordering via {@link
+ * java.lang.Comparable} likewise compares the underlying string
+ * case-insensitively. Copies are produced via {@link ICopyable#copy()},
+ * and instances implement {@link java.io.Serializable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * EmailAddress emailAddress = EmailAddress.of("jane.doe@example.com");
+ *
+ * EmailAddress copy = emailAddress.copy();
+ *
+ * boolean same = emailAddress.equals(EmailAddress.of("JANE.DOE@EXAMPLE.COM"));
+ * </pre>
+ * </p>
+ */
 public
 class EmailAddress
     implements ICopyable,Serializable,Comparable<EmailAddress>

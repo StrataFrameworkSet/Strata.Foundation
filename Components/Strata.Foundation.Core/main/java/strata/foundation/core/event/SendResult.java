@@ -6,6 +6,29 @@ package strata.foundation.core.event;
 
 import java.util.Optional;
 
+/**
+ * <p>
+ * Result container for an event send operation, holding the
+ * original event and either a success indicator or an exception.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <E>} - event type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Inspect send outcome
+ * SendResult&lt;String&gt; result = ...;
+ * String event = result.getEvent();
+ * boolean success = result.isSuccessful();
+ *
+ * // Check for failure
+ * if (result.hasException())
+ *     result.getException().printStackTrace();
+ * </pre>
+ * </p>
+ */
 public
 class SendResult<E>
 {

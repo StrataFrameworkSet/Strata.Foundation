@@ -14,6 +14,28 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * <p>
+ * An immutable value object representing a
+ * <a href="https://en.wikipedia.org/wiki/Personal_name">person's name</a>,
+ * composed of an optional title (e.g. "Dr."), a required first name, an
+ * optional middle name, a required last name, and an optional suffix (e.g.
+ * "Jr."). Instances are typically created via one of the {@link #of} factory
+ * methods or via {@link PersonNameBuilder}. A {@code PersonName} is
+ * {@link ICopyable}, {@link java.io.Serializable}, and
+ * {@link java.lang.Comparable} (ordered lexicographically by its formatted
+ * {@link #toString()} representation).
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PersonName name = PersonName.of("Dr.","Jane","Q.","Doe","Jr.");
+ * String formatted = name.toString(); // "Dr. Jane Q. Doe, Jr."
+ *
+ * PersonName copy = name.copy();
+ * </pre>
+ * </p>
+ */
 public
 class PersonName
     implements ICopyable,Serializable,Comparable<PersonName>

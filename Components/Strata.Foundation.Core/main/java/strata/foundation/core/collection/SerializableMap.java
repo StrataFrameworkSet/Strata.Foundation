@@ -11,6 +11,34 @@ import java.io.Serial;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>
+ * Serializable implementation of {@link IMap} that extends
+ * {@link java.util.HashMap} to combine standard map behavior
+ * with Strata collection serialization support.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from existing map
+ * IMap&lt;String,Integer&gt; map = SerializableMap.of(Map.of("a",1,"b",2));
+ *
+ * // Creation from iterable of entries
+ * IMap&lt;String,Integer&gt; map = SerializableMap.ofIterable(entries);
+ *
+ * // Direct construction
+ * SerializableMap&lt;String,Integer&gt; map = new SerializableMap&lt;&gt;();
+ * map.put("key",42);
+ * </pre>
+ * </p>
+ */
 public
 class SerializableMap<K,V>
     extends HashMap<K,V>

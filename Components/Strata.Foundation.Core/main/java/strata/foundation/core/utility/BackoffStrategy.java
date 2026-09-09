@@ -1,9 +1,22 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // BackoffStrategy.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
+/**
+ * <p>
+ * Enumerates the strategies available to {@link IRetryExecutor} for
+ * calculating the delay between successive retry attempts.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IRetryExecutor executor =
+ *     new BasicRetryExecutor().setBackoffStrategy(BackoffStrategy.EXPONENTIAL);
+ * </pre>
+ * </p>
+ */
 public
 enum BackoffStrategy
 {

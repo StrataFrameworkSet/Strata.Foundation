@@ -10,6 +10,34 @@ import java.io.ObjectOutputStream;
 import java.io.Serial;
 import java.util.*;
 
+/**
+ * <p>
+ * Implementation of {@link IMultiMap} that stores values in
+ * {@link java.util.List} collections, preserving insertion order
+ * and allowing duplicate values per key.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * IMultiMap&lt;String,Integer&gt; map = new ListValuedMultiMap&lt;&gt;();
+ *
+ * // Adding values (duplicates preserved)
+ * map.put("a",1).put("a",2).put("a",1);
+ * Collection&lt;Integer&gt; values = map.get("a"); // [1, 2, 1]
+ *
+ * // Copy construction
+ * IMultiMap&lt;String,Integer&gt; copy = new ListValuedMultiMap&lt;&gt;(map);
+ * </pre>
+ * </p>
+ */
 public
 class ListValuedMultiMap<K,V>
     extends AbstractMultiMap<K,V>

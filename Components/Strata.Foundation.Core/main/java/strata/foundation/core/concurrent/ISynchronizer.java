@@ -4,12 +4,31 @@
 
 package strata.foundation.core.concurrent;
 
-/****************************************************************************
- * Provides a simplified interface for doing read and write lock
- * synchronization using a multiple reader/single writer access
- * pattern.
+/**
+ * <p>
+ * Provides a simplified interface for read and write lock
+ * synchronization using a multiple reader/single writer access pattern.
+ * See: <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Using with ReadLock/WriteLock (try-with-resources)
+ * ISynchronizer sync = new ReadWriteLockSynchronizer();
+ *
+ * try (ReadLock lock = new ReadLock(sync))
+ * {
+ *     // read shared state
+ * }
+ *
+ * try (WriteLock lock = new WriteLock(sync))
+ * {
+ *     // modify shared state
+ * }
+ * </pre>
+ * </p>
  */
-public 
+public
 interface ISynchronizer
 {
 	/************************************************************************

@@ -7,6 +7,32 @@ package strata.foundation.core.collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * <p>
+ * An {@link java.util.Iterator} that cycles endlessly over an
+ * {@link Iterable}, restarting from the beginning each time
+ * the underlying iterator is exhausted.
+ * See: <a href="https://en.wikipedia.org/wiki/Circular_buffer">Circular buffer (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * CircularIterator&lt;String&gt; iter =
+ *     CircularIterator.of(List.of("a","b","c"));
+ *
+ * // Cycling iteration
+ * iter.next(); // "a"
+ * iter.next(); // "b"
+ * iter.next(); // "c"
+ * iter.next(); // "a" (cycles back)
+ * </pre>
+ * </p>
+ */
 public
 class CircularIterator<T>
     implements Iterator<T>

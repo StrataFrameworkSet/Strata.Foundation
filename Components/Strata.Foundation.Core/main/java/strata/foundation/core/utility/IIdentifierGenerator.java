@@ -1,15 +1,27 @@
-// ##########################################################################
-// # File Name: IIdentifierGenerator.java
-// # Copyright: 2016, SomethingPay, LLC. All Rights Reserved.
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
-/****************************************************************************
- * Generates numeric and string-based identifiers.
- * 
+/**
+ * <p>
+ * Generates numeric and string-based identifiers. Implementations may
+ * generate identifiers sequentially, randomly, or by any other scheme,
+ * optionally bounding numeric identifiers to a given interval or
+ * constraining string identifiers to a given length.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IIdentifierGenerator generator = ...;
+ *
+ * Integer id     = generator.getNextIntegerId();
+ * Integer capped = generator.getNextIntegerId(100);
+ * String  token  = generator.getNextStringId(16);
+ * </pre>
+ * </p>
  */
-public 
+public
 interface IIdentifierGenerator
 {
     /************************************************************************
@@ -88,4 +100,4 @@ interface IIdentifierGenerator
     getNextStringId(int length);
 }
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

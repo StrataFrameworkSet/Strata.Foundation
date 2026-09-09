@@ -7,6 +7,30 @@ package strata.foundation.core.value;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * <p>
+ * A mutable <a href="https://en.wikipedia.org/wiki/Builder_pattern">builder</a>
+ * for incrementally assembling a {@link PersonName}. Each {@code setXxx}
+ * method returns {@code this}, allowing calls to be chained fluently, and
+ * {@code hasXxx}/{@code getXxx} accessors let callers inspect the fields that
+ * have been set so far before calling {@link #build()} to produce the
+ * resulting immutable {@link PersonName}. A first name and last name must be
+ * set before {@link #build()} is called.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PersonName name =
+ *     new PersonNameBuilder()
+ *         .setTitle("Dr.")
+ *         .setFirstName("Jane")
+ *         .setMiddleName("Q.")
+ *         .setLastName("Doe")
+ *         .setSuffix("Jr.")
+ *         .build();
+ * </pre>
+ * </p>
+ */
 public
 class PersonNameBuilder
 {

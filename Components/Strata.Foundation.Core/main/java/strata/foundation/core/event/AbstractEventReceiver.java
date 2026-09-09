@@ -6,6 +6,30 @@ package strata.foundation.core.event;
 
 import java.util.Optional;
 
+/**
+ * <p>
+ * Abstract base implementation of {@link IEventReceiver} providing
+ * listener set management (attach, detach, has) while leaving
+ * event delivery lifecycle (start, stop listening) to subclasses.
+ * See: <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <E>} - event type</li>
+ * <li>{@code <L>} - listener type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Subclass usage
+ * IEventReceiver&lt;String,IEventListener&lt;String&gt;&gt; receiver =
+ *     new MyEventReceiver();
+ * receiver.startListening(event -&gt; process(event));
+ * </pre>
+ * </p>
+ */
 public abstract
 class AbstractEventReceiver<E,L extends IEventListener<E>>
     implements IEventReceiver<E,L>

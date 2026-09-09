@@ -9,6 +9,28 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.function.*;
 
+/**
+ * <p>
+ * Implementation of {@link java.util.concurrent.CompletionStage} that
+ * is backed by a deferred {@link java.util.function.Supplier},
+ * resolving the supplied value into the completable future pipeline.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code T} - result type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Async supply with deferred resolution
+ * SupplierBasedCompletableFuture&lt;String&gt; future =
+ *     SupplierBasedCompletableFuture.supplyAsync(() -&gt; () -&gt; "result");
+ *
+ * // Compose with CompletionStage API
+ * future.thenAccept(value -&gt; System.out.println(value));
+ * </pre>
+ * </p>
+ */
 public
 class SupplierBasedCompletableFuture<T>
     implements CompletionStage<T>

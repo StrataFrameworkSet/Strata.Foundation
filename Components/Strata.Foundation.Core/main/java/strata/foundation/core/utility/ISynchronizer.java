@@ -1,40 +1,37 @@
-// ##########################################################################
-// # File Name:	ISynchronizer.java
-// #
-// # Copyright:	2011, Sapientia Systems, LLC. All Rights Reserved.
-// #
-// # License:	This file is part of the StrataCommon Framework.
-// #
-// #   			The StrataCommon Framework is free software: you 
-// #			can redistribute it and/or modify it under the terms of 
-// #			the GNU Lesser General Public License as published by
-// #    		the Free Software Foundation, either version 3 of the 
-// #			License, or (at your option) any later version.
-// #
-// #    		The StrataCommon Framework is distributed in the 
-// #			hope that it will be useful, but WITHOUT ANY WARRANTY; 
-// #			without even the implied warranty of MERCHANTABILITY or 
-// #			FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser 
-// #			General Public License for more details.
-// #
-// #    		You should have received a copy of the GNU Lesser 
-// #			General Public License along with the StrataCommon
-// #			Framework. If not, see http://www.gnu.org/licenses/.
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
-/****************************************************************************
- * Provides a simplified interface for doing read and write lock
- * synchronization using a multiple reader/single writer access
- * pattern.
- * 
- * @author 		
- *     Sapientia Systems
- * @conventions	
- *     <a href="{@docRoot}/NamingConventions.html">Naming Conventions</a>
+/**
+ * <p>
+ * Provides a simplified interface for performing read and write lock
+ * synchronization using a multiple-reader/single-writer access pattern.
+ * A <b>read lock</b> allows multiple concurrent readers to access shared
+ * objects without interfering with one another, while a <b>write lock</b>
+ * allows only a single writer to be active at a time, excluding all other
+ * readers and writers. See the
+ * <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">readers-writer
+ * lock</a> pattern.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * ISynchronizer synchronizer = ...;
+ *
+ * synchronizer.lockForReading();
+ * try
+ * {
+ *     // read shared state
+ * }
+ * finally
+ * {
+ *     synchronizer.unlockFromReading();
+ * }
+ * </pre>
+ * </p>
  */
-public 
+public
 interface ISynchronizer
 {
 	/************************************************************************
@@ -82,4 +79,4 @@ interface ISynchronizer
 }
 
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // StoppableBlockingQueue.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -14,6 +14,32 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * <p>
+ * Implementation of {@link IBlockingQueue} that supports graceful
+ * shutdown via poison-pill {@link StopContext} elements, wrapping
+ * a standard {@link java.util.concurrent.BlockingQueue}.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation and lifecycle
+ * StoppableBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
+ * queue.start();
+ *
+ * // Usage
+ * queue.put("message");
+ * String msg = queue.take();
+ *
+ * // Graceful stop
+ * queue.stop();
+ * </pre>
+ * </p>
+ */
 public
 class StoppableBlockingQueue<T>
     implements IBlockingQueue<T>

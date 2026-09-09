@@ -10,6 +10,28 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.function.*;
 
+/**
+ * <p>
+ * Implementation of {@link java.util.concurrent.CompletionStage} that
+ * bridges an {@link IBlockingBuffer} to the completable future API,
+ * allowing blocking buffer results to be composed asynchronously.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - result type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Async supply via blocking buffer
+ * BlockingBufferBasedCompletableFuture&lt;String&gt; future =
+ *     BlockingBufferBasedCompletableFuture.supplyAsync(() -&gt; "result");
+ *
+ * // Compose with CompletionStage API
+ * future.thenAccept(value -&gt; System.out.println(value));
+ * </pre>
+ * </p>
+ */
 public
 class BlockingBufferBasedCompletableFuture<T>
     implements CompletionStage<T>

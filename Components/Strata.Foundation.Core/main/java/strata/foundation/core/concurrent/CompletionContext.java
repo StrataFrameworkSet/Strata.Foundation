@@ -13,6 +13,32 @@ import java.util.Optional;
 import java.util.concurrent.CompletionException;
 import java.util.function.Consumer;
 
+/**
+ * <p>
+ * Mutable context that tracks the result, exception, and timing
+ * of an asynchronous completion, supporting fluent mutation and
+ * combination.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - result type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation and timing
+ * CompletionContext&lt;String&gt; ctx = CompletionContext.of("result");
+ * ctx.start();
+ * // ... do work ...
+ * ctx.stop();
+ * Duration elapsed = ctx.getCompletionTime();
+ *
+ * // Result access
+ * Optional&lt;String&gt; result = ctx.getResult();
+ * boolean hasError = ctx.hasException();
+ * </pre>
+ * </p>
+ */
 public
 class CompletionContext<T>
 {

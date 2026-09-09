@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // CompletedResult.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -12,6 +12,33 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Result container that holds either a successful value or an exception,
+ * implementing {@link java.util.function.Supplier} for value access.
+ * Supports monadic composition via {@code map} and {@code flatMap}.
+ * See: <a href="https://en.wikipedia.org/wiki/Result_type">Result type (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - result value type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Success
+ * CompletedResult&lt;String&gt; success = CompletedResult.of("hello");
+ * String value = success.get();
+ *
+ * // Failure
+ * CompletedResult&lt;String&gt; failure = CompletedResult.of(new RuntimeException("oops"));
+ * failure.ifExceptionPresent(ex -&gt; ex.printStackTrace());
+ *
+ * // Monadic mapping
+ * CompletedResult&lt;Integer&gt; mapped = success.map(String::length);
+ * </pre>
+ * </p>
+ */
 public
 class CompletedResult<T>
     implements Supplier<T>

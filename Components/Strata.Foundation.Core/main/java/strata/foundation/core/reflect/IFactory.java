@@ -7,6 +7,21 @@ package strata.foundation.core.reflect;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * <p>
+ * Creates instances of registered types by locating and invoking a
+ * {@link Constructor} associated with each type, implementing the
+ * <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory method pattern</a>.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IFactory factory = new SimpleFactory();
+ * factory.insertDefaultConstructor(Widget.class);
+ * Widget widget = factory.create(Widget.class);
+ * </pre>
+ * </p>
+ */
 public
 interface IFactory
 {

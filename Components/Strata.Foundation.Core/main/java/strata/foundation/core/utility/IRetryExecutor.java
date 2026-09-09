@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // IRetryExecutor.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -9,6 +9,28 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Defines an executor that retries a unit of work when it fails, according
+ * to a configurable maximum number of attempts, a delay between attempts,
+ * and a {@link BackoffStrategy} used to grow that delay across successive
+ * retries. Work can be supplied as a {@link Runnable}, a {@link Callable},
+ * a {@link Consumer}, a {@link Supplier}, or a {@link Function}, letting
+ * callers retry actions that consume input, produce output, or both.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IRetryExecutor executor = ...;
+ * executor.setMaxAttempts(3)
+ *         .setRetryDelay(100)
+ *         .setBackoffStrategy(BackoffStrategy.EXPONENTIAL)
+ *         .setBackoffFactor(2.0);
+ *
+ * String result = executor.executeCall(() -&gt; callRemoteService());
+ * </pre>
+ * </p>
+ */
 public
 interface IRetryExecutor
 {

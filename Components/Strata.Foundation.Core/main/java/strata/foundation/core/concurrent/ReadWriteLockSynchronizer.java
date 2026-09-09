@@ -7,12 +7,32 @@ package strata.foundation.core.concurrent;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/****************************************************************************
- * Implements the {@code ISynchronizer} interface by wrapping
- * the standard {@code ReadWriteLock}.
+/**
+ * <p>
+ * Implementation of {@link ISynchronizer} that wraps a standard
+ * {@link java.util.concurrent.locks.ReadWriteLock} for multiple
+ * reader/single writer synchronization.
+ * See: <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Default construction (uses ReentrantReadWriteLock)
+ * ISynchronizer sync = new ReadWriteLockSynchronizer();
+ *
+ * // Custom lock
+ * ISynchronizer sync = new ReadWriteLockSynchronizer(myLock);
+ *
+ * // Usage with try-with-resources
+ * try (ReadLock lock = new ReadLock(sync))
+ * {
+ *     // read shared state
+ * }
+ * </pre>
+ * </p>
  */
-public 
-class ReadWriteLockSynchronizer 
+public
+class ReadWriteLockSynchronizer
 	implements ISynchronizer
 {
 	private final ReadWriteLock itsLock;

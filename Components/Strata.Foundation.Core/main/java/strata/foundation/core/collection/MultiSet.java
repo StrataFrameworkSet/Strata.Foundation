@@ -12,6 +12,33 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * Mutable implementation of {@link IMultiSet} backed by a
+ * {@link java.util.Map} of elements to
+ * {@link java.util.concurrent.atomic.AtomicLong} multiplicities,
+ * supporting set-algebraic operations and distance computation.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type, must be {@link java.lang.Comparable}
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * IMultiSet&lt;String&gt; bag = new MultiSet&lt;&gt;();
+ *
+ * // Adding elements
+ * bag.add("apple").add("apple",3L);
+ * long count = bag.getMultiplicity("apple"); // 4
+ *
+ * // Cardinality and underlying set
+ * long total         = bag.getCardinality();
+ * long distinctCount = bag.getUnderlyingSize();
+ * </pre>
+ * </p>
+ */
 public
 class MultiSet<T extends Comparable<T>>
     implements IMultiSet<T>

@@ -16,6 +16,50 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * <p>
+ * Base class for replies returned in response to a service request. Carries
+ * the bookkeeping common to every reply: a unique {@link #getReplyId() reply
+ * identifier}, the {@link #getOriginatingRequestId() identifier of the
+ * request} it answers, a {@link #getTimestamp() timestamp}, response
+ * {@link #getHeaders() headers} and {@link #getCookies() cookies}, and an
+ * indication of whether the request {@link #isSuccess() succeeded}, along
+ * with a success or failure message and, when applicable, {@link
+ * ExceptionData} describing a failure. Subclasses add whatever payload is
+ * specific to a given service operation.
+ * </p>
+ * <p>
+ * Instances are mutable via a fluent setter API (each setter returns {@code
+ * this}) and implement {@link Serializable} so replies can cross process or
+ * transport boundaries.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * class GetCustomerReply extends AbstractServiceReply
+ * {
+ *     private Customer customer;
+ *
+ *     GetCustomerReply(AbstractServiceRequest request)
+ *     {
+ *         super(request);
+ *     }
+ *
+ *     GetCustomerReply setCustomer(Customer customer)
+ *     {
+ *         this.customer = customer;
+ *         return this;
+ *     }
+ * }
+ *
+ * GetCustomerReply reply =
+ *     new GetCustomerReply(request)
+ *         .setCustomer(customer)
+ *         .setSuccess(true)
+ *         .setSuccessMessage("Customer found");
+ * </pre>
+ * </p>
+ */
 public abstract
 class AbstractServiceReply
     implements Serializable

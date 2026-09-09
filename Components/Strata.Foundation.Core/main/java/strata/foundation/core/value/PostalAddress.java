@@ -11,6 +11,41 @@ import strata.foundation.core.utility.ICopyable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <p>
+ * An immutable-in-practice value type representing a postal (mailing)
+ * address, composed of a street-level address line, street, city, state
+ * or province, {@code countryCode}, and {@code postalCode}. See
+ * <a href="https://en.wikipedia.org/wiki/Address_(geography)">Address
+ * (geography)</a> for background on the components a postal address
+ * typically carries.
+ * </p>
+ * <p>
+ * All fields are normalized to non-null strings, and instances are ordered
+ * and compared primarily by {@code postalCode}, then by
+ * {@code countryCode}, {@code state}, {@code city}, {@code street}, and
+ * finally {@code address}, each case-insensitively. Copies are produced via
+ * {@link ICopyable#copy()}, and instances implement {@link
+ * java.io.Serializable} and {@link java.lang.Comparable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PostalAddress address =
+ *     new PostalAddress(
+ *         "123",
+ *         "Main St",
+ *         "Springfield",
+ *         "IL",
+ *         "US",
+ *         "62704");
+ *
+ * PostalAddress copy = address.copy();
+ *
+ * boolean sameLocation = address.compareTo(copy) == 0;
+ * </pre>
+ * </p>
+ */
 public
 class PostalAddress
     implements ICopyable,Serializable,Comparable<PostalAddress>

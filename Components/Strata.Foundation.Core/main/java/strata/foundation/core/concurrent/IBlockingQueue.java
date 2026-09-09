@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // IBlockingQueue.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -8,6 +8,32 @@ import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <p>
+ * Stoppable extension of {@link java.util.concurrent.BlockingQueue} that
+ * supports graceful start and stop lifecycle for coordinated shutdown.
+ * See: <a href="https://en.wikipedia.org/wiki/Blocking_(computing)">Blocking (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation and lifecycle
+ * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
+ * queue.start();
+ *
+ * // Producer/consumer usage
+ * queue.put("message");
+ * String msg = queue.take();
+ *
+ * // Graceful shutdown
+ * queue.stop();
+ * </pre>
+ * </p>
+ */
 public
 interface IBlockingQueue<T>
     extends BlockingQueue<T>

@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // PartiallyDrainedException.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -7,6 +7,28 @@ package strata.foundation.core.concurrent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ * Thrown when a drain operation on {@link IBlockingQueue} is
+ * interrupted by a stop, carrying the elements that were
+ * successfully drained before the interruption.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Recover partially drained elements
+ * try
+ * {
+ *     queue.drainTo(sink);
+ * }
+ * catch (PartiallyDrainedException e)
+ * {
+ *     List&lt;String&gt; drained = e.getDrained(String.class);
+ *     // process the elements that were drained
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class PartiallyDrainedException
     extends StoppedException

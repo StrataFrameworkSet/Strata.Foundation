@@ -12,6 +12,34 @@ import strata.foundation.core.utility.ICopyable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <p>
+ * An immutable value type representing a validated phone number. The
+ * supplied string is checked on construction against a set of common
+ * formats: North American Numbering Plan (NANP), ITU-T
+ * <a href="https://en.wikipedia.org/wiki/E.164">E.164</a>, EPP, and a
+ * plain run of 7 to 17 digits, rejecting values that match none of them.
+ * </p>
+ * <p>
+ * Equality is based on the digits-only representation of the number (see
+ * {@link #getDigitsOnly()}), so formatting differences such as
+ * punctuation or whitespace do not affect equality, while ordering via
+ * {@link java.lang.Comparable} compares the original, formatted string
+ * case-insensitively. Copies are produced via {@link ICopyable#copy()},
+ * and instances implement {@link java.io.Serializable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PhoneNumber phoneNumber = PhoneNumber.of("+1 (555) 123-4567");
+ *
+ * PhoneNumber copy = phoneNumber.copy();
+ *
+ * boolean same = phoneNumber.equals(PhoneNumber.of("555-123-4567"));
+ * String digits = phoneNumber.getDigitsOnly();
+ * </pre>
+ * </p>
+ */
 public
 class PhoneNumber
     implements ICopyable, Serializable, Comparable<PhoneNumber>

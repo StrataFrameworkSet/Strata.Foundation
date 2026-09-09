@@ -12,6 +12,29 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * A {@link java.io.Serializable}, {@link java.util.function.Supplier}-based
+ * alternative to {@link java.util.Optional} that may or may not hold a
+ * present value. Provides operations for consuming, transforming, and
+ * falling back on the contained value in a functional style, and can be
+ * converted to a standard {@code Optional} when interoperability is needed.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type of value potentially held by this instance
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IOptionable&lt;String&gt; optionable = ...;
+ *
+ * optionable.ifPresent(value -&gt; System.out.println(value));
+ *
+ * String result = optionable
+ *     .map(String::toUpperCase)
+ *     .orElse("DEFAULT");
+ * </pre>
+ * </p>
+ */
 public
 interface IOptionable<T>
     extends Supplier<T>, Serializable

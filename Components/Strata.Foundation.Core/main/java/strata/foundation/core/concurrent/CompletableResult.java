@@ -1,6 +1,6 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // CompletableResult.java
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.concurrent;
 
@@ -9,6 +9,35 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.function.*;
 
+/**
+ * <p>
+ * Implementation of {@link ICompletableResult} that wraps a
+ * {@link java.util.concurrent.CompletableFuture} to provide
+ * type-safe asynchronous result handling with {@link CompletedResult}
+ * outcomes.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <T>} - result value type</li>
+ * <li>{@code <R>} - completed result type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Asynchronous execution via factory
+ * ICompletableResult&lt;String,CompletedResult&lt;String&gt;&gt; result =
+ *     CompletableResult.supplyAsync(
+ *         CompletableResult::new,
+ *         () -&gt; CompletedResult.of("done"));
+ *
+ * // Blocking join
+ * CompletedResult&lt;String&gt; completed = result.join();
+ * String value = completed.get();
+ * </pre>
+ * </p>
+ */
 public
 class CompletableResult<T,R extends CompletedResult<T>>
     implements ICompletableResult<T,R>

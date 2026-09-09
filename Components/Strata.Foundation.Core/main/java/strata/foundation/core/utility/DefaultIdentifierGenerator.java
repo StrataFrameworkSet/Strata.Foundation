@@ -1,7 +1,6 @@
-// ##########################################################################
-// # File Name: DefaultIdentifierGenerator.java
-// # Copyright: 2016, SomethingPay, LLC. All Rights Reserved.
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+// DefaultIdentifierGenerator.java
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
 
@@ -9,13 +8,23 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.UUID;
 
-/****************************************************************************
- * Default implementation of {@code IIdentifierGenerator} interface by
- * generating random numeric-based identifiers and random UUID string-based
- * identifiers.
- *  
+/**
+ * <p>
+ * Default {@link IIdentifierGenerator} implementation that generates random
+ * numeric-based identifiers using a {@link SecureRandom} source and random
+ * string-based identifiers derived from a {@link UUID}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IIdentifierGenerator generator = new DefaultIdentifierGenerator();
+ *
+ * Integer id   = generator.getNextIntegerId(1000);
+ * String  uuid = generator.getNextStringId();
+ * </pre>
+ * </p>
  */
-public 
+public
 class DefaultIdentifierGenerator
     implements IIdentifierGenerator
 {
@@ -135,4 +144,4 @@ class DefaultIdentifierGenerator
     }
 }
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

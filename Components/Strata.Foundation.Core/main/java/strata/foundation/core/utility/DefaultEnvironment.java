@@ -9,6 +9,23 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Default {@link IEnvironment} implementation that resolves variables from
+ * the operating system environment via {@link System#getenv(String)},
+ * falling back to a configurable set of default values when a variable is
+ * not defined in the environment.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IEnvironment environment =
+ *     new DefaultEnvironment(Map.of("PORT","8080"));
+ *
+ * String port = environment.get("PORT");
+ * </pre>
+ * </p>
+ */
 public
 class DefaultEnvironment
     implements IEnvironment

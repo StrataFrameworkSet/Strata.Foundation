@@ -4,6 +4,28 @@
 
 package strata.foundation.core.value;
 
+/**
+ * <p>
+ * A fluent builder for constructing {@link PostalAddress} instances one
+ * field at a time. Each setter returns {@code this} so calls can be
+ * chained, and any field left unset is passed through as {@code null},
+ * which {@link PostalAddress} then normalizes to an empty string.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PostalAddress address =
+ *     new PostalAddressBuilder()
+ *         .setAddress("123")
+ *         .setStreet("Main St")
+ *         .setCity("Springfield")
+ *         .setState("IL")
+ *         .setCountryCode("US")
+ *         .setPostalCode("62704")
+ *         .build();
+ * </pre>
+ * </p>
+ */
 public
 class PostalAddressBuilder
 {

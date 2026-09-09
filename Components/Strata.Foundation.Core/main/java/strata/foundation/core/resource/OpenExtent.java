@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // OpenExtent.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,24 @@ package strata.foundation.core.resource;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ * Opens an {@link IResource} if needed on construction and closes it if
+ * needed when the extent itself is closed, so the resource is guaranteed to
+ * be open for the lifetime of a try-with-resources block.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <R>} - the type of {@link IResource} being managed
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * try (OpenExtent&lt;FileResource&gt; extent = OpenExtent.of(resource))
+ * {
+ *     // resource is guaranteed to be open here
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class OpenExtent<R extends IResource>
     implements AutoCloseable

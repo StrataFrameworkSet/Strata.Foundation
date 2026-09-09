@@ -12,6 +12,28 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * <p>
+ * Default implementation of {@link IPostalCodeToCountryCodeMapper} that
+ * resolves the set of possible {@link Locale} country codes for a given
+ * postal code using a table of regular expressions, one per country or
+ * group of countries. When a postal code matches more than one country's
+ * pattern, the ambiguity is narrowed using the {@link Locale}'s own
+ * country (if it is among the candidates) and, where a country defines a
+ * specific numeric range for its postal codes, further validated against
+ * that range.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * BasicPostalCodeToCountryCodeMapper mapper =
+ *     new BasicPostalCodeToCountryCodeMapper(Locale.US);
+ *
+ * Set&lt;String&gt; countryCodes = mapper.map("90210");
+ * // countryCodes contains "US"
+ * </pre>
+ * </p>
+ */
 public
 class BasicPostalCodeToCountryCodeMapper
     implements IPostalCodeToCountryCodeMapper

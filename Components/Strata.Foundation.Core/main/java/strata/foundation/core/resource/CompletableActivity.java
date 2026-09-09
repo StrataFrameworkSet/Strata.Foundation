@@ -9,6 +9,24 @@ import strata.foundation.core.concurrent.CompletionException;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ * Ensures an {@link ICompletableResource} is opened before use and closed
+ * afterward, the asynchronous counterpart to {@link OpenExtent} for
+ * resources whose lifecycle operations complete asynchronously.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <R>} - the type of {@link ICompletableResource} being managed
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * try (CompletableActivity&lt;MyResource&gt; activity = CompletableActivity.of(resource))
+ * {
+ *     // use resource once it is confirmed open
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class CompletableActivity<R extends ICompletableResource>
     implements AutoCloseable

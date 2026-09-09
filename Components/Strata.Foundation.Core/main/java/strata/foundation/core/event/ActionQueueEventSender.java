@@ -9,6 +9,26 @@ import strata.foundation.core.action.IActionQueue;
 import strata.foundation.core.concurrent.BlockingBuffer;
 import strata.foundation.core.concurrent.IBlockingBuffer;
 
+/**
+ * <p>
+ * Implementation of {@link IEventSender} that dispatches events
+ * through an {@link strata.foundation.core.action.IActionQueue},
+ * enabling queued sequential event delivery with setup and teardown
+ * support.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <E>} - event type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Send events via action queue
+ * IEventSender&lt;String&gt; sender = new ActionQueueEventSender&lt;&gt;(queue);
+ * ICompletableSendResult&lt;String&gt; result = sender.send("event-data");
+ * </pre>
+ * </p>
+ */
 public
 class ActionQueueEventSender<E>
     implements IEventSender<E>

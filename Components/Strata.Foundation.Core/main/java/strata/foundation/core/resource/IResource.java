@@ -1,9 +1,26 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // IResource.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.resource;
 
+/**
+ * <p>
+ * Represents a resource with an explicit, observable lifecycle, extending
+ * {@link AutoCloseable} to support
+ * <a href="https://en.wikipedia.org/wiki/Resource_management_(computing)">resource management</a>
+ * with distinct open and closed states.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * try (IResource resource = new FileResource(path))
+ * {
+ *     resource.open();
+ * }
+ * </pre>
+ * </p>
+ */
 public
 interface IResource
     extends AutoCloseable

@@ -8,6 +8,35 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * A multiset (bag) that tracks the multiplicity of each element,
+ * supporting set-algebraic operations such as union, intersection,
+ * and symmetric difference, along with distance computation.
+ * See: <a href="https://en.wikipedia.org/wiki/Multiset">Multiset (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type, must be {@link java.lang.Comparable}
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * IMultiSet&lt;String&gt; bag = new MultiSet&lt;&gt;();
+ *
+ * // Adding elements with multiplicity
+ * bag.add("apple").add("apple",3L);
+ *
+ * // Querying
+ * long count     = bag.getMultiplicity("apple");
+ * long totalSize = bag.getCardinality();
+ *
+ * // Set-algebraic operations
+ * IMultiSet&lt;String&gt; union = bag.makeUnionWith(other);
+ * </pre>
+ * </p>
+ */
 public
 interface IMultiSet<T extends Comparable<T>>
     extends Iterable<Pair<T,Long>>, Comparable<IMultiSet<T>>, Serializable

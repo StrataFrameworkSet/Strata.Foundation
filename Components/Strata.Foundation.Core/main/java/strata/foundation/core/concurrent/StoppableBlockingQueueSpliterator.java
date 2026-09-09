@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // StoppableBlockingQueueSpliterator.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -7,6 +7,29 @@ package strata.foundation.core.concurrent;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * <p>
+ * A {@link java.util.Spliterator} over a {@link StoppableBlockingQueue}
+ * that supports sequential traversal of queued elements, terminating
+ * when the queue is stopped.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation from a stoppable queue
+ * StoppableBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
+ * Spliterator&lt;String&gt; spliter =
+ *     new StoppableBlockingQueueSpliterator&lt;&gt;(queue);
+ *
+ * // Sequential traversal
+ * spliter.forEachRemaining(item -&gt; process(item));
+ * </pre>
+ * </p>
+ */
 public
 class StoppableBlockingQueueSpliterator<T>
     implements Spliterator<T>

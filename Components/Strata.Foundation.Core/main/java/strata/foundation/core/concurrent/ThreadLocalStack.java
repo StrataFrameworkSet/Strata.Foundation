@@ -6,6 +6,28 @@ package strata.foundation.core.concurrent;
 
 import java.util.Stack;
 
+/**
+ * <p>
+ * A thread-local {@link java.util.Stack} that maintains a separate
+ * stack per thread using {@link ThreadLocal}.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - element type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Per-thread stack operations
+ * ThreadLocalStack&lt;String&gt; stack = new ThreadLocalStack&lt;&gt;();
+ * stack.push("first");
+ * stack.push("second");
+ *
+ * String top = stack.peek();  // "second"
+ * String pop = stack.pop();   // "second"
+ * </pre>
+ * </p>
+ */
 public
 class ThreadLocalStack<T>
 {

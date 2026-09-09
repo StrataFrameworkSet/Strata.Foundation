@@ -9,6 +9,30 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 
+/**
+ * <p>
+ * Implementation of {@link javax.money.NumberValue} that wraps a
+ * {@link java.math.BigDecimal} to provide numeric value access
+ * for monetary amounts with full precision and type conversion
+ * support.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * BigDecimalValue value = BigDecimalValue.of(new BigDecimal("29.99"));
+ *
+ * // Type conversions
+ * BigDecimal exact  = value.numberValue(BigDecimal.class);
+ * double     approx = value.doubleValue();
+ * int        whole  = value.intValue();
+ *
+ * // Precision and scale
+ * int precision = value.getPrecision();
+ * int scale     = value.getScale();
+ * </pre>
+ * </p>
+ */
 public
 class BigDecimalValue
     extends NumberValue

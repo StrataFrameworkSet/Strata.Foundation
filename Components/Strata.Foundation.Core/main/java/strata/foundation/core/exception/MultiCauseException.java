@@ -8,6 +8,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * <p>
+ * An exception that aggregates multiple underlying causes into a single
+ * {@link java.lang.RuntimeException}. Use this when an operation can fail
+ * for more than one reason at once and the caller needs to be notified of
+ * every failure rather than just the first one encountered.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * List&lt;Throwable&gt; causes = new ArrayList&lt;&gt;();
+ * causes.add(new IllegalStateException("bad state"));
+ * causes.add(new IllegalArgumentException("bad argument"));
+ *
+ * throw new MultiCauseException("Validation failed",causes);
+ * </pre>
+ * </p>
+ */
 public
 class MultiCauseException
     extends RuntimeException

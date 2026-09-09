@@ -1,13 +1,31 @@
-// ##########################################################################
-// # File Name:	JsonObjectMapper.java
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+// NullMapper.java
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.mapper;
 
-/****************************************************************************
- * 
+/**
+ * <p>
+ * Implementation of {@link IObjectMapper} that performs no conversion
+ * at all: the payload type is the same as the object type, and mapping
+ * in either direction is simply an identity operation (with a cast on
+ * the way back to the requested subtype). Useful as a no-op mapper
+ * where an {@link IObjectMapper} is required by an API but no actual
+ * transformation of the value is needed.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type of object passed through unchanged by this mapper
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * NullMapper&lt;Customer&gt; mapper = new NullMapper&lt;&gt;();
+ *
+ * Customer payload = mapper.toPayload(customer);
+ * // payload == customer
+ * </pre>
+ * </p>
  */
-public 
+public
 class NullMapper<T>
     implements IObjectMapper<T,T>
 {
@@ -41,4 +59,4 @@ class NullMapper<T>
 
 }
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

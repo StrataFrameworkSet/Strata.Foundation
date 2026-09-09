@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // SimpleFactory.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,20 @@ package strata.foundation.core.reflect;
 
 import java.lang.reflect.Constructor;
 
+/**
+ * <p>
+ * Concrete {@link AbstractFactory} that supports registering both default
+ * and parameterized {@link Constructor Constructors} for a type.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * SimpleFactory factory = new SimpleFactory();
+ * factory.insertDefaultConstructor(Widget.class);
+ * Widget widget = factory.create(Widget.class);
+ * </pre>
+ * </p>
+ */
 public
 class SimpleFactory
     extends AbstractFactory

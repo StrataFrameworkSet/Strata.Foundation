@@ -7,8 +7,29 @@ package strata.foundation.core.action;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/*****************************************************************************
- * Standard implementation of {@code IActionQueue} interface.
+/**
+ * <p>
+ * Standard implementation of the {@code IActionQueue} interface that
+ * provides an ordered queue of {@code IAction} instances with
+ * setup and teardown registration and sequential execution
+ * using {@code ConcurrentLinkedQueue} for thread-safe action management.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Default construction
+ * IActionQueue queue = new StandardActionQueue();
+ *
+ * // Construction with custom queue
+ * IActionQueue queue = new StandardActionQueue(new LinkedList<>());
+ *
+ * // Register setup/teardown and execute
+ * queue
+ *     .register(() -> openConnection(),() -> closeConnection())
+ *     .insert(() -> processData())
+ *     .execute();
+ * </pre>
+ * </p>
  */
 public
 class StandardActionQueue
@@ -18,18 +39,12 @@ class StandardActionQueue
     private final Queue<IAction> teardowns;
     private final Queue<IAction> actions;
 
-    /*************************************************************************
-     * Creates a new instance of {@code StandardMessageQueue<T,M>}.
-     */
     public
     StandardActionQueue()
     {
         this(new ConcurrentLinkedQueue<>());
     }
 
-    /*************************************************************************
-     * Creates a new instance of {@code StandardMessageQueue<T,M>}.
-     */
     public
     StandardActionQueue(Queue<IAction> imp)
     {
@@ -38,11 +53,6 @@ class StandardActionQueue
         actions = imp;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     * @param setup
-     * @param teardown
-     */
     @Override
     public IActionQueue
     register(IAction setup,IAction teardown)
@@ -52,9 +62,6 @@ class StandardActionQueue
         return this;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IActionQueue
     setUp()
@@ -66,9 +73,6 @@ class StandardActionQueue
         return this;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IActionQueue
     tearDown()
@@ -80,9 +84,6 @@ class StandardActionQueue
         return this;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IActionQueue
     insert(IAction action)
@@ -91,9 +92,6 @@ class StandardActionQueue
         return this;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IAction
     remove()
@@ -101,9 +99,6 @@ class StandardActionQueue
         return actions.remove();
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IActionQueue
     clear()
@@ -112,9 +107,6 @@ class StandardActionQueue
         return this;
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public IActionQueue
     execute() throws Exception
@@ -136,9 +128,6 @@ class StandardActionQueue
         }
     }
 
-    /*************************************************************************
-     * {@inheritDoc}
-     */
     @Override
     public boolean
     isEmpty()

@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // NullRetryExecutor.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -9,6 +9,25 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * A null-object implementation of {@link IRetryExecutor}, following the
+ * <a href="https://en.wikipedia.org/wiki/Null_object_pattern">Null object pattern (Wikipedia)</a>.
+ * Every configuration setter is a no-op that returns {@code this}, every
+ * getter returns a default/zero value, and every {@code execute*} method
+ * simply invokes the given action exactly once, immediately, with no
+ * retrying, delay, or backoff applied. It is useful as a default or
+ * "no retry" strategy wherever an {@link IRetryExecutor} is required but
+ * retry behavior is not desired.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * IRetryExecutor executor = new NullRetryExecutor();
+ * executor.executeRun(() -&gt; System.out.println("runs once, no retries"));
+ * </pre>
+ * </p>
+ */
 public
 class NullRetryExecutor
     implements IRetryExecutor

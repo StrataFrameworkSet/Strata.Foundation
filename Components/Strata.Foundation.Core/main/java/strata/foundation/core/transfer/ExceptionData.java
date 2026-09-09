@@ -7,6 +7,35 @@ package strata.foundation.core.transfer;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/**
+ * <p>
+ * A serialization-friendly snapshot of a {@link Throwable}, suitable for
+ * conveying failure details across a service boundary (for example, as the
+ * {@code exception} carried on an {@link AbstractServiceReply}) without
+ * requiring the actual exception class to be present on both sides.
+ * Captures the exception's type name, an optional numeric code, its
+ * message, a rendered stack trace, and, recursively, the {@link #getCause()
+ * cause} chain.
+ * </p>
+ * <p>
+ * Instances are typically produced with the {@link #of(Throwable)} factory
+ * method rather than populated field-by-field.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * try
+ * {
+ *     doWork();
+ * }
+ * catch (Exception e)
+ * {
+ *     ExceptionData data = ExceptionData.of(e);
+ *     reply.setException(data).setSuccess(false);
+ * }
+ * </pre>
+ * </p>
+ */
 public
 class ExceptionData
 {

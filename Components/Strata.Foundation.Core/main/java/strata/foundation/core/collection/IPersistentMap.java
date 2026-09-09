@@ -8,6 +8,32 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * A persistent map that preserves previous versions on mutation,
+ * returning a new map instance for each modification.
+ * See: <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">Persistent data structure (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation and mutation
+ * IPersistentMap&lt;String,Integer&gt; map1 = new FilePersistentMap&lt;&gt;(file);
+ * IPersistentMap&lt;String,Integer&gt; map2 = map1.put("key",42);
+ *
+ * // Retrieval
+ * Optional&lt;Integer&gt; value = map2.get("key");
+ * boolean has = map2.containsKey("key");
+ * </pre>
+ * </p>
+ */
 public
 interface IPersistentMap<K,V>
 {

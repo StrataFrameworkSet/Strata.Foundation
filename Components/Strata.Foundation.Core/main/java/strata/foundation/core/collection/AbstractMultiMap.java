@@ -9,6 +9,31 @@ import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 import java.util.Map.Entry;
 
+/**
+ * <p>
+ * Abstract base implementation of {@link IMultiMap} backed by a
+ * {@link java.util.Map} of keys to value collections, providing
+ * common multimap operations while delegating value-collection
+ * creation to subclasses via template methods.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Extend to provide list-valued collections
+ * IMultiMap&lt;String,Integer&gt; map = new ListValuedMultiMap&lt;&gt;();
+ *
+ * // Extend to provide set-valued collections
+ * IMultiMap&lt;String,Integer&gt; map = new SetValuedMultiMap&lt;&gt;();
+ * </pre>
+ * </p>
+ */
 public abstract
 class AbstractMultiMap<K,V>
     implements IMultiMap<K,V>

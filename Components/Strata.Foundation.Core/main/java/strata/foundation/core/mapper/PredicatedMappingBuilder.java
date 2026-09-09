@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // PredicatedMappingBuilder.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -8,6 +8,34 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * <p>
+ * Fluent builder for registering one or more predicated mapping rules,
+ * for a single input/output type combination, with a
+ * {@link PredicatedMapper}. Instances are obtained from
+ * {@link PredicatedMapper#beginTypeMap(Class,Class)} or from
+ * {@link #beginTypeMap(Class,Class)} to chain into a new type
+ * combination, and {@link #addMapping(Predicate,Function)} may be
+ * called any number of times to register additional predicate and
+ * mapping function pairs before returning to the parent
+ * {@link PredicatedMapper} via {@link #toMapper()}.
+ * </p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <I>} - the input type this builder's mapping rules accept</li>
+ * <li>{@code <O>} - the output type this builder's mapping rules produce</li>
+ * </ul>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * PredicatedMapper mapper =
+ *     new PredicatedMapper()
+ *         .beginTypeMap(String.class,Integer.class)
+ *         .addMapping(s -&gt; s.matches("\\d+"),Integer::parseInt)
+ *         .toMapper();
+ * </pre>
+ * </p>
+ */
 public
 class PredicatedMappingBuilder<I,O>
 {

@@ -15,6 +15,29 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * <p>
+ * Implementation of {@link ICompletableSendResult} that uses an
+ * {@link strata.foundation.core.concurrent.IBlockingBuffer} to
+ * bridge blocking event send operations into the
+ * {@link java.util.concurrent.CompletionStage} API.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <E>} - event type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Blocking buffer backed send result
+ * ICompletableSendResult&lt;String&gt; result =
+ *     BlockingBufferBasedCompletableSendResult.supplyAsync(
+ *         () -&gt; SendResult.of("event"));
+ *
+ * SendResult&lt;String&gt; outcome = Awaiter.await(result);
+ * </pre>
+ * </p>
+ */
 public
 class BlockingBufferBasedCompletableSendResult<E>
     implements ICompletableSendResult<E>

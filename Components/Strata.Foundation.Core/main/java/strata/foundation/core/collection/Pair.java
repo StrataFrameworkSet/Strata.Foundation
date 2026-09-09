@@ -8,6 +8,29 @@ import strata.foundation.core.utility.HashCodeBuilder;
 
 import java.util.Objects;
 
+/**
+ * <p>
+ * Container for a pair of data elements.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <F>} - first element of Pair</li>
+ * <li>{@code <S>} - second element of Pair</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * Pair&lt;Integer,String&gt; foo = Pair.of(1,"foo");
+ *
+ * // Selectors
+ * Integer first = foo.getFirst();
+ * String second = foo.getSecond();
+ * </pre>
+ * </p>
+ */
 public 
 class Pair<F,S>
 {

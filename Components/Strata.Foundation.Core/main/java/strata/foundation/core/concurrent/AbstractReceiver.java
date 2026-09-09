@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // AbstractReceiver.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -7,6 +7,29 @@ package strata.foundation.core.concurrent;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * <p>
+ * Abstract base implementation of {@link IReceiver} providing
+ * consumer management (set, get, has) while leaving consumption
+ * lifecycle (start, stop, isConsuming) to subclasses.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <T>} - message type</li>
+ * <li>{@code <C>} - consumer type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Subclass usage
+ * IReceiver&lt;String,Consumer&lt;String&gt;&gt; receiver =
+ *     new BlockingQueueReceiver&lt;&gt;(queue);
+ * receiver.startConsuming(msg -&gt; process(msg));
+ * </pre>
+ * </p>
+ */
 public abstract
 class AbstractReceiver<T,C extends Consumer<T>>
     implements IReceiver<T,C>

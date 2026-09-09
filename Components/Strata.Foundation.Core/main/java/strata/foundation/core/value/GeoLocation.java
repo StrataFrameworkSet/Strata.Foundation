@@ -10,6 +10,33 @@ import strata.foundation.core.utility.HashCodeBuilder;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * An immutable value type representing a geographic coordinate as a
+ * {@code latitude}/{@code longitude} pair. See
+ * <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">
+ * Geographic coordinate system</a> for background on how latitude and
+ * longitude describe a position on Earth.
+ * </p>
+ * <p>
+ * Equality compares both coordinates within a small epsilon to tolerate
+ * floating-point imprecision, while ordering via {@link
+ * java.lang.Comparable} compares {@code latitude} first and then
+ * {@code longitude}, using exact {@link java.lang.Double#compare(double,
+ * double)} semantics. Instances implement {@link java.io.Serializable}.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * GeoLocation location = GeoLocation.of(39.7817, -89.6501);
+ *
+ * double latitude = location.getLatitude();
+ * double longitude = location.getLongitude();
+ *
+ * int order = location.compareTo(GeoLocation.of(34.0522, -118.2437));
+ * </pre>
+ * </p>
+ */
 public
 class GeoLocation
     implements Serializable, Comparable<GeoLocation>

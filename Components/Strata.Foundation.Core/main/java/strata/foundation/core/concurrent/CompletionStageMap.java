@@ -11,6 +11,32 @@ import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * <p>
+ * Map of pending {@link java.util.concurrent.CompletionStage} instances
+ * keyed for tracking in-flight asynchronous operations with support
+ * for bulk joining.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - result value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Track pending operations
+ * CompletionStageMap&lt;String,Integer&gt; pending = new CompletionStageMap&lt;&gt;();
+ * pending.put("op1",CompletableFuture.supplyAsync(() -&gt; 42));
+ * pending.put("op2",CompletableFuture.supplyAsync(() -&gt; 99));
+ *
+ * // Join all pending operations
+ * Map&lt;String,Integer&gt; results = pending.joinAll();
+ * </pre>
+ * </p>
+ */
 public
 class CompletionStageMap<K,V>
     implements Serializable

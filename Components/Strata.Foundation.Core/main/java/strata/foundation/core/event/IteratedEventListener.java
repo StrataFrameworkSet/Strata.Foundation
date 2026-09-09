@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // IteratedEventListener.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,31 @@ package strata.foundation.core.event;
 
 import java.util.Collection;
 
+/**
+ * <p>
+ * Abstract {@link IEventListener} that iterates over a collection
+ * derived from the event, invoking a handler for each element.
+ * </p>
+ * <p>
+ * <h4>Type Parameter</h4>
+ * {@code <E>} - event type
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Subclass that processes each item in an event's collection
+ * IteratedEventListener&lt;OrderEvent&gt; listener =
+ *     new IteratedEventListener&lt;&gt;()
+ *     {
+ *         protected Collection&lt;?&gt; getCollection(OrderEvent event)
+ *         { return event.getItems(); }
+ *
+ *         protected void onElement(Object item)
+ *         { process(item); }
+ *     };
+ * </pre>
+ * </p>
+ */
 public abstract
 class IteratedEventListener<E>
     implements IEventListener<E>

@@ -11,6 +11,32 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * <p>
+ * File-backed implementation of {@link IPersistentMap} that persists
+ * key-value entries to a {@link java.io.RandomAccessFile} with an
+ * in-memory index for efficient lookups.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * RandomAccessFile file = new RandomAccessFile("data.bin","rw");
+ * IPersistentMap&lt;String,Integer&gt; map = new FilePersistentMap&lt;&gt;(file);
+ *
+ * // Storage and retrieval
+ * map = map.put("key",42);
+ * Optional&lt;Integer&gt; value = map.get("key");
+ * </pre>
+ * </p>
+ */
 public
 class FilePersistentMap<K,V>
     implements IPersistentMap<K,V>

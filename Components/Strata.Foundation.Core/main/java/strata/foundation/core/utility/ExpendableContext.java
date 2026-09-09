@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // ExpendableContext.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,24 @@ package strata.foundation.core.utility;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Holds the value and remaining-use count backing an {@link Expendable},
+ * tracking how many times the value has been retrieved and whether it has
+ * been fully consumed.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type of the held value
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * ExpendableContext&lt;String&gt; context = new ExpendableContext&lt;&gt;("value",3);
+ *
+ * context.decrementRemaining();
+ * boolean expended = context.isExpended();
+ * </pre>
+ * </p>
+ */
 class ExpendableContext<T>
     implements Serializable
 {

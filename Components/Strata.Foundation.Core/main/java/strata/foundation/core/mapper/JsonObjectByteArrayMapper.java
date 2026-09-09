@@ -1,6 +1,6 @@
-// ##########################################################################
-// # File Name:	JsonObjectMapper.java
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////
+// JsonObjectByteArrayMapper.java
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.mapper;
 
@@ -14,6 +14,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * <p>
+ * Implementation of {@link IObjectMapper} that converts objects of type
+ * {@code T} (or its subtypes) to and from a JSON {@code byte[]}
+ * payload, using a Jackson {@link ObjectMapper} configured with
+ * upper-camel-case property naming and polymorphic type information
+ * embedded in an {@code @class} property. Legacy {@code __type} and
+ * {@code $type} type-discriminator properties, along with any
+ * caller-supplied type name substitutions, are rewritten to
+ * {@code @class} before deserialization so that payloads produced by
+ * other serializers can still be read.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the upper bound of the object types this mapper converts
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * JsonObjectByteArrayMapper&lt;Customer&gt; mapper =
+ *     new JsonObjectByteArrayMapper&lt;&gt;();
+ *
+ * byte[] payload = mapper.toPayload(customer);
+ * Customer customer = mapper.toObject(Customer.class,payload);
+ * </pre>
+ * </p>
+ */
 public
 class JsonObjectByteArrayMapper<T>
     implements IObjectMapper<T,byte[]>
@@ -109,4 +134,4 @@ class JsonObjectByteArrayMapper<T>
     }
 }
 
-// ##########################################################################
+//////////////////////////////////////////////////////////////////////////////

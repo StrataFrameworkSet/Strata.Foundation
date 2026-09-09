@@ -13,6 +13,34 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * <p>
+ * Implementation of {@link IMultiMap} that stores values in
+ * {@link java.util.Set} collections, ensuring unique values
+ * per key.
+ * </p>
+ * <p>
+ * <h4>Type Parameters</h4>
+ * <ul>
+ * <li>{@code <K>} - key type</li>
+ * <li>{@code <V>} - value type</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation
+ * IMultiMap&lt;String,Integer&gt; map = new SetValuedMultiMap&lt;&gt;();
+ *
+ * // Adding values (duplicates ignored)
+ * map.put("a",1).put("a",2).put("a",1);
+ * Collection&lt;Integer&gt; values = map.get("a"); // [1, 2]
+ *
+ * // Copy construction
+ * IMultiMap&lt;String,Integer&gt; copy = new SetValuedMultiMap&lt;&gt;(map);
+ * </pre>
+ * </p>
+ */
 public
 class SetValuedMultiMap<K,V>
     extends AbstractMultiMap<K,V>

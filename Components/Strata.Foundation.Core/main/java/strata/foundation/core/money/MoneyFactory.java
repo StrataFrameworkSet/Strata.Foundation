@@ -7,6 +7,29 @@ package strata.foundation.core.money;
 import javax.money.*;
 import java.math.BigDecimal;
 
+/**
+ * <p>
+ * Implementation of {@link javax.money.MonetaryAmountFactory} that
+ * creates {@link Money} instances through a fluent builder pattern,
+ * allowing currency, number, and monetary context to be set
+ * independently before creation.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Creation via Money.getFactory()
+ * Money amount = Money.of(BasicCurrencyUnit.USD,10.00);
+ * Money copy   = amount.getFactory().setNumber(25.00).create();
+ *
+ * // Direct usage
+ * MoneyFactory factory = new MoneyFactory();
+ * Money result = factory
+ *     .setCurrency("USD")
+ *     .setNumber(49.99)
+ *     .create();
+ * </pre>
+ * </p>
+ */
 public
 class MoneyFactory
     implements MonetaryAmountFactory<Money>

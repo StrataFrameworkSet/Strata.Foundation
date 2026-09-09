@@ -7,6 +7,28 @@ package strata.foundation.core.concurrent;
 import java.time.Duration;
 import java.util.concurrent.*;
 
+/**
+ * <p>
+ * An {@link java.util.concurrent.Executor} decorator that limits
+ * concurrency using a {@link java.util.concurrent.Semaphore},
+ * blocking submission when the maximum number of concurrent
+ * tasks is reached.
+ * See: <a href="https://en.wikipedia.org/wiki/Semaphore_(programming)">Semaphore (Wikipedia)</a>
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Limit to 5 concurrent tasks with 30s timeout
+ * BoundedExecutor executor =
+ *     BoundedExecutor.of(5,Duration.ofSeconds(30));
+ *
+ * executor.execute(() -&gt; doWork());
+ *
+ * // Check available capacity
+ * int available = executor.getAvailablePermits();
+ * </pre>
+ * </p>
+ */
 public
 class BoundedExecutor
     implements Executor

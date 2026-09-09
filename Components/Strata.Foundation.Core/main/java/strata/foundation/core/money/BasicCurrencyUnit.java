@@ -1,4 +1,4 @@
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // BasicCurrencyUnit.java
 //////////////////////////////////////////////////////////////////////////////
 
@@ -11,6 +11,32 @@ import java.io.Serializable;
 import java.util.Currency;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Implementation of {@link javax.money.CurrencyUnit} that provides
+ * currency identity by ISO 4217 currency code, numeric code, and
+ * default fraction digits. Includes predefined constants for
+ * commonly used currencies.
+ * </p>
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * // Using predefined constants
+ * CurrencyUnit usd = BasicCurrencyUnit.USD;
+ * CurrencyUnit eur = BasicCurrencyUnit.EUR;
+ *
+ * // Creation from currency code
+ * BasicCurrencyUnit mxn = BasicCurrencyUnit.of("MXN");
+ *
+ * // Creation from java.util.Currency
+ * BasicCurrencyUnit jpy = BasicCurrencyUnit.of(Currency.getInstance("JPY"));
+ *
+ * // Selectors
+ * String code   = usd.getCurrencyCode();
+ * int    digits = usd.getDefaultFractionDigits();
+ * </pre>
+ * </p>
+ */
 public
 class BasicCurrencyUnit
     implements

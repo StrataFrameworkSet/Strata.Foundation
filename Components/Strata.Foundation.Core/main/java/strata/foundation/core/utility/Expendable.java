@@ -15,6 +15,24 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * {@link IOptionable} implementation that wraps a value which may be
+ * retrieved only a limited number of times before it is automatically
+ * treated as empty, useful for representing single-use or rate-limited
+ * resources.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type of the wrapped value
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * Expendable&lt;String&gt; token = Expendable.of("one-time-token",1);
+ *
+ * token.ifPresent(t -&gt; authenticate(t));
+ * </pre>
+ * </p>
+ */
 public
 class Expendable<T>
     implements IOptionable<T>

@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 // TypeLiteral.java
-/// ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.reflect;
 
@@ -9,6 +9,23 @@ import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * <p>
+ * Captures a fully reified generic type at runtime, working around
+ * <a href="https://en.wikipedia.org/wiki/Type_erasure">type erasure</a> by
+ * requiring subclasses to specify the type parameter {@code T} in an
+ * anonymous subclass declaration.
+ * </p>
+ * <h4>Type Parameter</h4>
+ * {@code <T>} - the type captured by this literal
+ * <p>
+ * <h4>Examples</h4>
+ * <pre>
+ * TypeLiteral&lt;List&lt;String&gt;&gt; literal = new TypeLiteral&lt;List&lt;String&gt;&gt;() {};
+ * Type type = literal.getType();
+ * </pre>
+ * </p>
+ */
 public abstract
 class TypeLiteral<T>
     implements Serializable
