@@ -40,6 +40,10 @@ java {
     withSourcesJar()
 }
 
+tasks.named("javadocJar").configure {
+    dependsOn(genAvro)
+}
+
 tasks.named("sourcesJar").configure {
     dependsOn(genAvro)
 }
