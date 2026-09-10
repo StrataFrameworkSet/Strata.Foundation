@@ -19,8 +19,8 @@ package strata.foundation.core.utility;
  * int result = byAge.compare(personA,personB);
  * </pre>
  *
- * @param <T> - the type of the objects being compared
- * @param <P> - the comparable type of the property extracted from each object
+ * @param <T> the type of the objects being compared
+ * @param <P> the comparable type of the property extracted from each object
  */
 public
 interface IPropertyComparator<T,P extends Comparable<P>>

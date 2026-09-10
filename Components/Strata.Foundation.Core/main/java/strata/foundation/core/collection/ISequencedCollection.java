@@ -24,7 +24,7 @@ import java.util.SequencedCollection;
  * String last  = items.getLast();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface ISequencedCollection<T>

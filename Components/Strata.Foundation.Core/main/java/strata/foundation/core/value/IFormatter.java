@@ -21,8 +21,8 @@ package strata.foundation.core.value;
  * String formatted = formatter.format(PersonName.of("Jane","Doe"));
  * </pre>
  *
- * @param <V> - the type of the value being formatted
- * @param <O> - the type of the output produced by formatting
+ * @param <V> the type of the value being formatted
+ * @param <O> the type of the output produced by formatting
  */
 public
 interface IFormatter<V,O>

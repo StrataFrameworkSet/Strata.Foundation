@@ -31,8 +31,8 @@ import java.util.function.Supplier;
  * Connection connection = pool.checkOut();
  * </pre>
  *
- * @param <T> - the type of poolable object managed by this pool
- * @param <P> - the concrete pool type, used so poolables can reference
+ * @param <T> the type of poolable object managed by this pool
+ * @param <P> the concrete pool type, used so poolables can reference
  * the pool that owns them
  */
 public abstract

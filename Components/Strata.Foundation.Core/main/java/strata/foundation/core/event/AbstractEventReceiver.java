@@ -21,8 +21,8 @@ import java.util.Optional;
  * receiver.startListening(event -&gt; process(event));
  * </pre>
  *
- * @param <E> - event type
- * @param <L> - listener type
+ * @param <E> event type
+ * @param <L> listener type
  */
 public abstract
 class AbstractEventReceiver<E,L extends IEventListener<E>>

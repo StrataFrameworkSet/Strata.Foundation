@@ -16,7 +16,7 @@ package strata.foundation.core.utility;
  * int total = sum.combine(2,3);
  * </pre>
  *
- * @param <T> - the type of values being combined
+ * @param <T> the type of values being combined
  */
 public
 interface ICombiner<T>

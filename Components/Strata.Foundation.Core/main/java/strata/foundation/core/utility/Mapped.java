@@ -30,8 +30,8 @@ import java.util.Optional;
  * }
  * </pre>
  *
- * @param <I> - the type of the input value passed to the operation
- * @param <O> - the type of the output value produced by the operation
+ * @param <I> the type of the input value passed to the operation
+ * @param <O> the type of the output value produced by the operation
  */
 public
 class Mapped<I,O>

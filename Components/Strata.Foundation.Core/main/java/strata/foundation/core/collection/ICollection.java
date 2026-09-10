@@ -23,7 +23,7 @@ import java.util.Collection;
  * boolean has = items.contains("foo");
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface ICollection<T>

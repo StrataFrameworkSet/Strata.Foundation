@@ -30,8 +30,8 @@ import java.util.function.*;
  * String value = completed.get();
  * </pre>
  *
- * @param <T> - result value type
- * @param <R> - completed result type
+ * @param <T> result value type
+ * @param <R> completed result type
  */
 public
 class CompletableResult<T,R extends CompletedResult<T>>

@@ -20,8 +20,8 @@ import java.util.function.Function;
  * people.sort(byNameDesc);
  * </pre>
  *
- * @param <T> - the type of object being compared
- * @param <P> - the type of the comparable property extracted from {@code T}
+ * @param <T> the type of object being compared
+ * @param <P> the type of the comparable property extracted from {@code T}
  */
 public
 class DescendingOrderPropertyComparator<T,P extends Comparable<P>>

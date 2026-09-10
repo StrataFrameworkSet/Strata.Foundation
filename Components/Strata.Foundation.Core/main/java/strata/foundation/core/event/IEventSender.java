@@ -17,7 +17,7 @@ package strata.foundation.core.event;
  * ICompletableSendResult&lt;String&gt; result = sender.send("event-data");
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 interface IEventSender<E>

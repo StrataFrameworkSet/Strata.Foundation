@@ -29,7 +29,7 @@ import java.util.function.Supplier;
  * token.ifPresent(t -&gt; authenticate(t));
  * </pre>
  *
- * @param <T> - the type of the wrapped value
+ * @param <T> the type of the wrapped value
  */
 public
 class Expendable<T>

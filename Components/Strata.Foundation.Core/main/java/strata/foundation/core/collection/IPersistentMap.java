@@ -25,8 +25,8 @@ import java.util.stream.Stream;
  * boolean has = map2.containsKey("key");
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 interface IPersistentMap<K,V>

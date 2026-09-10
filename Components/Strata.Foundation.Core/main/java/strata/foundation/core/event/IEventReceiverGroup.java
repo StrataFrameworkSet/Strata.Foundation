@@ -22,9 +22,9 @@ import java.util.stream.Stream;
  * Set&lt;IEventReceiver&lt;String,IEventListener&lt;String&gt;&gt;&gt; receivers = group.get();
  * </pre>
  *
- * @param <E> - event type
- * @param <L> - listener type
- * @param <R> - receiver type
+ * @param <E> event type
+ * @param <L> listener type
+ * @param <R> receiver type
  */
 public
 interface IEventReceiverGroup<

@@ -24,7 +24,7 @@ import java.util.Optional;
  *     log(result.getException());
  * </pre>
  *
- * @param <I> - the type of the input consumed by the operation
+ * @param <I> the type of the input consumed by the operation
  */
 public
 class Consumed<I>

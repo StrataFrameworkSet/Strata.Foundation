@@ -18,7 +18,7 @@ import java.lang.reflect.Constructor;
  * new FactoryInitializer&lt;&gt;(Widget.class, Widget.class.getConstructor());
  * </pre>
  *
- * @param <T> - the type whose constructor is being registered
+ * @param <T> the type whose constructor is being registered
  */
 public
 class FactoryInitializer<T>

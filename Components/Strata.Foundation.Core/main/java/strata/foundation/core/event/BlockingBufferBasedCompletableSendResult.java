@@ -32,7 +32,7 @@ import java.util.function.Function;
  * SendResult&lt;String&gt; outcome = Awaiter.await(result);
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 class BlockingBufferBasedCompletableSendResult<E>

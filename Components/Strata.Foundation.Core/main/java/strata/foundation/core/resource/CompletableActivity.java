@@ -23,7 +23,7 @@ import java.util.Objects;
  * }
  * </pre>
  *
- * @param <R> - the type of {@link ICompletableResource} being managed
+ * @param <R> the type of {@link ICompletableResource} being managed
  */
 public
 class CompletableActivity<R extends ICompletableResource>

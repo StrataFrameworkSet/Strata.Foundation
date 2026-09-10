@@ -26,7 +26,7 @@ import java.util.concurrent.CountDownLatch;
  * String value = buffer.get();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class BlockingBuffer<T>

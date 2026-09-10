@@ -23,7 +23,7 @@ import java.util.Optional;
  *     result.getException().printStackTrace();
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 class SendResult<E>

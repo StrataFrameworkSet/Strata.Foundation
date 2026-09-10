@@ -22,8 +22,8 @@ import java.util.Objects;
  * String second = foo.getSecond();
  * </pre>
  *
- * @param <F> - first element of Pair
- * @param <S> - second element of Pair
+ * @param <F> first element of Pair
+ * @param <S> second element of Pair
  */
 public 
 class Pair<F,S>

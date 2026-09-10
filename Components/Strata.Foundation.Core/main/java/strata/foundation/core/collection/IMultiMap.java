@@ -34,8 +34,8 @@ import java.util.stream.Stream;
  * IMultiMap&lt;String,Integer&gt; union = map.makeUnionWith(other);
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 interface IMultiMap<K,V>

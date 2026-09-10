@@ -31,7 +31,7 @@ import java.util.function.Supplier;
  *     .orElse("DEFAULT");
  * </pre>
  *
- * @param <T> - the type of value potentially held by this instance
+ * @param <T> the type of value potentially held by this instance
  */
 public
 interface IOptionable<T>

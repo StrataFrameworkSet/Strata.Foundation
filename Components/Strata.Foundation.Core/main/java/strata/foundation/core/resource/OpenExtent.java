@@ -20,7 +20,7 @@ import java.util.Objects;
  * }
  * </pre>
  *
- * @param <R> - the type of {@link IResource} being managed
+ * @param <R> the type of {@link IResource} being managed
  */
 public
 class OpenExtent<R extends IResource>

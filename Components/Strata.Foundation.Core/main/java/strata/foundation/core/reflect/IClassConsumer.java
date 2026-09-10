@@ -18,7 +18,7 @@ import java.util.function.Consumer;
  * consumer.accept(Widget.class);
  * </pre>
  *
- * @param <T> - the type whose {@link Class} is consumed
+ * @param <T> the type whose {@link Class} is consumed
  */
 public
 interface IClassConsumer<T>

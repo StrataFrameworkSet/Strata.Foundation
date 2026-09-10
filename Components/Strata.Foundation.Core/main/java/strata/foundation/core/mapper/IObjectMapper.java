@@ -19,8 +19,8 @@ package strata.foundation.core.mapper;
  * Customer customer = mapper.toObject(Customer.class,payload);
  * </pre>
  *
- * @param <T> - the upper bound of the object types this mapper converts
- * @param <P> - the payload type produced and consumed by this mapper
+ * @param <T> the upper bound of the object types this mapper converts
+ * @param <P> the payload type produced and consumed by this mapper
  */
 public
 interface IObjectMapper<T,P>

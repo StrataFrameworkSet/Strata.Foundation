@@ -32,8 +32,8 @@ import java.util.Set;
  * IMultiMap&lt;String,Integer&gt; copy = new SetValuedMultiMap&lt;&gt;(map);
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 class SetValuedMultiMap<K,V>

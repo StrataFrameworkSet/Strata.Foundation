@@ -23,7 +23,7 @@ import java.util.function.Supplier;
  *         () -&gt; () -&gt; SendResult.of("event"));
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 class SupplierBasedCompletableSendResult<E>

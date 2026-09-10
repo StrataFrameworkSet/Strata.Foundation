@@ -22,9 +22,9 @@ import java.util.function.Function;
  *         CompletableResult::new;
  * </pre>
  *
- * @param <T> - result value type
- * @param <R> - completed result type
- * @param <C> - completable result type
+ * @param <T> result value type
+ * @param <R> completed result type
+ * @param <C> completable result type
  */
 public
 interface ICompletableResultFactory<

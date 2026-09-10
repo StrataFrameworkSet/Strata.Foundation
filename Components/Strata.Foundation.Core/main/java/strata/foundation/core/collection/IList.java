@@ -22,7 +22,7 @@ import java.util.List;
  * int index   = list.indexOf("b");
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface IList<T>

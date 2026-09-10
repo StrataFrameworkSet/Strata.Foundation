@@ -25,10 +25,10 @@ import java.util.Objects;
  * Double  fourth = quad.getFourth();
  * </pre>
  *
- * @param <T1> - first element of Quadruple
- * @param <T2> - second element of Quadruple
- * @param <T3> - third element of Quadruple
- * @param <T4> - fourth element of Quadruple
+ * @param <T1> first element of Quadruple
+ * @param <T2> second element of Quadruple
+ * @param <T3> third element of Quadruple
+ * @param <T4> fourth element of Quadruple
  */
 public
 class Quadruple<T1,T2,T3,T4>

@@ -20,8 +20,8 @@ import java.util.function.Supplier;
  * IEventListener&lt;String&gt; listener = supplier.get();
  * </pre>
  *
- * @param <E> - event type
- * @param <L> - listener type
+ * @param <E> event type
+ * @param <L> listener type
  */
 public
 interface IEventListenerSupplier<E,L extends IEventListener<E>>

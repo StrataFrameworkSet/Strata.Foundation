@@ -35,7 +35,7 @@ import java.util.stream.StreamSupport;
  * queue.stop();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class StoppableBlockingQueue<T>

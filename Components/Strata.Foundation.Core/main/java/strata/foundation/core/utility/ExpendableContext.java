@@ -20,7 +20,7 @@ import java.io.Serializable;
  * boolean expended = context.isExpended();
  * </pre>
  *
- * @param <T> - the type of the held value
+ * @param <T> the type of the held value
  */
 class ExpendableContext<T>
     implements Serializable

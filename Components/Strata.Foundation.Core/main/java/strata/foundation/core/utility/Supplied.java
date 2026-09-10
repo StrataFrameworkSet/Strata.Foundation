@@ -30,7 +30,7 @@ import java.util.Optional;
  *     Supplied.of("loadConfig",new RuntimeException("boom"));
  * </pre>
  *
- * @param <O> - the type of the output value produced on success
+ * @param <O> the type of the output value produced on success
  */
 public
 class Supplied<O>

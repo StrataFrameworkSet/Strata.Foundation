@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  * // immutable.add("banana"); // throws
  * </pre>
  *
- * @param <T> - element type, must be {@link java.lang.Comparable}
+ * @param <T> element type, must be {@link java.lang.Comparable}
  */
 public
 class ImmutableMultiSet<T extends Comparable<T>>

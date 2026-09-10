@@ -24,7 +24,7 @@ import java.util.function.Supplier;
  * String value = buffer.get();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface IBlockingBuffer<T>

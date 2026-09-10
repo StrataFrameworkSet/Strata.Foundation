@@ -23,7 +23,7 @@ import java.util.SortedSet;
  * String last  = sorted.last();
  * </pre>
  *
- * @param <T> - element type, must be {@link java.lang.Comparable}
+ * @param <T> element type, must be {@link java.lang.Comparable}
  */
 public
 interface ISortedSet<T extends Comparable<? super T>>

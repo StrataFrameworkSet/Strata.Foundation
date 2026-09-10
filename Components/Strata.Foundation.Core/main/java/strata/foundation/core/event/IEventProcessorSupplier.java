@@ -20,8 +20,8 @@ import java.util.function.Supplier;
  * IEventProcessor&lt;String&gt; processor = supplier.get();
  * </pre>
  *
- * @param <E> - event type
- * @param <P> - processor type
+ * @param <E> event type
+ * @param <P> processor type
  */
 public
 interface IEventProcessorSupplier<E,P extends IEventProcessor<E>>

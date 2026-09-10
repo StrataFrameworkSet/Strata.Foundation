@@ -22,7 +22,7 @@ import java.util.function.*;
  * result.thenAccept(r -&gt; System.out.println("Sent: " + r.getEvent()));
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 class CompletableSendResult<E>

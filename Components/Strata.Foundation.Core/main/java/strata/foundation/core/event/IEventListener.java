@@ -18,7 +18,7 @@ import java.util.Collection;
  *     System.out.println("Received: " + event);
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 interface IEventListener<E>

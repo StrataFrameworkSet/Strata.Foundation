@@ -24,7 +24,7 @@ import java.util.Objects;
  * boolean stop = poison.mustStop(); // true
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class StopContext<T>

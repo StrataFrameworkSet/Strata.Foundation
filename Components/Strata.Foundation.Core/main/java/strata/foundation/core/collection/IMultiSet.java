@@ -31,7 +31,7 @@ import java.util.stream.Stream;
  * IMultiSet&lt;String&gt; union = bag.makeUnionWith(other);
  * </pre>
  *
- * @param <T> - element type, must be {@link java.lang.Comparable}
+ * @param <T> element type, must be {@link java.lang.Comparable}
  */
 public
 interface IMultiSet<T extends Comparable<T>>

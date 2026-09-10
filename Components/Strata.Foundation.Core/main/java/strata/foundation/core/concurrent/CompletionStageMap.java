@@ -29,8 +29,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * Map&lt;String,Integer&gt; results = pending.joinAll();
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - result value type
+ * @param <K> key type
+ * @param <V> result value type
  */
 public
 class CompletionStageMap<K,V>

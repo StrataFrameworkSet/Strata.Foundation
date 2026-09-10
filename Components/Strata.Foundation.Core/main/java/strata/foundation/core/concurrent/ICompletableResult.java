@@ -26,8 +26,8 @@ import java.util.concurrent.CompletionStage;
  * String value = completed.get();
  * </pre>
  *
- * @param <T> - result value type
- * @param <R> - completed result type
+ * @param <T> result value type
+ * @param <R> completed result type
  */
 public
 interface ICompletableResult<T,R extends CompletedResult<T>>

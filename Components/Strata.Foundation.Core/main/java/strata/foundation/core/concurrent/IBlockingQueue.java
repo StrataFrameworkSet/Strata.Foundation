@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * queue.stop();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface IBlockingQueue<T>

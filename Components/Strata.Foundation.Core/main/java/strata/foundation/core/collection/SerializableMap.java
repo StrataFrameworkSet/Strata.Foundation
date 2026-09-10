@@ -30,8 +30,8 @@ import java.util.Map;
  * map.put("key",42);
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 class SerializableMap<K,V>

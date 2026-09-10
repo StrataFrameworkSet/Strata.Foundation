@@ -29,8 +29,8 @@ import java.util.function.Consumer;
  * receiver.stopConsuming();
  * </pre>
  *
- * @param <T> - message type
- * @param <C> - consumer type
+ * @param <T> message type
+ * @param <C> consumer type
  */
 public
 class BlockingQueueReceiver<T,C extends Consumer<T>>

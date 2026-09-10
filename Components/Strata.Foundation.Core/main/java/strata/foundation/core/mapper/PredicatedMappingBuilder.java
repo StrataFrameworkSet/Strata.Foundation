@@ -30,8 +30,8 @@ import java.util.function.Predicate;
  *         .toMapper();
  * </pre>
  *
- * @param <I> - the input type this builder's mapping rules accept
- * @param <O> - the output type this builder's mapping rules produce
+ * @param <I> the input type this builder's mapping rules accept
+ * @param <O> the output type this builder's mapping rules produce
  */
 public
 class PredicatedMappingBuilder<I,O>

@@ -22,8 +22,8 @@ import java.util.function.Consumer;
  * receiver.startConsuming(msg -&gt; process(msg));
  * </pre>
  *
- * @param <T> - message type
- * @param <C> - consumer type
+ * @param <T> message type
+ * @param <C> consumer type
  */
 public abstract
 class AbstractReceiver<T,C extends Consumer<T>>

@@ -22,8 +22,8 @@ import java.util.Optional;
  * receiver.stopListening();
  * </pre>
  *
- * @param <E> - event type
- * @param <L> - listener type
+ * @param <E> event type
+ * @param <L> listener type
  */
 public
 interface IEventReceiver<E,L extends IEventListener<E>>

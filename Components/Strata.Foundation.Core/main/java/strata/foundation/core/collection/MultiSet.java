@@ -33,7 +33,7 @@ import java.util.stream.Stream;
  * long distinctCount = bag.getUnderlyingSize();
  * </pre>
  *
- * @param <T> - element type, must be {@link java.lang.Comparable}
+ * @param <T> element type, must be {@link java.lang.Comparable}
  */
 public
 class MultiSet<T extends Comparable<T>>

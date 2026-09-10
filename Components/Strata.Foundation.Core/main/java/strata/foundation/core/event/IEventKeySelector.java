@@ -17,8 +17,8 @@ package strata.foundation.core.event;
  * String key = selector.getKey(orderEvent);
  * </pre>
  *
- * @param <K> - key type
- * @param <E> - event type
+ * @param <K> key type
+ * @param <E> event type
  */
 public
 interface IEventKeySelector<K,E>

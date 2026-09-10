@@ -23,9 +23,9 @@ import java.util.Objects;
  * Boolean third  = bar.getThird();
  * </pre>
  *
- * @param <F> - first element of Triple
- * @param <S> - second element of Triple
- * @param <T> - third element of Triple
+ * @param <F> first element of Triple
+ * @param <S> second element of Triple
+ * @param <T> third element of Triple
  */
 public
 class Triple<F,S,T>

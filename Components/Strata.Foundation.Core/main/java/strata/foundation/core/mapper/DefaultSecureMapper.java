@@ -36,7 +36,7 @@ import java.util.Objects;
  * Customer decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
  *
- * @param <T> - the {@link Serializable} type of value being encrypted and decrypted
+ * @param <T> the {@link Serializable} type of value being encrypted and decrypted
  */
 public
 class DefaultSecureMapper<T extends Serializable>

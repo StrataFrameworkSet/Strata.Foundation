@@ -29,7 +29,7 @@ import java.util.*;
  * set.add("item");
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class SerializableSet<T>

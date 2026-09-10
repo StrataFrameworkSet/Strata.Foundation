@@ -19,7 +19,7 @@ import java.util.Collection;
  * processor.onException(new RuntimeException("processing failed"));
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 interface IEventProcessor<E>

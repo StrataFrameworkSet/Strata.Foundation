@@ -17,9 +17,9 @@ package strata.foundation.core.pool;
  * }
  * </pre>
  *
- * @param <T> - the concrete poolable type implementing this
+ * @param <T> the concrete poolable type implementing this
  * interface
- * @param <P> - the type of pool that owns instances of this
+ * @param <P> the type of pool that owns instances of this
  * poolable
  */
 public

@@ -22,7 +22,7 @@ import java.io.Serializable;
  * Customer decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
  *
- * @param <T> - the {@link Serializable} type of value being encrypted and decrypted
+ * @param <T> the {@link Serializable} type of value being encrypted and decrypted
  */
 public
 interface ISecureMapper<T extends Serializable>

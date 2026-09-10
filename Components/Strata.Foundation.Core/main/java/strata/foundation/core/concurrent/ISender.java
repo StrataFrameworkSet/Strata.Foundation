@@ -20,7 +20,7 @@ import strata.foundation.core.event.SendResult;
  * SendResult&lt;String&gt; result = sender.send("hello");
  * </pre>
  *
- * @param <T> - message type
+ * @param <T> message type
  */
 public
 interface ISender<T>

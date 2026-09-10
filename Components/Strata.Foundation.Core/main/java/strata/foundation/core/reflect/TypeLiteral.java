@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
  * Type type = literal.getType();
  * </pre>
  *
- * @param <T> - the type captured by this literal
+ * @param <T> the type captured by this literal
  */
 public abstract
 class TypeLiteral<T>

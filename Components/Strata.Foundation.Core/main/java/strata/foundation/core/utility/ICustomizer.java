@@ -23,7 +23,7 @@ package strata.foundation.core.utility;
  * StringBuilder result = upperCaser.customize(new StringBuilder("hello"));
  * </pre>
  *
- * @param <T> - the type of the subject being customized
+ * @param <T> the type of the subject being customized
  */
 public
 interface ICustomizer<T>

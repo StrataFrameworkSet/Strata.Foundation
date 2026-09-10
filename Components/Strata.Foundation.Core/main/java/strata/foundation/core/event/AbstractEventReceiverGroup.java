@@ -20,9 +20,9 @@ import java.util.stream.Stream;
  * Set&lt;?&gt; receivers = group.get();
  * </pre>
  *
- * @param <E> - event type
- * @param <L> - listener type
- * @param <R> - receiver type
+ * @param <E> event type
+ * @param <L> listener type
+ * @param <R> receiver type
  */
 public abstract
 class AbstractEventReceiverGroup<

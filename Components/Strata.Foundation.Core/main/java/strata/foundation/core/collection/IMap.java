@@ -22,8 +22,8 @@ import java.util.Map;
  * boolean has   = map.containsKey("b");
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 interface IMap<K,V>

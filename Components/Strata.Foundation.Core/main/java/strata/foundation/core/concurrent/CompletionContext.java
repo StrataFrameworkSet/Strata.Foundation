@@ -34,7 +34,7 @@ import java.util.function.Consumer;
  * boolean hasError = ctx.hasException();
  * </pre>
  *
- * @param <T> - result type
+ * @param <T> result type
  */
 public
 class CompletionContext<T>

@@ -23,7 +23,7 @@ import strata.foundation.core.concurrent.IBlockingBuffer;
  * ICompletableSendResult&lt;String&gt; result = sender.send("event-data");
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 class ActionQueueEventSender<E>

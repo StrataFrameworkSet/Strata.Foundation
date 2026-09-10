@@ -29,7 +29,7 @@ import java.util.Collection;
  * list.add("item");
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class SerializableList<T>

@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  * Collection&lt;String&gt; all  = map.getAll();
  * </pre>
  *
- * @param <T> - value type
+ * @param <T> value type
  */
 public
 interface IThreadLocalMap<T>

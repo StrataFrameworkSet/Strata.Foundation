@@ -22,7 +22,7 @@ package strata.foundation.core.mapper;
  * // payload == customer
  * </pre>
  *
- * @param <T> - the type of object passed through unchanged by this mapper
+ * @param <T> the type of object passed through unchanged by this mapper
  */
 public
 class NullMapper<T>

@@ -21,7 +21,7 @@ import java.util.Set;
  * int size    = set.size();
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 interface ISet<T>

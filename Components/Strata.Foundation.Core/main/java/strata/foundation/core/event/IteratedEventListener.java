@@ -25,7 +25,7 @@ import java.util.Collection;
  *     };
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public abstract
 class IteratedEventListener<E>

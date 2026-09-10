@@ -25,7 +25,7 @@ import java.util.function.Consumer;
  * spliter.forEachRemaining(item -&gt; process(item));
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class StoppableBlockingQueueSpliterator<T>

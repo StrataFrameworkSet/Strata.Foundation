@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
  * iter.next(); // "a" (cycles back)
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class CircularIterator<T>

@@ -23,7 +23,7 @@ import java.util.Stack;
  * String pop = stack.pop();   // "second"
  * </pre>
  *
- * @param <T> - element type
+ * @param <T> element type
  */
 public
 class ThreadLocalStack<T>

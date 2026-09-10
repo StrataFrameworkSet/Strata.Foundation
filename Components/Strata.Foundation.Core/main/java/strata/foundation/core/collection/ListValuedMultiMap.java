@@ -29,8 +29,8 @@ import java.util.*;
  * IMultiMap&lt;String,Integer&gt; copy = new ListValuedMultiMap&lt;&gt;(map);
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 class ListValuedMultiMap<K,V>

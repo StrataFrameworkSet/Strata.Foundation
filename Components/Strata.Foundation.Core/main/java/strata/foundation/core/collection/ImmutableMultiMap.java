@@ -30,8 +30,8 @@ import java.util.stream.Stream;
  * // immutable.put("c",3); // throws
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 class ImmutableMultiMap<K,V>

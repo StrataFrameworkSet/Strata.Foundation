@@ -26,7 +26,7 @@ import java.util.function.*;
  * future.thenAccept(value -&gt; System.out.println(value));
  * </pre>
  *
- * @param <T> - result type
+ * @param <T> result type
  */
 public
 class SupplierBasedCompletableFuture<T>

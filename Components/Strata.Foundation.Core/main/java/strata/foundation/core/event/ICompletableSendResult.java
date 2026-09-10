@@ -20,7 +20,7 @@ import java.util.concurrent.CompletionStage;
  *     System.out.println("Sent: " + sendResult.getEvent()));
  * </pre>
  *
- * @param <E> - event type
+ * @param <E> event type
  */
 public
 interface ICompletableSendResult<E>

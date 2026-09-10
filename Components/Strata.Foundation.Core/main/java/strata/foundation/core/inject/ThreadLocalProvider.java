@@ -23,7 +23,7 @@ import jakarta.inject.Provider;
  * Connection connection = threadLocal.get();
  * </pre>
  *
- * @param <T> - the type of value provided
+ * @param <T> the type of value provided
  */
 public
 class ThreadLocalProvider<T>

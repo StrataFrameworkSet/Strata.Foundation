@@ -24,8 +24,8 @@ import java.util.function.Consumer;
  * receiver.stopConsuming();
  * </pre>
  *
- * @param <T> - message type
- * @param <C> - consumer type
+ * @param <T> message type
+ * @param <C> consumer type
  */
 public
 interface IReceiver<T,C extends Consumer<T>>

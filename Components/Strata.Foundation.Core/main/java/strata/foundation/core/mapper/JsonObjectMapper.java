@@ -35,7 +35,7 @@ import java.util.Map.Entry;
  * Customer customer = mapper.toObject(Customer.class,payload);
  * </pre>
  *
- * @param <T> - the upper bound of the object types this mapper converts
+ * @param <T> the upper bound of the object types this mapper converts
  */
 public
 class JsonObjectMapper<T>

@@ -32,7 +32,7 @@ import java.util.TreeSet;
  * String last  = sorted.last();
  * </pre>
  *
- * @param <T> - element type, must be {@link java.lang.Comparable}
+ * @param <T> element type, must be {@link java.lang.Comparable}
  */
 public
 class SerializableSortedSet<T extends Comparable<? super T>>

@@ -18,7 +18,7 @@ package strata.foundation.core.utility;
  * boolean matches = nonEmpty.match("hello");
  * </pre>
  *
- * @param <T> - the type of target being tested for a match
+ * @param <T> the type of target being tested for a match
  */
 public
 interface IMatcher<T>

@@ -34,7 +34,7 @@ import java.util.function.Supplier;
  * CompletedResult&lt;Integer&gt; mapped = success.map(String::length);
  * </pre>
  *
- * @param <T> - result value type
+ * @param <T> result value type
  */
 public
 class CompletedResult<T>

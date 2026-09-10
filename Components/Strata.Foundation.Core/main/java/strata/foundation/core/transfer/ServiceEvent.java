@@ -37,7 +37,7 @@ import java.util.UUID;
  *         .setCorrelationId(request.getRequestId());
  * </pre>
  *
- * @param <S> - the type of the object that is the source of the event.
+ * @param <S> the type of the object that is the source of the event.
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS,property = "@class")
 public abstract

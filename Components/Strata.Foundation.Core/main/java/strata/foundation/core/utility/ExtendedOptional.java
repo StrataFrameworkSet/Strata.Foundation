@@ -29,7 +29,7 @@ import java.util.function.Supplier;
  * value.ifPresent(System.out::println);
  * </pre>
  *
- * @param <T> - the type of the wrapped value
+ * @param <T> the type of the wrapped value
  */
 public
 class ExtendedOptional<T>

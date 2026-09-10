@@ -17,7 +17,7 @@ package strata.foundation.core.utility;
  * items.forEach(i -&gt; total.setItem(total.getItem() + i));
  * </pre>
  *
- * @param <T> - the type of the held value
+ * @param <T> the type of the held value
  */
 public
 class Holder<T>

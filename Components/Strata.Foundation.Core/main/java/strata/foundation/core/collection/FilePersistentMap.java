@@ -28,8 +28,8 @@ import java.util.stream.Stream;
  * Optional&lt;Integer&gt; value = map.get("key");
  * </pre>
  *
- * @param <K> - key type
- * @param <V> - value type
+ * @param <K> key type
+ * @param <V> value type
  */
 public
 class FilePersistentMap<K,V>
