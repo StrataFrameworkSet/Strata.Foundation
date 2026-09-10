@@ -49,6 +49,7 @@ tasks.named("sourcesJar").configure {
 }
 
 javadoc {
+    dependsOn(genAvro)
     options.addBooleanOption('Xdoclint:all,-missing', true)
 }
 
