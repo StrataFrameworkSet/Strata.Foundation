@@ -37,7 +37,7 @@ tasks.named("compileJava").configure {
 
 java {
     withJavadocJar()
-    withSourcesJar()
+    //withSourcesJar()
 }
 
 javadoc {
