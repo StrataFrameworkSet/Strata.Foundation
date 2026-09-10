@@ -19,18 +19,6 @@ import java.util.Optional;
  * {@link #isSuccess()} and {@link #isFailure()} indicate which
  * outcome occurred.
  * </p>
- * @param <I> input type
- * @param <O> output type
- *
- * {@snippet:
- * Mapped&lt;String,Integer&gt; result =
- *     Mapped.of("parseInt","42",Integer.parseInt("42"));
- *
- *     if (result.isSuccess())
- *     {
- *         Integer value = result.getOutput().get();
- *     }
- * }
  * <br/>
  * <b>Type Parameters</b><br/>
  * <ul>
