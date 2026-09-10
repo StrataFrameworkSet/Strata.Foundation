@@ -16,8 +16,8 @@ import java.math.MathContext;
  * for monetary amounts with full precision and type conversion
  * support.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * BigDecimalValue value = BigDecimalValue.of(new BigDecimal("29.99"));
@@ -31,7 +31,6 @@ import java.math.MathContext;
  * int precision = value.getPrecision();
  * int scale     = value.getScale();
  * </pre>
- * </p>
  */
 public
 class BigDecimalValue

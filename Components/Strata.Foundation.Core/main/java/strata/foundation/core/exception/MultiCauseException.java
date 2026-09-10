@@ -15,8 +15,8 @@ import java.util.List;
  * for more than one reason at once and the caller needs to be notified of
  * every failure rather than just the first one encountered.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * List&lt;Throwable&gt; causes = new ArrayList&lt;&gt;();
  * causes.add(new IllegalStateException("bad state"));
@@ -24,7 +24,6 @@ import java.util.List;
  *
  * throw new MultiCauseException("Validation failed",causes);
  * </pre>
- * </p>
  */
 public
 class MultiCauseException

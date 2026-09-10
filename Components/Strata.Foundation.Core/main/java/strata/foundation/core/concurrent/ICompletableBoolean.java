@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Specialized {@link ICompletableResult} for asynchronous operations
  * that produce a Boolean outcome.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous boolean check
  * ICompletableBoolean result =
@@ -19,7 +19,6 @@ package strata.foundation.core.concurrent;
  *
  * Boolean value = result.join().get();
  * </pre>
- * </p>
  */
 public
 interface ICompletableBoolean

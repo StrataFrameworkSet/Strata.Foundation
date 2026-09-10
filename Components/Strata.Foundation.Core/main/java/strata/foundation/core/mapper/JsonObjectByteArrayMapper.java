@@ -26,10 +26,11 @@ import java.util.Map.Entry;
  * {@code @class} before deserialization so that payloads produced by
  * other serializers can still be read.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the upper bound of the object types this mapper converts
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * JsonObjectByteArrayMapper&lt;Customer&gt; mapper =
  *     new JsonObjectByteArrayMapper&lt;&gt;();
@@ -37,7 +38,6 @@ import java.util.Map.Entry;
  * byte[] payload = mapper.toPayload(customer);
  * Customer customer = mapper.toObject(Customer.class,payload);
  * </pre>
- * </p>
  */
 public
 class JsonObjectByteArrayMapper<T>

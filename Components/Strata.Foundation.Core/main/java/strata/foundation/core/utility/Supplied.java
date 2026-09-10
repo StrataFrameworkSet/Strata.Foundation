@@ -19,10 +19,11 @@ import java.util.Optional;
  * {@link #isSuccess()} and {@link #isFailure()} indicate which
  * outcome occurred.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <O>} - the type of the output value produced on success
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Supplied&lt;String&gt; result = Supplied.of("loadConfig","value");
  *
@@ -32,7 +33,6 @@ import java.util.Optional;
  * Supplied&lt;String&gt; failure =
  *     Supplied.of("loadConfig",new RuntimeException("boom"));
  * </pre>
- * </p>
  */
 public
 class Supplied<O>

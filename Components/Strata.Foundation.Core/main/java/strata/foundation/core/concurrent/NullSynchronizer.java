@@ -11,15 +11,14 @@ package strata.foundation.core.concurrent;
  * or testing.
  * See: <a href="https://en.wikipedia.org/wiki/Null_object_pattern">Null object pattern (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Use when synchronization is not needed
  * ISynchronizer sync = new NullSynchronizer();
  * sync.lockForReading();   // no-op
  * sync.unlockFromReading(); // no-op
  * </pre>
- * </p>
  */
 public
 class NullSynchronizer

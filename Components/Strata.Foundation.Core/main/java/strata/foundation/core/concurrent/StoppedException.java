@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Thrown when an operation is attempted on a stopped
  * {@link IBlockingQueue}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Thrown after queue is stopped
  * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -26,7 +26,6 @@ package strata.foundation.core.concurrent;
  *     // queue has been stopped
  * }
  * </pre>
- * </p>
  */
 public
 class StoppedException

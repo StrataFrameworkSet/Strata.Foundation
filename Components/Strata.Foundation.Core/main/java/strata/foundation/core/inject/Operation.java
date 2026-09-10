@@ -15,8 +15,8 @@ import java.lang.annotation.Annotation;
  * closing it ends that scope, while instance resolution is delegated to the
  * {@link IInjector} supplied at construction.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * try (Operation operation = new Operation(injector))
  * {
@@ -24,7 +24,6 @@ import java.lang.annotation.Annotation;
  *         operation.getInstance(IConfiguration.class);
  * }
  * </pre>
- * </p>
  */
 public
 class Operation

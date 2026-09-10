@@ -21,8 +21,8 @@ import java.io.StringWriter;
  * Instances are typically produced with the {@link #of(Throwable)} factory
  * method rather than populated field-by-field.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * try
  * {
@@ -34,7 +34,6 @@ import java.io.StringWriter;
  *     reply.setException(data).setSuccess(false);
  * }
  * </pre>
- * </p>
  */
 public
 class ExceptionData

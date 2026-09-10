@@ -22,16 +22,16 @@ import java.util.function.Supplier;
  * treated as empty, useful for representing single-use or rate-limited
  * resources.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of the wrapped value
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Expendable&lt;String&gt; token = Expendable.of("one-time-token",1);
  *
  * token.ifPresent(t -&gt; authenticate(t));
  * </pre>
- * </p>
  */
 public
 class Expendable<T>

@@ -15,8 +15,8 @@ import java.util.Map;
  * Scopes are maintained as a stack per thread so that nested operations each
  * get their own instance map, with a permanent global scope beneath them.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * OperationContext.beginScope();
  * try
@@ -30,7 +30,6 @@ import java.util.Map;
  *     OperationContext.endScope();
  * }
  * </pre>
- * </p>
  */
 public
 class OperationContext

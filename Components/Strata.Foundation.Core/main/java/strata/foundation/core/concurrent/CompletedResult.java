@@ -19,12 +19,11 @@ import java.util.function.Supplier;
  * Supports monadic composition via {@code map} and {@code flatMap}.
  * See: <a href="https://en.wikipedia.org/wiki/Result_type">Result type (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - result value type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Success
  * CompletedResult&lt;String&gt; success = CompletedResult.of("hello");
@@ -37,7 +36,6 @@ import java.util.function.Supplier;
  * // Monadic mapping
  * CompletedResult&lt;Integer&gt; mapped = success.map(String::length);
  * </pre>
- * </p>
  */
 public
 class CompletedResult<T>

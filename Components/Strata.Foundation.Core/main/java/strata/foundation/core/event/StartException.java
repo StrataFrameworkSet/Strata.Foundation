@@ -9,8 +9,8 @@ package strata.foundation.core.event;
  * Thrown when an {@link IEventReceiver} fails to start
  * its event listening lifecycle.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Caught during receiver startup
  * try
@@ -22,7 +22,6 @@ package strata.foundation.core.event;
  *     Throwable cause = e.getCause();
  * }
  * </pre>
- * </p>
  */
 public
 class StartException

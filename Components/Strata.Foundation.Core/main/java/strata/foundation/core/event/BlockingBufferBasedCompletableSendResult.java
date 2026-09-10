@@ -22,12 +22,11 @@ import java.util.function.Function;
  * bridge blocking event send operations into the
  * {@link java.util.concurrent.CompletionStage} API.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <E>} - event type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Blocking buffer backed send result
  * ICompletableSendResult&lt;String&gt; result =
@@ -36,7 +35,6 @@ import java.util.function.Function;
  *
  * SendResult&lt;String&gt; outcome = Awaiter.await(result);
  * </pre>
- * </p>
  */
 public
 class BlockingBufferBasedCompletableSendResult<E>

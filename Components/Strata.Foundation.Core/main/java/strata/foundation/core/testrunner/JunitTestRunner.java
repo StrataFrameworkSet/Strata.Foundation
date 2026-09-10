@@ -29,14 +29,13 @@ import static org.junit.platform.launcher.TagFilter.includeTags;
  * process exits with status {@code 1} if any test fails, or if the required
  * command-line arguments are missing, and {@code 0} otherwise.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * java -jar strata-foundation-core.jar \
  *     --package=strata.foundation.core \
  *     --tags=unit,fast
  * </pre>
- * </p>
  */
 public class JunitTestRunner
 {

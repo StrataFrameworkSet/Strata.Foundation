@@ -13,17 +13,17 @@ package strata.foundation.core.mapper;
  * where an {@link IObjectMapper} is required by an API but no actual
  * transformation of the value is needed.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of object passed through unchanged by this mapper
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * NullMapper&lt;Customer&gt; mapper = new NullMapper&lt;&gt;();
  *
  * Customer payload = mapper.toPayload(customer);
  * // payload == customer
  * </pre>
- * </p>
  */
 public
 class NullMapper<T>

@@ -9,8 +9,8 @@ package strata.foundation.core.action;
  * Represents an ordered queue of {@code IAction} instances that
  * supports setup and teardown registration and sequential execution.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IActionQueue queue = new StandardActionQueue();
@@ -24,7 +24,6 @@ package strata.foundation.core.action;
  *     .insert(() -> doSecond())
  *     .execute();
  * </pre>
- * </p>
  */
 public
 interface IActionQueue

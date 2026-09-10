@@ -26,15 +26,14 @@ import java.util.Optional;
  * {@link java.lang.Comparable} (ordered lexicographically by its formatted
  * {@link #toString()} representation).
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PersonName name = PersonName.of("Dr.","Jane","Q.","Doe","Jr.");
  * String formatted = name.toString(); // "Dr. Jane Q. Doe, Jr."
  *
  * PersonName copy = name.copy();
  * </pre>
- * </p>
  */
 public
 class PersonName

@@ -20,13 +20,12 @@ import org.apache.avro.specific.SpecificData;
  * {@link com.fasterxml.jackson.databind.ObjectMapper#addMixIn}) hides
  * both properties from JSON output.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ObjectMapper mapper = new ObjectMapper();
  * mapper.addMixIn(SpecificRecordBase.class,IExcludeAvroFieldsMixin.class);
  * </pre>
- * </p>
  */
 public
 interface IExcludeAvroFieldsMixin

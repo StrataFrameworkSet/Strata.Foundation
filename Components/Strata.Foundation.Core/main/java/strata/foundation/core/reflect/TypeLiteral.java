@@ -16,15 +16,15 @@ import java.lang.reflect.Type;
  * requiring subclasses to specify the type parameter {@code T} in an
  * anonymous subclass declaration.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type captured by this literal
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * TypeLiteral&lt;List&lt;String&gt;&gt; literal = new TypeLiteral&lt;List&lt;String&gt;&gt;() {};
  * Type type = literal.getType();
  * </pre>
- * </p>
  */
 public abstract
 class TypeLiteral<T>

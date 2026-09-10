@@ -11,12 +11,11 @@ import java.util.Set;
  * Serializable extension of {@link java.util.Set} that combines
  * set operations with the Strata {@link ICollection} hierarchy.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * ISet&lt;String&gt; set = SerializableSet.of(Set.of("a","b","c"));
@@ -25,7 +24,6 @@ import java.util.Set;
  * boolean has = set.contains("a");
  * int size    = set.size();
  * </pre>
- * </p>
  */
 public
 interface ISet<T>

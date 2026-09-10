@@ -14,15 +14,14 @@ import java.util.stream.Stream;
  * returning a new map instance for each modification.
  * See: <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">Persistent data structure (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <K>} - key type</li>
  * <li>{@code <V>} - value type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and mutation
  * IPersistentMap&lt;String,Integer&gt; map1 = new FilePersistentMap&lt;&gt;(file);
@@ -32,7 +31,6 @@ import java.util.stream.Stream;
  * Optional&lt;Integer&gt; value = map2.get("key");
  * boolean has = map2.containsKey("key");
  * </pre>
- * </p>
  */
 public
 interface IPersistentMap<K,V>

@@ -11,14 +11,13 @@ import java.lang.reflect.Constructor;
  * Concrete {@link AbstractFactory} that supports registering both default
  * and parameterized {@link Constructor Constructors} for a type.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * SimpleFactory factory = new SimpleFactory();
  * factory.insertDefaultConstructor(Widget.class);
  * Widget widget = factory.create(Widget.class);
  * </pre>
- * </p>
  */
 public
 class SimpleFactory

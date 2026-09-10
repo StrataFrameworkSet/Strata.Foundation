@@ -9,12 +9,11 @@ package strata.foundation.core.reflect;
  * {@link IFactorySupplier} that always supplies the same, process-wide
  * {@link SimpleFactory} instance.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IFactory factory = new SingletonFactorySupplier().get();
  * </pre>
- * </p>
  */
 public
 class SingletonFactorySupplier

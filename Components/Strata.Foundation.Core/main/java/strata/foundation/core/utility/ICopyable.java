@@ -14,8 +14,8 @@ package strata.foundation.core.utility;
  * return type of {@code copy()} to a more specific type that itself extends
  * or implements {@code ICopyable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * class Point implements ICopyable
  * {
@@ -36,7 +36,6 @@ package strata.foundation.core.utility;
  * Point original = new Point(1, 2);
  * Point clone    = original.copy();
  * </pre>
- * </p>
  */
 public
 interface ICopyable

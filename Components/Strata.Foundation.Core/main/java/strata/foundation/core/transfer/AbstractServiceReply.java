@@ -33,8 +33,8 @@ import java.util.UUID;
  * this}) and implement {@link Serializable} so replies can cross process or
  * transport boundaries.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * class GetCustomerReply extends AbstractServiceReply
  * {
@@ -58,7 +58,6 @@ import java.util.UUID;
  *         .setSuccess(true)
  *         .setSuccessMessage("Customer found");
  * </pre>
- * </p>
  */
 public abstract
 class AbstractServiceReply

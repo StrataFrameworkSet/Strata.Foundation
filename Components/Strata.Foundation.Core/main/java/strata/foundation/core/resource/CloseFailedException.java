@@ -10,12 +10,11 @@ package strata.foundation.core.resource;
  * closed, such as when {@link OpenExtent} attempts to close a resource on
  * completion of a try-with-resources block.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * throw new CloseFailedException(cause);
  * </pre>
- * </p>
  */
 public
 class CloseFailedException

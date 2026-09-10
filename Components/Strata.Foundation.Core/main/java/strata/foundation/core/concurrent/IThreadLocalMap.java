@@ -14,12 +14,11 @@ import java.util.stream.Stream;
  * with access to all stored values across threads.
  * See: <a href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread-local storage (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - value type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and thread-local storage
  * IThreadLocalMap&lt;String&gt; map = new ThreadLocalMap&lt;&gt;();
@@ -29,7 +28,6 @@ import java.util.stream.Stream;
  * Optional&lt;String&gt; value = map.get();
  * Collection&lt;String&gt; all  = map.getAll();
  * </pre>
- * </p>
  */
 public
 interface IThreadLocalMap<T>

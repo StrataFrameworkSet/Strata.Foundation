@@ -16,8 +16,8 @@ import java.util.function.Supplier;
  * attempts according to a configurable {@link BackoffStrategy} and backoff
  * factor.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor =
  *     new BasicRetryExecutor(5,50L,2.0)
@@ -25,7 +25,6 @@ import java.util.function.Supplier;
  *
  * executor.executeRun(() -&gt; connect());
  * </pre>
- * </p>
  */
 public
 class BasicRetryExecutor

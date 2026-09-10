@@ -10,12 +10,11 @@ package strata.foundation.core.resource;
  * opened, such as when {@link OpenExtent} attempts to open a resource on
  * construction.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * throw new OpenFailedException(cause);
  * </pre>
- * </p>
  */
 public
 class OpenFailedException

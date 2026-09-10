@@ -15,17 +15,17 @@ import java.util.Objects;
  * afterward, the asynchronous counterpart to {@link OpenExtent} for
  * resources whose lifecycle operations complete asynchronously.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <R>} - the type of {@link ICompletableResource} being managed
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * try (CompletableActivity&lt;MyResource&gt; activity = CompletableActivity.of(resource))
  * {
  *     // use resource once it is confirmed open
  * }
  * </pre>
- * </p>
  */
 public
 class CompletableActivity<R extends ICompletableResource>

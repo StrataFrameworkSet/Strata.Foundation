@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
  * specific numeric range for its postal codes, further validated against
  * that range.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * BasicPostalCodeToCountryCodeMapper mapper =
  *     new BasicPostalCodeToCountryCodeMapper(Locale.US);
@@ -32,7 +32,6 @@ import java.util.stream.Collectors;
  * Set&lt;String&gt; countryCodes = mapper.map("90210");
  * // countryCodes contains "US"
  * </pre>
- * </p>
  */
 public
 class BasicPostalCodeToCountryCodeMapper

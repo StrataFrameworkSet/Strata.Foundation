@@ -15,12 +15,11 @@ import java.util.function.*;
  * is backed by a deferred {@link java.util.function.Supplier},
  * resolving the supplied value into the completable future pipeline.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
- * {@code T} - result type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
+ * {@code <T>} - result type
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Async supply with deferred resolution
  * SupplierBasedCompletableFuture&lt;String&gt; future =
@@ -29,7 +28,6 @@ import java.util.function.*;
  * // Compose with CompletionStage API
  * future.thenAccept(value -&gt; System.out.println(value));
  * </pre>
- * </p>
  */
 public
 class SupplierBasedCompletableFuture<T>

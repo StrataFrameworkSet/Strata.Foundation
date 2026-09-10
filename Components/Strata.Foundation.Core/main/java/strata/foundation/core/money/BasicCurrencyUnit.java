@@ -18,8 +18,8 @@ import java.util.Objects;
  * default fraction digits. Includes predefined constants for
  * commonly used currencies.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Using predefined constants
  * CurrencyUnit usd = BasicCurrencyUnit.USD;
@@ -35,7 +35,6 @@ import java.util.Objects;
  * String code   = usd.getCurrencyCode();
  * int    digits = usd.getDefaultFractionDigits();
  * </pre>
- * </p>
  */
 public
 class BasicCurrencyUnit

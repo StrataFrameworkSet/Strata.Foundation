@@ -15,12 +15,11 @@ import java.util.stream.Stream;
  * and symmetric difference, along with distance computation.
  * See: <a href="https://en.wikipedia.org/wiki/Multiset">Multiset (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IMultiSet&lt;String&gt; bag = new MultiSet&lt;&gt;();
@@ -35,7 +34,6 @@ import java.util.stream.Stream;
  * // Set-algebraic operations
  * IMultiSet&lt;String&gt; union = bag.makeUnionWith(other);
  * </pre>
- * </p>
  */
 public
 interface IMultiSet<T extends Comparable<T>>

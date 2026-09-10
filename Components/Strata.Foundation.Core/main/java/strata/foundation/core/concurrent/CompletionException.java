@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Thrown when an asynchronous completion fails, wrapping the
  * underlying cause of the failure.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Thrown by CompletedResult on failure
  * try
@@ -23,7 +23,6 @@ package strata.foundation.core.concurrent;
  *     Throwable cause = e.getCause();
  * }
  * </pre>
- * </p>
  */
 public
 class CompletionException

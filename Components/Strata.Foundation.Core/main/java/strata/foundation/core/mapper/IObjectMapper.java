@@ -10,20 +10,20 @@ package strata.foundation.core.mapper;
  * payload representation of type {@code P}, such as a {@link String} of
  * JSON or a {@code byte[]} of serialized bytes.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - the upper bound of the object types this mapper converts</li>
  * <li>{@code <P>} - the payload type produced and consumed by this mapper</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IObjectMapper&lt;Customer,String&gt; mapper = ...;
  *
  * String payload = mapper.toPayload(customer);
  * Customer customer = mapper.toObject(Customer.class,payload);
  * </pre>
- * </p>
  */
 public
 interface IObjectMapper<T,P>

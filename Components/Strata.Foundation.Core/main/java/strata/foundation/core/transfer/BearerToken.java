@@ -14,14 +14,13 @@ import java.util.Objects;
  * supplied at construction already starts with {@code "Bearer "} it is used
  * as-is; otherwise the prefix is added automatically.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * BearerToken token = BearerToken.of("eyJhbGciOiJIUzI1NiJ9...");
  * request.addHeader("Authorization",token.toString());
  * // Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
  * </pre>
- * </p>
  */
 public
 class BearerToken

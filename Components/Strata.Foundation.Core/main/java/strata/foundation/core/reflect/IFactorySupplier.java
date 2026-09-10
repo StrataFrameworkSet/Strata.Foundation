@@ -11,13 +11,12 @@ import java.util.function.Supplier;
  * A {@link java.util.function.Supplier} specialization that supplies an
  * {@link IFactory} instance.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IFactorySupplier supplier = new SingletonFactorySupplier();
  * IFactory factory = supplier.get();
  * </pre>
- * </p>
  */
 public
 interface IFactorySupplier

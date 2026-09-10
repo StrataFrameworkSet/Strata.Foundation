@@ -15,8 +15,8 @@ import java.lang.annotation.Annotation;
  * injection</a> container, allowing instances to be resolved by type,
  * optionally qualified by an annotation, an annotation type, or a name.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IInjector injector = ...;
  *
@@ -24,7 +24,6 @@ import java.lang.annotation.Annotation;
  * IConfiguration named =
  *     injector.getInstance(IConfiguration.class,"secondary");
  * </pre>
- * </p>
  */
 public
 interface IInjector

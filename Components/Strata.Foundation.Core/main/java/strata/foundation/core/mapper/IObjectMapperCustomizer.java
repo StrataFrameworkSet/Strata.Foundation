@@ -15,14 +15,13 @@ import strata.foundation.core.utility.ICustomizer;
  * {@link IObjectMapperSupplier} when constructing the shared
  * {@link ObjectMapper} used throughout the application.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IObjectMapperCustomizer customizer = new ObjectMapperCustomizer();
  *
  * ObjectMapper mapper = customizer.customize(new ObjectMapper());
  * </pre>
- * </p>
  */
 public
 interface IObjectMapperCustomizer

@@ -11,12 +11,11 @@ import strata.foundation.core.event.SendResult;
  * Implementation of {@link ISender} that sends messages to an
  * {@link IBlockingQueue} for consumption by an {@link IReceiver}.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - message type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and sending
  * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -24,7 +23,6 @@ import strata.foundation.core.event.SendResult;
  *
  * SendResult&lt;String&gt; result = sender.send("hello");
  * </pre>
- * </p>
  */
 public
 class BlockingQueueSender<T>

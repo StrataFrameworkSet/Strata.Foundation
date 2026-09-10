@@ -20,12 +20,11 @@ import java.util.stream.StreamSupport;
  * shutdown via poison-pill {@link StopContext} elements, wrapping
  * a standard {@link java.util.concurrent.BlockingQueue}.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and lifecycle
  * StoppableBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -38,7 +37,6 @@ import java.util.stream.StreamSupport;
  * // Graceful stop
  * queue.stop();
  * </pre>
- * </p>
  */
 public
 class StoppableBlockingQueue<T>

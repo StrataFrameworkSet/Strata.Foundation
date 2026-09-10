@@ -14,8 +14,8 @@ package strata.foundation.core.utility;
  * <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">readers-writer
  * lock</a> pattern.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ISynchronizer synchronizer = ...;
  *
@@ -29,7 +29,6 @@ package strata.foundation.core.utility;
  *     synchronizer.unlockFromReading();
  * }
  * </pre>
- * </p>
  */
 public
 interface ISynchronizer
@@ -41,7 +40,7 @@ interface ISynchronizer
 	 * the same object(s) simultaneously without interfering with each
 	 * other. 
 	 * 
-	 * @see ISynchronizer.unlockFromReading()
+	 * @see #unlockFromReading()
 	 *
 	 */
 	void
@@ -53,7 +52,7 @@ interface ISynchronizer
 	 * and only allows a single writer to be active--no other writers or
 	 * readers can be active at the same time.
 	 * 
-	 * @see ISynchronizer.unlockFromWriting()
+	 * @see #unlockFromWriting()
 	 *
 	 */
 	void
@@ -62,7 +61,7 @@ interface ISynchronizer
 	/************************************************************************
 	 * Releases a <b>read lock</b>.
 	 * 
-	 * @see ISynchronizer.lockForReading()
+	 * @see #lockForReading()
 	 *
 	 */
 	void
@@ -71,7 +70,7 @@ interface ISynchronizer
 	/************************************************************************
 	 * Releases a <b>write lock</b>.
 	 * 
-	 * @see ISynchronizer.lockForWriting()
+	 * @see #lockForWriting()
 	 *
 	 */
 	void

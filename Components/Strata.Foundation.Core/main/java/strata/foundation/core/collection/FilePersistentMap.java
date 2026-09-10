@@ -17,15 +17,14 @@ import java.util.stream.Stream;
  * key-value entries to a {@link java.io.RandomAccessFile} with an
  * in-memory index for efficient lookups.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <K>} - key type</li>
  * <li>{@code <V>} - value type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * RandomAccessFile file = new RandomAccessFile("data.bin","rw");
@@ -35,7 +34,6 @@ import java.util.stream.Stream;
  * map = map.put("key",42);
  * Optional&lt;Integer&gt; value = map.get("key");
  * </pre>
- * </p>
  */
 public
 class FilePersistentMap<K,V>

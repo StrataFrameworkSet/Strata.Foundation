@@ -28,8 +28,8 @@ import java.util.Objects;
  * {@link ICopyable#copy()}, and instances implement {@link
  * java.io.Serializable} and {@link java.lang.Comparable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address =
  *     new PostalAddress(
@@ -44,7 +44,6 @@ import java.util.Objects;
  *
  * boolean sameLocation = address.compareTo(copy) == 0;
  * </pre>
- * </p>
  */
 public
 class PostalAddress

@@ -13,15 +13,14 @@ import java.util.function.Consumer;
  * for processing incoming messages asynchronously.
  * See: <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - message type</li>
  * <li>{@code <C>} - consumer type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Setup and start consuming
  * IReceiver&lt;String,Consumer&lt;String&gt;&gt; receiver = ...;
@@ -30,7 +29,6 @@ import java.util.function.Consumer;
  * // Stop consuming
  * receiver.stopConsuming();
  * </pre>
- * </p>
  */
 public
 interface IReceiver<T,C extends Consumer<T>>

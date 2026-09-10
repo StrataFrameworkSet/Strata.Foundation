@@ -13,12 +13,11 @@ import java.util.function.Consumer;
  * that supports sequential traversal of queued elements, terminating
  * when the queue is stopped.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation from a stoppable queue
  * StoppableBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -28,7 +27,6 @@ import java.util.function.Consumer;
  * // Sequential traversal
  * spliter.forEachRemaining(item -&gt; process(item));
  * </pre>
- * </p>
  */
 public
 class StoppableBlockingQueueSpliterator<T>

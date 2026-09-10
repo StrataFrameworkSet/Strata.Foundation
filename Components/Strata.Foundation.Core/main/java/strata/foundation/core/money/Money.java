@@ -21,8 +21,8 @@ import java.util.Objects;
  * and a {@link java.math.BigDecimal} amount. Supports arithmetic
  * operations, comparison, and JSON serialization.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation using factory methods
  * Money price = Money.of(BasicCurrencyUnit.USD,29.99);
@@ -39,7 +39,6 @@ import java.util.Objects;
  * // JSON deserialization
  * Money parsed = new Money("USD29.99");
  * </pre>
- * </p>
  */
 public
 class Money

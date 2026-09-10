@@ -12,15 +12,14 @@ package strata.foundation.core.utility;
  * to {@code null}, and trimming a string while returning {@code null} for
  * empty/blank input.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Strings.isNullOrEmpty("");           // true
  * Strings.isNullOrBlank("   ");        // true
  * Strings.trimNonBlankOrNull("  hi "); // "hi"
  * Strings.toNonEmptyOrNull("");        // null
  * </pre>
- * </p>
  */
 public
 class Strings

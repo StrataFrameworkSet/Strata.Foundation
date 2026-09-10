@@ -14,12 +14,11 @@ import java.util.concurrent.TimeUnit;
  * supports graceful start and stop lifecycle for coordinated shutdown.
  * See: <a href="https://en.wikipedia.org/wiki/Blocking_(computing)">Blocking (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and lifecycle
  * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -32,7 +31,6 @@ import java.util.concurrent.TimeUnit;
  * // Graceful shutdown
  * queue.stop();
  * </pre>
- * </p>
  */
 public
 interface IBlockingQueue<T>

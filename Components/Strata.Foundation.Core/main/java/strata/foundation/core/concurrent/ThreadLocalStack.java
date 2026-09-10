@@ -11,12 +11,11 @@ import java.util.Stack;
  * A thread-local {@link java.util.Stack} that maintains a separate
  * stack per thread using {@link ThreadLocal}.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Per-thread stack operations
  * ThreadLocalStack&lt;String&gt; stack = new ThreadLocalStack&lt;&gt;();
@@ -26,7 +25,6 @@ import java.util.Stack;
  * String top = stack.peek();  // "second"
  * String pop = stack.pop();   // "second"
  * </pre>
- * </p>
  */
 public
 class ThreadLocalStack<T>

@@ -13,13 +13,12 @@ import java.util.Collection;
  * Utility class providing static helper methods for working
  * with {@link java.util.Collection} instances.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Find first matching element
  * String result = CollectionHelper.find(items,item -&gt; item.startsWith("foo"));
  * </pre>
- * </p>
  */
 public
 class CollectionHelper

@@ -13,14 +13,13 @@ import java.util.NoSuchElementException;
  * a configuration file, or any other name/value store, allowing callers to
  * remain agnostic of where the values actually come from.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IEnvironment environment = ...;
  *
  * String path = environment.get("PATH");
  * </pre>
- * </p>
  */
 public
 interface IEnvironment

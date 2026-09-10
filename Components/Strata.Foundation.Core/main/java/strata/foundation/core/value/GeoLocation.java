@@ -25,8 +25,8 @@ import java.io.Serializable;
  * {@code longitude}, using exact {@link java.lang.Double#compare(double,
  * double)} semantics. Instances implement {@link java.io.Serializable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * GeoLocation location = GeoLocation.of(39.7817, -89.6501);
  *
@@ -35,7 +35,6 @@ import java.io.Serializable;
  *
  * int order = location.compareTo(GeoLocation.of(34.0522, -118.2437));
  * </pre>
- * </p>
  */
 public
 class GeoLocation

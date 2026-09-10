@@ -20,13 +20,14 @@ import java.util.function.Predicate;
  * mapping function pairs before returning to the parent
  * {@link PredicatedMapper} via {@link #toMapper()}.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <I>} - the input type this builder's mapping rules accept</li>
  * <li>{@code <O>} - the output type this builder's mapping rules produce</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PredicatedMapper mapper =
  *     new PredicatedMapper()
@@ -34,7 +35,6 @@ import java.util.function.Predicate;
  *         .addMapping(s -&gt; s.matches("\\d+"),Integer::parseInt)
  *         .toMapper();
  * </pre>
- * </p>
  */
 public
 class PredicatedMappingBuilder<I,O>

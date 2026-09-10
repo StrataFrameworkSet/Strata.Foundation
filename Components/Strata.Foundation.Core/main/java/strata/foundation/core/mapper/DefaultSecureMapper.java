@@ -26,10 +26,11 @@ import java.util.Objects;
  * {@link IEnvironmentValueProvider}, defaulting to the
  * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the {@link Serializable} type of value being encrypted and decrypted
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * DefaultSecureMapper&lt;Customer&gt; mapper =
  *     new DefaultSecureMapper&lt;&gt;(Customer.class,"my-secret-key");
@@ -37,7 +38,6 @@ import java.util.Objects;
  * String encrypted = mapper.mapEncrypted(customer);
  * Customer decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
- * </p>
  */
 public
 class DefaultSecureMapper<T extends Serializable>

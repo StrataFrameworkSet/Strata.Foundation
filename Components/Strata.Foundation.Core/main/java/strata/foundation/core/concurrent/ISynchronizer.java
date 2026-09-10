@@ -10,8 +10,8 @@ package strata.foundation.core.concurrent;
  * synchronization using a multiple reader/single writer access pattern.
  * See: <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Using with ReadLock/WriteLock (try-with-resources)
  * ISynchronizer sync = new ReadWriteLockSynchronizer();
@@ -26,7 +26,6 @@ package strata.foundation.core.concurrent;
  *     // modify shared state
  * }
  * </pre>
- * </p>
  */
 public
 interface ISynchronizer

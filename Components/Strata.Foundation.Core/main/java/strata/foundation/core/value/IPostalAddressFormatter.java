@@ -14,13 +14,12 @@ package strata.foundation.core.value;
  * <a href="https://en.wikipedia.org/wiki/Address">postal addressing
  * format</a>.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPostalAddressFormatter formatter = new UsPostalAddressFormatter("Jane Doe");
  * String formatted = formatter.format(address);
  * </pre>
- * </p>
  */
 public
 interface IPostalAddressFormatter

@@ -11,15 +11,15 @@ import java.util.function.Consumer;
  * A {@link java.util.function.Consumer} specialization that accepts the
  * {@link Class} object for a given type.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type whose {@link Class} is consumed
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IClassConsumer&lt;Widget&gt; consumer = type -&gt; System.out.println(type.getName());
  * consumer.accept(Widget.class);
  * </pre>
- * </p>
  */
 public
 interface IClassConsumer<T>

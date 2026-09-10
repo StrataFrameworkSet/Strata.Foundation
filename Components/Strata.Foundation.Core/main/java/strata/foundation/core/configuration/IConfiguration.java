@@ -17,8 +17,8 @@ import java.util.stream.Stream;
  * configuration entries as {@link java.util.stream.Stream} of
  * key-value pairs.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Property access
  * IConfiguration config = ...;
@@ -34,7 +34,6 @@ import java.util.stream.Stream;
  * config.stream().forEach(pair -&gt;
  *     System.out.println(pair.getFirst() + "=" + pair.getSecond()));
  * </pre>
- * </p>
  */
 public
 interface IConfiguration

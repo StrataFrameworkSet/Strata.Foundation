@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Thrown when an {@link IReceiver} encounters an error while
  * consuming a message from its source.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Caught during receiver operation
  * try
@@ -22,7 +22,6 @@ package strata.foundation.core.concurrent;
  *     Throwable cause = e.getCause();
  * }
  * </pre>
- * </p>
  */
 public
 class ConsumeFailedException

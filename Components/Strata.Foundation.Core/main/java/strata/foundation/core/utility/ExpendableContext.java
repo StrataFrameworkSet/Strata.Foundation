@@ -12,17 +12,17 @@ import java.io.Serializable;
  * tracking how many times the value has been retrieved and whether it has
  * been fully consumed.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of the held value
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ExpendableContext&lt;String&gt; context = new ExpendableContext&lt;&gt;("value",3);
  *
  * context.decrementRemaining();
  * boolean expended = context.isExpended();
  * </pre>
- * </p>
  */
 class ExpendableContext<T>
     implements Serializable

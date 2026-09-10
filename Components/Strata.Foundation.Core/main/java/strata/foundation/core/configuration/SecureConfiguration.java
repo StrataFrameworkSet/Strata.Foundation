@@ -29,8 +29,8 @@ import java.util.stream.Stream;
  * PBEWithHMACSHA512AndAES_256 with a key sourced from the
  * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Loading from classpath resource
  * InputStream input = getClass().getResourceAsStream("/application.properties");
@@ -42,7 +42,6 @@ import java.util.stream.Stream;
  * // Multiple input sources (merged)
  * IConfiguration config = new SecureConfiguration(baseInput,overrideInput);
  * </pre>
- * </p>
  */
 public
 class SecureConfiguration

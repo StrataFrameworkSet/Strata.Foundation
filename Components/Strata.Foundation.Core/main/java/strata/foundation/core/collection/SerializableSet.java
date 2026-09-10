@@ -16,12 +16,11 @@ import java.util.*;
  * {@link java.util.HashSet} to combine standard set behavior
  * with Strata collection serialization support.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation from existing collection
  * ISet&lt;String&gt; set = SerializableSet.of(Set.of("a","b","c"));
@@ -33,7 +32,6 @@ import java.util.*;
  * SerializableSet&lt;String&gt; set = new SerializableSet&lt;&gt;();
  * set.add("item");
  * </pre>
- * </p>
  */
 public
 class SerializableSet<T>

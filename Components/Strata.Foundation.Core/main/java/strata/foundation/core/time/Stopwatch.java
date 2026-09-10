@@ -21,8 +21,8 @@ import java.time.Instant;
  * class is not thread-safe; a single instance should not be shared across
  * threads without external synchronization.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Stopwatch stopwatch = new Stopwatch().start();
  * // ... perform work ...
@@ -35,7 +35,6 @@ import java.time.Instant;
  *     // poll for completion
  * }
  * </pre>
- * </p>
  */
 public
 class Stopwatch

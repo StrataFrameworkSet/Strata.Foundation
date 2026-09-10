@@ -11,14 +11,13 @@ package strata.foundation.core.value;
  * {@code "Dr. Jane Q. Doe, Jr."} depending on which parts of the name are
  * present.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPersonNameFormatter formatter = new BasicPersonNameFormatter();
  * String formatted = formatter.format(PersonName.of("Jane","Doe"));
  * // formatted == "Jane Doe"
  * </pre>
- * </p>
  */
 public
 class BasicPersonNameFormatter

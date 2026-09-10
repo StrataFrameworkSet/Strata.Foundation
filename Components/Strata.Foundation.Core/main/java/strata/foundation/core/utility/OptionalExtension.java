@@ -17,8 +17,8 @@ import java.util.function.Supplier;
  * exception when a value is absent, and comparing two {@code Optional}
  * values by their contained {@link Comparable} value.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Optional&lt;String&gt; name = Optional.of("Ada");
  * String greeting = OptionalExtension.ifPresentOrElse(
@@ -28,7 +28,6 @@ import java.util.function.Supplier;
  *
  * OptionalExtension.ifNotPresent(Optional.empty(), () -&gt; System.out.println("empty"));
  * </pre>
- * </p>
  */
 public
 class OptionalExtension

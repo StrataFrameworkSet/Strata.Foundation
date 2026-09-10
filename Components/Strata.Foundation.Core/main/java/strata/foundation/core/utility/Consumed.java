@@ -16,17 +16,17 @@ import java.util.Optional;
  * invocations, event dispatchers, loggers, validators that throw on
  * failure, or any void method that receives a single argument.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <I>} - the type of the input consumed by the operation
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Consumed&lt;String&gt; result = Consumed.of("process",input);
  *
  * if (result.isFailure())
  *     log(result.getException());
  * </pre>
- * </p>
  */
 public
 class Consumed<I>

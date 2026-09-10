@@ -14,8 +14,8 @@ import java.math.BigDecimal;
  * allowing currency, number, and monetary context to be set
  * independently before creation.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation via Money.getFactory()
  * Money amount = Money.of(BasicCurrencyUnit.USD,10.00);
@@ -28,7 +28,6 @@ import java.math.BigDecimal;
  *     .setNumber(49.99)
  *     .create();
  * </pre>
- * </p>
  */
 public
 class MoneyFactory

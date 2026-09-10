@@ -18,14 +18,13 @@ import java.util.stream.Collectors;
  * special characters, guaranteeing a configurable minimum number of each
  * character type.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPasswordGenerator generator = new DefaultPasswordGenerator(12,4,4,2);
  *
  * String password = generator.getNextPassword();
  * </pre>
- * </p>
  */
 public
 class DefaultPasswordGenerator

@@ -20,8 +20,8 @@ import java.util.*;
  * {@link PredicatedMappingBuilder} for adding one or more predicate and
  * mapping function pairs for a given input/output type combination.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PredicatedMapper mapper = new PredicatedMapper();
  *
@@ -31,7 +31,6 @@ import java.util.*;
  *
  * Optional&lt;Integer&gt; result = mapper.map("42",Integer.class);
  * </pre>
- * </p>
  */
 public
 class PredicatedMapper

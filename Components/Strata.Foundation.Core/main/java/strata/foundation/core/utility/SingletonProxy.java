@@ -20,15 +20,14 @@ import java.util.Map;
  * {@link #getInstance(Class)}, which returns a dynamic proxy that forwards
  * every method invocation to the underlying registered instance.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * SingletonProxy.setInstance(MyService.class, new MyServiceImpl());
  * MyService service = SingletonProxy.getInstance(MyService.class);
  * service.doWork();
  * SingletonProxy.clearInstance(MyService.class);
  * </pre>
- * </p>
  */
 public
 class SingletonProxy
@@ -93,7 +92,7 @@ class SingletonProxy
 	 * @param c		   singleton's class object
 	 * @param instance the singleton instance
 	 * 
-	 * @postcondition  SingletonProxy.getInstance( c ).isSame( instance )
+	 * Postcondition: {@code SingletonProxy.getInstance(c).isSame(instance)}
 	 */
 	public 
 	static <S> void 

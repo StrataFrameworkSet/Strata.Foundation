@@ -11,18 +11,17 @@ import java.util.function.Supplier;
 /**
  * <p>
  * Supplies a fully configured Jackson {@link ObjectMapper} instance,
- * typically built with a {@link JsonMapper} builder and customized via
+ * typically built with a {@link com.fasterxml.jackson.databind.json.JsonMapper} builder and customized via
  * an {@link IObjectMapperCustomizer}. Implementations may return a new
  * instance on each call or a shared, pre-built instance.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IObjectMapperSupplier supplier = new ObjectMapperSupplier();
  *
  * ObjectMapper mapper = supplier.get();
  * </pre>
- * </p>
  */
 public
 interface IObjectMapperSupplier

@@ -23,8 +23,8 @@ import java.util.Objects;
  * {@link IEnvironmentValueProvider}, defaulting to the
  * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * DefaultSecureStringMapper mapper =
  *     new DefaultSecureStringMapper("my-secret-key");
@@ -32,7 +32,6 @@ import java.util.Objects;
  * String encrypted = mapper.mapEncrypted("sensitive-value");
  * String decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
- * </p>
  */
 public
 class DefaultSecureStringMapper

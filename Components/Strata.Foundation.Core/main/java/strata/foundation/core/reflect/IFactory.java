@@ -13,14 +13,13 @@ import java.lang.reflect.InvocationTargetException;
  * {@link Constructor} associated with each type, implementing the
  * <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory method pattern</a>.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IFactory factory = new SimpleFactory();
  * factory.insertDefaultConstructor(Widget.class);
  * Widget widget = factory.create(Widget.class);
  * </pre>
- * </p>
  */
 public
 interface IFactory

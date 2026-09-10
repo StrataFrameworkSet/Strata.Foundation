@@ -11,12 +11,11 @@ import java.util.Objects;
  * Wrapper that pairs an element with a stop indicator for
  * poison-pill based graceful shutdown of blocking queues.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Normal element
  * StopContext&lt;String&gt; normal = StopContext.of("data");
@@ -27,7 +26,6 @@ import java.util.Objects;
  * StopContext&lt;String&gt; poison = StopContext.stop();
  * boolean stop = poison.mustStop(); // true
  * </pre>
- * </p>
  */
 public
 class StopContext<T>

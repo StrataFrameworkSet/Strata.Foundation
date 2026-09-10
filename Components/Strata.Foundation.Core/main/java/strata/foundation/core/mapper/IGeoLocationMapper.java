@@ -17,15 +17,14 @@ import java.util.Optional;
  * resolve every input to a location, in which case an empty
  * {@link Optional} is returned rather than throwing.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IGeoLocationMapper mapper = ...;
  *
  * Optional&lt;GeoLocation&gt; location = mapper.map("90210");
  * location.ifPresent(loc -&gt; System.out.println(loc));
  * </pre>
- * </p>
  */
 public
 interface IGeoLocationMapper

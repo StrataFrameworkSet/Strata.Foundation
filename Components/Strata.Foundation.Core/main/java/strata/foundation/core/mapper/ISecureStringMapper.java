@@ -10,15 +10,14 @@ package strata.foundation.core.mapper;
  * where the encrypted and decrypted forms are both plain strings and
  * no intermediate serialization step is needed.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ISecureStringMapper mapper = ...;
  *
  * String encrypted = mapper.mapEncrypted("sensitive-value");
  * String decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
- * </p>
  */
 public
 interface ISecureStringMapper

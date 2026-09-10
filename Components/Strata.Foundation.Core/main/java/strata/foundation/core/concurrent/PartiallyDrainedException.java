@@ -13,8 +13,8 @@ import java.util.List;
  * interrupted by a stop, carrying the elements that were
  * successfully drained before the interruption.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Recover partially drained elements
  * try
@@ -27,7 +27,6 @@ import java.util.List;
  *     // process the elements that were drained
  * }
  * </pre>
- * </p>
  */
 public
 class PartiallyDrainedException

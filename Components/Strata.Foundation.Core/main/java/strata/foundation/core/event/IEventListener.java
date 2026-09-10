@@ -11,18 +11,16 @@ import java.util.Collection;
  * Functional listener that receives and handles events.
  * See: <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <E>} - event type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Lambda-based listener
  * IEventListener&lt;String&gt; listener = event -&gt;
  *     System.out.println("Received: " + event);
  * </pre>
- * </p>
  */
 public
 interface IEventListener<E>

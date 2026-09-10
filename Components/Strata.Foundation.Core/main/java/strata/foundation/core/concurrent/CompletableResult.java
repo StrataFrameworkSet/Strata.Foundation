@@ -16,15 +16,14 @@ import java.util.function.*;
  * type-safe asynchronous result handling with {@link CompletedResult}
  * outcomes.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - result value type</li>
  * <li>{@code <R>} - completed result type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous execution via factory
  * ICompletableResult&lt;String,CompletedResult&lt;String&gt;&gt; result =
@@ -36,7 +35,6 @@ import java.util.function.*;
  * CompletedResult&lt;String&gt; completed = result.join();
  * String value = completed.get();
  * </pre>
- * </p>
  */
 public
 class CompletableResult<T,R extends CompletedResult<T>>

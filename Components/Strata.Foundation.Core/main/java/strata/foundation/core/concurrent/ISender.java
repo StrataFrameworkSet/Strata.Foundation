@@ -12,18 +12,16 @@ import strata.foundation.core.event.SendResult;
  * {@link SendResult} indicating the outcome.
  * See: <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - message type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Sending a message
  * ISender&lt;String&gt; sender = new BlockingQueueSender&lt;&gt;(queue);
  * SendResult&lt;String&gt; result = sender.send("hello");
  * </pre>
- * </p>
  */
 public
 interface ISender<T>

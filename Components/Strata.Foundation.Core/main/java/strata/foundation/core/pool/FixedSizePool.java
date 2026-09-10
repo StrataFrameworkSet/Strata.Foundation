@@ -16,14 +16,15 @@ import java.util.function.Supplier;
  * once the pool is full, checking out blocks until a poolable is checked
  * back in.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - the type of poolable object managed by this pool</li>
  * <li>{@code <P>} - the concrete pool type, used so poolables can reference
  * the pool that owns them</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * class ConnectionPool
  *     extends FixedSizePool&lt;Connection,ConnectionPool&gt;
@@ -37,7 +38,6 @@ import java.util.function.Supplier;
  * ConnectionPool pool = new ConnectionPool(10);
  * Connection connection = pool.checkOut();
  * </pre>
- * </p>
  */
 public abstract
 class FixedSizePool<T extends IPoolable<T,P>,P extends IPool<T,P>>

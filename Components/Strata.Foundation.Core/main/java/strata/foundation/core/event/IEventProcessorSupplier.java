@@ -11,15 +11,14 @@ import java.util.function.Supplier;
  * A {@link java.util.function.Supplier} of {@link IEventProcessor}
  * instances, enabling deferred or factory-based processor creation.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <E>} - event type</li>
  * <li>{@code <P>} - processor type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Supplier as lambda
  * IEventProcessorSupplier&lt;String,IEventProcessor&lt;String&gt;&gt; supplier =
@@ -27,7 +26,6 @@ import java.util.function.Supplier;
  *
  * IEventProcessor&lt;String&gt; processor = supplier.get();
  * </pre>
- * </p>
  */
 public
 interface IEventProcessorSupplier<E,P extends IEventProcessor<E>>

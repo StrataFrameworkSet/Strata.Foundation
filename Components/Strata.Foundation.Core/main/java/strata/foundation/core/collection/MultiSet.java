@@ -19,12 +19,11 @@ import java.util.stream.Stream;
  * {@link java.util.concurrent.atomic.AtomicLong} multiplicities,
  * supporting set-algebraic operations and distance computation.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IMultiSet&lt;String&gt; bag = new MultiSet&lt;&gt;();
@@ -37,7 +36,6 @@ import java.util.stream.Stream;
  * long total         = bag.getCardinality();
  * long distinctCount = bag.getUnderlyingSize();
  * </pre>
- * </p>
  */
 public
 class MultiSet<T extends Comparable<T>>

@@ -12,19 +12,19 @@ package strata.foundation.core.utility;
  * the resulting values, allowing callers to sort or order objects by an
  * arbitrary comparable attribute.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - the type of the objects being compared</li>
  * <li>{@code <P>} - the comparable type of the property extracted from each object</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPropertyComparator&lt;Person,Integer&gt; byAge =
  *     (a,b) -&gt; a.getAge().compareTo(b.getAge());
  * int result = byAge.compare(personA,personB);
  * </pre>
- * </p>
  */
 public
 interface IPropertyComparator<T,P extends Comparable<P>>

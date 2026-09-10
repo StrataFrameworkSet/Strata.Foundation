@@ -25,8 +25,8 @@ import java.util.Objects;
  * case-insensitively. Copies are produced via {@link ICopyable#copy()},
  * and instances implement {@link java.io.Serializable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * EmailAddress emailAddress = EmailAddress.of("jane.doe@example.com");
  *
@@ -34,7 +34,6 @@ import java.util.Objects;
  *
  * boolean same = emailAddress.equals(EmailAddress.of("JANE.DOE@EXAMPLE.COM"));
  * </pre>
- * </p>
  */
 public
 class EmailAddress

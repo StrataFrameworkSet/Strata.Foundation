@@ -26,14 +26,13 @@ import org.apache.avro.specific.SpecificRecordBase;
  * {@link SpecificRecordBase} types so their {@code schema} and
  * {@code specificData} properties are excluded from serialization.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IObjectMapperCustomizer customizer = new ObjectMapperCustomizer();
  *
  * ObjectMapper mapper = customizer.customize(new ObjectMapper());
  * </pre>
- * </p>
  */
 public
 class ObjectMapperCustomizer

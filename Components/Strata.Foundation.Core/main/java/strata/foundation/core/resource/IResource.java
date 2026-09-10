@@ -11,15 +11,14 @@ package strata.foundation.core.resource;
  * <a href="https://en.wikipedia.org/wiki/Resource_management_(computing)">resource management</a>
  * with distinct open and closed states.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * try (IResource resource = new FileResource(path))
  * {
  *     resource.open();
  * }
  * </pre>
- * </p>
  */
 public
 interface IResource

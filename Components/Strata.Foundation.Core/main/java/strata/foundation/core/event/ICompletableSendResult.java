@@ -12,19 +12,17 @@ import java.util.concurrent.CompletionStage;
  * {@link SendResult} indicating the outcome of an asynchronous
  * event send operation.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <E>} - event type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Async send result handling
  * ICompletableSendResult&lt;String&gt; result = sender.send("event");
  * result.thenAccept(sendResult -&gt;
  *     System.out.println("Sent: " + sendResult.getEvent()));
  * </pre>
- * </p>
  */
 public
 interface ICompletableSendResult<E>

@@ -20,10 +20,11 @@ import java.util.function.Supplier;
  * falling back on the contained value in a functional style, and can be
  * converted to a standard {@code Optional} when interoperability is needed.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of value potentially held by this instance
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IOptionable&lt;String&gt; optionable = ...;
  *
@@ -33,7 +34,6 @@ import java.util.function.Supplier;
  *     .map(String::toUpperCase)
  *     .orElse("DEFAULT");
  * </pre>
- * </p>
  */
 public
 interface IOptionable<T>

@@ -17,15 +17,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * keyed for tracking in-flight asynchronous operations with support
  * for bulk joining.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <K>} - key type</li>
  * <li>{@code <V>} - result value type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Track pending operations
  * CompletionStageMap&lt;String,Integer&gt; pending = new CompletionStageMap&lt;&gt;();
@@ -35,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * // Join all pending operations
  * Map&lt;String,Integer&gt; results = pending.joinAll();
  * </pre>
- * </p>
  */
 public
 class CompletionStageMap<K,V>

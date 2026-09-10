@@ -17,14 +17,13 @@ import java.util.Properties;
  * {@code DEPLOY_ENV} environment variable, falling back to
  * {@code "development"} when it is not set.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Provider&lt;Properties&gt; provider = new ApplicationPropertiesProvider();
  *
  * Properties properties = provider.get();
  * </pre>
- * </p>
  */
 public
 class ApplicationPropertiesProvider

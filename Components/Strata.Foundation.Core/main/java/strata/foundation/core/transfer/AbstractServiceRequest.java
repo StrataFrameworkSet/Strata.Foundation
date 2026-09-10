@@ -31,8 +31,8 @@ import java.util.UUID;
  * this}) and implement {@link Serializable} so requests can cross process or
  * transport boundaries.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * class GetCustomerRequest extends AbstractServiceRequest
  * {
@@ -50,7 +50,6 @@ import java.util.UUID;
  *         .setCustomerId("12345")
  *         .addHeader("X-Correlation-Id",UUID.randomUUID().toString());
  * </pre>
- * </p>
  */
 public abstract
 class AbstractServiceRequest

@@ -12,12 +12,11 @@ import java.util.Collection;
  * Serializable extension of {@link java.util.Collection} that serves
  * as the base interface for the Strata collection hierarchy.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Declaration via concrete type
  * ICollection&lt;String&gt; items = new SerializableList&lt;&gt;();
@@ -27,7 +26,6 @@ import java.util.Collection;
  * int size = items.size();
  * boolean has = items.contains("foo");
  * </pre>
- * </p>
  */
 public
 interface ICollection<T>

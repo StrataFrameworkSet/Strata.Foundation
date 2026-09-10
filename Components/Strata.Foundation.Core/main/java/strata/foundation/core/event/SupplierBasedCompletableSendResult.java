@@ -15,19 +15,17 @@ import java.util.function.Supplier;
  * that defers creation of an {@link ICompletableSendResult} via
  * a {@link java.util.function.Supplier}.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <E>} - event type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Deferred send result
  * SupplierBasedCompletableSendResult&lt;String&gt; deferred =
  *     SupplierBasedCompletableSendResult.supplyAsync(
  *         () -&gt; () -&gt; SendResult.of("event"));
  * </pre>
- * </p>
  */
 public
 class SupplierBasedCompletableSendResult<E>

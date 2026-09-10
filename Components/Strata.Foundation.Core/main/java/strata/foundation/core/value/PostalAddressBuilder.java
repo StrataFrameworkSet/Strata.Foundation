@@ -11,8 +11,8 @@ package strata.foundation.core.value;
  * chained, and any field left unset is passed through as {@code null},
  * which {@link PostalAddress} then normalizes to an empty string.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address =
  *     new PostalAddressBuilder()
@@ -24,7 +24,6 @@ package strata.foundation.core.value;
  *         .setPostalCode("62704")
  *         .build();
  * </pre>
- * </p>
  */
 public
 class PostalAddressBuilder

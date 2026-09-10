@@ -16,15 +16,14 @@ import java.util.function.Consumer;
  * an {@link IBlockingQueue} on a background thread using an
  * {@link java.util.concurrent.ExecutorService}.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - message type</li>
  * <li>{@code <C>} - consumer type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation and consumption
  * IBlockingQueue&lt;String&gt; queue = new StoppableBlockingQueue&lt;&gt;();
@@ -35,7 +34,6 @@ import java.util.function.Consumer;
  * // ... later ...
  * receiver.stopConsuming();
  * </pre>
- * </p>
  */
 public
 class BlockingQueueReceiver<T,C extends Consumer<T>>

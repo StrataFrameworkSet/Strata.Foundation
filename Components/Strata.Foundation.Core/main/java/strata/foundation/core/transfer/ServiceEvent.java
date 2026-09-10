@@ -21,10 +21,11 @@ import java.util.UUID;
  * subclasses to be serialized with their class name so events can be
  * deserialized back to their original type.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <S>} - the type of the object that is the source of the event.
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * class CustomerUpdatedEvent extends ServiceEvent&lt;Customer&gt;
  * {
@@ -38,7 +39,6 @@ import java.util.UUID;
  *     new CustomerUpdatedEvent(customer)
  *         .setCorrelationId(request.getRequestId());
  * </pre>
- * </p>
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS,property = "@class")
 public abstract

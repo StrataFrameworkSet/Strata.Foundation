@@ -14,12 +14,11 @@ import java.util.NoSuchElementException;
  * the underlying iterator is exhausted.
  * See: <a href="https://en.wikipedia.org/wiki/Circular_buffer">Circular buffer (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * CircularIterator&lt;String&gt; iter =
@@ -31,7 +30,6 @@ import java.util.NoSuchElementException;
  * iter.next(); // "c"
  * iter.next(); // "a" (cycles back)
  * </pre>
- * </p>
  */
 public
 class CircularIterator<T>

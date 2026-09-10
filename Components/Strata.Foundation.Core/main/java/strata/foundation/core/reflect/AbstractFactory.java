@@ -16,14 +16,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * to instantiate objects on demand, implementing the
  * <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory method pattern</a>.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * AbstractFactory factory = new SimpleFactory();
  * factory.insertConstructor(Widget.class, Widget.class.getConstructor());
  * Widget widget = factory.create(Widget.class);
  * </pre>
- * </p>
  */
 public abstract
 class AbstractFactory

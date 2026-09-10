@@ -19,12 +19,11 @@ import java.util.TreeSet;
  * {@link java.util.TreeSet} to combine standard sorted set behavior
  * with Strata collection serialization support.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation from existing collection
  * ISortedSet&lt;String&gt; sorted = SerializableSortedSet.of(List.of("c","a","b"));
@@ -36,7 +35,6 @@ import java.util.TreeSet;
  * String first = sorted.first();
  * String last  = sorted.last();
  * </pre>
- * </p>
  */
 public
 class SerializableSortedSet<T extends Comparable<? super T>>

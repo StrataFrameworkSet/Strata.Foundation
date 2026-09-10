@@ -15,8 +15,8 @@ import strata.foundation.core.utility.Expendable;
  * state, and postal code on a final line. The addressee is optional and may
  * be set at construction time or later via {@link #setAddressee(String)}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address = new PostalAddress("123","Main St","Anytown","CA","US","90210");
  *
@@ -24,7 +24,6 @@ import strata.foundation.core.utility.Expendable;
  * String formatted = formatter.format(address);
  * // "Jane Doe\n123 Main St\nAnytown, CA 90210"
  * </pre>
- * </p>
  */
 public
 class UsPostalAddressFormatter

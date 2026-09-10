@@ -12,15 +12,14 @@ import java.util.concurrent.CompletionStage;
  * {@link CompletedResult} containing either a value or an exception,
  * enabling type-safe asynchronous result handling.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - result value type</li>
  * <li>{@code <R>} - completed result type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous execution
  * ICompletableResult&lt;String,CompletedResult&lt;String&gt;&gt; result =
@@ -32,7 +31,6 @@ import java.util.concurrent.CompletionStage;
  * CompletedResult&lt;String&gt; completed = result.join();
  * String value = completed.get();
  * </pre>
- * </p>
  */
 public
 interface ICompletableResult<T,R extends CompletedResult<T>>

@@ -12,8 +12,8 @@ import java.util.Optional;
  * consistent prime-multiplier algorithm, avoiding the need to hand-write
  * {@link Object#hashCode()} implementations.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * int hashCode =
  *     new HashCodeBuilder()
@@ -21,7 +21,6 @@ import java.util.Optional;
  *         .append(age)
  *         .getHashCode();
  * </pre>
- * </p>
  */
 public
 class HashCodeBuilder

@@ -11,14 +11,15 @@ package strata.foundation.core.pool;
  * of {@link IPoolable} instances, avoiding the cost of repeatedly creating
  * and destroying expensive objects.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - the type of poolable object managed by this pool</li>
  * <li>{@code <P>} - the concrete pool type, used so poolables can reference
  * the pool that owns them</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPool&lt;Connection,ConnectionPool&gt; pool = ...;
  *
@@ -32,7 +33,6 @@ package strata.foundation.core.pool;
  *     pool.checkIn(connection);
  * }
  * </pre>
- * </p>
  */
 public
 interface IPool<T extends IPoolable<T,P>,P extends IPool<T,P>>

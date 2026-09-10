@@ -20,13 +20,12 @@ import java.util.function.Supplier;
  * "no retry" strategy wherever an {@link IRetryExecutor} is required but
  * retry behavior is not desired.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor = new NullRetryExecutor();
  * executor.executeRun(() -&gt; System.out.println("runs once, no retries"));
  * </pre>
- * </p>
  */
 public
 class NullRetryExecutor

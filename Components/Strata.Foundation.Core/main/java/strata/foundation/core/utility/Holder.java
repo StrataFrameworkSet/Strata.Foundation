@@ -10,16 +10,16 @@ package strata.foundation.core.utility;
  * capturing a value from within a lambda expression or anonymous inner
  * class where the enclosing variable must otherwise be effectively final.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of the held value
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Holder&lt;Integer&gt; total = new Holder&lt;Integer&gt;().setItem(0);
  *
  * items.forEach(i -&gt; total.setItem(total.getItem() + i));
  * </pre>
- * </p>
  */
 public
 class Holder<T>

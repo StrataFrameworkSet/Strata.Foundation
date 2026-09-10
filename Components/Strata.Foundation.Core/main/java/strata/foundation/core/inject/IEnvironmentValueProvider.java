@@ -15,8 +15,8 @@ import java.util.function.Supplier;
  * resolves a value which may or may not be present, and supplies an
  * exception to throw when a caller requires the value but it is absent.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IEnvironmentValueProvider provider =
  *     EnvironmentValueProvider.ofVariable("DEPLOY_ENV");
@@ -24,7 +24,6 @@ import java.util.function.Supplier;
  * String environment =
  *     provider.get().orElseThrow(provider.getException());
  * </pre>
- * </p>
  */
 public
 interface IEnvironmentValueProvider

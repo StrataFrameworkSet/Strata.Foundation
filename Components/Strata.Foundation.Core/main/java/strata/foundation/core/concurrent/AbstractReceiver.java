@@ -13,22 +13,20 @@ import java.util.function.Consumer;
  * consumer management (set, get, has) while leaving consumption
  * lifecycle (start, stop, isConsuming) to subclasses.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - message type</li>
  * <li>{@code <C>} - consumer type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Subclass usage
  * IReceiver&lt;String,Consumer&lt;String&gt;&gt; receiver =
  *     new BlockingQueueReceiver&lt;&gt;(queue);
  * receiver.startConsuming(msg -&gt; process(msg));
  * </pre>
- * </p>
  */
 public abstract
 class AbstractReceiver<T,C extends Consumer<T>>

@@ -11,8 +11,8 @@ package strata.foundation.core.concurrent;
  * enabling try-with-resources write lock management.
  * See: <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Try-with-resources write lock
  * ISynchronizer sync = new ReadWriteLockSynchronizer();
@@ -22,7 +22,6 @@ package strata.foundation.core.concurrent;
  *     // modify shared state safely
  * }
  * </pre>
- * </p>
  */
 public
 class WriteLock

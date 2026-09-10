@@ -13,23 +13,21 @@ import java.util.function.Function;
  * from a {@link java.util.concurrent.CompletableFuture}, enabling
  * generic construction of typed completable results.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <T>} - result value type</li>
  * <li>{@code <R>} - completed result type</li>
  * <li>{@code <C>} - completable result type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Factory as constructor reference
  * ICompletableResultFactory&lt;String,CompletedResult&lt;String&gt;,
  *     CompletableResult&lt;String,CompletedResult&lt;String&gt;&gt;&gt; factory =
  *         CompletableResult::new;
  * </pre>
- * </p>
  */
 public
 interface ICompletableResultFactory<

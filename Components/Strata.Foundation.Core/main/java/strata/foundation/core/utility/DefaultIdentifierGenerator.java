@@ -14,15 +14,14 @@ import java.util.UUID;
  * numeric-based identifiers using a {@link SecureRandom} source and random
  * string-based identifiers derived from a {@link UUID}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IIdentifierGenerator generator = new DefaultIdentifierGenerator();
  *
  * Integer id   = generator.getNextIntegerId(1000);
  * String  uuid = generator.getNextStringId();
  * </pre>
- * </p>
  */
 public
 class DefaultIdentifierGenerator

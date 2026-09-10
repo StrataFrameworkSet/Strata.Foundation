@@ -40,6 +40,10 @@ java {
     withSourcesJar()
 }
 
+javadoc {
+    options.addBooleanOption('Xdoclint:all,-missing', true)
+}
+
 publishing {
     publications {
         StrataFoundationCore(MavenPublication) {

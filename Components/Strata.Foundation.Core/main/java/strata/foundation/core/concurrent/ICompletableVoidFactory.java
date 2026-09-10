@@ -9,13 +9,12 @@ package strata.foundation.core.concurrent;
  * Specialized {@link ICompletableResultFactory} for creating
  * {@link ICompletableVoid} instances.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Factory as constructor reference
  * ICompletableVoidFactory factory = CompletableVoid::new;
  * </pre>
- * </p>
  */
 public
 interface ICompletableVoidFactory

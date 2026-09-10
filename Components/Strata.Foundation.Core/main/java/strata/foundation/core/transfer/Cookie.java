@@ -21,13 +21,12 @@ import java.util.Objects;
  * constructor, and implement {@link Serializable} so cookies can cross
  * process or transport boundaries.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Cookie sessionCookie = Cookie.of("SESSIONID","abc123");
  * request.addCookie(sessionCookie);
  * </pre>
- * </p>
  */
 public
 class Cookie

@@ -13,15 +13,14 @@ import java.util.function.Supplier;
  * combining, and throwing based on its value, as an alternative to
  * imperative {@code if}/{@code else} statements.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Conditional
  *     .of(user.isActive())
  *     .ifTrue(() -&gt; sendWelcomeEmail(user))
  *     .ifFalse(() -&gt; disableAccount(user));
  * </pre>
- * </p>
  */
 public
 class Conditional

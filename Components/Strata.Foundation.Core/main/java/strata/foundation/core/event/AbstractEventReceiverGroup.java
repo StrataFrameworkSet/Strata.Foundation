@@ -12,23 +12,21 @@ import java.util.stream.Stream;
  * Abstract base implementation of {@link IEventReceiverGroup} providing
  * receiver set management while leaving group coordination to subclasses.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <E>} - event type</li>
  * <li>{@code <L>} - listener type</li>
  * <li>{@code <R>} - receiver type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Access grouped receivers from a subclass
  * IEventReceiverGroup&lt;String,IEventListener&lt;String&gt;,
  *     IEventReceiver&lt;String,IEventListener&lt;String&gt;&gt;&gt; group = ...;
  * Set&lt;?&gt; receivers = group.get();
  * </pre>
- * </p>
  */
 public abstract
 class AbstractEventReceiverGroup<

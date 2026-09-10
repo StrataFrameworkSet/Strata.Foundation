@@ -12,8 +12,8 @@ import java.util.concurrent.Executor;
  * Specialized {@link CompletableResult} for asynchronous operations
  * that produce no return value, implementing {@link ICompletableVoid}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Fire-and-forget async operation
  * CompletableVoid result =
@@ -22,7 +22,6 @@ import java.util.concurrent.Executor;
  * // Wait for completion
  * result.join();
  * </pre>
- * </p>
  */
 public
 class CompletableVoid

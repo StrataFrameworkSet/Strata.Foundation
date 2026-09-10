@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Specialized {@link ICompletableResult} for asynchronous operations
  * that produce no return value.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous void operation
  * ICompletableVoid result =
@@ -18,7 +18,6 @@ package strata.foundation.core.concurrent;
  *
  * result.join();
  * </pre>
- * </p>
  */
 public
 interface ICompletableVoid

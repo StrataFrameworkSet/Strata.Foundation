@@ -12,14 +12,14 @@ import java.lang.reflect.Constructor;
  * {@link IFactory} obtained from {@link SingletonFactorySupplier}, typically
  * invoked for its side effect during static initialization.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type whose constructor is being registered
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * new FactoryInitializer&lt;&gt;(Widget.class, Widget.class.getConstructor());
  * </pre>
- * </p>
  */
 public
 class FactoryInitializer<T>

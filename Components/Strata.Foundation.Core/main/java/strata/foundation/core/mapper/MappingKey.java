@@ -14,15 +14,14 @@ import java.util.Objects;
  * output types are the same, and keys are ordered by input type name
  * and then output type name.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * MappingKey key = MappingKey.of(String.class,Integer.class);
  *
  * boolean matches = key.matches(String.class,Integer.class);
  * // matches is true
  * </pre>
- * </p>
  */
 public
 class MappingKey

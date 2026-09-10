@@ -19,13 +19,14 @@ import java.util.Optional;
  * {@link #isSuccess()} and {@link #isFailure()} indicate which
  * outcome occurred.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <I>} - the type of the input value passed to the operation</li>
  * <li>{@code <O>} - the type of the output value produced by the operation</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Mapped&lt;String,Integer&gt; result =
  *     Mapped.of("parseInt","42",Integer.parseInt("42"));
@@ -35,7 +36,6 @@ import java.util.Optional;
  *     Integer value = result.getOutput().get();
  * }
  * </pre>
- * </p>
  */
 public
 class Mapped<I,O>

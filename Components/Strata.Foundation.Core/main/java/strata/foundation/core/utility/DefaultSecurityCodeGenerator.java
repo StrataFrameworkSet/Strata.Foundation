@@ -16,14 +16,13 @@ import java.util.stream.Stream;
  * numeric characters, guaranteeing a configurable minimum number of each
  * character type.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ISecurityCodeGenerator generator = new DefaultSecurityCodeGenerator(6,0,6);
  *
  * String code = generator.getNextSecurityCode();
  * </pre>
- * </p>
  */
 public
 class DefaultSecurityCodeGenerator

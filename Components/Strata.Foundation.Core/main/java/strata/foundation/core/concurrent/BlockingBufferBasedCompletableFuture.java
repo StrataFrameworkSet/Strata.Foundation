@@ -16,12 +16,11 @@ import java.util.function.*;
  * bridges an {@link IBlockingBuffer} to the completable future API,
  * allowing blocking buffer results to be composed asynchronously.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - result type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Async supply via blocking buffer
  * BlockingBufferBasedCompletableFuture&lt;String&gt; future =
@@ -30,7 +29,6 @@ import java.util.function.*;
  * // Compose with CompletionStage API
  * future.thenAccept(value -&gt; System.out.println(value));
  * </pre>
- * </p>
  */
 public
 class BlockingBufferBasedCompletableFuture<T>

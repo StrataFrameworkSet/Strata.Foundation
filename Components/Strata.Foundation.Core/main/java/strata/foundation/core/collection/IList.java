@@ -12,12 +12,11 @@ import java.util.List;
  * indexed list operations with the Strata {@link ISequencedCollection}
  * hierarchy.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - element type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IList&lt;String&gt; list = SerializableList.of(List.of("a","b","c"));
@@ -26,7 +25,6 @@ import java.util.List;
  * String item = list.get(0);
  * int index   = list.indexOf("b");
  * </pre>
- * </p>
  */
 public
 interface IList<T>

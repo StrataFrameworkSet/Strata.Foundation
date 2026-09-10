@@ -15,12 +15,11 @@ import java.util.stream.Stream;
  * {@link java.util.concurrent.ConcurrentHashMap} keyed by thread id
  * for thread-safe per-thread value storage with cross-thread visibility.
  * </p>
- * <p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - value type
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Per-thread value storage
  * IThreadLocalMap&lt;String&gt; map = new ThreadLocalMap&lt;&gt;();
@@ -30,7 +29,6 @@ import java.util.stream.Stream;
  * Optional&lt;String&gt; value = map.get();
  * Collection&lt;String&gt; all  = map.getAll();
  * </pre>
- * </p>
  */
 public
 class ThreadLocalMap<T>

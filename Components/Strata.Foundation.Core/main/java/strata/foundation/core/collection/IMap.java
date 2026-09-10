@@ -12,15 +12,14 @@ import java.util.Map;
  * Serializable extension of {@link java.util.Map} for the Strata
  * collection hierarchy.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <K>} - key type</li>
  * <li>{@code <V>} - value type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IMap&lt;String,Integer&gt; map = SerializableMap.of(Map.of("a",1,"b",2));
@@ -29,7 +28,6 @@ import java.util.Map;
  * Integer value = map.get("a");
  * boolean has   = map.containsKey("b");
  * </pre>
- * </p>
  */
 public
 interface IMap<K,V>

@@ -14,8 +14,8 @@ import java.util.function.Supplier;
  * that produce a Boolean outcome, implementing
  * {@link ICompletableBoolean}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous boolean check
  * CompletableBoolean result =
@@ -24,7 +24,6 @@ import java.util.function.Supplier;
  *
  * Boolean value = result.join().get();
  * </pre>
- * </p>
  */
 public
 class CompletableBoolean

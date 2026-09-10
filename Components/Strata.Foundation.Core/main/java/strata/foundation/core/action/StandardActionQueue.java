@@ -14,14 +14,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * setup and teardown registration and sequential execution
  * using {@code ConcurrentLinkedQueue} for thread-safe action management.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Default construction
  * IActionQueue queue = new StandardActionQueue();
  *
  * // Construction with custom queue
- * IActionQueue queue = new StandardActionQueue(new LinkedList<>());
+ * IActionQueue queue = new StandardActionQueue(new LinkedList&lt;&gt;());
  *
  * // Register setup/teardown and execute
  * queue
@@ -29,7 +29,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  *     .insert(() -> processData())
  *     .execute();
  * </pre>
- * </p>
  */
 public
 class StandardActionQueue

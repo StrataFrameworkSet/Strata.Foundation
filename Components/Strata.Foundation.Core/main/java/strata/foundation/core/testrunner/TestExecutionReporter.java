@@ -19,14 +19,13 @@ import org.junit.platform.launcher.TestIdentifier;
  * that complements the end-of-run summary produced separately by listeners
  * such as {@link org.junit.platform.launcher.listeners.SummaryGeneratingListener}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Launcher launcher = LauncherFactory.create();
  * launcher.registerTestExecutionListeners(new TestExecutionReporter());
  * launcher.execute(request);
  * </pre>
- * </p>
  */
 public
 class TestExecutionReporter

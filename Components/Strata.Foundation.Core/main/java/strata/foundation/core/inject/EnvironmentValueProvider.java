@@ -14,8 +14,8 @@ import java.util.function.Supplier;
  * {@link java.util.Optional}, along with an exception to throw when the
  * variable is required but absent.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IEnvironmentValueProvider provider =
  *     EnvironmentValueProvider.ofVariable("DEPLOY_ENV");
@@ -23,7 +23,6 @@ import java.util.function.Supplier;
  * String environment =
  *     provider.get().orElseThrow(provider.getException());
  * </pre>
- * </p>
  */
 public
 class EnvironmentValueProvider

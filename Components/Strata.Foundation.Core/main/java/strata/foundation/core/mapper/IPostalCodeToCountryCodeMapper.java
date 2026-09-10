@@ -14,14 +14,13 @@ import java.util.Set;
  * contain zero, one, or several country codes depending on how
  * ambiguous the postal code's format is.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPostalCodeToCountryCodeMapper mapper = ...;
  *
  * Set&lt;String&gt; countryCodes = mapper.map("90210");
  * </pre>
- * </p>
  */
 public
 interface IPostalCodeToCountryCodeMapper

@@ -17,8 +17,8 @@ import java.util.Optional;
  * resulting immutable {@link PersonName}. A first name and last name must be
  * set before {@link #build()} is called.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PersonName name =
  *     new PersonNameBuilder()
@@ -29,7 +29,6 @@ import java.util.Optional;
  *         .setSuffix("Jr.")
  *         .build();
  * </pre>
- * </p>
  */
 public
 class PersonNameBuilder

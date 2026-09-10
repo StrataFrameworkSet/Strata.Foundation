@@ -15,14 +15,13 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
  * {@link ObjectMapperCustomizer}. A new {@link ObjectMapper} instance
  * is returned on every call to {@link #get()}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IObjectMapperSupplier supplier = new ObjectMapperSupplier();
  *
  * ObjectMapper mapper = supplier.get();
  * </pre>
- * </p>
  */
 public
 class ObjectMapperSupplier

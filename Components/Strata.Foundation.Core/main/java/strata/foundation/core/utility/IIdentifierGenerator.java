@@ -10,8 +10,8 @@ package strata.foundation.core.utility;
  * optionally bounding numeric identifiers to a given interval or
  * constraining string identifiers to a given length.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IIdentifierGenerator generator = ...;
  *
@@ -19,7 +19,6 @@ package strata.foundation.core.utility;
  * Integer capped = generator.getNextIntegerId(100);
  * String  token  = generator.getNextStringId(16);
  * </pre>
- * </p>
  */
 public
 interface IIdentifierGenerator

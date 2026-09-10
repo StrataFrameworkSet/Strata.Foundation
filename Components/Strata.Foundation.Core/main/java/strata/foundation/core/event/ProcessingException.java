@@ -9,8 +9,8 @@ package strata.foundation.core.event;
  * Thrown when an {@link IEventProcessor} encounters an error
  * while processing an event.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Caught during event processing
  * try
@@ -22,7 +22,6 @@ package strata.foundation.core.event;
  *     Throwable cause = e.getCause();
  * }
  * </pre>
- * </p>
  */
 public
 class ProcessingException

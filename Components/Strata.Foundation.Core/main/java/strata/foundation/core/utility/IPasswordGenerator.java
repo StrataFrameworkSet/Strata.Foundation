@@ -11,13 +11,12 @@ package strata.foundation.core.utility;
  * randomness strategies are appropriate, exposing only a single method
  * for retrieving the next generated password.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPasswordGenerator generator = ...;
  * String password = generator.getNextPassword();
  * </pre>
- * </p>
  */
 public
 interface IPasswordGenerator

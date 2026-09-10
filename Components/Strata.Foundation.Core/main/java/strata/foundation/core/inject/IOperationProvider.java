@@ -12,8 +12,8 @@ import jakarta.inject.Provider;
  * A {@link jakarta.inject.Provider} of {@link Operation}, used to obtain a
  * new unit-of-work scope on demand.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IOperationProvider provider = new TransientOperationProvider(injector);
  *
@@ -23,7 +23,6 @@ import jakarta.inject.Provider;
  *         operation.getInstance(IConfiguration.class);
  * }
  * </pre>
- * </p>
  */
 public
 interface IOperationProvider

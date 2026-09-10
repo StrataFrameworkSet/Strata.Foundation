@@ -18,8 +18,8 @@ import java.util.function.Supplier;
  * a {@link Consumer}, a {@link Supplier}, or a {@link Function}, letting
  * callers retry actions that consume input, produce output, or both.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor = ...;
  * executor.setMaxAttempts(3)
@@ -29,7 +29,6 @@ import java.util.function.Supplier;
  *
  * String result = executor.executeCall(() -&gt; callRemoteService());
  * </pre>
- * </p>
  */
 public
 interface IRetryExecutor

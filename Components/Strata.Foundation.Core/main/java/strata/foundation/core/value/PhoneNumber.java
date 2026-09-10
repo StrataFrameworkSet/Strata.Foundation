@@ -28,8 +28,8 @@ import java.util.Objects;
  * case-insensitively. Copies are produced via {@link ICopyable#copy()},
  * and instances implement {@link java.io.Serializable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PhoneNumber phoneNumber = PhoneNumber.of("+1 (555) 123-4567");
  *
@@ -38,7 +38,6 @@ import java.util.Objects;
  * boolean same = phoneNumber.equals(PhoneNumber.of("555-123-4567"));
  * String digits = phoneNumber.getDigitsOnly();
  * </pre>
- * </p>
  */
 public
 class PhoneNumber

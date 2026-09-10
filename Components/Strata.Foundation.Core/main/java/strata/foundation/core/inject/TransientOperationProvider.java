@@ -12,8 +12,8 @@ import jakarta.inject.Inject;
  * An {@link IOperationProvider} that creates a new {@link Operation} on
  * every call to {@code get()}, backed by an injected {@link IInjector}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IOperationProvider provider = new TransientOperationProvider(injector);
  *
@@ -23,7 +23,6 @@ import jakarta.inject.Inject;
  *         operation.getInstance(IConfiguration.class);
  * }
  * </pre>
- * </p>
  */
 public
 class TransientOperationProvider

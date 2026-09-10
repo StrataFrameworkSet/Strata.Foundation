@@ -20,8 +20,8 @@ import java.util.function.Predicate;
  * are typically created and registered through a
  * {@link PredicatedMappingBuilder} rather than directly.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * MappingKey key = MappingKey.of(String.class,Integer.class);
  *
@@ -33,7 +33,6 @@ import java.util.function.Predicate;
  *
  * Integer result = mapping.apply("42");
  * </pre>
- * </p>
  */
 public
 class PredicatedMapping

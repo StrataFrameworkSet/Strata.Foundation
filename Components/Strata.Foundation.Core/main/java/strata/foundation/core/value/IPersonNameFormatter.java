@@ -11,13 +11,12 @@ package strata.foundation.core.value;
  * of a name (title, first, middle, last, suffix) are combined and ordered
  * into the final formatted text.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IPersonNameFormatter formatter = new BasicPersonNameFormatter();
  * String formatted = formatter.format(PersonName.of("Jane","Q.","Doe"));
  * </pre>
- * </p>
  */
 public
 interface IPersonNameFormatter

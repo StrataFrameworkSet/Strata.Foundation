@@ -8,8 +8,8 @@ package strata.foundation.core.action;
  * <p>
  * Represents a unit of work that can be executed.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation using lambda
  * IAction action = () -> System.out.println("executing");
@@ -17,7 +17,6 @@ package strata.foundation.core.action;
  * // Execution
  * action.execute();
  * </pre>
- * </p>
  */
 public
 interface IAction

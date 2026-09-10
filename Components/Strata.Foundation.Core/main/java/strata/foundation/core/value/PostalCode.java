@@ -29,8 +29,8 @@ import java.util.Objects;
  * ICopyable#copy()}, and instances implement {@link java.io.Serializable}
  * and {@link java.lang.Comparable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * PostalCode postalCode = PostalCode.of("62704");
  *
@@ -39,7 +39,6 @@ import java.util.Objects;
  * boolean same = postalCode.equals(copy);
  * int order = postalCode.compareTo(PostalCode.of("90210"));
  * </pre>
- * </p>
  */
 public
 class PostalCode

@@ -9,16 +9,16 @@ package strata.foundation.core.utility;
  * Combines two values of type {@code T} into a single value of the same
  * type, such as when merging or reducing a collection of values.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of values being combined
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ICombiner&lt;Integer&gt; sum = (x,y) -&gt; x + y;
  *
  * int total = sum.combine(2,3);
  * </pre>
- * </p>
  */
 public
 interface ICombiner<T>

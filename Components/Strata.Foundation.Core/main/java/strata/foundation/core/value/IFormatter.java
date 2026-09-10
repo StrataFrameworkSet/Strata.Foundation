@@ -13,20 +13,20 @@ package strata.foundation.core.value;
  * rule can be swapped, composed, or configured independently of the value
  * being formatted.
  * </p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <V>} - the type of the value being formatted</li>
  * <li>{@code <O>} - the type of the output produced by formatting</li>
  * </ul>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * IFormatter&lt;PersonName,String&gt; formatter =
  *     personName -&gt; personName.getFirstName() + " " + personName.getLastName();
  *
  * String formatted = formatter.format(PersonName.of("Jane","Doe"));
  * </pre>
- * </p>
  */
 public
 interface IFormatter<V,O>

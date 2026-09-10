@@ -9,8 +9,8 @@ package strata.foundation.core.concurrent;
  * Thrown when an {@link IReceiver} fails to start its
  * consumption loop.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Caught during receiver startup
  * try
@@ -22,7 +22,6 @@ package strata.foundation.core.concurrent;
  *     Throwable cause = e.getCause();
  * }
  * </pre>
- * </p>
  */
 public
 class StartFailedException

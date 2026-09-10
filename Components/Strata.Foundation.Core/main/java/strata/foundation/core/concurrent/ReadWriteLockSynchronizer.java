@@ -14,8 +14,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * reader/single writer synchronization.
  * See: <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Default construction (uses ReentrantReadWriteLock)
  * ISynchronizer sync = new ReadWriteLockSynchronizer();
@@ -29,7 +29,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *     // read shared state
  * }
  * </pre>
- * </p>
  */
 public
 class ReadWriteLockSynchronizer
@@ -40,9 +39,8 @@ class ReadWriteLockSynchronizer
 	/************************************************************************
 	 * Creates a new ReadWriteLockSynchronizer. 
 	 *
-	 * @param lock
 	 */
-	public 
+	public
 	ReadWriteLockSynchronizer()
 	{
 		super();

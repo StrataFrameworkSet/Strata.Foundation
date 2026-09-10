@@ -16,15 +16,14 @@ import java.util.Optional;
  * invalidation, connection resets, lifecycle hooks, or any void
  * method invoked without arguments.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Executed result = Executed.of("refresh");
  *
  * if (result.isFailure())
  *     log(result.getException());
  * </pre>
- * </p>
  */
 public
 class Executed

@@ -13,14 +13,13 @@ import java.util.function.Supplier;
  * {@code Supplier<Void>} is required. Calling {@link #get()} runs the
  * wrapped {@code Runnable} and always returns {@code null}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Supplier&lt;Void&gt; supplier =
  *     new RunnableVoidSupplier(() -&gt; System.out.println("running"));
  * supplier.get();
  * </pre>
- * </p>
  */
 public
 class RunnableVoidSupplier

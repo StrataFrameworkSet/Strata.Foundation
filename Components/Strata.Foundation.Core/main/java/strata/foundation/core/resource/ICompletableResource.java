@@ -12,13 +12,12 @@ import strata.foundation.core.concurrent.ICompletableVoid;
  * Asynchronous counterpart to {@link IResource} whose lifecycle operations
  * return completable results rather than blocking the calling thread.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ICompletableResource resource = new AsyncFileResource(path);
  * resource.open().thenAccept(result -&gt; result.throwIfExceptionPresent());
  * </pre>
- * </p>
  */
 public
 interface ICompletableResource

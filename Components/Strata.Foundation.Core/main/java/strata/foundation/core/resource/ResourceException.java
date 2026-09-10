@@ -9,12 +9,11 @@ package strata.foundation.core.resource;
  * Signals that an operation on an {@link IResource} or
  * {@link ICompletableResource} failed.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * throw new ResourceException("failed to open resource", cause);
  * </pre>
- * </p>
  */
 public
 class ResourceException

@@ -14,17 +14,17 @@ import jakarta.inject.Provider;
  * storage</a>, delegating creation to a wrapped source provider the first
  * time each thread requests a value.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the type of value provided
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * Provider&lt;Connection&gt; source = () -&gt; openConnection();
  * Provider&lt;Connection&gt; threadLocal = new ThreadLocalProvider&lt;&gt;(source);
  *
  * Connection connection = threadLocal.get();
  * </pre>
- * </p>
  */
 public
 class ThreadLocalProvider<T>

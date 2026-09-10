@@ -12,17 +12,17 @@ import java.util.Objects;
  * needed when the extent itself is closed, so the resource is guaranteed to
  * be open for the lifetime of a try-with-resources block.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <R>} - the type of {@link IResource} being managed
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * try (OpenExtent&lt;FileResource&gt; extent = OpenExtent.of(resource))
  * {
  *     // resource is guaranteed to be open here
  * }
  * </pre>
- * </p>
  */
 public
 class OpenExtent<R extends IResource>

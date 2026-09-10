@@ -12,16 +12,15 @@ import java.util.Objects;
  * <p>
  * Container for a triple of data elements.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <F>} - first element of Triple</li>
  * <li>{@code <S>} - second element of Triple</li>
  * <li>{@code <T>} - third element of Triple</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * Triple&lt;Integer,String,Boolean&gt; bar = Triple.of(1,"foo",true);
@@ -31,7 +30,6 @@ import java.util.Objects;
  * String  second = bar.getSecond();
  * Boolean third  = bar.getThird();
  * </pre>
- * </p>
  */
 public
 class Triple<F,S,T>

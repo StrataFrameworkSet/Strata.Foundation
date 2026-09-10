@@ -12,13 +12,12 @@ package strata.foundation.core.utility;
  * randomness strategy, exposing only a single method for retrieving the
  * next generated code.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ISecurityCodeGenerator generator = ...;
  * String code = generator.getNextSecurityCode();
  * </pre>
- * </p>
  */
 public
 interface ISecurityCodeGenerator

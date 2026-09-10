@@ -12,15 +12,14 @@ import java.util.Objects;
  * <p>
  * Container for a pair of data elements.
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <F>} - first element of Pair</li>
  * <li>{@code <S>} - second element of Pair</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * Pair&lt;Integer,String&gt; foo = Pair.of(1,"foo");
@@ -29,7 +28,6 @@ import java.util.Objects;
  * Integer first = foo.getFirst();
  * String second = foo.getSecond();
  * </pre>
- * </p>
  */
 public 
 class Pair<F,S>

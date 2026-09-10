@@ -15,8 +15,8 @@ import java.util.concurrent.*;
  * tasks is reached.
  * See: <a href="https://en.wikipedia.org/wiki/Semaphore_(programming)">Semaphore (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Limit to 5 concurrent tasks with 30s timeout
  * BoundedExecutor executor =
@@ -27,7 +27,6 @@ import java.util.concurrent.*;
  * // Check available capacity
  * int available = executor.getAvailablePermits();
  * </pre>
- * </p>
  */
 public
 class BoundedExecutor

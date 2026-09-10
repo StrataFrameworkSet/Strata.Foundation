@@ -29,15 +29,14 @@ import java.util.UUID;
  * hashed value and the salt to match. Instances implement {@link
  * java.io.Serializable}.
  * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * HashedString hashed = HashedString.of("correct horse battery staple");
  *
  * boolean matches = hashed.matches("correct horse battery staple");
  * String hex = hashed.getHexValue();
  * </pre>
- * </p>
  */
 public
 class HashedString

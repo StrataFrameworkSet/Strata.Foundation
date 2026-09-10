@@ -19,15 +19,14 @@ import java.util.stream.Stream;
  * and symmetric difference.
  * See: <a href="https://en.wikipedia.org/wiki/Multimap">Multimap (Wikipedia)</a>
  * </p>
- * <p>
- * <h4>Type Parameters</h4>
+ * <br/>
+ * <b>Type Parameters</b><br/>
  * <ul>
  * <li>{@code <K>} - key type</li>
  * <li>{@code <V>} - value type</li>
  * </ul>
- * </p>
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * // Creation
  * IMultiMap&lt;String,Integer&gt; map = new ListValuedMultiMap&lt;&gt;();
@@ -41,7 +40,6 @@ import java.util.stream.Stream;
  * // Set-algebraic operations
  * IMultiMap&lt;String,Integer&gt; union = map.makeUnionWith(other);
  * </pre>
- * </p>
  */
 public
 interface IMultiMap<K,V>

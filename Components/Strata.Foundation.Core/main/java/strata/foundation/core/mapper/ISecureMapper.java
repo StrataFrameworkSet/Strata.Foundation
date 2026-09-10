@@ -13,17 +13,17 @@ import java.io.Serializable;
  * responsible for whatever encoding, serialization, and cryptographic
  * transformation is needed to safely round-trip the value.
  * </p>
- * <h4>Type Parameter</h4>
+ * <br/>
+ * <b>Type Parameter</b><br/>
  * {@code <T>} - the {@link Serializable} type of value being encrypted and decrypted
- * <p>
- * <h4>Examples</h4>
+ * <br/>
+ * <b>Examples</b><br/>
  * <pre>
  * ISecureMapper&lt;Customer&gt; mapper = ...;
  *
  * String encrypted = mapper.mapEncrypted(customer);
  * Customer decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
- * </p>
  */
 public
 interface ISecureMapper<T extends Serializable>
