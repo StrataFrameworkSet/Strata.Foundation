@@ -37,7 +37,11 @@ tasks.named("compileJava").configure {
 
 java {
     withJavadocJar()
-    //withSourcesJar()
+    withSourcesJar()
+}
+
+tasks.named("sourcesJar").configure {
+    dependsOn(genAvro)
 }
 
 javadoc {
