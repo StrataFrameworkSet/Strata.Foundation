@@ -15,9 +15,6 @@ import jakarta.inject.Provider;
  * time each thread requests a value.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of value provided
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * Provider&lt;Connection&gt; source = () -&gt; openConnection();
@@ -25,6 +22,8 @@ import jakarta.inject.Provider;
  *
  * Connection connection = threadLocal.get();
  * </pre>
+ *
+ * @param <T> - the type of value provided
  */
 public
 class ThreadLocalProvider<T>

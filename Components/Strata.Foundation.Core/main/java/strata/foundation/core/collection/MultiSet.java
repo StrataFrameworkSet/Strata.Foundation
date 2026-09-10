@@ -18,11 +18,7 @@ import java.util.stream.Stream;
  * {@link java.util.Map} of elements to
  * {@link java.util.concurrent.atomic.AtomicLong} multiplicities,
  * supporting set-algebraic operations and distance computation.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -36,6 +32,8 @@ import java.util.stream.Stream;
  * long total         = bag.getCardinality();
  * long distinctCount = bag.getUnderlyingSize();
  * </pre>
+ *
+ * @param <T> - element type, must be {@link java.lang.Comparable}
  */
 public
 class MultiSet<T extends Comparable<T>>

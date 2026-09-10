@@ -16,9 +16,6 @@ import java.util.function.*;
  * resolving the supplied value into the completable future pipeline.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - result type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Async supply with deferred resolution
@@ -28,6 +25,8 @@ import java.util.function.*;
  * // Compose with CompletionStage API
  * future.thenAccept(value -&gt; System.out.println(value));
  * </pre>
+ *
+ * @param <T> - result type
  */
 public
 class SupplierBasedCompletableFuture<T>

@@ -11,11 +11,7 @@ import java.util.concurrent.CompletionStage;
  * A {@link java.util.concurrent.CompletionStage} that produces a
  * {@link SendResult} indicating the outcome of an asynchronous
  * event send operation.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Async send result handling
@@ -23,6 +19,8 @@ import java.util.concurrent.CompletionStage;
  * result.thenAccept(sendResult -&gt;
  *     System.out.println("Sent: " + sendResult.getEvent()));
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 interface ICompletableSendResult<E>

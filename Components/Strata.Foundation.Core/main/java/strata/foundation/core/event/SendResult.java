@@ -10,11 +10,7 @@ import java.util.Optional;
  * <p>
  * Result container for an event send operation, holding the
  * original event and either a success indicator or an exception.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Inspect send outcome
@@ -26,6 +22,8 @@ import java.util.Optional;
  * if (result.hasException())
  *     result.getException().printStackTrace();
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 class SendResult<E>

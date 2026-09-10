@@ -24,8 +24,7 @@ import java.io.Serializable;
  * java.lang.Comparable} compares {@code latitude} first and then
  * {@code longitude}, using exact {@link java.lang.Double#compare(double,
  * double)} semantics. Instances implement {@link java.io.Serializable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * GeoLocation location = GeoLocation.of(39.7817, -89.6501);

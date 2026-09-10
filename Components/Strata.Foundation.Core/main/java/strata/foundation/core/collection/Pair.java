@@ -11,14 +11,7 @@ import java.util.Objects;
 /**
  * <p>
  * Container for a pair of data elements.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <F>} - first element of Pair</li>
- * <li>{@code <S>} - second element of Pair</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -28,6 +21,9 @@ import java.util.Objects;
  * Integer first = foo.getFirst();
  * String second = foo.getSecond();
  * </pre>
+ *
+ * @param <F> - first element of Pair
+ * @param <S> - second element of Pair
  */
 public 
 class Pair<F,S>

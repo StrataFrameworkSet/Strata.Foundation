@@ -11,14 +11,7 @@ import java.util.function.Function;
  * Compares two objects of type {@code T} by extracting a {@link Comparable}
  * property from each using a {@link Function} selector and returning the
  * result of comparing the properties in ascending order.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - the type of object being compared</li>
- * <li>{@code <P>} - the type of the comparable property extracted from {@code T}</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPropertyComparator&lt;Person,String&gt; byName =
@@ -26,6 +19,9 @@ import java.util.function.Function;
  *
  * people.sort(byName);
  * </pre>
+ *
+ * @param <T> - the type of object being compared
+ * @param <P> - the type of the comparable property extracted from {@code T}
  */
 public
 class AscendingOrderPropertyComparator<T,P extends Comparable<P>>

@@ -17,8 +17,7 @@ import java.util.stream.Collectors;
  * passwords of a fixed length composed from alphabetic, numeric, and
  * special characters, guaranteeing a configurable minimum number of each
  * character type.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPasswordGenerator generator = new DefaultPasswordGenerator(12,4,4,2);

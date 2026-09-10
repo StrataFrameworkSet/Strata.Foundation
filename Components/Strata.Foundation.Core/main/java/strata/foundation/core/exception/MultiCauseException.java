@@ -14,8 +14,7 @@ import java.util.List;
  * {@link java.lang.RuntimeException}. Use this when an operation can fail
  * for more than one reason at once and the caller needs to be notified of
  * every failure rather than just the first one encountered.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * List&lt;Throwable&gt; causes = new ArrayList&lt;&gt;();

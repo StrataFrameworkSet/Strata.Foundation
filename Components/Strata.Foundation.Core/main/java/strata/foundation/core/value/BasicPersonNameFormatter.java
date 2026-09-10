@@ -10,8 +10,7 @@ package strata.foundation.core.value;
  * to {@link PersonName#toString()}, producing a formatted name such as
  * {@code "Dr. Jane Q. Doe, Jr."} depending on which parts of the name are
  * present.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPersonNameFormatter formatter = new BasicPersonNameFormatter();

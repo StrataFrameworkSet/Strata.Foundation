@@ -12,8 +12,7 @@ import java.util.function.Supplier;
  * of {@link Void}, allowing a void, no-argument action to be used anywhere a
  * {@code Supplier<Void>} is required. Calling {@link #get()} runs the
  * wrapped {@code Runnable} and always returns {@code null}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Supplier&lt;Void&gt; supplier =

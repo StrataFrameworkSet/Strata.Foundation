@@ -15,14 +15,7 @@ import java.util.stream.Stream;
  * operations to the wrapped source and throws
  * {@link UnsupportedOperationException} on all mutating operations.
  * See: <a href="https://en.wikipedia.org/wiki/Immutable_object">Immutable object (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation from mutable source
@@ -36,6 +29,9 @@ import java.util.stream.Stream;
  * // Mutating operations throw UnsupportedOperationException
  * // immutable.put("c",3); // throws
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 class ImmutableMultiMap<K,V>

@@ -11,8 +11,7 @@ import java.util.Optional;
  * Incrementally builds a hash code by combining property values using a
  * consistent prime-multiplier algorithm, avoiding the need to hand-write
  * {@link Object#hashCode()} implementations.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * int hashCode =

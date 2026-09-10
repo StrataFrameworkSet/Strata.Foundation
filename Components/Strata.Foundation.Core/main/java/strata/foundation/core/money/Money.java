@@ -20,8 +20,7 @@ import java.util.Objects;
  * represents a monetary value with a {@link javax.money.CurrencyUnit}
  * and a {@link java.math.BigDecimal} amount. Supports arithmetic
  * operations, comparison, and JSON serialization.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation using factory methods

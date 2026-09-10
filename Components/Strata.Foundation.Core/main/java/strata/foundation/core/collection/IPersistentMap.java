@@ -13,14 +13,7 @@ import java.util.stream.Stream;
  * A persistent map that preserves previous versions on mutation,
  * returning a new map instance for each modification.
  * See: <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">Persistent data structure (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and mutation
@@ -31,6 +24,9 @@ import java.util.stream.Stream;
  * Optional&lt;Integer&gt; value = map2.get("key");
  * boolean has = map2.containsKey("key");
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 interface IPersistentMap<K,V>

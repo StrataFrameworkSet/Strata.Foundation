@@ -9,8 +9,7 @@ package strata.foundation.core.resource;
  * {@link ResourceException} thrown when an {@link IResource} could not be
  * closed, such as when {@link OpenExtent} attempts to close a resource on
  * completion of a try-with-resources block.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * throw new CloseFailedException(cause);

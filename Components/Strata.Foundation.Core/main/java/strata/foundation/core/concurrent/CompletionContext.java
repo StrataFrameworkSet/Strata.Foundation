@@ -20,9 +20,6 @@ import java.util.function.Consumer;
  * combination.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - result type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and timing
@@ -36,6 +33,8 @@ import java.util.function.Consumer;
  * Optional&lt;String&gt; result = ctx.getResult();
  * boolean hasError = ctx.hasException();
  * </pre>
+ *
+ * @param <T> - result type
  */
 public
 class CompletionContext<T>

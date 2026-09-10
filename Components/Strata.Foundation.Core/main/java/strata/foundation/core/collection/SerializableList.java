@@ -15,11 +15,7 @@ import java.util.Collection;
  * Serializable implementation of {@link IList} that extends
  * {@link java.util.ArrayList} to combine standard list behavior
  * with Strata collection serialization support.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation from existing collection
@@ -32,6 +28,8 @@ import java.util.Collection;
  * SerializableList&lt;String&gt; list = new SerializableList&lt;&gt;();
  * list.add("item");
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class SerializableList<T>

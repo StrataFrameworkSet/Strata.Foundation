@@ -10,8 +10,7 @@ package strata.foundation.core.resource;
  * {@link AutoCloseable} to support
  * <a href="https://en.wikipedia.org/wiki/Resource_management_(computing)">resource management</a>
  * with distinct open and closed states.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * try (IResource resource = new FileResource(path))

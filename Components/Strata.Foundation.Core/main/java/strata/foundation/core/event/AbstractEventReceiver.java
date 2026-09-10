@@ -12,14 +12,7 @@ import java.util.Optional;
  * listener set management (attach, detach, has) while leaving
  * event delivery lifecycle (start, stop listening) to subclasses.
  * See: <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <E>} - event type</li>
- * <li>{@code <L>} - listener type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Subclass usage
@@ -27,6 +20,9 @@ import java.util.Optional;
  *     new MyEventReceiver();
  * receiver.startListening(event -&gt; process(event));
  * </pre>
+ *
+ * @param <E> - event type
+ * @param <L> - listener type
  */
 public abstract
 class AbstractEventReceiver<E,L extends IEventListener<E>>

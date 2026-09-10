@@ -14,11 +14,7 @@ import java.util.stream.Stream;
  * supporting set-algebraic operations such as union, intersection,
  * and symmetric difference, along with distance computation.
  * See: <a href="https://en.wikipedia.org/wiki/Multiset">Multiset (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -34,6 +30,8 @@ import java.util.stream.Stream;
  * // Set-algebraic operations
  * IMultiSet&lt;String&gt; union = bag.makeUnionWith(other);
  * </pre>
+ *
+ * @param <T> - element type, must be {@link java.lang.Comparable}
  */
 public
 interface IMultiSet<T extends Comparable<T>>

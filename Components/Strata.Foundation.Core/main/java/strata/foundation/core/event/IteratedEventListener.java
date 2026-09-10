@@ -10,11 +10,7 @@ import java.util.Collection;
  * <p>
  * Abstract {@link IEventListener} that iterates over a collection
  * derived from the event, invoking a handler for each element.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Subclass that processes each item in an event's collection
@@ -28,6 +24,8 @@ import java.util.Collection;
  *         { process(item); }
  *     };
  * </pre>
+ *
+ * @param <E> - event type
  */
 public abstract
 class IteratedEventListener<E>

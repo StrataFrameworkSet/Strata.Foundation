@@ -17,12 +17,6 @@ import java.util.function.Consumer;
  * {@link java.util.concurrent.ExecutorService}.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - message type</li>
- * <li>{@code <C>} - consumer type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and consumption
@@ -34,6 +28,9 @@ import java.util.function.Consumer;
  * // ... later ...
  * receiver.stopConsuming();
  * </pre>
+ *
+ * @param <T> - message type
+ * @param <C> - consumer type
  */
 public
 class BlockingQueueReceiver<T,C extends Consumer<T>>

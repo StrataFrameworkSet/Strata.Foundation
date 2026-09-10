@@ -20,8 +20,7 @@ import java.time.Instant;
  * using the current time in place of a missing start or stop instant. This
  * class is not thread-safe; a single instance should not be shared across
  * threads without external synchronization.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Stopwatch stopwatch = new Stopwatch().start();

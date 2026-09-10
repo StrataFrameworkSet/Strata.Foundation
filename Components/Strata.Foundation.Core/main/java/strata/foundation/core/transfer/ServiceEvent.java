@@ -22,9 +22,6 @@ import java.util.UUID;
  * deserialized back to their original type.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <S>} - the type of the object that is the source of the event.
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * class CustomerUpdatedEvent extends ServiceEvent&lt;Customer&gt;
@@ -39,6 +36,8 @@ import java.util.UUID;
  *     new CustomerUpdatedEvent(customer)
  *         .setCorrelationId(request.getRequestId());
  * </pre>
+ *
+ * @param <S> - the type of the object that is the source of the event.
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS,property = "@class")
 public abstract

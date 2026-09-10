@@ -11,14 +11,7 @@ import java.util.Optional;
  * Manages registration and lifecycle of {@link IEventListener} instances
  * for receiving events.
  * See: <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <E>} - event type</li>
- * <li>{@code <L>} - listener type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Register and start receiving events
@@ -28,6 +21,9 @@ import java.util.Optional;
  * // Stop receiving
  * receiver.stopListening();
  * </pre>
+ *
+ * @param <E> - event type
+ * @param <L> - listener type
  */
 public
 interface IEventReceiver<E,L extends IEventListener<E>>

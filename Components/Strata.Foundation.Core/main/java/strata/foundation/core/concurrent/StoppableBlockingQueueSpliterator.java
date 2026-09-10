@@ -14,9 +14,6 @@ import java.util.function.Consumer;
  * when the queue is stopped.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation from a stoppable queue
@@ -27,6 +24,8 @@ import java.util.function.Consumer;
  * // Sequential traversal
  * spliter.forEachRemaining(item -&gt; process(item));
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class StoppableBlockingQueueSpliterator<T>

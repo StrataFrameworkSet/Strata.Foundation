@@ -14,9 +14,6 @@ package strata.foundation.core.mapper;
  * transformation of the value is needed.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of object passed through unchanged by this mapper
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * NullMapper&lt;Customer&gt; mapper = new NullMapper&lt;&gt;();
@@ -24,6 +21,8 @@ package strata.foundation.core.mapper;
  * Customer payload = mapper.toPayload(customer);
  * // payload == customer
  * </pre>
+ *
+ * @param <T> - the type of object passed through unchanged by this mapper
  */
 public
 class NullMapper<T>

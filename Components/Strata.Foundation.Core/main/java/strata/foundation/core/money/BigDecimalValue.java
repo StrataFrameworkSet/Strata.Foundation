@@ -15,8 +15,7 @@ import java.math.MathContext;
  * {@link java.math.BigDecimal} to provide numeric value access
  * for monetary amounts with full precision and type conversion
  * support.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation

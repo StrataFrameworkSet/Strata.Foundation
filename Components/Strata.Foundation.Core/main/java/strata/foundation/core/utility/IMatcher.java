@@ -10,17 +10,15 @@ package strata.foundation.core.utility;
  * Implementations encapsulate the matching logic so that callers can test
  * candidates against it without needing to know the details of what
  * constitutes a match.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of target being tested for a match
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IMatcher&lt;String&gt; nonEmpty = target -&gt; target != null &amp;&amp; !target.isEmpty();
  *
  * boolean matches = nonEmpty.match("hello");
  * </pre>
+ *
+ * @param <T> - the type of target being tested for a match
  */
 public
 interface IMatcher<T>

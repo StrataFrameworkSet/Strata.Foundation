@@ -9,8 +9,7 @@ package strata.foundation.core.utility;
  * generate identifiers sequentially, randomly, or by any other scheme,
  * optionally bounding numeric identifiers to a given interval or
  * constraining string identifiers to a given length.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IIdentifierGenerator generator = ...;

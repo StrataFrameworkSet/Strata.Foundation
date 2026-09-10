@@ -14,9 +14,6 @@ import java.util.concurrent.CountDownLatch;
  * between producer and consumer.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Producer-consumer handoff
@@ -28,6 +25,8 @@ import java.util.concurrent.CountDownLatch;
  * // Consumer (blocks until data available)
  * String value = buffer.get();
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class BlockingBuffer<T>

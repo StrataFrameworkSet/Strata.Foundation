@@ -10,14 +10,7 @@ import java.util.function.Supplier;
  * <p>
  * A {@link java.util.function.Supplier} of {@link IEventListener}
  * instances, enabling deferred or factory-based listener creation.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <E>} - event type</li>
- * <li>{@code <L>} - listener type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Supplier as lambda
@@ -26,6 +19,9 @@ import java.util.function.Supplier;
  *
  * IEventListener&lt;String&gt; listener = supplier.get();
  * </pre>
+ *
+ * @param <E> - event type
+ * @param <L> - listener type
  */
 public
 interface IEventListenerSupplier<E,L extends IEventListener<E>>

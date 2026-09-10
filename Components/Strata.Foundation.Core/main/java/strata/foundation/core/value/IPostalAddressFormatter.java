@@ -13,8 +13,7 @@ package strata.foundation.core.value;
  * following the conventions of a particular country's
  * <a href="https://en.wikipedia.org/wiki/Address">postal addressing
  * format</a>.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPostalAddressFormatter formatter = new UsPostalAddressFormatter("Jane Doe");

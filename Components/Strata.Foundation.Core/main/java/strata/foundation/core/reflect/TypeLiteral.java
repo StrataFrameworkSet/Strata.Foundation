@@ -17,14 +17,13 @@ import java.lang.reflect.Type;
  * anonymous subclass declaration.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type captured by this literal
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * TypeLiteral&lt;List&lt;String&gt;&gt; literal = new TypeLiteral&lt;List&lt;String&gt;&gt;() {};
  * Type type = literal.getType();
  * </pre>
+ *
+ * @param <T> - the type captured by this literal
  */
 public abstract
 class TypeLiteral<T>

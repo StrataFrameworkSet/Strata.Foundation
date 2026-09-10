@@ -18,8 +18,7 @@ import org.junit.platform.launcher.TestIdentifier;
  * reported for that event, providing a lightweight, real-time console trace
  * that complements the end-of-run summary produced separately by listeners
  * such as {@link org.junit.platform.launcher.listeners.SummaryGeneratingListener}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Launcher launcher = LauncherFactory.create();

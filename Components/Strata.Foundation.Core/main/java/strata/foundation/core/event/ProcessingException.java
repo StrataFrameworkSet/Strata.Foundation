@@ -8,8 +8,7 @@ package strata.foundation.core.event;
  * <p>
  * Thrown when an {@link IEventProcessor} encounters an error
  * while processing an event.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Caught during event processing

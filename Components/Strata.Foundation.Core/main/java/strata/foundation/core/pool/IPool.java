@@ -10,15 +10,7 @@ package strata.foundation.core.pool;
  * pattern</a> abstraction that manages check-out and check-in of a fixed set
  * of {@link IPoolable} instances, avoiding the cost of repeatedly creating
  * and destroying expensive objects.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - the type of poolable object managed by this pool</li>
- * <li>{@code <P>} - the concrete pool type, used so poolables can reference
- * the pool that owns them</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPool&lt;Connection,ConnectionPool&gt; pool = ...;
@@ -33,6 +25,10 @@ package strata.foundation.core.pool;
  *     pool.checkIn(connection);
  * }
  * </pre>
+ *
+ * @param <T> - the type of poolable object managed by this pool
+ * @param <P> - the concrete pool type, used so poolables can reference
+ * the pool that owns them
  */
 public
 interface IPool<T extends IPoolable<T,P>,P extends IPool<T,P>>

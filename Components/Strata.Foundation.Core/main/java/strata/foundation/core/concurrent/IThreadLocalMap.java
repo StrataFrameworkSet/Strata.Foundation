@@ -15,9 +15,6 @@ import java.util.stream.Stream;
  * See: <a href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread-local storage (Wikipedia)</a>
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - value type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and thread-local storage
@@ -28,6 +25,8 @@ import java.util.stream.Stream;
  * Optional&lt;String&gt; value = map.get();
  * Collection&lt;String&gt; all  = map.getAll();
  * </pre>
+ *
+ * @param <T> - value type
  */
 public
 interface IThreadLocalMap<T>

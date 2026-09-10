@@ -16,8 +16,7 @@ import java.util.Optional;
  * have been set so far before calling {@link #build()} to produce the
  * resulting immutable {@link PersonName}. A first name and last name must be
  * set before {@link #build()} is called.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PersonName name =

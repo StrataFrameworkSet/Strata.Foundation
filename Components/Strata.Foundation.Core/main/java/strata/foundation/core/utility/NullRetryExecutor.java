@@ -19,8 +19,7 @@ import java.util.function.Supplier;
  * retrying, delay, or backoff applied. It is useful as a default or
  * "no retry" strategy wherever an {@link IRetryExecutor} is required but
  * retry behavior is not desired.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor = new NullRetryExecutor();

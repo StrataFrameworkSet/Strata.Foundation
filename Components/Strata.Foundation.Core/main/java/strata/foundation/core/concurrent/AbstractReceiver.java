@@ -14,12 +14,6 @@ import java.util.function.Consumer;
  * lifecycle (start, stop, isConsuming) to subclasses.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - message type</li>
- * <li>{@code <C>} - consumer type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Subclass usage
@@ -27,6 +21,9 @@ import java.util.function.Consumer;
  *     new BlockingQueueReceiver&lt;&gt;(queue);
  * receiver.startConsuming(msg -&gt; process(msg));
  * </pre>
+ *
+ * @param <T> - message type
+ * @param <C> - consumer type
  */
 public abstract
 class AbstractReceiver<T,C extends Consumer<T>>

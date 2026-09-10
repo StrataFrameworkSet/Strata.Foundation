@@ -10,11 +10,7 @@ import java.util.Collection;
  * <p>
  * Processes events via {@code onEvent} and handles processing
  * failures via {@code onException}.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Event processing with error handling
@@ -22,6 +18,8 @@ import java.util.Collection;
  * processor.onEvent("event-data");
  * processor.onException(new RuntimeException("processing failed"));
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 interface IEventProcessor<E>

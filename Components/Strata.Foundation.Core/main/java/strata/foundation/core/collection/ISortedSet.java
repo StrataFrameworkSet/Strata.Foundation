@@ -12,11 +12,7 @@ import java.util.SortedSet;
  * Serializable extension of {@link java.util.SortedSet} and
  * {@link java.util.NavigableSet} that combines sorted set operations
  * with the Strata {@link ISequencedCollection} hierarchy.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -26,6 +22,8 @@ import java.util.SortedSet;
  * String first = sorted.first();
  * String last  = sorted.last();
  * </pre>
+ *
+ * @param <T> - element type, must be {@link java.lang.Comparable}
  */
 public
 interface ISortedSet<T extends Comparable<? super T>>

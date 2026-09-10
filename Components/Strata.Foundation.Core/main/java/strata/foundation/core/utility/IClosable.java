@@ -10,8 +10,7 @@ import java.util.concurrent.CompletionStage;
  * <p>
  * Represents a resource that can be closed asynchronously, signaling
  * completion of the close operation via a {@link CompletionStage}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IClosable resource = ...;

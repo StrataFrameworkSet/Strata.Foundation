@@ -21,11 +21,7 @@ import java.util.function.Function;
  * {@link strata.foundation.core.concurrent.IBlockingBuffer} to
  * bridge blocking event send operations into the
  * {@link java.util.concurrent.CompletionStage} API.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Blocking buffer backed send result
@@ -35,6 +31,8 @@ import java.util.function.Function;
  *
  * SendResult&lt;String&gt; outcome = Awaiter.await(result);
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 class BlockingBufferBasedCompletableSendResult<E>

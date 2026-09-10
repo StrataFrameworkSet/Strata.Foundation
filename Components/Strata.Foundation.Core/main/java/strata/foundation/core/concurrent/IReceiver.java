@@ -14,12 +14,6 @@ import java.util.function.Consumer;
  * See: <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem (Wikipedia)</a>
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - message type</li>
- * <li>{@code <C>} - consumer type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Setup and start consuming
@@ -29,6 +23,9 @@ import java.util.function.Consumer;
  * // Stop consuming
  * receiver.stopConsuming();
  * </pre>
+ *
+ * @param <T> - message type
+ * @param <C> - consumer type
  */
 public
 interface IReceiver<T,C extends Consumer<T>>

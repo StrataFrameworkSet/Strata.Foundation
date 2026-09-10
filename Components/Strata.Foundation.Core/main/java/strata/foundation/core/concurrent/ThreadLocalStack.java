@@ -12,9 +12,6 @@ import java.util.Stack;
  * stack per thread using {@link ThreadLocal}.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Per-thread stack operations
@@ -25,6 +22,8 @@ import java.util.Stack;
  * String top = stack.peek();  // "second"
  * String pop = stack.pop();   // "second"
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class ThreadLocalStack<T>

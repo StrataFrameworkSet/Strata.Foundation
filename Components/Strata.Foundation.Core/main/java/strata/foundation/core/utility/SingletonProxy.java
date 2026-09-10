@@ -19,8 +19,7 @@ import java.util.Map;
  * class with {@link #setInstance(Class, Object)} and retrieved with
  * {@link #getInstance(Class)}, which returns a dynamic proxy that forwards
  * every method invocation to the underlying registered instance.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * SingletonProxy.setInstance(MyService.class, new MyServiceImpl());

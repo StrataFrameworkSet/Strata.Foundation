@@ -13,15 +13,7 @@ import java.util.stream.Stream;
  * Group of {@link IEventReceiver} instances exposed as a
  * {@link java.util.function.Supplier} of {@link java.util.Set},
  * enabling coordinated management of multiple receivers.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <E>} - event type</li>
- * <li>{@code <L>} - listener type</li>
- * <li>{@code <R>} - receiver type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Access grouped receivers
@@ -29,6 +21,10 @@ import java.util.stream.Stream;
  *     IEventReceiver&lt;String,IEventListener&lt;String&gt;&gt;&gt; group = ...;
  * Set&lt;IEventReceiver&lt;String,IEventListener&lt;String&gt;&gt;&gt; receivers = group.get();
  * </pre>
+ *
+ * @param <E> - event type
+ * @param <L> - listener type
+ * @param <R> - receiver type
  */
 public
 interface IEventReceiverGroup<

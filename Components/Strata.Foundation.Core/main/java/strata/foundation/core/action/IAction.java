@@ -7,8 +7,7 @@ package strata.foundation.core.action;
 /**
  * <p>
  * Represents a unit of work that can be executed.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation using lambda

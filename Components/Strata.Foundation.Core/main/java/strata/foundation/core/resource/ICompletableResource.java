@@ -11,8 +11,7 @@ import strata.foundation.core.concurrent.ICompletableVoid;
  * <p>
  * Asynchronous counterpart to {@link IResource} whose lifecycle operations
  * return completable results rather than blocking the calling thread.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ICompletableResource resource = new AsyncFileResource(path);

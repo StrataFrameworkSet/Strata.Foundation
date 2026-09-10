@@ -12,8 +12,7 @@ import java.util.function.Supplier;
  * Wraps a {@link Boolean} condition and provides a fluent API for branching,
  * combining, and throwing based on its value, as an alternative to
  * imperative {@code if}/{@code else} statements.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Conditional

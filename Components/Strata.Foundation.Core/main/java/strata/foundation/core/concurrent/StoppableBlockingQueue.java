@@ -21,9 +21,6 @@ import java.util.stream.StreamSupport;
  * a standard {@link java.util.concurrent.BlockingQueue}.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and lifecycle
@@ -37,6 +34,8 @@ import java.util.stream.StreamSupport;
  * // Graceful stop
  * queue.stop();
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class StoppableBlockingQueue<T>

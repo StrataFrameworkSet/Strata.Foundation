@@ -13,8 +13,7 @@ import java.util.UUID;
  * Default {@link IIdentifierGenerator} implementation that generates random
  * numeric-based identifiers using a {@link SecureRandom} source and random
  * string-based identifiers derived from a {@link UUID}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IIdentifierGenerator generator = new DefaultIdentifierGenerator();

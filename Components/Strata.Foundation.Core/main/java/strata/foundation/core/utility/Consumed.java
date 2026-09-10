@@ -15,11 +15,7 @@ import java.util.Optional;
  * covers any consume-only scenario — {@link java.util.function.Consumer}
  * invocations, event dispatchers, loggers, validators that throw on
  * failure, or any void method that receives a single argument.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <I>} - the type of the input consumed by the operation
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Consumed&lt;String&gt; result = Consumed.of("process",input);
@@ -27,6 +23,8 @@ import java.util.Optional;
  * if (result.isFailure())
  *     log(result.getException());
  * </pre>
+ *
+ * @param <I> - the type of the input consumed by the operation
  */
 public
 class Consumed<I>

@@ -13,12 +13,6 @@ import java.util.concurrent.CompletionStage;
  * enabling type-safe asynchronous result handling.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - result value type</li>
- * <li>{@code <R>} - completed result type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous execution
@@ -31,6 +25,9 @@ import java.util.concurrent.CompletionStage;
  * CompletedResult&lt;String&gt; completed = result.join();
  * String value = completed.get();
  * </pre>
+ *
+ * @param <T> - result value type
+ * @param <R> - completed result type
  */
 public
 interface ICompletableResult<T,R extends CompletedResult<T>>

@@ -15,8 +15,7 @@ import java.util.Objects;
  * the operating system environment via {@link System#getenv(String)},
  * falling back to a configurable set of default values when a variable is
  * not defined in the environment.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IEnvironment environment =

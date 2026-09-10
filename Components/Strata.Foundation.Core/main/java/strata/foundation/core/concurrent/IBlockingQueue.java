@@ -15,9 +15,6 @@ import java.util.concurrent.TimeUnit;
  * See: <a href="https://en.wikipedia.org/wiki/Blocking_(computing)">Blocking (Wikipedia)</a>
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation and lifecycle
@@ -31,6 +28,8 @@ import java.util.concurrent.TimeUnit;
  * // Graceful shutdown
  * queue.stop();
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 interface IBlockingQueue<T>

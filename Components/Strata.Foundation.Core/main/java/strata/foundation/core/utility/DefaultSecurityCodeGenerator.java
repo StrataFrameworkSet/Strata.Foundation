@@ -15,8 +15,7 @@ import java.util.stream.Stream;
  * random security codes of a fixed length composed from alphabetic and
  * numeric characters, guaranteeing a configurable minimum number of each
  * character type.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ISecurityCodeGenerator generator = new DefaultSecurityCodeGenerator(6,0,6);

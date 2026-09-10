@@ -15,8 +15,7 @@ import java.util.Optional;
  * fire-and-forget scenario — {@link Runnable} execution, cache
  * invalidation, connection resets, lifecycle hooks, or any void
  * method invoked without arguments.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Executed result = Executed.of("refresh");

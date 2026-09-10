@@ -10,8 +10,7 @@ package strata.foundation.core.value;
  * field at a time. Each setter returns {@code this} so calls can be
  * chained, and any field left unset is passed through as {@code null},
  * which {@link PostalAddress} then normalizes to an empty string.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address =

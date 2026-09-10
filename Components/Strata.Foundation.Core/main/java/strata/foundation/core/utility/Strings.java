@@ -11,8 +11,7 @@ package strata.foundation.core.utility;
  * string is null-or-empty or null-or-blank, converting empty/blank strings
  * to {@code null}, and trimming a string while returning {@code null} for
  * empty/blank input.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Strings.isNullOrEmpty("");           // true

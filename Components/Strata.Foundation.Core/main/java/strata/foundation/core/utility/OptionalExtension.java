@@ -16,8 +16,7 @@ import java.util.function.Supplier;
  * as branching on presence/absence with a return value, throwing a custom
  * exception when a value is absent, and comparing two {@code Optional}
  * values by their contained {@link Comparable} value.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Optional&lt;String&gt; name = Optional.of("Ada");

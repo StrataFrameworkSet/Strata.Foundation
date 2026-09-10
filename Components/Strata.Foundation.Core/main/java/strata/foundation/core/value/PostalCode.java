@@ -28,8 +28,7 @@ import java.util.Objects;
  * underlying string value. Copies are produced via {@link
  * ICopyable#copy()}, and instances implement {@link java.io.Serializable}
  * and {@link java.lang.Comparable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PostalCode postalCode = PostalCode.of("62704");

@@ -11,11 +11,7 @@ import java.util.List;
  * Serializable extension of {@link java.util.List} that combines
  * indexed list operations with the Strata {@link ISequencedCollection}
  * hierarchy.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -25,6 +21,8 @@ import java.util.List;
  * String item = list.get(0);
  * int index   = list.indexOf("b");
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 interface IList<T>

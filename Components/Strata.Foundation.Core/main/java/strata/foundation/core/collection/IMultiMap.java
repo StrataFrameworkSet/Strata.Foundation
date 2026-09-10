@@ -18,14 +18,7 @@ import java.util.stream.Stream;
  * supporting set-algebraic operations such as union, intersection,
  * and symmetric difference.
  * See: <a href="https://en.wikipedia.org/wiki/Multimap">Multimap (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -40,6 +33,9 @@ import java.util.stream.Stream;
  * // Set-algebraic operations
  * IMultiMap&lt;String,Integer&gt; union = map.makeUnionWith(other);
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 interface IMultiMap<K,V>

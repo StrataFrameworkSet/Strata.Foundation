@@ -13,13 +13,12 @@ import java.lang.reflect.Constructor;
  * invoked for its side effect during static initialization.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type whose constructor is being registered
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * new FactoryInitializer&lt;&gt;(Widget.class, Widget.class.getConstructor());
  * </pre>
+ *
+ * @param <T> - the type whose constructor is being registered
  */
 public
 class FactoryInitializer<T>

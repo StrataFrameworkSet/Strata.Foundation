@@ -13,11 +13,7 @@ import java.util.NoSuchElementException;
  * {@link Iterable}, restarting from the beginning each time
  * the underlying iterator is exhausted.
  * See: <a href="https://en.wikipedia.org/wiki/Circular_buffer">Circular buffer (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -30,6 +26,8 @@ import java.util.NoSuchElementException;
  * iter.next(); // "c"
  * iter.next(); // "a" (cycles back)
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class CircularIterator<T>

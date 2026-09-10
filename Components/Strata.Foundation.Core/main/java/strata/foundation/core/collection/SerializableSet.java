@@ -15,11 +15,7 @@ import java.util.*;
  * Serializable implementation of {@link ISet} that extends
  * {@link java.util.HashSet} to combine standard set behavior
  * with Strata collection serialization support.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation from existing collection
@@ -32,6 +28,8 @@ import java.util.*;
  * SerializableSet&lt;String&gt; set = new SerializableSet&lt;&gt;();
  * set.add("item");
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class SerializableSet<T>

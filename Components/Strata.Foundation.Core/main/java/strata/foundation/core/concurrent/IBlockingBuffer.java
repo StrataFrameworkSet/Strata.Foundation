@@ -14,9 +14,6 @@ import java.util.function.Supplier;
  * for synchronous producer-consumer handoff.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -26,6 +23,8 @@ import java.util.function.Supplier;
  * buffer.accept("hello");
  * String value = buffer.get();
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 interface IBlockingBuffer<T>

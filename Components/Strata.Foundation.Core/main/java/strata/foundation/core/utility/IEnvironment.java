@@ -12,8 +12,7 @@ import java.util.NoSuchElementException;
  * source values from the operating system environment, system properties,
  * a configuration file, or any other name/value store, allowing callers to
  * remain agnostic of where the values actually come from.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IEnvironment environment = ...;

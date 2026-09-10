@@ -13,8 +13,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * provides an ordered queue of {@code IAction} instances with
  * setup and teardown registration and sequential execution
  * using {@code ConcurrentLinkedQueue} for thread-safe action management.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Default construction

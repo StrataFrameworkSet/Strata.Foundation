@@ -13,11 +13,7 @@ import java.util.stream.Stream;
  * operations to the wrapped source and throws
  * {@link UnsupportedOperationException} on all mutating operations.
  * See: <a href="https://en.wikipedia.org/wiki/Immutable_object">Immutable object (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type, must be {@link java.lang.Comparable}
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation from mutable source
@@ -31,6 +27,8 @@ import java.util.stream.Stream;
  * // Mutating operations throw UnsupportedOperationException
  * // immutable.add("banana"); // throws
  * </pre>
+ *
+ * @param <T> - element type, must be {@link java.lang.Comparable}
  */
 public
 class ImmutableMultiSet<T extends Comparable<T>>

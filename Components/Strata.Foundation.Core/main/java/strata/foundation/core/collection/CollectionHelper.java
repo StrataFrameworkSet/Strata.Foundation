@@ -12,8 +12,7 @@ import java.util.Collection;
  * <p>
  * Utility class providing static helper methods for working
  * with {@link java.util.Collection} instances.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Find first matching element

@@ -27,8 +27,7 @@ import java.util.Objects;
  * {@link java.lang.Comparable} compares the original, formatted string
  * case-insensitively. Copies are produced via {@link ICopyable#copy()},
  * and instances implement {@link java.io.Serializable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PhoneNumber phoneNumber = PhoneNumber.of("+1 (555) 123-4567");

@@ -11,11 +11,7 @@ import java.io.Serializable;
  * Holds the value and remaining-use count backing an {@link Expendable},
  * tracking how many times the value has been retrieved and whether it has
  * been fully consumed.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of the held value
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ExpendableContext&lt;String&gt; context = new ExpendableContext&lt;&gt;("value",3);
@@ -23,6 +19,8 @@ import java.io.Serializable;
  * context.decrementRemaining();
  * boolean expended = context.isExpended();
  * </pre>
+ *
+ * @param <T> - the type of the held value
  */
 class ExpendableContext<T>
     implements Serializable

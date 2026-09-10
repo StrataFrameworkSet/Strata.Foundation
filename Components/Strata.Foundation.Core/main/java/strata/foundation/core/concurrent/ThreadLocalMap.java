@@ -16,9 +16,6 @@ import java.util.stream.Stream;
  * for thread-safe per-thread value storage with cross-thread visibility.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - value type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Per-thread value storage
@@ -29,6 +26,8 @@ import java.util.stream.Stream;
  * Optional&lt;String&gt; value = map.get();
  * Collection&lt;String&gt; all  = map.getAll();
  * </pre>
+ *
+ * @param <T> - value type
  */
 public
 class ThreadLocalMap<T>

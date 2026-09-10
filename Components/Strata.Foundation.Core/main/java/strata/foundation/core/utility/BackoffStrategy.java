@@ -8,8 +8,7 @@ package strata.foundation.core.utility;
  * <p>
  * Enumerates the strategies available to {@link IRetryExecutor} for
  * calculating the delay between successive retry attempts.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor =

@@ -17,8 +17,7 @@ import java.util.function.Supplier;
  * retries. Work can be supplied as a {@link Runnable}, a {@link Callable},
  * a {@link Consumer}, a {@link Supplier}, or a {@link Function}, letting
  * callers retry actions that consume input, produce output, or both.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor = ...;

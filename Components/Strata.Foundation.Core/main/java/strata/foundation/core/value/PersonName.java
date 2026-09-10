@@ -25,8 +25,7 @@ import java.util.Optional;
  * {@link ICopyable}, {@link java.io.Serializable}, and
  * {@link java.lang.Comparable} (ordered lexicographically by its formatted
  * {@link #toString()} representation).
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PersonName name = PersonName.of("Dr.","Jane","Q.","Doe","Jr.");

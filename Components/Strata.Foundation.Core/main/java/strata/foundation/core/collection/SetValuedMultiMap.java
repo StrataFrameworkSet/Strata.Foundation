@@ -18,14 +18,7 @@ import java.util.Set;
  * Implementation of {@link IMultiMap} that stores values in
  * {@link java.util.Set} collections, ensuring unique values
  * per key.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -38,6 +31,9 @@ import java.util.Set;
  * // Copy construction
  * IMultiMap&lt;String,Integer&gt; copy = new SetValuedMultiMap&lt;&gt;(map);
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 class SetValuedMultiMap<K,V>

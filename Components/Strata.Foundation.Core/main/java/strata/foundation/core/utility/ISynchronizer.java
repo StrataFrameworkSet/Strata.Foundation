@@ -13,8 +13,7 @@ package strata.foundation.core.utility;
  * readers and writers. See the
  * <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">readers-writer
  * lock</a> pattern.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ISynchronizer synchronizer = ...;

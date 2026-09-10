@@ -13,8 +13,7 @@ package strata.foundation.core.utility;
  * return types, extending interfaces and implementing classes may narrow the
  * return type of {@code copy()} to a more specific type that itself extends
  * or implements {@code ICopyable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * class Point implements ICopyable

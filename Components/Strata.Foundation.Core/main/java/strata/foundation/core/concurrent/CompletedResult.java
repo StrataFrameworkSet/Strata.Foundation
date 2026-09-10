@@ -20,9 +20,6 @@ import java.util.function.Supplier;
  * See: <a href="https://en.wikipedia.org/wiki/Result_type">Result type (Wikipedia)</a>
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - result value type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Success
@@ -36,6 +33,8 @@ import java.util.function.Supplier;
  * // Monadic mapping
  * CompletedResult&lt;Integer&gt; mapped = success.map(String::length);
  * </pre>
+ *
+ * @param <T> - result value type
  */
 public
 class CompletedResult<T>

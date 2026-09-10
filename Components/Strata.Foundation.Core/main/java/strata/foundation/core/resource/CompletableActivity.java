@@ -14,11 +14,7 @@ import java.util.Objects;
  * Ensures an {@link ICompletableResource} is opened before use and closed
  * afterward, the asynchronous counterpart to {@link OpenExtent} for
  * resources whose lifecycle operations complete asynchronously.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <R>} - the type of {@link ICompletableResource} being managed
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * try (CompletableActivity&lt;MyResource&gt; activity = CompletableActivity.of(resource))
@@ -26,6 +22,8 @@ import java.util.Objects;
  *     // use resource once it is confirmed open
  * }
  * </pre>
+ *
+ * @param <R> - the type of {@link ICompletableResource} being managed
  */
 public
 class CompletableActivity<R extends ICompletableResource>

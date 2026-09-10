@@ -17,9 +17,6 @@ import java.util.function.*;
  * allowing blocking buffer results to be composed asynchronously.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - result type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Async supply via blocking buffer
@@ -29,6 +26,8 @@ import java.util.function.*;
  * // Compose with CompletionStage API
  * future.thenAccept(value -&gt; System.out.println(value));
  * </pre>
+ *
+ * @param <T> - result type
  */
 public
 class BlockingBufferBasedCompletableFuture<T>

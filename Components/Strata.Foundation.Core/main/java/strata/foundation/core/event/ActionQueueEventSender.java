@@ -15,17 +15,15 @@ import strata.foundation.core.concurrent.IBlockingBuffer;
  * through an {@link strata.foundation.core.action.IActionQueue},
  * enabling queued sequential event delivery with setup and teardown
  * support.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Send events via action queue
  * IEventSender&lt;String&gt; sender = new ActionQueueEventSender&lt;&gt;(queue);
  * ICompletableSendResult&lt;String&gt; result = sender.send("event-data");
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 class ActionQueueEventSender<E>

@@ -12,11 +12,7 @@ import java.util.function.*;
  * Implementation of {@link ICompletableSendResult} that wraps a
  * {@link java.util.concurrent.CompletableFuture} for tracking
  * asynchronous event send outcomes.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Async send result
@@ -25,6 +21,8 @@ import java.util.function.*;
  *
  * result.thenAccept(r -&gt; System.out.println("Sent: " + r.getEvent()));
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 class CompletableSendResult<E>

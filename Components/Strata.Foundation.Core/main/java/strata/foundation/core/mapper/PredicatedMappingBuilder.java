@@ -21,12 +21,6 @@ import java.util.function.Predicate;
  * {@link PredicatedMapper} via {@link #toMapper()}.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <I>} - the input type this builder's mapping rules accept</li>
- * <li>{@code <O>} - the output type this builder's mapping rules produce</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * PredicatedMapper mapper =
@@ -35,6 +29,9 @@ import java.util.function.Predicate;
  *         .addMapping(s -&gt; s.matches("\\d+"),Integer::parseInt)
  *         .toMapper();
  * </pre>
+ *
+ * @param <I> - the input type this builder's mapping rules accept
+ * @param <O> - the output type this builder's mapping rules produce
  */
 public
 class PredicatedMappingBuilder<I,O>

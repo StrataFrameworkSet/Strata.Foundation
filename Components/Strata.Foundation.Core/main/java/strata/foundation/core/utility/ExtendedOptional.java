@@ -21,17 +21,15 @@ import java.util.function.Supplier;
  * adapting it to the {@code IOptionable} contract so it can be used
  * interchangeably with other {@code IOptionable} implementations such as
  * {@link Expendable}.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of the wrapped value
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ExtendedOptional&lt;String&gt; value = ExtendedOptional.of("hello");
  *
  * value.ifPresent(System.out::println);
  * </pre>
+ *
+ * @param <T> - the type of the wrapped value
  */
 public
 class ExtendedOptional<T>

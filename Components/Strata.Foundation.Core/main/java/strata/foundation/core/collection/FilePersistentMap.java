@@ -16,14 +16,7 @@ import java.util.stream.Stream;
  * File-backed implementation of {@link IPersistentMap} that persists
  * key-value entries to a {@link java.io.RandomAccessFile} with an
  * in-memory index for efficient lookups.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -34,6 +27,9 @@ import java.util.stream.Stream;
  * map = map.put("key",42);
  * Optional&lt;Integer&gt; value = map.get("key");
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 class FilePersistentMap<K,V>

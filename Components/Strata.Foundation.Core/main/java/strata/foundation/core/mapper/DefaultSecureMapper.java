@@ -27,9 +27,6 @@ import java.util.Objects;
  * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the {@link Serializable} type of value being encrypted and decrypted
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * DefaultSecureMapper&lt;Customer&gt; mapper =
@@ -38,6 +35,8 @@ import java.util.Objects;
  * String encrypted = mapper.mapEncrypted(customer);
  * Customer decrypted = mapper.mapDecrypted(encrypted);
  * </pre>
+ *
+ * @param <T> - the {@link Serializable} type of value being encrypted and decrypted
  */
 public
 class DefaultSecureMapper<T extends Serializable>

@@ -14,11 +14,7 @@ import java.util.function.Supplier;
  * Extension of {@link strata.foundation.core.concurrent.SupplierBasedCompletableFuture}
  * that defers creation of an {@link ICompletableSendResult} via
  * a {@link java.util.function.Supplier}.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Deferred send result
@@ -26,6 +22,8 @@ import java.util.function.Supplier;
  *     SupplierBasedCompletableSendResult.supplyAsync(
  *         () -&gt; () -&gt; SendResult.of("event"));
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 class SupplierBasedCompletableSendResult<E>

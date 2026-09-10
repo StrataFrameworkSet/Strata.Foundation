@@ -13,8 +13,7 @@ import java.math.BigDecimal;
  * creates {@link Money} instances through a fluent builder pattern,
  * allowing currency, number, and monetary context to be set
  * independently before creation.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation via Money.getFactory()

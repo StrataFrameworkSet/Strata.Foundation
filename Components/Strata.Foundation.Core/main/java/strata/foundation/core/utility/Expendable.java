@@ -21,17 +21,15 @@ import java.util.function.Supplier;
  * retrieved only a limited number of times before it is automatically
  * treated as empty, useful for representing single-use or rate-limited
  * resources.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of the wrapped value
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Expendable&lt;String&gt; token = Expendable.of("one-time-token",1);
  *
  * token.ifPresent(t -&gt; authenticate(t));
  * </pre>
+ *
+ * @param <T> - the type of the wrapped value
  */
 public
 class Expendable<T>

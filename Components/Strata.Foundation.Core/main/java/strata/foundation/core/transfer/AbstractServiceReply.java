@@ -45,7 +45,8 @@ import java.util.UUID;
  *         super(request);
  *     }
  *
- *     GetCustomerReply setCustomer(Customer customer)
+ *     GetCustomerReply
+ *     setCustomer(Customer customer)
  *     {
  *         this.customer = customer;
  *         return this;

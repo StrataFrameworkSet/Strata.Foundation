@@ -16,8 +16,7 @@ import java.util.stream.Stream;
  * {@link java.util.Map}, existence checks, and streaming over
  * configuration entries as {@link java.util.stream.Stream} of
  * key-value pairs.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Property access

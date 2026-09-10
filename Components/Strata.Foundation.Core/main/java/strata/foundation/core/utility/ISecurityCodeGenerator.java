@@ -11,8 +11,7 @@ package strata.foundation.core.utility;
  * flows. Implementations are free to choose the code format, length, and
  * randomness strategy, exposing only a single method for retrieving the
  * next generated code.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ISecurityCodeGenerator generator = ...;

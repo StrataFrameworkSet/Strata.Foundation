@@ -28,8 +28,7 @@ import java.util.UUID;
  * equality between two {@code HashedString} instances requires both the
  * hashed value and the salt to match. Instances implement {@link
  * java.io.Serializable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * HashedString hashed = HashedString.of("correct horse battery staple");

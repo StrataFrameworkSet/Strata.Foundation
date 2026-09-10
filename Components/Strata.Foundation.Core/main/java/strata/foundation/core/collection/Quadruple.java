@@ -11,16 +11,7 @@ import java.util.Objects;
 /**
  * <p>
  * Container for a quadruple of data elements.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T1>} - first element of Quadruple</li>
- * <li>{@code <T2>} - second element of Quadruple</li>
- * <li>{@code <T3>} - third element of Quadruple</li>
- * <li>{@code <T4>} - fourth element of Quadruple</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -33,6 +24,11 @@ import java.util.Objects;
  * Boolean third  = quad.getThird();
  * Double  fourth = quad.getFourth();
  * </pre>
+ *
+ * @param <T1> - first element of Quadruple
+ * @param <T2> - second element of Quadruple
+ * @param <T3> - third element of Quadruple
+ * @param <T4> - fourth element of Quadruple
  */
 public
 class Quadruple<T1,T2,T3,T4>

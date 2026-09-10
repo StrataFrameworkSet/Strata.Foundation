@@ -19,11 +19,7 @@ import java.util.function.Supplier;
  * present value. Provides operations for consuming, transforming, and
  * falling back on the contained value in a functional style, and can be
  * converted to a standard {@code Optional} when interoperability is needed.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of value potentially held by this instance
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IOptionable&lt;String&gt; optionable = ...;
@@ -34,6 +30,8 @@ import java.util.function.Supplier;
  *     .map(String::toUpperCase)
  *     .orElse("DEFAULT");
  * </pre>
+ *
+ * @param <T> - the type of value potentially held by this instance
  */
 public
 interface IOptionable<T>

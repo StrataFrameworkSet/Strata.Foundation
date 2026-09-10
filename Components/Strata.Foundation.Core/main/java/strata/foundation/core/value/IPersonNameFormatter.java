@@ -10,8 +10,7 @@ package strata.foundation.core.value;
  * {@link java.lang.String}. Implementations decide how the individual parts
  * of a name (title, first, middle, last, suffix) are combined and ordered
  * into the final formatted text.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPersonNameFormatter formatter = new BasicPersonNameFormatter();

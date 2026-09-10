@@ -15,14 +15,7 @@ import java.util.Map.Entry;
  * {@link java.util.Map} of keys to value collections, providing
  * common multimap operations while delegating value-collection
  * creation to subclasses via template methods.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Extend to provide list-valued collections
@@ -31,6 +24,9 @@ import java.util.Map.Entry;
  * // Extend to provide set-valued collections
  * IMultiMap&lt;String,Integer&gt; map = new SetValuedMultiMap&lt;&gt;();
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public abstract
 class AbstractMultiMap<K,V>

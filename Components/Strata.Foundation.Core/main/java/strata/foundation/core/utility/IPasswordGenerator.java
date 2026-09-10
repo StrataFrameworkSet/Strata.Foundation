@@ -10,8 +10,7 @@ package strata.foundation.core.utility;
  * are free to apply whatever character sets, length constraints, or
  * randomness strategies are appropriate, exposing only a single method
  * for retrieving the next generated password.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IPasswordGenerator generator = ...;

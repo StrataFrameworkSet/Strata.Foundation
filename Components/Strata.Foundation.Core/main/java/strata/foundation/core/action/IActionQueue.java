@@ -8,8 +8,7 @@ package strata.foundation.core.action;
  * <p>
  * Represents an ordered queue of {@code IAction} instances that
  * supports setup and teardown registration and sequential execution.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation

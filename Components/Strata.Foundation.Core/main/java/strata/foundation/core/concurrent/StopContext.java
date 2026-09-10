@@ -12,9 +12,6 @@ import java.util.Objects;
  * poison-pill based graceful shutdown of blocking queues.
  * </p>
  * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Normal element
@@ -26,6 +23,8 @@ import java.util.Objects;
  * StopContext&lt;String&gt; poison = StopContext.stop();
  * boolean stop = poison.mustStop(); // true
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 class StopContext<T>

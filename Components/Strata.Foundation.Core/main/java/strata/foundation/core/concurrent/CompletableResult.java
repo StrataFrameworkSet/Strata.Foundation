@@ -17,12 +17,6 @@ import java.util.function.*;
  * outcomes.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - result value type</li>
- * <li>{@code <R>} - completed result type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Asynchronous execution via factory
@@ -35,6 +29,9 @@ import java.util.function.*;
  * CompletedResult&lt;String&gt; completed = result.join();
  * String value = completed.get();
  * </pre>
+ *
+ * @param <T> - result value type
+ * @param <R> - completed result type
  */
 public
 class CompletableResult<T,R extends CompletedResult<T>>

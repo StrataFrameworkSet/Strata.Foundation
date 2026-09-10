@@ -8,8 +8,7 @@ package strata.foundation.core.event;
  * <p>
  * Thrown when an {@link IEventReceiver} fails to start
  * its event listening lifecycle.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Caught during receiver startup

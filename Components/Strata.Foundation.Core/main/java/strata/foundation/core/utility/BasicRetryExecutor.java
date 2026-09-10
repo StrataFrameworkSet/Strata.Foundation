@@ -15,8 +15,7 @@ import java.util.function.Supplier;
  * operation up to a configured maximum number of attempts, pausing between
  * attempts according to a configurable {@link BackoffStrategy} and backoff
  * factor.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IRetryExecutor executor =

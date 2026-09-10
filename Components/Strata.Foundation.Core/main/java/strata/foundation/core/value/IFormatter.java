@@ -12,14 +12,7 @@ package strata.foundation.core.value;
  * Implementations encapsulate a single, reusable formatting rule so that the
  * rule can be swapped, composed, or configured independently of the value
  * being formatted.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <V>} - the type of the value being formatted</li>
- * <li>{@code <O>} - the type of the output produced by formatting</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * IFormatter&lt;PersonName,String&gt; formatter =
@@ -27,6 +20,9 @@ package strata.foundation.core.value;
  *
  * String formatted = formatter.format(PersonName.of("Jane","Doe"));
  * </pre>
+ *
+ * @param <V> - the type of the value being formatted
+ * @param <O> - the type of the output produced by formatting
  */
 public
 interface IFormatter<V,O>

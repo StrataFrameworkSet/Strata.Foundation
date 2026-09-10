@@ -14,8 +14,7 @@ import strata.foundation.core.utility.Expendable;
  * name on its own line, followed by the street address, and then the city,
  * state, and postal code on a final line. The addressee is optional and may
  * be set at construction time or later via {@link #setAddressee(String)}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address = new PostalAddress("123","Main St","Anytown","CA","US","90210");

@@ -11,11 +11,7 @@ import java.util.Objects;
  * Opens an {@link IResource} if needed on construction and closes it if
  * needed when the extent itself is closed, so the resource is guaranteed to
  * be open for the lifetime of a try-with-resources block.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <R>} - the type of {@link IResource} being managed
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * try (OpenExtent&lt;FileResource&gt; extent = OpenExtent.of(resource))
@@ -23,6 +19,8 @@ import java.util.Objects;
  *     // resource is guaranteed to be open here
  * }
  * </pre>
+ *
+ * @param <R> - the type of {@link IResource} being managed
  */
 public
 class OpenExtent<R extends IResource>

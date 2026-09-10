@@ -11,11 +11,7 @@ package strata.foundation.core.utility;
  * allows callers to plug in custom behavior for finishing, decorating, or
  * adjusting objects without the caller needing to know the details of how
  * the customization is performed.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - the type of the subject being customized
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * ICustomizer&lt;StringBuilder&gt; upperCaser = subject -&gt;
@@ -26,6 +22,8 @@ package strata.foundation.core.utility;
  *
  * StringBuilder result = upperCaser.customize(new StringBuilder("hello"));
  * </pre>
+ *
+ * @param <T> - the type of the subject being customized
  */
 public
 interface ICustomizer<T>

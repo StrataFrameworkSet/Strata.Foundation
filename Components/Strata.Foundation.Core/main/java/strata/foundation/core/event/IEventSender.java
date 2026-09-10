@@ -9,17 +9,15 @@ package strata.foundation.core.event;
  * Sends events asynchronously, returning an {@link ICompletableSendResult}
  * to track the outcome.
  * See: <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">Publish-subscribe pattern (Wikipedia)</a>
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <E>} - event type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Send an event
  * IEventSender&lt;String&gt; sender = ...;
  * ICompletableSendResult&lt;String&gt; result = sender.send("event-data");
  * </pre>
+ *
+ * @param <E> - event type
  */
 public
 interface IEventSender<E>

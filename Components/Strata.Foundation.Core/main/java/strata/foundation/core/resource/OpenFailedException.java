@@ -9,8 +9,7 @@ package strata.foundation.core.resource;
  * {@link ResourceException} thrown when an {@link IResource} could not be
  * opened, such as when {@link OpenExtent} attempts to open a resource on
  * construction.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * throw new OpenFailedException(cause);

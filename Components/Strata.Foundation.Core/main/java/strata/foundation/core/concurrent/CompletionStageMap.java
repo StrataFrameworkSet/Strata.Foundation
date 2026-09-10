@@ -18,12 +18,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * for bulk joining.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - result value type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Track pending operations
@@ -34,6 +28,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * // Join all pending operations
  * Map&lt;String,Integer&gt; results = pending.joinAll();
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - result value type
  */
 public
 class CompletionStageMap<K,V>

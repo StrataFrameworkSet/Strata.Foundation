@@ -18,14 +18,7 @@ import java.util.Optional;
  * value to another. Exactly one of output or exception is present;
  * {@link #isSuccess()} and {@link #isFailure()} indicate which
  * outcome occurred.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <I>} - the type of the input value passed to the operation</li>
- * <li>{@code <O>} - the type of the output value produced by the operation</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * Mapped&lt;String,Integer&gt; result =
@@ -36,6 +29,9 @@ import java.util.Optional;
  *     Integer value = result.getOutput().get();
  * }
  * </pre>
+ *
+ * @param <I> - the type of the input value passed to the operation
+ * @param <O> - the type of the output value produced by the operation
  */
 public
 class Mapped<I,O>

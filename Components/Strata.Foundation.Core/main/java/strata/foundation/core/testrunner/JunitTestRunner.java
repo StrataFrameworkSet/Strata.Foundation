@@ -28,8 +28,7 @@ import static org.junit.platform.launcher.TagFilter.includeTags;
  * tests, and prints a summary (and any failures) to standard output. The
  * process exits with status {@code 1} if any test fails, or if the required
  * command-line arguments are missing, and {@code 0} otherwise.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * java -jar strata-foundation-core.jar \

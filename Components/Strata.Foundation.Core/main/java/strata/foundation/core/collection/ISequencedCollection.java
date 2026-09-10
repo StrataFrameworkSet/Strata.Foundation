@@ -11,11 +11,7 @@ import java.util.SequencedCollection;
  * Serializable extension of {@link java.util.SequencedCollection} that
  * combines sequenced element access with the Strata {@link ICollection}
  * hierarchy.
- * </p>
- * <br/>
- * <b>Type Parameter</b><br/>
- * {@code <T>} - element type
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Declaration via concrete type
@@ -27,6 +23,8 @@ import java.util.SequencedCollection;
  * String first = items.getFirst();
  * String last  = items.getLast();
  * </pre>
+ *
+ * @param <T> - element type
  */
 public
 interface ISequencedCollection<T>

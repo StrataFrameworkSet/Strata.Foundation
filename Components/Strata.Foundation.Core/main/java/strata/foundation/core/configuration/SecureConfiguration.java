@@ -28,8 +28,7 @@ import java.util.stream.Stream;
  * from {@link IConfiguration}. Encryption uses
  * PBEWithHMACSHA512AndAES_256 with a key sourced from the
  * {@code PROPERTIES_ENCRYPTION_KEY} environment variable.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Loading from classpath resource

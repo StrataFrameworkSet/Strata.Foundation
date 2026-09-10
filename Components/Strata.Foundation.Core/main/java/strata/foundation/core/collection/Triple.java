@@ -11,15 +11,7 @@ import java.util.Objects;
 /**
  * <p>
  * Container for a triple of data elements.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <F>} - first element of Triple</li>
- * <li>{@code <S>} - second element of Triple</li>
- * <li>{@code <T>} - third element of Triple</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -30,6 +22,10 @@ import java.util.Objects;
  * String  second = bar.getSecond();
  * Boolean third  = bar.getThird();
  * </pre>
+ *
+ * @param <F> - first element of Triple
+ * @param <S> - second element of Triple
+ * @param <T> - third element of Triple
  */
 public
 class Triple<F,S,T>

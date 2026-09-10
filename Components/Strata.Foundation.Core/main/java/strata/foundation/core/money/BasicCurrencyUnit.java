@@ -17,8 +17,7 @@ import java.util.Objects;
  * currency identity by ISO 4217 currency code, numeric code, and
  * default fraction digits. Includes predefined constants for
  * commonly used currencies.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Using predefined constants

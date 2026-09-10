@@ -14,13 +14,6 @@ import java.util.function.Function;
  * generic construction of typed completable results.
  * </p>
  * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <T>} - result value type</li>
- * <li>{@code <R>} - completed result type</li>
- * <li>{@code <C>} - completable result type</li>
- * </ul>
- * <br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Factory as constructor reference
@@ -28,6 +21,10 @@ import java.util.function.Function;
  *     CompletableResult&lt;String,CompletedResult&lt;String&gt;&gt;&gt; factory =
  *         CompletableResult::new;
  * </pre>
+ *
+ * @param <T> - result value type
+ * @param <R> - completed result type
+ * @param <C> - completable result type
  */
 public
 interface ICompletableResultFactory<

@@ -15,14 +15,7 @@ import java.util.*;
  * Implementation of {@link IMultiMap} that stores values in
  * {@link java.util.List} collections, preserving insertion order
  * and allowing duplicate values per key.
- * </p>
- * <br/>
- * <b>Type Parameters</b><br/>
- * <ul>
- * <li>{@code <K>} - key type</li>
- * <li>{@code <V>} - value type</li>
- * </ul>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * // Creation
@@ -35,6 +28,9 @@ import java.util.*;
  * // Copy construction
  * IMultiMap&lt;String,Integer&gt; copy = new ListValuedMultiMap&lt;&gt;(map);
  * </pre>
+ *
+ * @param <K> - key type
+ * @param <V> - value type
  */
 public
 class ListValuedMultiMap<K,V>

@@ -27,8 +27,7 @@ import java.util.Objects;
  * finally {@code address}, each case-insensitively. Copies are produced via
  * {@link ICopyable#copy()}, and instances implement {@link
  * java.io.Serializable} and {@link java.lang.Comparable}.
- * </p>
- * <br/>
+ * </p><br/>
  * <b>Examples</b><br/>
  * <pre>
  * PostalAddress address =
