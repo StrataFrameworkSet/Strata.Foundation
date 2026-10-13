@@ -5,6 +5,7 @@
 package strata.foundation.core.mapper;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public
@@ -36,10 +37,13 @@ class MapperRegistry
         return mappers.containsKey(MappingKey.of(srcType,destType));
     }
 
-    public <D,S> IMapper<D,S>
+    public <D,S> Optional<IMapper<D,S>>
     get(Class<D> destType,Class<S> srcType)
     {
-        return (IMapper<D,S>)mappers.get(MappingKey.of(srcType,destType));
+        return
+            Optional.ofNullable(
+                (IMapper<D,S>)
+                    mappers.get(MappingKey.of(srcType,destType)));
     }
 
     public static MapperRegistry

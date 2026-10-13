@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("CommitStage")
@@ -92,11 +94,12 @@ class MapperRegistryTest
         target.register(Integer.class,String.class,first);
         target.register(Integer.class,String.class,second);
 
-        IMapper<Integer,String> actual =
+        Optional<IMapper<Integer,String>> actual =
             target.get(Integer.class,String.class);
 
-        assertSame(second,actual);
-        assertEquals(2,actual.map("ignored"));
+        assertTrue(actual.isPresent());
+        assertSame(second,actual.get());
+        assertEquals(2,actual.get().map("ignored"));
     }
 
     @Test
@@ -108,7 +111,7 @@ class MapperRegistryTest
         target.unregister(Integer.class,String.class);
 
         assertFalse(target.has(Integer.class,String.class));
-        assertNull(target.get(Integer.class,String.class));
+        assertTrue(target.get(Integer.class,String.class).isEmpty());
     }
 
     @Test
@@ -156,14 +159,22 @@ class MapperRegistryTest
 
         target.register(Integer.class,String.class,mapper);
 
-        assertSame(mapper,target.get(Integer.class,String.class));
+        Optional<IMapper<Integer,String>> actual =
+            target.get(Integer.class,String.class);
+
+        assertTrue(actual.isPresent());
+        assertSame(mapper,actual.get());
     }
 
     @Test
     public void
-    testGetReturnsNullWhenMappingAbsent()
+    testGetReturnsEmptyWhenMappingAbsent()
     {
-        assertNull(target.get(Integer.class,String.class));
+        Optional<IMapper<Integer,String>> actual =
+            target.get(Integer.class,String.class);
+
+        assertNotNull(actual);
+        assertTrue(actual.isEmpty());
     }
 
     @Test
@@ -172,10 +183,11 @@ class MapperRegistryTest
     {
         target.register(Integer.class,String.class,Integer::valueOf);
 
-        IMapper<Integer,String> mapper =
+        Optional<IMapper<Integer,String>> mapper =
             target.get(Integer.class,String.class);
 
-        assertEquals(Integer.valueOf(42),mapper.map("42"));
+        assertTrue(mapper.isPresent());
+        assertEquals(Integer.valueOf(42),mapper.get().map("42"));
     }
 
     @Test
@@ -188,11 +200,16 @@ class MapperRegistryTest
         target.register(Integer.class,String.class,stringToInteger);
         target.register(String.class,Integer.class,integerToString);
 
-        assertSame(stringToInteger,target.get(Integer.class,String.class));
-        assertSame(integerToString,target.get(String.class,Integer.class));
-        assertNotSame(
-            target.get(Integer.class,String.class),
-            target.get(String.class,Integer.class));
+        Optional<IMapper<Integer,String>> forward =
+            target.get(Integer.class,String.class);
+        Optional<IMapper<String,Integer>> reverse =
+            target.get(String.class,Integer.class);
+
+        assertTrue(forward.isPresent());
+        assertTrue(reverse.isPresent());
+        assertSame(stringToInteger,forward.get());
+        assertSame(integerToString,reverse.get());
+        assertNotSame(forward.get(),reverse.get());
     }
 
     @Test
@@ -223,10 +240,18 @@ class MapperRegistryTest
             .register(Double.class,Number.class,numberToDouble)
             .register(String.class,CharSequence.class,charSeqToString);
 
-        assertSame(stringToInteger,target.get(Integer.class,String.class));
-        assertSame(stringToLong,target.get(Long.class,String.class));
-        assertSame(numberToDouble,target.get(Double.class,Number.class));
-        assertSame(charSeqToString,target.get(String.class,CharSequence.class));
+        assertSame(
+            stringToInteger,
+            target.get(Integer.class,String.class).orElseThrow());
+        assertSame(
+            stringToLong,
+            target.get(Long.class,String.class).orElseThrow());
+        assertSame(
+            numberToDouble,
+            target.get(Double.class,Number.class).orElseThrow());
+        assertSame(
+            charSeqToString,
+            target.get(String.class,CharSequence.class).orElseThrow());
     }
 
     @Test
@@ -256,8 +281,12 @@ class MapperRegistryTest
 
         target.register(Integer.class,String.class,mapper);
 
+        Optional<IMapper<Integer,String>> fromOther =
+            other.get(Integer.class,String.class);
+
         assertTrue(other.has(Integer.class,String.class));
-        assertSame(mapper,other.get(Integer.class,String.class));
+        assertTrue(fromOther.isPresent());
+        assertSame(mapper,fromOther.get());
 
         other.unregister(Integer.class,String.class);
 
