@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public
 class MapperRegistry
 {
-    private static Map<MappingKey,IMapper<?,?>> mappers =
+    private final Map<MappingKey,IMapper<?,?>> mappers =
         new ConcurrentHashMap<>();
 
     public
@@ -28,6 +28,13 @@ class MapperRegistry
     unregister(Class<D> destType,Class<S> srcType)
     {
         mappers.remove(MappingKey.of(srcType,destType));
+        return this;
+    }
+
+    public MapperRegistry
+    unregisterAll()
+    {
+        mappers.clear();
         return this;
     }
 
