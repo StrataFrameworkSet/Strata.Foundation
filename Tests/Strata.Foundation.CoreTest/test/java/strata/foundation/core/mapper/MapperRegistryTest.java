@@ -24,14 +24,13 @@ class MapperRegistryTest
     setUp()
     {
         target = MapperRegistry.of();
-        clearKnownMappings(target);
     }
 
     @AfterEach
     public void
     tearDown()
     {
-        clearKnownMappings(target);
+        target.unregisterAll();
         target = null;
     }
 
@@ -274,33 +273,36 @@ class MapperRegistryTest
 
     @Test
     public void
-    testBackingStoreSharedAcrossInstances()
+    testInstancesDoNotShareMappings()
     {
         MapperRegistry other = MapperRegistry.of();
-        IMapper<Integer,String> mapper = Integer::valueOf;
 
-        target.register(Integer.class,String.class,mapper);
+        target.register(Integer.class,String.class,Integer::valueOf);
 
-        Optional<IMapper<Integer,String>> fromOther =
-            other.get(Integer.class,String.class);
+        assertTrue(target.has(Integer.class,String.class));
+        assertFalse(other.has(Integer.class,String.class));
+        assertTrue(other.get(Integer.class,String.class).isEmpty());
 
-        assertTrue(other.has(Integer.class,String.class));
-        assertTrue(fromOther.isPresent());
-        assertSame(mapper,fromOther.get());
+        other.register(Long.class,String.class,Long::valueOf);
+        other.unregisterAll();
 
-        other.unregister(Integer.class,String.class);
-
-        assertFalse(target.has(Integer.class,String.class));
+        assertFalse(target.has(Long.class,String.class));
+        assertTrue(target.has(Integer.class,String.class));
     }
 
-    private static void
-    clearKnownMappings(MapperRegistry registry)
+    @Test
+    public void
+    testUnregisterAllRemovesAllMappings()
     {
-        registry.unregister(Integer.class,String.class);
-        registry.unregister(Long.class,String.class);
-        registry.unregister(Double.class,Number.class);
-        registry.unregister(String.class,CharSequence.class);
-        registry.unregister(String.class,Integer.class);
+        target
+            .register(Integer.class,String.class,Integer::valueOf)
+            .register(Long.class,String.class,Long::valueOf);
+
+        MapperRegistry returned = target.unregisterAll();
+
+        assertSame(target,returned);
+        assertFalse(target.has(Integer.class,String.class));
+        assertFalse(target.has(Long.class,String.class));
     }
 }
 
