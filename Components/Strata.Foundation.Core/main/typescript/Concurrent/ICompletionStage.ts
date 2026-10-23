@@ -1,5 +1,6 @@
 export
 interface ICompletionStage<T>
+    extends PromiseLike<T>
 {
     thenApply<U>(func: (input: T) => U): ICompletionStage<U>;
 

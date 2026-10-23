@@ -8,6 +8,7 @@ class CompletableObservable<T>
     implements ICompletionStage<T>
 {
     private observable: Observable<CompletionContext<T>>;
+    private promise?: Promise<T>;
 
     protected constructor(
         observable: Observable<T>|Observable<CompletionContext<T>>,
@@ -18,6 +19,13 @@ class CompletableObservable<T>
         else
             this.observable = this.initializeObservable(<Observable<T>>observable);
 
+    }
+
+    then<TResult1 = T, TResult2 = never>(onFulfilled?: (value: T) => TResult1 | PromiseLike<TResult1>, onRejected?: (reason: any) => TResult2 | PromiseLike<TResult2>):
+        PromiseLike<TResult1 | TResult2>
+    {
+        this.promise ??= new Promise<T>((resolve,reject) => this.subscribe(resolve,reject));
+        return this.promise.then(onFulfilled,onRejected);
     }
 
     thenApply<U>(func: (input: T) => U): ICompletionStage<U>
