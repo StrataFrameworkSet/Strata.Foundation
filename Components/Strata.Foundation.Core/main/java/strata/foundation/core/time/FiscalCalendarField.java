@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -187,7 +187,7 @@ class FiscalCalendarField
     toDate(TemporalAccessor temporal)
         throws UnsupportedTemporalTypeException, NullPointerException
     {
-        Validate.requireNonNull(temporal,"temporal is null");
+        Require.notNull(temporal,"temporal is null");
 
         if (!isSupportedBy(temporal))
             throw new UnsupportedTemporalTypeException("Unsupported field: " + this);

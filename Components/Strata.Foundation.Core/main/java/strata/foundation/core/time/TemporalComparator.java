@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.Instant;
 import java.time.temporal.ChronoField;
@@ -29,7 +29,7 @@ class TemporalComparator<T extends Temporal>
                     .from(a)
                     .compareTo(Instant.from(b));
 
-        Validate.require(
+        Require.isTrue(
             a instanceof Comparable && a.getClass().equals(b.getClass()),
             () ->
                 new IllegalArgumentException(

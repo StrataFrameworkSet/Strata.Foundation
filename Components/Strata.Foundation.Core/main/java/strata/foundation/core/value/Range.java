@@ -4,7 +4,7 @@
 
 package strata.foundation.core.value;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -21,13 +21,13 @@ class Range<T>
     Range(T beginning,T end,Comparator<T> comparator)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(beginning,"beginning is null");
-        Validate.requireNonNull(end,"end is null");
-        Validate.requireNonNull(comparator,"comparator is null");
-        Validate.require(
+        Require.notNull(beginning,"beginning is null");
+        Require.notNull(end,"end is null");
+        Require.notNull(comparator,"comparator is null");
+        Require.isTrue(
             beginning.getClass().equals(end.getClass()),
             () -> new IllegalArgumentException("beginning and end must be of the same type"));
-        Validate.require(
+        Require.isTrue(
             comparator.compare(beginning,end) <= 0,
             () -> new IllegalArgumentException("beginning must be before end"));
 

@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
@@ -197,7 +197,7 @@ class RetailCalendar
     getYear(LocalDate date)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(date,"date is null");
+        Require.notNull(date,"date is null");
 
         int anchorYear = date.getYear();
 
@@ -290,16 +290,16 @@ class RetailCalendar
         CalendarYearLabel yearLabel)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(id,"id is null");
-        Validate.requireNonNull(pattern,"pattern is null");
-        Validate.requireNonNull(yearEndMonth,"yearEndMonth is null");
-        Validate.requireNonNull(yearEndDay,"yearEndDay is null");
-        Validate.requireNonNull(yearEndRule,"yearEndRule is null");
-        Validate.requireNonNull(yearLabel,"yearLabel is null");
-        Validate.require(
+        Require.notNull(id,"id is null");
+        Require.notNull(pattern,"pattern is null");
+        Require.notNull(yearEndMonth,"yearEndMonth is null");
+        Require.notNull(yearEndDay,"yearEndDay is null");
+        Require.notNull(yearEndRule,"yearEndRule is null");
+        Require.notNull(yearLabel,"yearLabel is null");
+        Require.isTrue(
             !id.isBlank(),
             () -> new IllegalArgumentException("id is blank"));
-        Validate.require(
+        Require.isTrue(
             id.indexOf('[') < 0 && id.indexOf(']') < 0,
             () -> new IllegalArgumentException("id must not contain '[' or ']'"));
 

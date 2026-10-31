@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// Validate.java
+// Require.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -8,12 +8,12 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public
-class Validate
+class Require
 {
-    private Validate() {}
+    private Require() {}
 
     public static <E extends Throwable> void
-    require(boolean condition,Supplier<E> supplier)
+    isTrue(boolean condition,Supplier<E> supplier)
         throws NullPointerException, E
     {
         Objects.requireNonNull(supplier,"supplier is null");
@@ -22,22 +22,32 @@ class Validate
             throw supplier.get();
     }
 
+    public static <E extends Throwable> void
+    isFalse(boolean condition,Supplier<E> supplier)
+        throws NullPointerException, E
+    {
+        Objects.requireNonNull(supplier,"supplier is null");
+
+        if (condition)
+            throw supplier.get();
+    }
+
     public static <T> T
-    requireNonNull(T obj)
+    notNull(T obj)
         throws NullPointerException
     {
         return Objects.requireNonNull(obj);
     }
 
     public static <T> T
-    requireNonNull(T obj,String message)
+    notNull(T obj,String message)
         throws NullPointerException
     {
         return Objects.requireNonNull(obj,message);
     }
 
     public static <T,E extends Throwable> T
-    requireNonNull(T obj,Supplier<E> supplier)
+    notNull(T obj,Supplier<E> supplier)
         throws NullPointerException, E
     {
         Objects.requireNonNull(supplier,"supplier is null");
@@ -49,14 +59,14 @@ class Validate
     }
 
     public static <T> T
-    requireNonNullElse(T obj,T defaultObj)
+    notNullElse(T obj,T defaultObj)
         throws NullPointerException
     {
         return Objects.requireNonNullElse(obj,defaultObj);
     }
 
     public static <T,E extends Throwable> T
-    requireNonNullElse(T obj,T defaultObj,Supplier<E> supplier)
+    notNullElse(T obj,T defaultObj,Supplier<E> supplier)
         throws NullPointerException, E
     {
         Objects.requireNonNull(supplier,"supplier is null");
@@ -64,11 +74,11 @@ class Validate
         if (obj != null)
             return obj;
 
-        return requireNonNull(defaultObj,supplier);
+        return notNull(defaultObj,supplier);
     }
 
     public static <T> T
-    requireNonNullElseGet(T obj,Supplier<? extends T> supplier)
+    notNullElseGet(T obj,Supplier<? extends T> supplier)
         throws NullPointerException
     {
         Objects.requireNonNull(supplier,"supplier is null");
@@ -77,7 +87,7 @@ class Validate
     }
 
     public static <T,E extends Throwable> T
-    requireNonNullElseGet(
+    notNullElseGet(
         T                     obj,
         Supplier<? extends T> defaultSupplier,
         Supplier<E>           exceptionSupplier)
@@ -90,7 +100,7 @@ class Validate
             return obj;
 
         return
-            requireNonNull(
+            notNull(
                 defaultSupplier.get(),
                 exceptionSupplier);
     }

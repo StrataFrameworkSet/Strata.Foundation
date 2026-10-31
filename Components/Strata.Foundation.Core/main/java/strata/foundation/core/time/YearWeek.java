@@ -6,7 +6,7 @@ package strata.foundation.core.time;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
 import java.time.Clock;
@@ -81,7 +81,7 @@ class YearWeek
     contains(LocalDate date)
         throws NullPointerException
     {
-        Validate.requireNonNull(date,"date is null");
+        Require.notNull(date,"date is null");
 
         return equals(from(date));
     }
@@ -169,7 +169,7 @@ class YearWeek
     until(Temporal endExclusive,TemporalUnit unit)
         throws DateTimeException, UnsupportedTemporalTypeException, NullPointerException
     {
-        Validate.requireNonNull(unit,"unit is null");
+        Require.notNull(unit,"unit is null");
 
         YearWeek end = from(endExclusive);
 
@@ -340,7 +340,7 @@ class YearWeek
     isBefore(YearWeek other)
         throws NullPointerException
     {
-        Validate.requireNonNull(other,"other is null");
+        Require.notNull(other,"other is null");
 
         return compareTo(other) < 0;
     }
@@ -349,7 +349,7 @@ class YearWeek
     isAfter(YearWeek other)
         throws NullPointerException
     {
-        Validate.requireNonNull(other,"other is null");
+        Require.notNull(other,"other is null");
 
         return compareTo(other) > 0;
     }
@@ -358,7 +358,7 @@ class YearWeek
     atDay(DayOfWeek day)
         throws NullPointerException
     {
-        Validate.requireNonNull(day,"day is null");
+        Require.notNull(day,"day is null");
 
         return getFirstDay().plusDays(day.getValue() - 1);
     }
@@ -445,7 +445,7 @@ class YearWeek
     from(TemporalAccessor temporal)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(temporal,"temporal is null");
+        Require.notNull(temporal,"temporal is null");
 
         if (temporal instanceof YearWeek yearWeek)
             return yearWeek;
@@ -479,7 +479,7 @@ class YearWeek
     now(ZoneId zone)
         throws NullPointerException
     {
-        Validate.requireNonNull(zone,"zone is null");
+        Require.notNull(zone,"zone is null");
 
         return now(Clock.system(zone));
     }
@@ -488,7 +488,7 @@ class YearWeek
     now(Clock clock)
         throws NullPointerException
     {
-        Validate.requireNonNull(clock,"clock is null");
+        Require.notNull(clock,"clock is null");
 
         return from(LocalDate.now(clock));
     }
@@ -497,7 +497,7 @@ class YearWeek
     parse(CharSequence text)
         throws NullPointerException
     {
-        Validate.requireNonNull(text,"text is null");
+        Require.notNull(text,"text is null");
 
         return
             FORMATTER.parse(

@@ -6,7 +6,7 @@ package strata.foundation.core.time;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
 import java.time.DateTimeException;
@@ -63,7 +63,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     contains(LocalDate date)
         throws NullPointerException
     {
-        Validate.requireNonNull(date,"date is null");
+        Require.notNull(date,"date is null");
 
         return !date.isBefore(getFirstDay()) && !date.isAfter(getLastDay());
     }
@@ -73,7 +73,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     range(TemporalField field)
         throws UnsupportedTemporalTypeException
     {
-        Validate.requireNonNull(field,"field is null");
+        Require.notNull(field,"field is null");
 
         if (isSupported(field))
             return field.rangeRefinedBy(getFirstDay());
@@ -89,7 +89,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     getLong(TemporalField field)
         throws UnsupportedTemporalTypeException
     {
-        Validate.requireNonNull(field,"field is null");
+        Require.notNull(field,"field is null");
 
         if (isSupported(field))
             return getFirstDay().getLong(field);
@@ -119,7 +119,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     until(Temporal endExclusive,TemporalUnit unit)
         throws DateTimeException, UnsupportedTemporalTypeException
     {
-        Validate.requireNonNull(unit,"unit is null");
+        Require.notNull(unit,"unit is null");
 
         P end = fromTemporal(endExclusive);
 
@@ -138,7 +138,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     with(TemporalField field,long newValue)
         throws DateTimeException, UnsupportedTemporalTypeException
     {
-        Validate.requireNonNull(field,"field is null");
+        Require.notNull(field,"field is null");
 
         if (isSupported(field))
             return fromDate(field.adjustInto(getFirstDay(),newValue));
@@ -164,7 +164,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     plus(long amountToAdd,TemporalUnit unit)
         throws DateTimeException, UnsupportedTemporalTypeException
     {
-        Validate.requireNonNull(unit,"unit is null");
+        Require.notNull(unit,"unit is null");
 
         if (isSupported(unit))
             return fromDate(getFirstDay().plus(amountToAdd,unit));
@@ -209,7 +209,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     compareTo(P other)
         throws IllegalArgumentException
     {
-        Validate.require(
+        Require.isTrue(
             calendar.equals(other.getCalendar()),
             () ->
                 new IllegalArgumentException(
@@ -254,7 +254,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     isBefore(P other)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(other,"other is null");
+        Require.notNull(other,"other is null");
 
         return compareTo(other) < 0;
     }
@@ -263,7 +263,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     isAfter(P other)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(other,"other is null");
+        Require.notNull(other,"other is null");
 
         return compareTo(other) > 0;
     }
@@ -301,7 +301,7 @@ class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICa
     matchText(Pattern pattern,CharSequence text)
         throws DateTimeParseException, NullPointerException
     {
-        Validate.requireNonNull(text,"text is null");
+        Require.notNull(text,"text is null");
 
         Matcher matcher = pattern.matcher(text);
 

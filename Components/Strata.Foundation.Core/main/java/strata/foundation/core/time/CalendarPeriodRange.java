@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.LocalDate;
 import java.time.temporal.Temporal;
@@ -45,7 +45,7 @@ class CalendarPeriodRange<P extends Temporal & ICalendarPeriod>
     contains(LocalDate date)
         throws NullPointerException
     {
-        Validate.requireNonNull(date,"date is null");
+        Require.notNull(date,"date is null");
 
         return !date.isBefore(getFirstDay()) && !date.isAfter(getLastDay());
     }

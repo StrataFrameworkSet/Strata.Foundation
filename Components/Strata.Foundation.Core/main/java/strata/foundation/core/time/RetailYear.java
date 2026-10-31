@@ -6,7 +6,7 @@ package strata.foundation.core.time;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.Clock;
 import java.time.DateTimeException;
@@ -134,7 +134,7 @@ class RetailYear
     atDay(int dayOfYear)
         throws DateTimeException
     {
-        Validate.require(
+        Require.isTrue(
             dayOfYear >= 1 && dayOfYear <= lengthInWeeks() * 7,
             () -> new DateTimeException("Invalid day of year: " + dayOfYear));
 
@@ -166,7 +166,7 @@ class RetailYear
     of(RetailCalendar calendar,int year)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         calendar.getYearStart(year);
 
@@ -184,8 +184,8 @@ class RetailYear
     from(RetailCalendar calendar,TemporalAccessor temporal)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
-        Validate.requireNonNull(temporal,"temporal is null");
+        Require.notNull(calendar,"calendar is null");
+        Require.notNull(temporal,"temporal is null");
 
         if (temporal instanceof RetailYear other && other.getCalendar().equals(calendar))
             return other;
@@ -219,7 +219,7 @@ class RetailYear
     now(ZoneId zone)
         throws NullPointerException
     {
-        Validate.requireNonNull(zone,"zone is null");
+        Require.notNull(zone,"zone is null");
 
         return now(Clock.system(zone));
     }
@@ -235,7 +235,7 @@ class RetailYear
     now(RetailCalendar calendar,Clock clock)
         throws NullPointerException
     {
-        Validate.requireNonNull(clock,"clock is null");
+        Require.notNull(clock,"clock is null");
 
         return from(calendar,LocalDate.now(clock));
     }
@@ -251,7 +251,7 @@ class RetailYear
     parse(CharSequence text,RetailCalendar calendar)
         throws DateTimeParseException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         return parse(text,calendar,calendar);
     }
@@ -313,7 +313,7 @@ class RetailYear
         @JsonProperty("calendar") String calendar,
         @JsonProperty("value")    String value)
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         return parse(value,RetailCalendarRegistry.getOrThrow(calendar));
     }

@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
@@ -153,7 +153,7 @@ class FiscalCalendar
     getYear(LocalDate date)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(date,"date is null");
+        Require.notNull(date,"date is null");
 
         int startYear =
             date.getMonthValue() >= startMonth.getValue()
@@ -266,17 +266,17 @@ class FiscalCalendar
         int               minimalDaysInFirstWeek)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(id,"id is null");
-        Validate.requireNonNull(startMonth,"startMonth is null");
-        Validate.requireNonNull(yearLabel,"yearLabel is null");
-        Validate.requireNonNull(firstDayOfWeek,"firstDayOfWeek is null");
-        Validate.require(
+        Require.notNull(id,"id is null");
+        Require.notNull(startMonth,"startMonth is null");
+        Require.notNull(yearLabel,"yearLabel is null");
+        Require.notNull(firstDayOfWeek,"firstDayOfWeek is null");
+        Require.isTrue(
             !id.isBlank(),
             () -> new IllegalArgumentException("id is blank"));
-        Validate.require(
+        Require.isTrue(
             id.indexOf('[') < 0 && id.indexOf(']') < 0,
             () -> new IllegalArgumentException("id must not contain '[' or ']'"));
-        Validate.require(
+        Require.isTrue(
             minimalDaysInFirstWeek >= 1 && minimalDaysInFirstWeek <= 7,
             () ->
                 new IllegalArgumentException(

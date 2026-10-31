@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// ValidateTest.java
+// RequireTest.java
 //////////////////////////////////////////////////////////////////////////////
 
 package strata.foundation.core.utility;
@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("CommitStage")
 public
-class ValidateTest
+class RequireTest
 {
     @Test
     public void
     testTrueConditionDoesNotThrow()
     {
         assertDoesNotThrow(
-            () -> Validate.require(true,() -> new IllegalStateException("x")));
+            () -> Require.isTrue(true,() -> new IllegalStateException("x")));
     }
 
     @Test
@@ -36,7 +36,7 @@ class ValidateTest
     {
         AtomicBoolean invoked = new AtomicBoolean(false);
 
-        Validate.require(
+        Require.isTrue(
             true,
             () ->
             {
@@ -55,7 +55,7 @@ class ValidateTest
         IllegalArgumentException actual =
             assertThrows(
                 IllegalArgumentException.class,
-                () -> Validate.require(false,() -> expected));
+                () -> Require.isTrue(false,() -> expected));
 
         assertSame(expected,actual);
     }
@@ -68,7 +68,7 @@ class ValidateTest
 
         assertThrows(
             IllegalStateException.class,
-            () -> Validate.require(
+            () -> Require.isTrue(
                 false,
                 () ->
                 {
@@ -87,7 +87,7 @@ class ValidateTest
         IOException actual =
             assertThrows(
                 IOException.class,
-                () -> Validate.require(false,() -> expected));
+                () -> Require.isTrue(false,() -> expected));
 
         assertSame(expected,actual);
     }
@@ -101,50 +101,146 @@ class ValidateTest
         UnsupportedOperationException actual =
             assertThrows(
                 UnsupportedOperationException.class,
-                () -> Validate.require(false,() -> expected));
+                () -> Require.isTrue(false,() -> expected));
 
         assertSame(expected,actual);
     }
 
     @Test
     public void
-    testRequireNonNullReturnsValue()
+    testIsFalseFalseConditionDoesNotThrow()
     {
-        String value = new String("value");
-
-        assertSame(value,Validate.requireNonNull(value));
-        assertSame(value,Validate.requireNonNull(value,"message"));
+        assertDoesNotThrow(
+            () -> Require.isFalse(false,() -> new IllegalStateException("x")));
     }
 
     @Test
     public void
-    testRequireNonNullThrowsOnNull()
+    testIsFalseFalseConditionDoesNotInvokeSupplier()
     {
+        AtomicBoolean invoked = new AtomicBoolean(false);
+
+        Require.isFalse(
+            false,
+            () ->
+            {
+                invoked.set(true);
+                return new IllegalStateException("x");
+            });
+
+        assertFalse(invoked.get());
+    }
+
+    @Test
+    public void
+    testIsFalseTrueConditionThrowsSuppliedInstance()
+    {
+        IllegalArgumentException expected = new IllegalArgumentException("bad");
+        IllegalArgumentException actual =
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> Require.isFalse(true,() -> expected));
+
+        assertSame(expected,actual);
+    }
+
+    @Test
+    public void
+    testIsFalseTrueConditionInvokesSupplier()
+    {
+        AtomicBoolean invoked = new AtomicBoolean(false);
+
         assertThrows(
-            NullPointerException.class,
-            () -> Validate.requireNonNull(null));
+            IllegalStateException.class,
+            () -> Require.isFalse(
+                true,
+                () ->
+                {
+                    invoked.set(true);
+                    return new IllegalStateException("x");
+                }));
+
+        assertTrue(invoked.get());
     }
 
     @Test
     public void
-    testRequireNonNullWithMessageThrowsOnNull()
+    testIsFalseCheckedExceptionPropagates()
+    {
+        IOException expected = new IOException("io");
+        IOException actual =
+            assertThrows(
+                IOException.class,
+                () -> Require.isFalse(true,() -> expected));
+
+        assertSame(expected,actual);
+    }
+
+    @Test
+    public void
+    testIsFalseUncheckedExceptionPropagates()
+    {
+        UnsupportedOperationException expected =
+            new UnsupportedOperationException("nope");
+        UnsupportedOperationException actual =
+            assertThrows(
+                UnsupportedOperationException.class,
+                () -> Require.isFalse(true,() -> expected));
+
+        assertSame(expected,actual);
+    }
+
+    @Test
+    public void
+    testIsFalseRejectsNullSupplierWhenConditionFalse()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNull(null,"value is null"));
+                () -> Require.isFalse(false,(Supplier<IllegalStateException>)null));
+
+        assertEquals("supplier is null",actual.getMessage());
+    }
+
+    @Test
+    public void
+    testIsTrueNonNullReturnsValue()
+    {
+        String value = new String("value");
+
+        assertSame(value,Require.notNull(value));
+        assertSame(value,Require.notNull(value,"message"));
+    }
+
+    @Test
+    public void
+    testIsTrueNonNullThrowsOnNull()
+    {
+        assertThrows(
+            NullPointerException.class,
+            () -> Require.notNull(null));
+    }
+
+    @Test
+    public void
+    testIsTrueNonNullWithMessageThrowsOnNull()
+    {
+        NullPointerException actual =
+            assertThrows(
+                NullPointerException.class,
+                () -> Require.notNull(null,"value is null"));
 
         assertEquals("value is null",actual.getMessage());
     }
 
     @Test
     public void
-    testRequireNonNullWithSupplierReturnsValue()
+    testIsTrueNonNullWithSupplierReturnsValue()
     {
         AtomicBoolean invoked = new AtomicBoolean(false);
         String        value = new String("value");
         String        actual =
-            Validate.requireNonNull(
+            Require.notNull(
                 value,
                 () ->
                 {
@@ -158,47 +254,47 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullWithSupplierThrowsSuppliedInstance()
+    testIsTrueNonNullWithSupplierThrowsSuppliedInstance()
     {
         IllegalStateException expected = new IllegalStateException("null");
         IllegalStateException actual =
             assertThrows(
                 IllegalStateException.class,
-                () -> Validate.requireNonNull(null,() -> expected));
+                () -> Require.notNull(null,() -> expected));
 
         assertSame(expected,actual);
     }
 
     @Test
     public void
-    testRequireNonNullWithSupplierThrowsCheckedException()
+    testIsTrueNonNullWithSupplierThrowsCheckedException()
     {
         IOException expected = new IOException("io");
         IOException actual =
             assertThrows(
                 IOException.class,
-                () -> Validate.requireNonNull(null,() -> expected));
+                () -> Require.notNull(null,() -> expected));
 
         assertSame(expected,actual);
     }
 
     @Test
     public void
-    testRequireNonNullElse()
+    testIsTrueNonNullElse()
     {
         String value = new String("value");
         String fallback = new String("fallback");
 
-        assertSame(value,Validate.requireNonNullElse(value,fallback));
-        assertSame(fallback,Validate.requireNonNullElse(null,fallback));
+        assertSame(value,Require.notNullElse(value,fallback));
+        assertSame(fallback,Require.notNullElse(null,fallback));
         assertThrows(
             NullPointerException.class,
-            () -> Validate.requireNonNullElse(null,null));
+            () -> Require.notNullElse(null,null));
     }
 
     @Test
     public void
-    testRequireNonNullElseWithSupplier()
+    testIsTrueNonNullElseWithSupplier()
     {
         AtomicBoolean invoked = new AtomicBoolean(false);
         String        value = new String("value");
@@ -210,21 +306,21 @@ class ValidateTest
                 return new IllegalStateException("x");
             };
 
-        assertSame(value,Validate.requireNonNullElse(value,fallback,supplier));
-        assertSame(value,Validate.requireNonNullElse(value,null,supplier));
-        assertSame(fallback,Validate.requireNonNullElse(null,fallback,supplier));
+        assertSame(value,Require.notNullElse(value,fallback,supplier));
+        assertSame(value,Require.notNullElse(value,null,supplier));
+        assertSame(fallback,Require.notNullElse(null,fallback,supplier));
         assertFalse(invoked.get());
     }
 
     @Test
     public void
-    testRequireNonNullElseWithSupplierThrowsSuppliedInstance()
+    testIsTrueNonNullElseWithSupplierThrowsSuppliedInstance()
     {
         IOException expected = new IOException("io");
         IOException actual =
             assertThrows(
                 IOException.class,
-                () -> Validate.requireNonNullElse(
+                () -> Require.notNullElse(
                     (String)null,
                     (String)null,
                     () -> expected));
@@ -234,7 +330,7 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullElseGet()
+    testIsTrueNonNullElseGet()
     {
         AtomicBoolean invoked = new AtomicBoolean(false);
         String        value = new String("value");
@@ -242,7 +338,7 @@ class ValidateTest
 
         assertSame(
             value,
-            Validate.requireNonNullElseGet(
+            Require.notNullElseGet(
                 value,
                 () ->
                 {
@@ -250,18 +346,18 @@ class ValidateTest
                     return fallback;
                 }));
         assertFalse(invoked.get());
-        assertSame(fallback,Validate.requireNonNullElseGet(null,() -> fallback));
+        assertSame(fallback,Require.notNullElseGet(null,() -> fallback));
         assertThrows(
             NullPointerException.class,
-            () -> Validate.requireNonNullElseGet(null,() -> null));
+            () -> Require.notNullElseGet(null,() -> null));
         assertThrows(
             NullPointerException.class,
-            () -> Validate.requireNonNullElseGet(null,null));
+            () -> Require.notNullElseGet(null,null));
     }
 
     @Test
     public void
-    testRequireNonNullElseGetWithSupplier()
+    testIsTrueNonNullElseGetWithSupplier()
     {
         AtomicBoolean defaultInvoked = new AtomicBoolean(false);
         AtomicBoolean invoked = new AtomicBoolean(false);
@@ -280,22 +376,22 @@ class ValidateTest
                 return new IllegalStateException("x");
             };
 
-        assertSame(value,Validate.requireNonNullElseGet(value,defaultSupplier,supplier));
+        assertSame(value,Require.notNullElseGet(value,defaultSupplier,supplier));
         assertFalse(defaultInvoked.get());
-        assertSame(fallback,Validate.requireNonNullElseGet(null,defaultSupplier,supplier));
+        assertSame(fallback,Require.notNullElseGet(null,defaultSupplier,supplier));
         assertTrue(defaultInvoked.get());
         assertFalse(invoked.get());
     }
 
     @Test
     public void
-    testRequireNonNullElseGetWithSupplierThrowsSuppliedInstance()
+    testIsTrueNonNullElseGetWithSupplierThrowsSuppliedInstance()
     {
         IOException expected = new IOException("io");
         IOException actual =
             assertThrows(
                 IOException.class,
-                () -> Validate.requireNonNullElseGet(
+                () -> Require.notNullElseGet(
                     (String)null,
                     () -> null,
                     () -> expected));
@@ -305,12 +401,12 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullElseGetWithSupplierRejectsNullDefaultSupplier()
+    testIsTrueNonNullElseGetWithSupplierRejectsNullDefaultSupplier()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNullElseGet(
+                () -> Require.notNullElseGet(
                     (String)null,
                     null,
                     () -> new IllegalStateException("x")));
@@ -320,24 +416,24 @@ class ValidateTest
 
     @Test
     public void
-    testRequireRejectsNullSupplierWhenConditionTrue()
+    testIsTrueRejectsNullSupplierWhenConditionTrue()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.require(true,(Supplier<IllegalStateException>)null));
+                () -> Require.isTrue(true,(Supplier<IllegalStateException>)null));
 
         assertEquals("supplier is null",actual.getMessage());
     }
 
     @Test
     public void
-    testRequireNonNullRejectsNullSupplierWhenValuePresent()
+    testIsTrueNonNullRejectsNullSupplierWhenValuePresent()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNull(
+                () -> Require.notNull(
                     "value",
                     (Supplier<IllegalStateException>)null));
 
@@ -346,12 +442,12 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullElseRejectsNullSupplierWhenValuePresent()
+    testIsTrueNonNullElseRejectsNullSupplierWhenValuePresent()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNullElse(
+                () -> Require.notNullElse(
                     "value",
                     "fallback",
                     (Supplier<IllegalStateException>)null));
@@ -361,24 +457,24 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullElseGetRejectsNullSupplierWhenValuePresent()
+    testIsTrueNonNullElseGetRejectsNullSupplierWhenValuePresent()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNullElseGet("value",(Supplier<String>)null));
+                () -> Require.notNullElseGet("value",(Supplier<String>)null));
 
         assertEquals("supplier is null",actual.getMessage());
     }
 
     @Test
     public void
-    testRequireNonNullElseGetWithSupplierRejectsNullDefaultSupplierWhenValuePresent()
+    testIsTrueNonNullElseGetWithSupplierRejectsNullDefaultSupplierWhenValuePresent()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNullElseGet(
+                () -> Require.notNullElseGet(
                     "value",
                     (Supplier<String>)null,
                     () -> new IllegalStateException("x")));
@@ -388,12 +484,12 @@ class ValidateTest
 
     @Test
     public void
-    testRequireNonNullElseGetWithSupplierRejectsNullExceptionSupplier()
+    testIsTrueNonNullElseGetWithSupplierRejectsNullExceptionSupplier()
     {
         NullPointerException actual =
             assertThrows(
                 NullPointerException.class,
-                () -> Validate.requireNonNullElseGet(
+                () -> Require.notNullElseGet(
                     "value",
                     () -> "fallback",
                     (Supplier<IllegalStateException>)null));

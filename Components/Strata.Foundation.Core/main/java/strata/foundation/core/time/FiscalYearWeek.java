@@ -6,7 +6,7 @@ package strata.foundation.core.time;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.Clock;
 import java.time.DateTimeException;
@@ -124,7 +124,7 @@ class FiscalYearWeek
     atDay(DayOfWeek day)
         throws NullPointerException
     {
-        Validate.requireNonNull(day,"day is null");
+        Require.notNull(day,"day is null");
 
         return getFirstDay().with(TemporalAdjusters.nextOrSame(day));
     }
@@ -182,7 +182,7 @@ class FiscalYearWeek
     of(FiscalCalendar calendar,int year,int week)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         calendar.getWeekStart(year,week);
 
@@ -200,8 +200,8 @@ class FiscalYearWeek
     from(FiscalCalendar calendar,TemporalAccessor temporal)
         throws DateTimeException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
-        Validate.requireNonNull(temporal,"temporal is null");
+        Require.notNull(calendar,"calendar is null");
+        Require.notNull(temporal,"temporal is null");
 
         if (temporal instanceof FiscalYearWeek other && other.getCalendar().equals(calendar))
             return other;
@@ -236,7 +236,7 @@ class FiscalYearWeek
     now(ZoneId zone)
         throws NullPointerException
     {
-        Validate.requireNonNull(zone,"zone is null");
+        Require.notNull(zone,"zone is null");
 
         return now(Clock.system(zone));
     }
@@ -252,7 +252,7 @@ class FiscalYearWeek
     now(FiscalCalendar calendar,Clock clock)
         throws NullPointerException
     {
-        Validate.requireNonNull(clock,"clock is null");
+        Require.notNull(clock,"clock is null");
 
         return from(calendar,LocalDate.now(clock));
     }
@@ -268,7 +268,7 @@ class FiscalYearWeek
     parse(CharSequence text,FiscalCalendar calendar)
         throws DateTimeParseException, NullPointerException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         return parse(text,calendar,calendar);
     }
@@ -334,7 +334,7 @@ class FiscalYearWeek
         @JsonProperty("calendar") String calendar,
         @JsonProperty("value")    String value)
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         return parse(value,FiscalCalendarRegistry.getOrThrow(calendar));
     }

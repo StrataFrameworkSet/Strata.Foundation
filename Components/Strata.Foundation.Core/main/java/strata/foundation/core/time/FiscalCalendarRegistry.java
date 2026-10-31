@@ -4,7 +4,7 @@
 
 package strata.foundation.core.time;
 
-import strata.foundation.core.utility.Validate;
+import strata.foundation.core.utility.Require;
 
 import java.time.DateTimeException;
 import java.util.Map;
@@ -34,7 +34,7 @@ class FiscalCalendarRegistry
     get(String id)
         throws NullPointerException
     {
-        Validate.requireNonNull(id,"id is null");
+        Require.notNull(id,"id is null");
 
         return Optional.ofNullable(calendars.get(id));
     }
@@ -58,11 +58,11 @@ class FiscalCalendarRegistry
     register(FiscalCalendar calendar)
         throws NullPointerException, IllegalArgumentException
     {
-        Validate.requireNonNull(calendar,"calendar is null");
+        Require.notNull(calendar,"calendar is null");
 
         FiscalCalendar existing = calendars.putIfAbsent(calendar.getId(),calendar);
 
-        Validate.require(
+        Require.isTrue(
             existing == null || existing.equals(calendar),
             () ->
                 new IllegalArgumentException(
