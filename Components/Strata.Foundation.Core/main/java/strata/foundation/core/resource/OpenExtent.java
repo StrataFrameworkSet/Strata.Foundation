@@ -4,7 +4,7 @@
 
 package strata.foundation.core.resource;
 
-import java.util.Objects;
+import strata.foundation.core.utility.Require;
 
 /**
  * <p>
@@ -32,7 +32,7 @@ class OpenExtent<R extends IResource>
     OpenExtent(R resource)
         throws OpenFailedException
     {
-        Objects.requireNonNull(resource, "resource must not be null");
+        Require.notNull(resource, "resource must not be null");
         this.resource = resource;
 
         if (resource.isClosed())

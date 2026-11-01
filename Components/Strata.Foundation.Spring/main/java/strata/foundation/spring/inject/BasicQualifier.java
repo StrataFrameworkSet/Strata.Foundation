@@ -6,6 +6,7 @@ package strata.foundation.spring.inject;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
@@ -19,7 +20,7 @@ class BasicQualifier
     public
     BasicQualifier(String value)
     {
-        Objects.requireNonNull(value,"Value cannot be null");
+        Require.notNull(value,"Value cannot be null");
         this.value = value;
     }
 

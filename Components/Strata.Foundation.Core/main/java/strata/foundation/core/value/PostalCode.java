@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.mapper.BasicPostalCodeToCountryCodeMapper;
 import strata.foundation.core.mapper.IPostalCodeToCountryCodeMapper;
 import strata.foundation.core.utility.ICopyable;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -53,7 +54,7 @@ class PostalCode
     PostalCode(@JsonProperty("postalCode") String value)
         throws NullPointerException, IllegalArgumentException
     {
-        Objects.requireNonNull(value,"postalCode cannot be null");
+        Require.notNull(value,"postalCode cannot be null");
         validate(value);
         this.value = value;
     }

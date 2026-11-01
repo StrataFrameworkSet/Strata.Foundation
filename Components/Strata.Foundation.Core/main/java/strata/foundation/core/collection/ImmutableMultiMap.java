@@ -4,6 +4,8 @@
 
 package strata.foundation.core.collection;
 
+import strata.foundation.core.utility.Require;
+
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.BiConsumer;
@@ -42,7 +44,7 @@ class ImmutableMultiMap<K,V>
     public
     ImmutableMultiMap(IMultiMap<K,V> source)
     {
-        Objects.requireNonNull(source,"source must not be null");
+        Require.notNull(source,"source must not be null");
         this.source = new ListValuedMultiMap<>(source);
     }
 

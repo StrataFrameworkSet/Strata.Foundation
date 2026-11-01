@@ -6,8 +6,7 @@ package strata.foundation.core.resource;
 
 import strata.foundation.core.concurrent.CompletedResult;
 import strata.foundation.core.concurrent.CompletionException;
-
-import java.util.Objects;
+import strata.foundation.core.utility.Require;
 
 /**
  * <p>
@@ -35,7 +34,7 @@ class CompletableActivity<R extends ICompletableResource>
     CompletableActivity(R r)
         throws CompletionException
     {
-        Objects.requireNonNull(r,"resource must not be null");
+        Require.notNull(r,"resource must not be null");
         resource = r;
 
         resource

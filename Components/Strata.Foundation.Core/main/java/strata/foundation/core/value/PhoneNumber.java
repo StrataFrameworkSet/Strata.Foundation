@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.ICopyable;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * <p>
@@ -59,7 +59,7 @@ class PhoneNumber
     public
     PhoneNumber(@JsonProperty("phoneNumber") String phoneNumber)
     {
-        Objects.requireNonNull(phoneNumber, "phoneNumber cannot be null");
+        Require.notNull(phoneNumber, "phoneNumber cannot be null");
         validatePhoneNumber(phoneNumber);
         phone = phoneNumber;
     }

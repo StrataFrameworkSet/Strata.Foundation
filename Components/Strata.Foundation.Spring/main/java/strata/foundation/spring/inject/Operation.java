@@ -8,9 +8,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import strata.foundation.core.inject.IInjector;
+import strata.foundation.core.utility.Require;
 
 import java.lang.annotation.Annotation;
-import java.util.Objects;
 
 public
 class Operation
@@ -28,7 +28,7 @@ class Operation
     public
     Operation(IInjector injector)
     {
-        Objects.requireNonNull(injector,"Injector cannot be null");
+        Require.notNull(injector,"Injector cannot be null");
         this.injector = injector;
         OperationContext.beginScope();
     }

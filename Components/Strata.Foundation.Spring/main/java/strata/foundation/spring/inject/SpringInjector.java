@@ -15,6 +15,7 @@ import org.springframework.core.ResolvableType;
 import strata.foundation.core.collection.Pair;
 import strata.foundation.core.inject.IInjector;
 import strata.foundation.core.reflect.TypeLiteral;
+import strata.foundation.core.utility.Require;
 
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -35,7 +36,7 @@ class SpringInjector
     public
     SpringInjector(ApplicationContext context)
     {
-        Objects.requireNonNull(context,"Context cannot be null");
+        Require.notNull(context,"Context cannot be null");
         this.context = context;
     }
 

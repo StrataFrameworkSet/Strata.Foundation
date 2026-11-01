@@ -10,13 +10,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.core.env.PropertyResolver;
 import strata.foundation.core.configuration.IConfiguration;
 import strata.foundation.core.configuration.SecureConfiguration;
+import strata.foundation.core.utility.Require;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -61,7 +61,7 @@ class SpringConfigurationProvider
         this(
             defaultProfile,
             requireProfileProperties,
-            Optional.of(Objects.requireNonNull(resolver,"resolver")));
+            Optional.of(Require.notNull(resolver,"resolver")));
     }
 
     private

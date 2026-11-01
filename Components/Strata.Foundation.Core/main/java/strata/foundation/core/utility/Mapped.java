@@ -4,7 +4,6 @@
 
 package strata.foundation.core.utility;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -44,13 +43,13 @@ class Mapped<I,O>
     public
     Mapped(String method,I input,O output)
     {
-        this.method = Objects.requireNonNull(method,"method");
-        this.input  = Objects.requireNonNull(input,"input");
+        this.method = Require.notNull(method,"method");
+        this.input  = Require.notNull(input,"input");
 
         try
         {
             this.output =
-                Objects.requireNonNull(output,"output");
+                Require.notNull(output,"output");
             this.throwable = null;
         }
         catch (Exception e)
@@ -63,14 +62,14 @@ class Mapped<I,O>
     public
     Mapped(String method,I input,Throwable throwable)
     {
-        this.method = Objects.requireNonNull(method,"method");
-        this.input  = Objects.requireNonNull(input,"input");
+        this.method = Require.notNull(method,"method");
+        this.input  = Require.notNull(input,"input");
         this.output = null;
 
         try
         {
             this.throwable =
-                Objects.requireNonNull(throwable,"throwable");
+                Require.notNull(throwable,"throwable");
         }
         catch (Exception e)
         {

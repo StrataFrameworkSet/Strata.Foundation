@@ -5,6 +5,7 @@
 package strata.foundation.core.concurrent;
 
 import strata.foundation.core.utility.OptionalExtension;
+import strata.foundation.core.utility.Require;
 
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
@@ -53,7 +54,7 @@ class StoppableBlockingQueue<T>
     public
     StoppableBlockingQueue(BlockingQueue<StopContext<T>> queue)
     {
-        Objects.requireNonNull(queue,"queue must not be null");
+        Require.notNull(queue,"queue must not be null");
         implementation = queue;
         stopped = new AtomicBoolean(false);
     }

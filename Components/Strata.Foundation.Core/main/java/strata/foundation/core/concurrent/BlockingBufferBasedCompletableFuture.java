@@ -4,7 +4,8 @@
 
 package strata.foundation.core.concurrent;
 
-import java.util.Objects;
+import strata.foundation.core.utility.Require;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
@@ -39,7 +40,7 @@ class BlockingBufferBasedCompletableFuture<T>
     public
     BlockingBufferBasedCompletableFuture(IBlockingBuffer<T> source)
     {
-        Objects.requireNonNull(source);
+        Require.notNull(source);
         buffer = source;
         future = null;
     }
@@ -47,7 +48,7 @@ class BlockingBufferBasedCompletableFuture<T>
     public
     BlockingBufferBasedCompletableFuture(CompletableFuture<T> f)
     {
-        Objects.requireNonNull(f);
+        Require.notNull(f);
         buffer = null;
         future = f;
     }

@@ -165,7 +165,7 @@ class ExtendedOptional<T>
     public <O extends IOptionable<T>> ExtendedOptional<T>
     or(Supplier<O> supplier)
     {
-        Objects.requireNonNull(supplier, "Supplier must not be null");
+        Require.notNull(supplier, "Supplier must not be null");
 
         return
             optional.isPresent()

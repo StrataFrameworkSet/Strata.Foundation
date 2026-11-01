@@ -7,9 +7,9 @@ package strata.foundation.core.value;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.ICopyable;
+import strata.foundation.core.utility.Require;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * <p>
@@ -51,7 +51,7 @@ class EmailAddress
     public
     EmailAddress(@JsonProperty("emailAddress") String emailAddress)
     {
-        Objects.requireNonNull(emailAddress, "emailAddress cannot be null");
+        Require.notNull(emailAddress, "emailAddress cannot be null");
         validateEmailAddress(emailAddress);
         itsEmail = emailAddress;
     }

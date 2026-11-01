@@ -4,7 +4,8 @@
 
 package strata.foundation.core.mapper;
 
-import java.util.Objects;
+import strata.foundation.core.utility.Require;
+
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -57,8 +58,8 @@ class PredicatedMappingBuilder<I,O>
     public PredicatedMappingBuilder<I,O>
     addMapping(Predicate<I> predicate,Function<I,O> mapper)
     {
-        Objects.requireNonNull(predicate,"predicate cannot be null");
-        Objects.requireNonNull(mapper,"mapper cannot be null");
+        Require.notNull(predicate,"predicate cannot be null");
+        Require.notNull(mapper,"mapper cannot be null");
 
         PredicatedMapping mapping = new PredicatedMapping(key,predicate,mapper);
 

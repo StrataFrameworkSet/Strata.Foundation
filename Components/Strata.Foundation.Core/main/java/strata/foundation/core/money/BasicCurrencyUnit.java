@@ -4,12 +4,13 @@
 
 package strata.foundation.core.money;
 
+import strata.foundation.core.utility.Require;
+
 import javax.money.CurrencyContext;
 import javax.money.CurrencyContextBuilder;
 import javax.money.CurrencyUnit;
 import java.io.Serializable;
 import java.util.Currency;
-import java.util.Objects;
 
 /**
  * <p>
@@ -55,7 +56,7 @@ class BasicCurrencyUnit
         int             numericCode,
         int             defaultFractionDigits)
     {
-        this.currencyCode         = Objects.requireNonNull(currencyCode,"currencyCode must not be null");
+        this.currencyCode         = Require.notNull(currencyCode,"currencyCode must not be null");
         this.numericCode          = numericCode;
         this.defaultFractionDigits = defaultFractionDigits;
         this.context =

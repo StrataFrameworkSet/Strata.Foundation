@@ -4,7 +4,7 @@
 
 package strata.foundation.core.transfer;
 
-import java.util.Objects;
+import strata.foundation.core.utility.Require;
 
 /**
  * <p>
@@ -30,7 +30,7 @@ class BearerToken
     public
     BearerToken(String token)
     {
-        Objects.requireNonNull(token,"Token must not be null");
+        Require.notNull(token,"Token must not be null");
 
         this.token =
             token.startsWith("Bearer ")

@@ -5,6 +5,7 @@
 package strata.foundation.spring.inject;
 
 import jakarta.inject.Named;
+import strata.foundation.core.utility.Require;
 
 import java.lang.annotation.Annotation;
 import java.util.Objects;
@@ -18,7 +19,7 @@ class BasicNamed
     public
     BasicNamed(String value)
     {
-        Objects.requireNonNull(value,"Value cannot be null");
+        Require.notNull(value,"Value cannot be null");
         this.value = value;
     }
 

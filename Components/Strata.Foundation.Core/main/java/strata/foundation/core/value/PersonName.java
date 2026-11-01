@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import strata.foundation.core.utility.HashCodeBuilder;
 import strata.foundation.core.utility.ICopyable;
+import strata.foundation.core.utility.Require;
 import strata.foundation.core.utility.Strings;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -66,9 +66,9 @@ class PersonName
         @JsonProperty("suffix")     String suffix)
     {
         this.title = Strings.trimNonBlankOrNull(title);
-        this.firstName = Objects.requireNonNull(first).trim();
+        this.firstName = Require.notNull(first).trim();
         this.middleName = Strings.trimNonBlankOrNull(middle);
-        this.lastName = Objects.requireNonNull(last).trim();
+        this.lastName = Require.notNull(last).trim();
         this.suffix = Strings.trimNonBlankOrNull(suffix);
     }
 

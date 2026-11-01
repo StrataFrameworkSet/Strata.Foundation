@@ -4,7 +4,6 @@
 
 package strata.foundation.core.utility;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -36,21 +35,21 @@ class Consumed<I>
     public
     Consumed(String method,I input)
     {
-        this.method    = Objects.requireNonNull(method,"method");
-        this.input     = Objects.requireNonNull(input,"input");
+        this.method    = Require.notNull(method,"method");
+        this.input     = Require.notNull(input,"input");
         this.throwable = null;
     }
 
     public
     Consumed(String method,I input,Throwable throwable)
     {
-        this.method = Objects.requireNonNull(method,"method");
-        this.input  = Objects.requireNonNull(input,"input");
+        this.method = Require.notNull(method,"method");
+        this.input  = Require.notNull(input,"input");
 
         try
         {
             this.throwable =
-                Objects.requireNonNull(throwable,"throwable");
+                Require.notNull(throwable,"throwable");
         }
         catch (Exception e)
         {

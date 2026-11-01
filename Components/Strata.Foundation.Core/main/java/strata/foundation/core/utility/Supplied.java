@@ -4,7 +4,6 @@
 
 package strata.foundation.core.utility;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -42,12 +41,12 @@ class Supplied<O>
     public
     Supplied(String method,O output)
     {
-        this.method = Objects.requireNonNull(method,"method");
+        this.method = Require.notNull(method,"method");
 
         try
         {
             this.output =
-                Objects.requireNonNull(output,"output");
+                Require.notNull(output,"output");
             this.throwable = null;
         }
         catch (Exception e)
@@ -60,13 +59,13 @@ class Supplied<O>
     public
     Supplied(String method,Throwable throwable)
     {
-        this.method = Objects.requireNonNull(method,"method");
+        this.method = Require.notNull(method,"method");
         this.output = null;
 
         try
         {
             this.throwable =
-                Objects.requireNonNull(throwable,"throwable");
+                Require.notNull(throwable,"throwable");
         }
         catch (Exception e)
         {

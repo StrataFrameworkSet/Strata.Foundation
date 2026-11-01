@@ -184,7 +184,7 @@ class Expendable<T>
     public <O extends IOptionable<T>> Expendable<T>
     or(Supplier<O> supplier)
     {
-        Objects.requireNonNull(supplier, "Supplier must not be null");
+        Require.notNull(supplier, "Supplier must not be null");
 
         return
             context.isPresent()

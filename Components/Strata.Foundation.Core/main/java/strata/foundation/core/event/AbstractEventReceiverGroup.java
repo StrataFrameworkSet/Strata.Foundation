@@ -4,6 +4,8 @@
 
 package strata.foundation.core.event;
 
+import strata.foundation.core.utility.Require;
+
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -49,7 +51,7 @@ class AbstractEventReceiverGroup<
     public IEventReceiverGroup<E,L,R>
     insert(R receiver)
     {
-        Objects.requireNonNull(receiver,"Receiver cannot be null");
+        Require.notNull(receiver,"Receiver cannot be null");
         receivers.add(receiver);
         return this;
     }
@@ -58,7 +60,7 @@ class AbstractEventReceiverGroup<
     public IEventReceiverGroup<E,L,R>
     remove(R receiver)
     {
-        Objects.requireNonNull(receiver,"Receiver cannot be null");
+        Require.notNull(receiver,"Receiver cannot be null");
         receivers.remove(receiver);
         return this;
     }

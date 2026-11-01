@@ -4,6 +4,8 @@
 
 package strata.foundation.core.value;
 
+import strata.foundation.core.utility.Require;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -98,13 +100,13 @@ class PersonNameBuilder
     getTitle() { return Optional.ofNullable(itsTitle); }
 
     public String
-    getFirstName() { return Objects.requireNonNull(itsFirstName); }
+    getFirstName() { return Require.notNull(itsFirstName); }
 
     public Optional<String>
     getMiddleName() { return Optional.ofNullable(itsMiddleName); }
 
     public String
-    getLastName() { return Objects.requireNonNull(itsLastName); }
+    getLastName() { return Require.notNull(itsLastName); }
 
     public Optional<String>
     getSuffix() { return Optional.ofNullable(itsSuffix); }

@@ -5,8 +5,8 @@
 package strata.foundation.core.event;
 
 import strata.foundation.core.concurrent.IBlockingBuffer;
+import strata.foundation.core.utility.Require;
 
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
@@ -43,7 +43,7 @@ class BlockingBufferBasedCompletableSendResult<E>
     public
     BlockingBufferBasedCompletableSendResult(IBlockingBuffer<ICompletableSendResult<E>> source)
     {
-        Objects.requireNonNull(source);
+        Require.notNull(source);
         buffer = source;
     }
 
