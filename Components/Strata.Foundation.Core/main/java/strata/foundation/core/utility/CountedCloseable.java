@@ -45,6 +45,19 @@ class CountedCloseable<T extends AutoCloseable>
 
     public T
     get() { return closeable; }
+
+    public static <T extends AutoCloseable> CountedCloseable<T>
+    of(T closeable)
+    {
+        return new CountedCloseable<T>(closeable);
+    }
+
+    public static <T extends AutoCloseable> CountedCloseable<T>
+    ofCopy(CountedCloseable<T> closeable)
+    {
+        return (CountedCloseable<T>)closeable.copy();
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////
