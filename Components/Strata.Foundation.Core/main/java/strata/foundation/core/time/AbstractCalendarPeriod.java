@@ -35,6 +35,34 @@ import java.util.regex.Pattern;
 @JsonAutoDetect(
     getterVisibility   = JsonAutoDetect.Visibility.NONE,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+/**
+ * <p>
+ * Base class for calendar periods (years, quarters, months, and weeks)
+ * defined by an {@link ICalendarDefinition}. Implements
+ * {@link java.time.temporal.Temporal}, {@link java.time.temporal.TemporalAdjuster},
+ * and {@link Comparable} so that periods can be compared, queried, and
+ * moved forward or backward by temporal units. Subclasses supply the
+ * period's base unit, index, formatting, and conversion from dates and
+ * temporals.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation (via a concrete subclass)
+ * FiscalYearMonth month = FiscalYearMonth.of(FiscalCalendar.US_FEDERAL,2026,1);
+ *
+ * // Arithmetic
+ * FiscalYearMonth next = month.plus(1,ChronoUnit.MONTHS);
+ * long between = month.until(next,ChronoUnit.MONTHS);
+ *
+ * // Comparison and queries
+ * boolean before = month.isBefore(next);
+ * boolean inPeriod = month.contains(LocalDate.of(2025,10,15));
+ * String text = month.format();
+ * </pre>
+ *
+ * @param <P> concrete calendar period type
+ * @param <C> calendar definition type
+ */
 public abstract
 class AbstractCalendarPeriod<P extends AbstractCalendarPeriod<P,C>,C extends ICalendarDefinition>
     implements Temporal,

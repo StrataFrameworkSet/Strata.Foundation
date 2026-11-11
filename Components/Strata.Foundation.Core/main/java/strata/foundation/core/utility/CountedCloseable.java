@@ -7,6 +7,30 @@ package strata.foundation.core.utility;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * <p>
+ * Reference-counted wrapper around an {@link AutoCloseable} resource.
+ * Each copy shares the underlying resource and increments its reference
+ * count; closing a copy decrements the count, and the underlying resource
+ * is closed only when the last copy is closed. Each instance can be closed
+ * at most once.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * CountedCloseable&lt;Connection&gt; first = CountedCloseable.of(connection);
+ * CountedCloseable&lt;Connection&gt; second = CountedCloseable.ofCopy(first);
+ *
+ * // Usage
+ * Connection shared = second.get();
+ *
+ * // Closing (connection is closed after both are closed)
+ * first.close();
+ * second.close();
+ * </pre>
+ *
+ * @param <T> type of wrapped closeable resource
+ */
 public
 class CountedCloseable<T extends AutoCloseable>
     implements ICopyable,AutoCloseable
@@ -33,10 +57,10 @@ class CountedCloseable<T extends AutoCloseable>
     }
 
     @Override
-    public ICopyable
+    public CountedCloseable<T>
     copy()
     {
-        return new  CountedCloseable<>(this);
+        return new CountedCloseable<>(this);
     }
 
     @Override

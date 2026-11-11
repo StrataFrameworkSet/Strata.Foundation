@@ -26,6 +26,24 @@ import java.time.temporal.TemporalUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable week of a {@link RetailYear}, numbered 1 to 52 or 53.
+ * Formatted and parsed as the year and week with an optional calendar id,
+ * such as {@code 2026-W01[NRF]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * RetailYearWeek week = RetailYearWeek.of(RetailCalendar.NRF,2026,1);
+ * RetailYearWeek parsed = RetailYearWeek.parse("2026-W01[NRF]",RetailCalendar.NRF);
+ *
+ * // Usage
+ * RetailYearMonth month = week.getRetailYearMonth();
+ * LocalDate first = week.getFirstDay();
+ * RetailYearWeek next = week.plus(1,ChronoUnit.WEEKS);
+ * </pre>
+ */
 public final
 class RetailYearWeek
     extends AbstractCalendarPeriod<RetailYearWeek,RetailCalendar>

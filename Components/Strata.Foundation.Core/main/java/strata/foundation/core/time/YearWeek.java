@@ -33,6 +33,29 @@ import java.time.temporal.TemporalUnit;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.time.temporal.ValueRange;
 
+/**
+ * <p>
+ * Immutable ISO-8601 week of a week-based year, such as {@code 2026-W01}.
+ * Weeks start on Monday and week 1 is the first week containing at least
+ * four days of the year, so a week-based year has 52 or 53 weeks.
+ * Implements {@link java.time.temporal.Temporal},
+ * {@link java.time.temporal.TemporalAdjuster}, and {@link ICalendarPeriod}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * YearWeek week = YearWeek.of(2026,1);
+ * YearWeek current = YearWeek.now();
+ * YearWeek parsed = YearWeek.parse("2026-W01");
+ * YearWeek fromDate = YearWeek.from(LocalDate.of(2026,1,1));
+ *
+ * // Usage
+ * LocalDate first = week.getFirstDay();
+ * LocalDate friday = week.atDay(DayOfWeek.FRIDAY);
+ * boolean longYear = week.is53WeekYear();
+ * YearWeek next = week.plus(1,ChronoUnit.WEEKS);
+ * </pre>
+ */
 public final
 class YearWeek
     implements Temporal,

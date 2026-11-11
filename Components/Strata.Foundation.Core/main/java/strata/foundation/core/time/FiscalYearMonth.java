@@ -26,6 +26,25 @@ import java.time.temporal.TemporalUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable month of a {@link FiscalYear}, numbered 1 to 12 from the
+ * start of the fiscal year. Formatted and parsed as the year and month
+ * with an optional calendar id, such as {@code 2026-M01[US_FEDERAL]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * FiscalYearMonth month = FiscalYearMonth.of(FiscalCalendar.US_FEDERAL,2026,1);
+ * FiscalYearMonth parsed = FiscalYearMonth.parse("2026-M01[US_FEDERAL]");
+ *
+ * // Usage
+ * FiscalYear year = month.getFiscalYear();
+ * FiscalYearQuarter quarter = month.getFiscalYearQuarter();
+ * LocalDate first = month.getFirstDay();
+ * FiscalYearMonth next = month.plus(1,ChronoUnit.MONTHS);
+ * </pre>
+ */
 public final
 class FiscalYearMonth
     extends AbstractCalendarPeriod<FiscalYearMonth,FiscalCalendar>

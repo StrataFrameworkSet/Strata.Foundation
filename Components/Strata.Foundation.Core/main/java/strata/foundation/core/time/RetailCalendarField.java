@@ -18,6 +18,25 @@ import java.time.temporal.UnsupportedTemporalTypeException;
 import java.time.temporal.ValueRange;
 import java.util.Objects;
 
+/**
+ * <p>
+ * {@link java.time.temporal.TemporalField} for a {@link RetailCalendar},
+ * such as retail year, quarter of year, month of year, week of year,
+ * week of quarter, week of month, or day of year (see {@link RetailFieldType}).
+ * Instances are obtained from the retail calendar and can be read from or
+ * applied to any date-based temporal.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalField weekOfYear = RetailCalendar.NRF.weekOfYear();
+ *
+ * // Usage
+ * LocalDate date = LocalDate.of(2026,6,15);
+ * int week = date.get(weekOfYear);
+ * LocalDate adjusted = date.with(weekOfYear,1);
+ * </pre>
+ */
 public final
 class RetailCalendarField
     implements TemporalField

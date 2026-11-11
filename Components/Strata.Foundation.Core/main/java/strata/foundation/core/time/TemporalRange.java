@@ -16,6 +16,29 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.UnsupportedTemporalTypeException;
 
+/**
+ * <p>
+ * {@link strata.foundation.core.value.Range} of temporal values ordered by
+ * {@link TemporalComparator}. Provides the {@link java.time.Period} and
+ * {@link java.time.Duration} between the beginning and end of the range
+ * for date-based, time-based, and calendar period temporal types.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalRange&lt;LocalDate&gt; range =
+ *     TemporalRange.ofTemporal(
+ *         LocalDate.of(2026,1,1),
+ *         LocalDate.of(2026,3,31));
+ *
+ * // Usage
+ * LocalDate beginning = range.getBeginning();
+ * Period period = range.getPeriod();
+ * Duration duration = range.getDuration();
+ * </pre>
+ *
+ * @param <T> temporal type
+ */
 public
 class TemporalRange<T extends Temporal>
     extends Range<T>

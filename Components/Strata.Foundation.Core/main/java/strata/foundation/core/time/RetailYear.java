@@ -24,6 +24,26 @@ import java.time.temporal.TemporalUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable year of a {@link RetailCalendar}, containing 52 or 53 whole
+ * weeks and labeled according to the calendar's {@link CalendarYearLabel}.
+ * Formatted and parsed as the year number with an optional calendar id,
+ * such as {@code 2026[NRF]}. When no calendar is given, the default
+ * calendar from {@link RetailCalendarRegistry} is used.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * RetailYear year = RetailYear.of(RetailCalendar.NRF,2026);
+ * RetailYear parsed = RetailYear.parse("2026[NRF]",RetailCalendar.NRF);
+ *
+ * // Usage
+ * LocalDate first = year.getFirstDay();
+ * LocalDate last = year.getLastDay();
+ * RetailYear next = year.plus(1,RetailCalendar.NRF.years());
+ * </pre>
+ */
 public final
 class RetailYear
     extends AbstractCalendarPeriod<RetailYear,RetailCalendar>

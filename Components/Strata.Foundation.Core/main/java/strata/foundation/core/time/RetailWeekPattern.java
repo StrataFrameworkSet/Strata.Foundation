@@ -6,6 +6,20 @@ package strata.foundation.core.time;
 
 import java.time.DateTimeException;
 
+/**
+ * <p>
+ * Number of weeks in each month of a 13-week retail quarter, such as
+ * 4-5-4, 4-4-5, or 5-4-4.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Usage
+ * RetailWeekPattern pattern = RetailWeekPattern.FOUR_FIVE_FOUR;
+ * int weeks = pattern.getWeeksInMonthOfQuarter(2);
+ * int minimum = pattern.getMinimumWeeksInMonth();
+ * int maximum = pattern.getMaximumWeeksInMonth();
+ * </pre>
+ */
 public
 enum RetailWeekPattern
 {

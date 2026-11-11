@@ -7,6 +7,28 @@ package strata.foundation.core.utility;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * <p>
+ * Wrapper around an {@link AutoCloseable} resource that records whether
+ * the resource is owned or borrowed. Closing the wrapper closes the
+ * underlying resource only if it is owned; a borrowed resource is left
+ * open for its owner. The wrapper can be closed at most once.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * OwnedCloseable&lt;Connection&gt; owned = OwnedCloseable.ofOwned(connection);
+ * OwnedCloseable&lt;Connection&gt; borrowed = OwnedCloseable.ofBorrowed(connection);
+ *
+ * // Usage
+ * try (OwnedCloseable&lt;Connection&gt; resource = borrowed)
+ * {
+ *     resource.get().createStatement();
+ * }
+ * </pre>
+ *
+ * @param <T> type of wrapped closeable resource
+ */
 public
 class OwnedCloseable<T extends AutoCloseable>
     implements AutoCloseable

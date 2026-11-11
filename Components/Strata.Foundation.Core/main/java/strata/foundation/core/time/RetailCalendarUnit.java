@@ -16,6 +16,24 @@ import java.time.temporal.TemporalUnit;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.Objects;
 
+/**
+ * <p>
+ * {@link java.time.temporal.TemporalUnit} for a {@link RetailCalendar}
+ * representing retail months, quarters, or years (see {@link RetailUnitType}).
+ * Adding a unit moves a date to the same relative position in the target
+ * retail month, quarter, or year. Instances are obtained from the retail
+ * calendar.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalUnit months = RetailCalendar.NRF.months();
+ *
+ * // Usage
+ * LocalDate later = LocalDate.of(2026,6,15).plus(2,months);
+ * long between = months.between(LocalDate.of(2026,6,15),later);
+ * </pre>
+ */
 public final
 class RetailCalendarUnit
     implements TemporalUnit

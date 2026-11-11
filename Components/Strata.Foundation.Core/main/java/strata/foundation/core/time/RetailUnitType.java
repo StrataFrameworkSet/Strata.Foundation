@@ -7,6 +7,19 @@ package strata.foundation.core.time;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * <p>
+ * Kinds of {@link RetailCalendarUnit} supported by a {@link RetailCalendar},
+ * each with a display name and an estimated duration.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Usage
+ * RetailUnitType type = RetailUnitType.QUARTERS;
+ * String name = type.getDisplayName();
+ * Duration duration = type.getDuration();
+ * </pre>
+ */
 public
 enum RetailUnitType
 {

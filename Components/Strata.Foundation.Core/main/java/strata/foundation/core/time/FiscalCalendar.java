@@ -18,6 +18,33 @@ import java.time.temporal.TemporalUnit;
 import java.time.temporal.ValueRange;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Immutable {@link ICalendarDefinition} for a fiscal calendar whose year
+ * begins on the first day of a configurable start month. A fiscal calendar
+ * defines how fiscal years are labeled ({@link CalendarYearLabel}), how
+ * years divide into quarters and months, and how week-based years and
+ * weeks are formed from a first day of week and a minimal number of days
+ * in the first week. Common calendars are provided as constants, such as
+ * {@code CALENDAR_YEAR}, {@code US_FEDERAL}, and {@code UK_GOVERNMENT}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * FiscalCalendar federal = FiscalCalendar.US_FEDERAL;
+ * FiscalCalendar custom =
+ *     FiscalCalendar.of("CUSTOM",Month.FEBRUARY,CalendarYearLabel.START_YEAR);
+ *
+ * // Queries
+ * LocalDate yearStart = federal.getYearStart(2026);
+ * LocalDate monthStart = federal.getMonthStart(2026,1);
+ * int year = federal.getYear(LocalDate.of(2025,10,15));
+ *
+ * // Fields and units
+ * int month = LocalDate.of(2025,10,15).get(federal.monthOfYear());
+ * TemporalUnit weekBasedYears = federal.weekBasedYears();
+ * </pre>
+ */
 public final
 class FiscalCalendar
     implements ICalendarDefinition
