@@ -17,9 +17,17 @@ class CountedCloseable<T extends AutoCloseable>
 
     public
     CountedCloseable(T closeable)
+        throws NullPointerException
+    {
+        this(closeable,true);
+    }
+
+    public
+    CountedCloseable(T closeable,boolean initializeCount)
+        throws NullPointerException
     {
         this.closeable = Require.notNull(closeable);
-        this.count = new AtomicInteger(1);
+        this.count = new AtomicInteger(initializeCount ? 1 : 0);
         this.closed = new AtomicBoolean(false);
     }
 
@@ -54,6 +62,12 @@ class CountedCloseable<T extends AutoCloseable>
     of(T closeable)
     {
         return new CountedCloseable<T>(closeable);
+    }
+
+    public static <T extends AutoCloseable> CountedCloseable<T>
+    ofZero(T closeable)
+    {
+        return new CountedCloseable<T>(closeable,false);
     }
 
     public static <T extends AutoCloseable> CountedCloseable<T>
