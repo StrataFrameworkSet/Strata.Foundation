@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -51,9 +52,9 @@ class CountedCloseableTest
 
     @Test
     public void
-    testOfRejectsNull()
+    testOfCountedRejectsNull()
     {
-        assertThrows(NullPointerException.class,() -> CountedCloseable.of(null));
+        assertThrows(NullPointerException.class,() -> CountedCloseable.ofCounted(null));
     }
 
     @Test
@@ -129,7 +130,7 @@ class CountedCloseableTest
 
     @Test
     public void
-    testCopyOfCopySharesSameCount() throws Exception
+    testCopyOfCountedCopySharesSameCount() throws Exception
     {
         CountedCloseable<AutoCloseable> copy1 = new CountedCloseable<>(subject);
         CountedCloseable<AutoCloseable> copy2 = new CountedCloseable<>(copy1);
@@ -158,7 +159,7 @@ class CountedCloseableTest
 
     @Test
     public void
-    testRepeatedCloseOfOneHandleDoesNotReleaseOtherReferences() throws Exception
+    testRepeatedCloseOfCountedOneHandleDoesNotReleaseOtherReferences() throws Exception
     {
         CountedCloseable<AutoCloseable> copy = new CountedCloseable<>(subject);
 
@@ -205,7 +206,7 @@ class CountedCloseableTest
 
     @Test
     public void
-    testConcurrentRepeatedCloseOfSameHandleReleasesOneReference() throws Exception
+    testConcurrentRepeatedCloseOfCountedSameHandleReleasesOneReference() throws Exception
     {
         int                             threads = 16;
         ExecutorService                 executor = Executors.newFixedThreadPool(threads);
@@ -337,7 +338,7 @@ class CountedCloseableTest
 
     @Test
     public void
-    testConcurrentCloseOfCopiesClosesResourceExactlyOnce() throws Exception
+    testConcurrentCloseOfCountedCopiesClosesResourceExactlyOnce() throws Exception
     {
         int                                   copies = 1000;
         ExecutorService                       executor = Executors.newFixedThreadPool(16);
@@ -375,6 +376,426 @@ class CountedCloseableTest
         }
 
         assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testOfUncountedRejectsNull()
+    {
+        assertThrows(NullPointerException.class,() -> CountedCloseable.ofUncounted(null));
+    }
+
+    @Test
+    public void
+    testIsCountedForCountedInstanceAndCopy()
+    {
+        assertTrue(subject.isCounted());
+        assertTrue(subject.copy().isCounted());
+    }
+
+    @Test
+    public void
+    testIsCountedForUncountedInstanceAndCopy()
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+
+        assertFalse(uncounted.isCounted());
+        assertTrue(uncounted.copy().isCounted());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedReflectsInstanceNotResource() throws Exception
+    {
+        CountedCloseable<AutoCloseable> copy = subject.copy();
+
+        assertFalse(subject.isReferenceClosed());
+
+        subject.close();
+
+        assertTrue(subject.isReferenceClosed());
+        assertFalse(copy.isReferenceClosed());
+        assertEquals(0,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedWhenResourceCloseThrows()
+    {
+        CountedCloseable<AutoCloseable> failing =
+            CountedCloseable.ofCounted(() -> { throw new Exception("failure"); });
+
+        assertThrows(Exception.class,failing::close);
+        assertTrue(failing.isReferenceClosed());
+    }
+
+    @Test
+    public void
+    testIsResourceClosedForCountedInstanceAndCopy() throws Exception
+    {
+        CountedCloseable<AutoCloseable> copy = subject.copy();
+
+        assertFalse(subject.isResourceClosed());
+        assertFalse(copy.isResourceClosed());
+
+        subject.close();
+
+        assertFalse(subject.isResourceClosed());
+        assertFalse(copy.isResourceClosed());
+
+        copy.close();
+
+        assertTrue(subject.isResourceClosed());
+        assertTrue(copy.isResourceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsResourceClosedForUncountedWithoutCopies() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+
+        assertFalse(uncounted.isResourceClosed());
+
+        uncounted.close();
+
+        assertTrue(uncounted.isResourceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsResourceClosedForUncountedAfterLastCopyClosed() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy = uncounted.copy();
+
+        copy.close();
+
+        assertFalse(uncounted.isReferenceClosed());
+        assertTrue(uncounted.isResourceClosed());
+        assertTrue(copy.isResourceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsResourceClosedWhileUncountedCopiesRemainOpen() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy = uncounted.copy();
+
+        uncounted.close();
+
+        assertTrue(uncounted.isReferenceClosed());
+        assertFalse(uncounted.isResourceClosed());
+        assertFalse(copy.isResourceClosed());
+
+        copy.close();
+
+        assertTrue(uncounted.isResourceClosed());
+    }
+
+    @Test
+    public void
+    testIsResourceClosedWhenResourceCloseThrows()
+    {
+        CountedCloseable<AutoCloseable> failing =
+            CountedCloseable.ofCounted(() -> { throw new Exception("failure"); });
+
+        assertThrows(Exception.class,failing::close);
+        assertTrue(failing.isResourceClosed());
+    }
+
+    @Test
+    public void
+    testCopyOfClosedInstanceThrowsWhileResourceOpen() throws Exception
+    {
+        CountedCloseable<AutoCloseable> copy = subject.copy();
+
+        subject.close();
+
+        assertThrows(IllegalStateException.class,subject::copy);
+        assertThrows(IllegalStateException.class,() -> new CountedCloseable<>(subject));
+        assertThrows(IllegalStateException.class,() -> CountedCloseable.ofCopy(subject));
+        assertDoesNotThrow(() -> copy.copy().close());
+        assertEquals(0,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCopyOfCountedAfterResourceClosedThrows() throws Exception
+    {
+        subject.close();
+
+        assertThrows(IllegalStateException.class,subject::copy);
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCloseUncountedWithoutCopiesClosesResource() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+
+        uncounted.close();
+
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCloseUncountedAfterCopiesClosedDoesNotCloseResourceAgain() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy = uncounted.copy();
+
+        copy.close();
+        assertEquals(1,closeCount.get());
+
+        uncounted.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCloseUncountedWithOpenCopiesDefersToLastCopy() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy1 = uncounted.copy();
+        CountedCloseable<AutoCloseable> copy2 = uncounted.copy();
+
+        uncounted.close();
+        assertEquals(0,closeCount.get());
+
+        copy1.close();
+        assertEquals(0,closeCount.get());
+
+        copy2.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCopyOfUncountedAfterUncountedClosedThrows() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+
+        uncounted.close();
+
+        assertThrows(IllegalStateException.class,uncounted::copy);
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCopyOfUncountedAfterResourceClosedThrows() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+
+        uncounted.copy().close();
+        assertEquals(1,closeCount.get());
+
+        assertThrows(IllegalStateException.class,uncounted::copy);
+        assertThrows(IllegalStateException.class,() -> new CountedCloseable<>(uncounted));
+        assertThrows(IllegalStateException.class,() -> CountedCloseable.ofCopy(uncounted));
+
+        uncounted.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testCopyOfUncountedCopySharesSameCount() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy1 = uncounted.copy();
+        CountedCloseable<AutoCloseable> copy2 = copy1.copy();
+
+        copy1.close();
+        uncounted.close();
+        assertEquals(0,closeCount.get());
+
+        copy2.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testRepeatedCloseOfUncountedIsNoOp() throws Exception
+    {
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        CountedCloseable<AutoCloseable> copy = uncounted.copy();
+
+        uncounted.close();
+        uncounted.close();
+        uncounted.close();
+        assertEquals(0,closeCount.get());
+
+        copy.close();
+        uncounted.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testConcurrentCloseOfUncountedAndLastCopyClosesResourceExactlyOnce() throws Exception
+    {
+        int             iterations = 1000;
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        try
+        {
+            for (int i = 0; i < iterations; i++)
+            {
+                AtomicInteger                   counter = new AtomicInteger(0);
+                CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(counter::incrementAndGet);
+                CountedCloseable<AutoCloseable> copy = uncounted.copy();
+
+                runConcurrently(
+                    executor,
+                    List.of(
+                        () -> { copy.close(); return null; },
+                        () -> { uncounted.close(); return null; }));
+
+                assertEquals(1,counter.get());
+            }
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+    }
+
+    @Test
+    public void
+    testConcurrentCopyAndCloseOfUncountedClosesResourceExactlyOnce() throws Exception
+    {
+        int             iterations = 1000;
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        try
+        {
+            for (int i = 0; i < iterations; i++)
+            {
+                AtomicInteger                   counter = new AtomicInteger(0);
+                CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(counter::incrementAndGet);
+
+                runConcurrently(
+                    executor,
+                    List.of(
+                        () -> { copyAndClose(uncounted); return null; },
+                        () -> { uncounted.close(); return null; }));
+
+                assertEquals(1,counter.get());
+            }
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+    }
+
+    @Test
+    public void
+    testConcurrentCopyAndCloseOfCountedClosesResourceExactlyOnce() throws Exception
+    {
+        int             iterations = 1000;
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        try
+        {
+            for (int i = 0; i < iterations; i++)
+            {
+                AtomicInteger                   counter = new AtomicInteger(0);
+                CountedCloseable<AutoCloseable> counted = CountedCloseable.ofCounted(counter::incrementAndGet);
+
+                runConcurrently(
+                    executor,
+                    List.of(
+                        () -> { copyAndClose(counted); return null; },
+                        () -> { counted.close(); return null; }));
+
+                assertEquals(1,counter.get());
+            }
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+    }
+
+    @Test
+    public void
+    testConcurrentCopyAndCloseFromUncountedClosesResourceExactlyOnce() throws Exception
+    {
+        int                             threads = 16;
+        int                             perThread = 1000;
+        ExecutorService                 executor = Executors.newFixedThreadPool(threads);
+        CountedCloseable<AutoCloseable> uncounted = CountedCloseable.ofUncounted(resource);
+        List<Callable<Void>>            tasks = new ArrayList<>();
+
+        for (int i = 0; i < threads; i++)
+        {
+            tasks.add(
+                () ->
+                {
+                    for (int j = 0; j < perThread; j++)
+                        copyAndClose(uncounted);
+
+                    return null;
+                });
+        }
+
+        try
+        {
+            runConcurrently(executor,tasks);
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+
+        uncounted.close();
+
+        assertTrue(uncounted.isResourceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    private void
+    copyAndClose(CountedCloseable<AutoCloseable> source) throws Exception
+    {
+        try
+        {
+            source.copy().close();
+        }
+        catch (IllegalStateException ignored)
+        {
+        }
+    }
+
+    private void
+    runConcurrently(ExecutorService executor,List<Callable<Void>> tasks) throws Exception
+    {
+        CountDownLatch     start = new CountDownLatch(1);
+        List<Future<Void>> futures = new ArrayList<>();
+
+        for (Callable<Void> task : tasks)
+        {
+            futures.add(
+                executor.submit(
+                    () ->
+                    {
+                        start.await();
+                        return task.call();
+                    }));
+        }
+
+        start.countDown();
+
+        for (Future<Void> future : futures)
+            future.get();
     }
 }
 
