@@ -93,6 +93,36 @@ class OwnedCloseableTest
 
     @Test
     public void
+    testIsOwnerForOwned()
+    {
+        assertTrue(OwnedCloseable.ofOwned(resource).isOwner());
+        assertTrue(new OwnedCloseable<>(resource,true).isOwner());
+    }
+
+    @Test
+    public void
+    testIsOwnerForBorrowed()
+    {
+        assertFalse(OwnedCloseable.ofBorrowed(resource).isOwner());
+        assertFalse(new OwnedCloseable<>(resource,false).isOwner());
+    }
+
+    @Test
+    public void
+    testIsOwnerUnchangedByClose() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> owned = OwnedCloseable.ofOwned(resource);
+        OwnedCloseable<AutoCloseable> borrowed = OwnedCloseable.ofBorrowed(resource);
+
+        owned.close();
+        borrowed.close();
+
+        assertTrue(owned.isOwner());
+        assertFalse(borrowed.isOwner());
+    }
+
+    @Test
+    public void
     testConstructorOwnerRejectsNull()
     {
         assertThrows(NullPointerException.class,() -> new OwnedCloseable<AutoCloseable>(null,true));
@@ -244,6 +274,75 @@ class OwnedCloseableTest
         }
 
         assertEquals(0,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedForOwned() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> subject = OwnedCloseable.ofOwned(resource);
+
+        assertFalse(subject.isReferenceClosed());
+
+        subject.close();
+
+        assertTrue(subject.isReferenceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedForBorrowedReflectsWrapperNotResource() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> subject = OwnedCloseable.ofBorrowed(resource);
+
+        assertFalse(subject.isReferenceClosed());
+
+        subject.close();
+
+        assertTrue(subject.isReferenceClosed());
+        assertEquals(0,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedWhenOwnedResourceCloseThrows()
+    {
+        OwnedCloseable<AutoCloseable> subject =
+            OwnedCloseable.ofOwned(() -> { throw new Exception("failure"); });
+
+        assertThrows(Exception.class,subject::close);
+        assertTrue(subject.isReferenceClosed());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedUnaffectedByResourceClosedElsewhere() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> subject = OwnedCloseable.ofBorrowed(resource);
+
+        subject.get().close();
+
+        assertFalse(subject.isReferenceClosed());
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testIsReferenceClosedAfterTryWithResources() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> owned = OwnedCloseable.ofOwned(resource);
+        OwnedCloseable<AutoCloseable> borrowed = OwnedCloseable.ofBorrowed(resource);
+
+        try (OwnedCloseable<AutoCloseable> o = owned; OwnedCloseable<AutoCloseable> b = borrowed)
+        {
+            assertFalse(o.isReferenceClosed());
+            assertFalse(b.isReferenceClosed());
+        }
+
+        assertTrue(owned.isReferenceClosed());
+        assertTrue(borrowed.isReferenceClosed());
+        assertEquals(1,closeCount.get());
     }
 }
 
