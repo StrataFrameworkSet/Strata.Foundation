@@ -84,12 +84,14 @@ class CountedCloseable<T extends AutoCloseable>
 
     public static <T extends AutoCloseable> CountedCloseable<T>
     of(T closeable)
+        throws NullPointerException
     {
         return new CountedCloseable<T>(closeable);
     }
 
     public static <T extends AutoCloseable> CountedCloseable<T>
     ofZero(T closeable)
+        throws NullPointerException
     {
         return new CountedCloseable<T>(closeable,false);
     }
