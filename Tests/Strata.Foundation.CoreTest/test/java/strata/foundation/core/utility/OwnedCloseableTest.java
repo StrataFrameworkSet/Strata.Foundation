@@ -8,6 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -87,24 +93,30 @@ class OwnedCloseableTest
 
     @Test
     public void
-    testGetReturnsNullWhenWrappingNull()
+    testConstructorOwnerRejectsNull()
     {
-        assertNull(OwnedCloseable.ofOwned(null).get());
-        assertNull(OwnedCloseable.ofBorrowed(null).get());
+        assertThrows(NullPointerException.class,() -> new OwnedCloseable<AutoCloseable>(null,true));
     }
 
     @Test
     public void
-    testCloseOwnedNullDoesNotThrow()
+    testConstructorNonOwnerRejectsNull()
     {
-        assertDoesNotThrow(() -> OwnedCloseable.ofOwned(null).close());
+        assertThrows(NullPointerException.class,() -> new OwnedCloseable<AutoCloseable>(null,false));
     }
 
     @Test
     public void
-    testCloseBorrowedNullDoesNotThrow()
+    testOfOwnedRejectsNull()
     {
-        assertDoesNotThrow(() -> OwnedCloseable.ofBorrowed(null).close());
+        assertThrows(NullPointerException.class,() -> OwnedCloseable.ofOwned(null));
+    }
+
+    @Test
+    public void
+    testOfBorrowedRejectsNull()
+    {
+        assertThrows(NullPointerException.class,() -> OwnedCloseable.ofBorrowed(null));
     }
 
     @Test
@@ -140,6 +152,74 @@ class OwnedCloseableTest
         subject.close();
 
         assertEquals(0,closeCount.get());
+    }
+
+    @Test
+    public void
+    testOwnedRepeatedCloseClosesResourceOnce() throws Exception
+    {
+        OwnedCloseable<AutoCloseable> subject = OwnedCloseable.ofOwned(resource);
+
+        subject.close();
+        subject.close();
+        subject.close();
+
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testOwnedRepeatedCloseAfterExceptionDoesNotRethrow()
+    {
+        AtomicInteger                 attempts = new AtomicInteger(0);
+        OwnedCloseable<AutoCloseable> subject  =
+            OwnedCloseable.ofOwned(
+                () ->
+                {
+                    attempts.incrementAndGet();
+                    throw new Exception("failure");
+                });
+
+        assertThrows(Exception.class,subject::close);
+        assertDoesNotThrow(subject::close);
+        assertEquals(1,attempts.get());
+    }
+
+    @Test
+    public void
+    testConcurrentRepeatedCloseOfOwnedClosesResourceOnce() throws Exception
+    {
+        int                           threads = 16;
+        ExecutorService               executor = Executors.newFixedThreadPool(threads);
+        CountDownLatch                start = new CountDownLatch(1);
+        List<Future<?>>               futures = new ArrayList<>();
+        OwnedCloseable<AutoCloseable> subject = OwnedCloseable.ofOwned(resource);
+
+        try
+        {
+            for (int i = 0; i < threads; i++)
+            {
+                futures.add(
+                    executor.submit(
+                        () ->
+                        {
+                            start.await();
+                            subject.close();
+                            return null;
+                        }));
+            }
+
+            start.countDown();
+
+            for (Future<?> future : futures)
+                future.get();
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+
+        assertEquals(1,closeCount.get());
     }
 
     @Test

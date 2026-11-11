@@ -4,6 +4,7 @@
 
 package strata.foundation.core.utility;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public
@@ -12,12 +13,14 @@ class CountedCloseable<T extends AutoCloseable>
 {
     private final T             closeable;
     private final AtomicInteger count;
+    private final AtomicBoolean closed;
 
     public
     CountedCloseable(T closeable)
     {
-        this.closeable = closeable;
+        this.closeable = Require.notNull(closeable);
         this.count = new AtomicInteger(1);
+        this.closed = new AtomicBoolean(false);
     }
 
     public
@@ -25,6 +28,7 @@ class CountedCloseable<T extends AutoCloseable>
     {
         this.closeable = other.closeable;
         this.count = other.count;
+        this.closed = new AtomicBoolean(false);
         this.count.incrementAndGet();
     }
 
@@ -39,7 +43,7 @@ class CountedCloseable<T extends AutoCloseable>
     public void
     close() throws Exception
     {
-        if (count.decrementAndGet() == 0)
+        if (closed.compareAndSet(false,true) && count.decrementAndGet() == 0)
             closeable.close();
     }
 

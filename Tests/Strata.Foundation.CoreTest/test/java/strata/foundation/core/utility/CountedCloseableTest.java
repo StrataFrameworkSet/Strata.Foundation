@@ -44,6 +44,20 @@ class CountedCloseableTest
 
     @Test
     public void
+    testConstructorRejectsNull()
+    {
+        assertThrows(NullPointerException.class,() -> new CountedCloseable<AutoCloseable>((AutoCloseable)null));
+    }
+
+    @Test
+    public void
+    testOfRejectsNull()
+    {
+        assertThrows(NullPointerException.class,() -> CountedCloseable.of(null));
+    }
+
+    @Test
+    public void
     testCloseSingleReferenceClosesResource() throws Exception
     {
         subject.close();
@@ -138,6 +152,94 @@ class CountedCloseableTest
         subject.close();
         subject.close();
         subject.close();
+
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testRepeatedCloseOfOneHandleDoesNotReleaseOtherReferences() throws Exception
+    {
+        CountedCloseable<AutoCloseable> copy = new CountedCloseable<>(subject);
+
+        subject.close();
+        subject.close();
+        subject.close();
+        assertEquals(0,closeCount.get());
+
+        copy.close();
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testRepeatedCloseAfterResourceClosedIsNoOp() throws Exception
+    {
+        CountedCloseable<AutoCloseable> copy = new CountedCloseable<>(subject);
+
+        subject.close();
+        copy.close();
+        subject.close();
+        copy.close();
+
+        assertEquals(1,closeCount.get());
+    }
+
+    @Test
+    public void
+    testRepeatedCloseAfterResourceExceptionDoesNotRethrow()
+    {
+        AtomicInteger                   attempts = new AtomicInteger(0);
+        CountedCloseable<AutoCloseable> failing  =
+            new CountedCloseable<>(
+                () ->
+                {
+                    attempts.incrementAndGet();
+                    throw new Exception("failure");
+                });
+
+        assertThrows(Exception.class,failing::close);
+        assertDoesNotThrow(failing::close);
+        assertEquals(1,attempts.get());
+    }
+
+    @Test
+    public void
+    testConcurrentRepeatedCloseOfSameHandleReleasesOneReference() throws Exception
+    {
+        int                             threads = 16;
+        ExecutorService                 executor = Executors.newFixedThreadPool(threads);
+        CountDownLatch                  start = new CountDownLatch(1);
+        List<Future<?>>                 futures = new ArrayList<>();
+        CountedCloseable<AutoCloseable> copy = new CountedCloseable<>(subject);
+
+        try
+        {
+            for (int i = 0; i < threads; i++)
+            {
+                futures.add(
+                    executor.submit(
+                        () ->
+                        {
+                            start.await();
+                            subject.close();
+                            return null;
+                        }));
+            }
+
+            start.countDown();
+
+            for (Future<?> future : futures)
+                future.get();
+        }
+        finally
+        {
+            executor.shutdownNow();
+        }
+
+        assertEquals(0,closeCount.get());
+
+        copy.close();
 
         assertEquals(1,closeCount.get());
     }
