@@ -24,6 +24,28 @@ import java.time.temporal.TemporalUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable year of a {@link FiscalCalendar}, labeled according to the
+ * calendar's {@link CalendarYearLabel}. Formatted and parsed as the year
+ * number with an optional calendar id, such as {@code 2026[US_FEDERAL]}.
+ * When no calendar is given, the default calendar from
+ * {@link FiscalCalendarRegistry} is used.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * FiscalYear year = FiscalYear.of(FiscalCalendar.US_FEDERAL,2026);
+ * FiscalYear current = FiscalYear.now();
+ * FiscalYear parsed = FiscalYear.parse("2026[US_FEDERAL]");
+ * FiscalYear fromDate = FiscalYear.from(FiscalCalendar.US_FEDERAL,LocalDate.of(2025,10,15));
+ *
+ * // Usage
+ * LocalDate first = year.getFirstDay();
+ * FiscalYear next = year.plus(1,ChronoUnit.YEARS);
+ * String text = year.format();
+ * </pre>
+ */
 public final
 class FiscalYear
     extends AbstractCalendarPeriod<FiscalYear,FiscalCalendar>

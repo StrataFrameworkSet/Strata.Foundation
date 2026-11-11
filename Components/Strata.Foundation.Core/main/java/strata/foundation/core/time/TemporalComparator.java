@@ -11,6 +11,24 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import java.util.Comparator;
 
+/**
+ * <p>
+ * {@link java.util.Comparator} for temporal values. Values that both
+ * support {@link java.time.temporal.ChronoField#INSTANT_SECONDS} are
+ * compared as instants; otherwise values must be of the same
+ * {@link Comparable} type and are compared by their natural order.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalComparator&lt;LocalDate&gt; comparator = new TemporalComparator&lt;&gt;();
+ *
+ * // Usage
+ * int result = comparator.compare(LocalDate.of(2026,1,1),LocalDate.of(2026,2,1));
+ * </pre>
+ *
+ * @param <T> temporal type
+ */
 public
 class TemporalComparator<T extends Temporal>
     implements Comparator<T>

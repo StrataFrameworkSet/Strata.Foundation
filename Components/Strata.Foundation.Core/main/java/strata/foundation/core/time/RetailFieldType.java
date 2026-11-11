@@ -4,6 +4,18 @@
 
 package strata.foundation.core.time;
 
+/**
+ * <p>
+ * Kinds of {@link RetailCalendarField} supported by a {@link RetailCalendar},
+ * each with a display name.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Usage
+ * RetailFieldType type = RetailFieldType.WEEK_OF_YEAR;
+ * String name = type.getDisplayName();
+ * </pre>
+ */
 public
 enum RetailFieldType
 {

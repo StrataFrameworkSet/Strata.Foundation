@@ -8,6 +8,30 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * <p>
+ * Thread-safe registry of {@link IMapper} instances keyed by destination
+ * and source type. Mappers can be registered, looked up, and unregistered
+ * by their destination/source type pair.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * MapperRegistry registry = MapperRegistry.of();
+ *
+ * // Registration
+ * registry.register(String.class,Integer.class,source -&gt; String.valueOf(source));
+ *
+ * // Lookup
+ * boolean exists = registry.has(String.class,Integer.class);
+ * Optional&lt;IMapper&lt;String,Integer&gt;&gt; mapper =
+ *     registry.get(String.class,Integer.class);
+ *
+ * // Removal
+ * registry.unregister(String.class,Integer.class);
+ * registry.unregisterAll();
+ * </pre>
+ */
 public
 class MapperRegistry
 {

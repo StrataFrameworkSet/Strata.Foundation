@@ -10,6 +10,25 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Immutable, serializable range defined by a beginning and an end value
+ * of the same type, where the beginning is not after the end according to
+ * a {@link java.util.Comparator}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * Range&lt;Integer&gt; range = Range.of(1,10);
+ * Range&lt;String&gt; names = Range.of("a","m",Comparator.naturalOrder());
+ *
+ * // Selectors
+ * Integer beginning = range.getBeginning();
+ * Integer end = range.getEnd();
+ * </pre>
+ *
+ * @param <T> type of range values
+ */
 public
 class Range<T>
     implements Serializable

@@ -25,6 +25,25 @@ import java.time.temporal.ValueRange;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable quarter of a {@link RetailYear}, numbered 1 to 4, containing
+ * 13 weeks (14 for the fourth quarter of a 53-week year).
+ * Formatted and parsed as the year and quarter with an optional calendar
+ * id, such as {@code 2026-Q1[NRF]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * RetailYearQuarter quarter = RetailYearQuarter.of(RetailCalendar.NRF,2026,1);
+ * RetailYearQuarter parsed = RetailYearQuarter.parse("2026-Q1[NRF]",RetailCalendar.NRF);
+ *
+ * // Usage
+ * RetailYear year = quarter.getRetailYear();
+ * LocalDate first = quarter.getFirstDay();
+ * RetailYearQuarter next = quarter.plus(1,RetailCalendar.NRF.quarters());
+ * </pre>
+ */
 public final
 class RetailYearQuarter
     extends AbstractCalendarPeriod<RetailYearQuarter,RetailCalendar>

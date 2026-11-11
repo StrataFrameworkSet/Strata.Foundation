@@ -12,6 +12,25 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * <p>
+ * Static, thread-safe registry of {@link RetailCalendar} instances keyed
+ * by calendar id, with a default calendar used when a retail period is
+ * created without an explicit calendar. {@code NRF} is the initial
+ * default.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Registration
+ * RetailCalendarRegistry.register(customCalendar);
+ * RetailCalendarRegistry.setDefault(customCalendar);
+ *
+ * // Lookup
+ * Optional&lt;RetailCalendar&gt; calendar = RetailCalendarRegistry.get("NRF");
+ * RetailCalendar required = RetailCalendarRegistry.getOrThrow("NRF");
+ * RetailCalendar defaultCalendar = RetailCalendarRegistry.getDefault();
+ * </pre>
+ */
 public final
 class RetailCalendarRegistry
 {

@@ -17,6 +17,23 @@ import java.time.temporal.TemporalUnit;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.Objects;
 
+/**
+ * <p>
+ * {@link java.time.temporal.TemporalUnit} for a {@link FiscalCalendar}
+ * representing week-based years (see {@link FiscalUnitType}). Instances
+ * are obtained from the fiscal calendar and can be used to add to or
+ * measure the distance between date-based temporals.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalUnit unit = FiscalCalendar.US_FEDERAL.weekBasedYears();
+ *
+ * // Usage
+ * LocalDate later = LocalDate.of(2025,10,15).plus(1,unit);
+ * long years = unit.between(LocalDate.of(2025,10,15),later);
+ * </pre>
+ */
 public final
 class FiscalCalendarUnit
     implements TemporalUnit

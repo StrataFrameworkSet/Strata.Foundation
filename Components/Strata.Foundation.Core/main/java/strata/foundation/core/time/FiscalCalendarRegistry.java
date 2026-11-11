@@ -12,6 +12,26 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * <p>
+ * Static, thread-safe registry of {@link FiscalCalendar} instances keyed
+ * by calendar id, with a default calendar used when a fiscal period is
+ * created without an explicit calendar. The standard calendars are
+ * registered automatically and {@code CALENDAR_YEAR} is the initial
+ * default.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Registration
+ * FiscalCalendarRegistry.register(customCalendar);
+ * FiscalCalendarRegistry.setDefault(FiscalCalendar.US_FEDERAL);
+ *
+ * // Lookup
+ * Optional&lt;FiscalCalendar&gt; calendar = FiscalCalendarRegistry.get("US_FEDERAL");
+ * FiscalCalendar required = FiscalCalendarRegistry.getOrThrow("US_FEDERAL");
+ * FiscalCalendar defaultCalendar = FiscalCalendarRegistry.getDefault();
+ * </pre>
+ */
 public final
 class FiscalCalendarRegistry
 {

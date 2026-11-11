@@ -26,6 +26,26 @@ import java.time.temporal.TemporalUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable week of a {@link FiscalCalendar} week-based year. Weeks start
+ * on the calendar's first day of week, and week 1 is the first week
+ * containing at least the calendar's minimal number of days. Formatted
+ * and parsed as the year and week with an optional calendar id, such as
+ * {@code 2026-W01[US_FEDERAL]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * FiscalYearWeek week = FiscalYearWeek.of(FiscalCalendar.US_FEDERAL,2026,1);
+ * FiscalYearWeek parsed = FiscalYearWeek.parse("2026-W01[US_FEDERAL]");
+ *
+ * // Usage
+ * LocalDate first = week.getFirstDay();
+ * LocalDate last = week.getLastDay();
+ * FiscalYearWeek next = week.plus(1,ChronoUnit.WEEKS);
+ * </pre>
+ */
 public final
 class FiscalYearWeek
     extends AbstractCalendarPeriod<FiscalYearWeek,FiscalCalendar>

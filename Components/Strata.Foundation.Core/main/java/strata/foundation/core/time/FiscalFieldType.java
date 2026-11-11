@@ -4,6 +4,18 @@
 
 package strata.foundation.core.time;
 
+/**
+ * <p>
+ * Kinds of {@link FiscalCalendarField} supported by a {@link FiscalCalendar},
+ * each with a display name.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Usage
+ * FiscalFieldType type = FiscalFieldType.MONTH_OF_YEAR;
+ * String name = type.getDisplayName();
+ * </pre>
+ */
 public
 enum FiscalFieldType
 {

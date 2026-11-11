@@ -7,6 +7,28 @@ package strata.foundation.core.utility;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Static precondition checks for validating arguments and state. Each
+ * check either returns the validated value or throws an exception, which
+ * is either a {@link NullPointerException} or an exception produced by a
+ * caller-supplied {@link java.util.function.Supplier}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Null checks
+ * String name = Require.notNull(input,"input is null");
+ * String value = Require.notNull(input,() -&gt; new IllegalStateException("missing"));
+ *
+ * // Defaults
+ * String label = Require.notNullElse(input,"default");
+ * String computed = Require.notNullElseGet(input,() -&gt; compute());
+ *
+ * // Conditions
+ * Require.isTrue(count &gt; 0,() -&gt; new IllegalArgumentException("count must be positive"));
+ * Require.isFalse(list.isEmpty(),() -&gt; new IllegalArgumentException("list is empty"));
+ * </pre>
+ */
 public
 class Require
 {

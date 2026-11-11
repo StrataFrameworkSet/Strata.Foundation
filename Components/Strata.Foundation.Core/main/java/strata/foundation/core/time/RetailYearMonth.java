@@ -25,6 +25,25 @@ import java.time.temporal.ValueRange;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable month of a {@link RetailYear}, numbered 1 to 12, whose length
+ * in weeks follows the calendar's {@link RetailWeekPattern}. Formatted and
+ * parsed as the year and month with an optional calendar id, such as
+ * {@code 2026-M01[NRF]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * RetailYearMonth month = RetailYearMonth.of(RetailCalendar.NRF,2026,1);
+ * RetailYearMonth parsed = RetailYearMonth.parse("2026-M01[NRF]",RetailCalendar.NRF);
+ *
+ * // Usage
+ * RetailYearQuarter quarter = month.getRetailYearQuarter();
+ * LocalDate first = month.getFirstDay();
+ * RetailYearMonth next = month.plus(1,RetailCalendar.NRF.months());
+ * </pre>
+ */
 public final
 class RetailYearMonth
     extends AbstractCalendarPeriod<RetailYearMonth,RetailCalendar>

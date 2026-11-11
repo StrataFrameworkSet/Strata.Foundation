@@ -26,6 +26,24 @@ import java.time.temporal.ValueRange;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>
+ * Immutable quarter of a {@link FiscalYear}, numbered 1 to 4 from the
+ * start of the fiscal year. Formatted and parsed as the year and quarter
+ * with an optional calendar id, such as {@code 2026-Q1[US_FEDERAL]}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * FiscalYearQuarter quarter = FiscalYearQuarter.of(FiscalCalendar.US_FEDERAL,2026,1);
+ * FiscalYearQuarter parsed = FiscalYearQuarter.parse("2026-Q1[US_FEDERAL]");
+ *
+ * // Usage
+ * FiscalYear year = quarter.getFiscalYear();
+ * LocalDate first = quarter.getFirstDay();
+ * FiscalYearQuarter next = quarter.plus(1,IsoFields.QUARTER_YEARS);
+ * </pre>
+ */
 public final
 class FiscalYearQuarter
     extends AbstractCalendarPeriod<FiscalYearQuarter,FiscalCalendar>

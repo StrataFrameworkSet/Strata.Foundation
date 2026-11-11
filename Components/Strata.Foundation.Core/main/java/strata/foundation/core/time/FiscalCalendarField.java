@@ -19,6 +19,25 @@ import java.time.temporal.UnsupportedTemporalTypeException;
 import java.time.temporal.ValueRange;
 import java.util.Objects;
 
+/**
+ * <p>
+ * {@link java.time.temporal.TemporalField} for a {@link FiscalCalendar},
+ * such as fiscal year, quarter of year, month of year, day of year,
+ * week-based year, or week of week-based year (see {@link FiscalFieldType}).
+ * Instances are obtained from the fiscal calendar and can be read from or
+ * applied to any date-based temporal.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * TemporalField quarter = FiscalCalendar.US_FEDERAL.quarterOfYear();
+ *
+ * // Usage
+ * LocalDate date = LocalDate.of(2025,10,15);
+ * int value = date.get(quarter);
+ * LocalDate adjusted = date.with(quarter,2);
+ * </pre>
+ */
 public final
 class FiscalCalendarField
     implements TemporalField

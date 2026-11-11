@@ -19,6 +19,39 @@ import java.time.temporal.TemporalUnit;
 import java.time.temporal.ValueRange;
 import java.util.Objects;
 
+/**
+ * <p>
+ * Immutable {@link ICalendarDefinition} for a week-based retail calendar
+ * (such as the NRF 4-5-4 calendar). A retail year ends on a configured day
+ * of week in or near a configured month ({@link RetailYearEndRule}),
+ * contains 52 or 53 whole weeks, and divides into quarters of 13 weeks
+ * whose months follow a {@link RetailWeekPattern}; in a 53-week year the
+ * extra week is added to the last month of the fourth quarter. Years are
+ * labeled according to a {@link CalendarYearLabel}.
+ * </p><br/>
+ * <b>Examples</b><br/>
+ * <pre>
+ * // Creation
+ * RetailCalendar nrf = RetailCalendar.NRF;
+ * RetailCalendar custom =
+ *     RetailCalendar.of(
+ *         "CUSTOM",
+ *         RetailWeekPattern.FOUR_FOUR_FIVE,
+ *         Month.JANUARY,
+ *         DayOfWeek.SATURDAY,
+ *         RetailYearEndRule.LAST_OF_MONTH,
+ *         CalendarYearLabel.START_YEAR);
+ *
+ * // Queries
+ * LocalDate yearStart = nrf.getYearStart(2026);
+ * int weeks = nrf.lengthOfYearInWeeks(2026);
+ * int year = nrf.getYear(LocalDate.of(2026,6,15));
+ *
+ * // Fields and units
+ * int week = LocalDate.of(2026,6,15).get(nrf.weekOfYear());
+ * TemporalUnit months = nrf.months();
+ * </pre>
+ */
 public final
 class RetailCalendar
     implements ICalendarDefinition
