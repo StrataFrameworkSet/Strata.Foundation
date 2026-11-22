@@ -62,7 +62,6 @@ jib {
     }
     to {
         image = "ghcr.io/johnliebenau/strata/strata-foundation-testsuite"
-        tags = ['1.0.0-SNAPSHOT']
         auth {
             username = "$System.env.REPOSITORY_USER"
             password = "$System.env.REPOSITORY_PASSWORD"
@@ -87,6 +86,7 @@ jib {
         format = 'OCI'
     }
 }
+apply from: rootProject.file('gradle/strata-image.gradle')
 
 task printJibClasspath {
     doLast {
