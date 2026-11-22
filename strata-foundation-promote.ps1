@@ -118,9 +118,15 @@ function Invoke-MavenPromote([string]$ArtifactId, [hashtable]$Auth, [string]$Wor
     New-Item -ItemType Directory -Path $dir | Out-Null
 
     [xml]$meta = Get-Url "$base/$Snapshot/maven-metadata.xml" $Auth.Maven
+    $build = $meta.metadata.versioning.snapshot
+    if (-not $build -or -not $build.timestamp -or -not $build.buildNumber) {
+        Stop-Promote "no current snapshot build listed for $ArtifactId $Snapshot"
+    }
+    $current = "$Version-$($build.timestamp)-$($build.buildNumber)"
+    Write-Info "snapshot build: $current"
     $entries = @($meta.metadata.versioning.snapshotVersions.snapshotVersion |
-        Where-Object { $_.extension -notmatch '\.(sha1|md5|sha256|sha512)$' })
-    if ($entries.Count -eq 0) { Stop-Promote "no snapshot files listed for $ArtifactId $Snapshot" }
+        Where-Object { $_.value -eq $current -and $_.extension -notmatch '\.(sha1|md5|sha256|sha512)$' })
+    if ($entries.Count -eq 0) { Stop-Promote "no files listed for snapshot build $current of $ArtifactId" }
 
     $files = @()
     foreach ($entry in $entries) {

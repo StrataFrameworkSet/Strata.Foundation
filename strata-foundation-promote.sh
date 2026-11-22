@@ -167,7 +167,15 @@ maven_promote() {
 
     meta=$(curl -sS -f -K "$MAVEN_AUTH" "$base/$SNAPSHOT/maven-metadata.xml") \
         || die "GET failed: $base/$SNAPSHOT/maven-metadata.xml"
-    entries=$(printf '%s' "$meta" | tr -d '\r\n' | sed 's#</snapshotVersion>#&\n#g' | grep '<snapshotVersion>' || true)
+    meta=$(printf '%s' "$meta" | tr -d '\r\n')
+    local build ts bn current
+    build=$(printf '%s' "$meta" | sed -n 's#.*<snapshot>\(.*\)</snapshot>.*#\1#p')
+    ts=$(xml_value "$build" timestamp)
+    bn=$(xml_value "$build" buildNumber)
+    [ -n "$ts" ] && [ -n "$bn" ] || die "no current snapshot build listed for $artifact_id $SNAPSHOT"
+    current="$VERSION-$ts-$bn"
+    info "snapshot build: $current"
+    entries=$(printf '%s' "$meta" | sed 's#</snapshotVersion>#&\n#g' | grep '<snapshotVersion>' || true)
     [ -n "$entries" ] || die "no snapshot files listed for $artifact_id $SNAPSHOT"
 
     FILES=()
@@ -176,6 +184,7 @@ maven_promote() {
         ext=$(xml_value "$entry" extension)
         cls=$(xml_value "$entry" classifier)
         val=$(xml_value "$entry" value)
+        [ "$val" = "$current" ] || continue
         case "$ext" in *.sha1|*.md5|*.sha256|*.sha512) continue ;; esac
         classifier=""
         [ -n "$cls" ] && classifier="-$cls"
@@ -195,7 +204,7 @@ maven_promote() {
         info "staged $target  <=  $source"
         found=$((found + 1))
     done <<< "$entries"
-    [ "$found" -gt 0 ] || die "no snapshot files listed for $artifact_id $SNAPSHOT"
+    [ "$found" -gt 0 ] || die "no files listed for snapshot build $current of $artifact_id"
 
     local release_pom="$base/$VERSION/$artifact_id-$VERSION.pom" existing pom_status id url
     existing=$(find_package_version_url "$artifact_id") || existing=""
