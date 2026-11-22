@@ -1,5 +1,4 @@
 name: Build-Pipeline
-run-name: (${{ github.head_ref || github.ref_name }})-pipeline
 on:
   push:
     branches: [ release-1.0 ]
