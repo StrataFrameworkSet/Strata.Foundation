@@ -10,7 +10,7 @@
     "dev-init": "yarn --dev install",
     "build-init": "yarn run dev-init && yarn run clean && yarn install && yarn upgrade --pattern strata",
     "build": "yarn run build-init && tsc && cd main/typescript && yarn run increment-snapshot && cd ../.. && yarn run copy-package && cd build/dist && yarn pack",
-    "publish-package": "yarn run build && cd build/dist && yarn publish --non-interactive --tag 0.0.0-snapshot",
+    "publish-package": "yarn run build && cd build/dist && yarn publish --non-interactive --tag snapshot-1.1.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
