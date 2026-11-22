@@ -24,7 +24,7 @@ Promotes published <version>-SNAPSHOT builds of Strata Foundation to release <ve
     An existing <version> is deleted (after confirmation) and republished.
 
   npm (https://registry.npmjs.org/):
-    Takes strata.foundation.core from dist-tag <version>-snapshot (<version>-snapshot.<timestamp>),
+    Takes strata.foundation.core from dist-tag snapshot-<version> (<version>-snapshot.<timestamp>),
     publishes it as <version>-release.<timestamp>, and points dist-tags release-<version>
     and latest at it. If that release version already exists, only the tags are moved.
 
@@ -249,7 +249,7 @@ npm_version_exists() {
 
 npm_promote() {
     local registry="$NPM_REGISTRY"
-    local tag="$VERSION-snapshot"
+    local tag="snapshot-$VERSION"
     local release_tag="release-$VERSION"
     local source stamp release dir tarball manifest staged existing dist_tag
     step "npm $NPM_PACKAGE $tag -> $release_tag ($registry)"

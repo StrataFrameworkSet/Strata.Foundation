@@ -193,7 +193,7 @@ function Test-NpmVersion([string]$Ver, [string]$Registry) {
 
 function Invoke-NpmPromote([string]$WorkDir) {
     $registry   = $NpmRegistry
-    $tag        = "$Version-snapshot"
+    $tag        = "snapshot-$Version"
     $releaseTag = "release-$Version"
     Write-Step "npm $NpmPackage $tag -> $releaseTag ($registry)"
 
@@ -280,7 +280,7 @@ Promotes published <version>-SNAPSHOT builds of Strata Foundation to release <ve
     An existing <version> is deleted (after confirmation) and republished.
 
   npm ($NpmRegistry):
-    Takes $NpmPackage from dist-tag <version>-snapshot (<version>-snapshot.<timestamp>),
+    Takes $NpmPackage from dist-tag snapshot-<version> (<version>-snapshot.<timestamp>),
     publishes it as <version>-release.<timestamp>, and points dist-tags release-<version>
     and latest at it. If that release version already exists, only the tags are moved.
 
