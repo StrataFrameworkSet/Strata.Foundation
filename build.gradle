@@ -31,7 +31,7 @@ ext {
 
     major = "1"
     minor = ".0"
-    patch = "-SNAPSHOT"
+    patch = ".0-SNAPSHOT"
 }
 
 group 'strata.foundation'
