@@ -2,7 +2,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/version-1.0--SNAPSHOT-orange.svg)]()
+[![Release](https://img.shields.io/badge/release-1.0.0-blue.svg)]()
+[![Snapshot](https://img.shields.io/badge/snapshot-1.1.0--SNAPSHOT-orange.svg)]()
 
 Foundational components and utilities for building robust, scalable enterprise applications in the Strata Framework Set. This library provides core abstractions, dependency injection capabilities, event handling, and integration support for Spring Framework and Apache Kafka.
 
@@ -114,17 +115,19 @@ Chronicle Map/Queue integration component for high-performance persistent data s
 
 ## Installation
 
+The current release is **1.0.0**. To try the latest development build, use `1.1.0-SNAPSHOT` instead (see [Versioning](#versioning)).
+
 ### Gradle
 
 Add the following dependencies to your `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'strata.foundation:strata-foundation-core:1.0-SNAPSHOT'
-    implementation 'strata.foundation:strata-foundation-guice:1.0-SNAPSHOT'
-    implementation 'strata.foundation:strata-foundation-spring:1.0-SNAPSHOT'
-    implementation 'strata.foundation:strata-foundation-kafka:1.0-SNAPSHOT'
-    implementation 'strata.foundation:strata-foundation-chronicle:1.0-SNAPSHOT'
+    implementation 'strata.foundation:strata-foundation-core:1.0.0'
+    implementation 'strata.foundation:strata-foundation-guice:1.0.0'
+    implementation 'strata.foundation:strata-foundation-spring:1.0.0'
+    implementation 'strata.foundation:strata-foundation-kafka:1.0.0'
+    implementation 'strata.foundation:strata-foundation-chronicle:1.0.0'
 }
 ```
 
@@ -137,27 +140,27 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>strata.foundation</groupId>
         <artifactId>strata-foundation-core</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>strata.foundation</groupId>
         <artifactId>strata-foundation-guice</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>strata.foundation</groupId>
         <artifactId>strata-foundation-spring</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>strata.foundation</groupId>
         <artifactId>strata-foundation-kafka</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>strata.foundation</groupId>
         <artifactId>strata-foundation-chronicle</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
 </dependencies>
 ```
@@ -178,6 +181,33 @@ repositories {
     }
 }
 ```
+
+GitHub Packages requires authentication even for downloads; use a personal access token with the `read:packages` scope.
+
+### TypeScript (npm / yarn)
+
+The TypeScript package `strata.foundation.core` is published to npmjs.org. Install it by dist-tag:
+
+```bash
+# Current release (1.0.0)
+npm install strata.foundation.core@release-1.0.0
+
+# Latest development snapshot (1.1.0)
+npm install strata.foundation.core@snapshot-1.1.0
+```
+
+## Versioning
+
+| | Development snapshot | Release |
+|---|---|---|
+| Maven jars | `X.Y.0-SNAPSHOT` (e.g. `1.1.0-SNAPSHOT`) | `X.Y.0` (e.g. `1.0.0`) |
+| npm package | `X.Y.0-snapshot.<timestamp>`, dist-tag `snapshot-X.Y.0` | `X.Y.0-release.<timestamp>`, dist-tags `release-X.Y.0` and `latest` |
+
+- `development` publishes the next minor version as snapshots.
+- A release is made on a `release-X.Y` branch:
+  - its last snapshot is promoted to the release version with `strata-foundation-promote.ps1` / `strata-foundation-promote.sh`
+  - `development` then moves on to the next minor version
+- The TestSuite Docker image is only used by the build pipeline's test stages. Each CI build tags it `<version>-<UTC yyyyMMddHHmmss>`, and it is not released.
 
 ## Usage
 
@@ -313,4 +343,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Project Status
 
-This project is under active development. The current version is 1.0-SNAPSHOT and is not yet considered stable for production use.
+The current release is **1.0.0**. Development continues on `development` as `1.1.0-SNAPSHOT`.
