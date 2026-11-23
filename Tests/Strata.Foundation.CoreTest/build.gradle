@@ -18,7 +18,7 @@ import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 apply plugin: "com.github.davidmc24.gradle.plugin.avro-base"
 
 group 'strata.foundation'
-version '1.0-SNAPSHOT'
+version "$major$minor$patch"
 
 configurations {
     avroSchema
