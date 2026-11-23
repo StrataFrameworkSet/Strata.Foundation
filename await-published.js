@@ -25,13 +25,29 @@ function fail(message) {
     process.exit(1);
 }
 
-async function fetchDistTag(url, accept, tag) {
+async function fetchDistTag(url, accept, tag, version) {
     const response = await fetch(url, { headers: { accept, 'cache-control': 'no-cache' } });
-    if (response.status === 404) return null;
+    if (response.status === 404) return { current: null, tarball: null };
     if (!response.ok) throw new Error(url + ' returned HTTP ' + response.status);
     const document = await response.json();
-    return (document['dist-tags'] || {})[tag] || null;
+    const entry = (document.versions || {})[version];
+    return {
+        current: (document['dist-tags'] || {})[tag] || null,
+        tarball: entry && entry.dist ? entry.dist.tarball || null : null
+    };
 }
+
+async function tarballStatus(url) {
+    try {
+        const response = await fetch(url, { headers: { 'cache-control': 'no-cache' } });
+        await response.arrayBuffer();
+        return response.status;
+    } catch (error) {
+        return 'error(' + error.message + ')';
+    }
+}
+
+const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 
 async function main() {
     const options = parseArguments(process.argv.slice(2));
@@ -53,24 +69,27 @@ async function main() {
     const deadline = Date.now() + options.timeout * 1000;
     const started = Date.now();
 
+    const elapsed = () => Math.round((Date.now() - started) / 1000);
+
     console.log('await-published: waiting for ' + manifest.name + '@' + tag + ' -> ' + manifest.version);
+    let tarball = null;
     while (true) {
         const seen = [];
         let supersededBy = null;
         for (const [name, accept] of views) {
             try {
-                const current = await fetchDistTag(url, accept, tag);
-                seen.push(name + '=' + current);
-                const stamp = stampOf(current);
-                if (stamp !== null && stamp > ownStamp) supersededBy = current;
+                const result = await fetchDistTag(url, accept, tag, manifest.version);
+                seen.push(name + '=' + result.current);
+                tarball = tarball || result.tarball;
+                const stamp = stampOf(result.current);
+                if (stamp !== null && stamp > ownStamp) supersededBy = result.current;
             } catch (error) {
                 seen.push(name + '=error(' + error.message + ')');
             }
         }
-        const elapsed = Math.round((Date.now() - started) / 1000);
-        if (seen.every(entry => entry.endsWith('=' + manifest.version))) {
-            console.log('await-published: ' + manifest.name + '@' + manifest.version + ' visible as ' + tag + ' after ' + elapsed + 's');
-            return;
+        if (seen.every(entry => entry.endsWith('=' + manifest.version)) && tarball) {
+            console.log('await-published: ' + manifest.name + '@' + manifest.version + ' visible as ' + tag + ' after ' + elapsed() + 's');
+            break;
         }
         if (supersededBy) {
             fail(manifest.name + '@' + tag + ' already points at newer ' + supersededBy + ' than ' + manifest.version +
@@ -79,8 +98,21 @@ async function main() {
         if (Date.now() > deadline) {
             fail(manifest.name + '@' + tag + ' did not resolve to ' + manifest.version + ' within ' + options.timeout + 's (' + seen.join(', ') + ')');
         }
-        console.log('await-published: ' + elapsed + 's ' + seen.join(', '));
-        await new Promise(resolve => setTimeout(resolve, 10000));
+        console.log('await-published: ' + elapsed() + 's ' + seen.join(', '));
+        await sleep(10000);
+    }
+
+    while (true) {
+        const status = await tarballStatus(tarball);
+        if (status === 200) {
+            console.log('await-published: ' + tarball + ' downloadable after ' + elapsed() + 's');
+            return;
+        }
+        if (Date.now() > deadline) {
+            fail(tarball + ' still returns ' + status + ' after ' + options.timeout + 's');
+        }
+        console.log('await-published: ' + elapsed() + 's tarball=' + status);
+        await sleep(10000);
     }
 }
 
