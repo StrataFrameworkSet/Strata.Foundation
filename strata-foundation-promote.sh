@@ -157,6 +157,16 @@ write_checksums() {
     done
 }
 
+verify_download() {
+    local path="$1" ext="$2" ok=true
+    case "$ext" in
+        jar)    [ "$(head -c 2 "$path")" = "PK" ] || ok=false ;;
+        pom)    grep -q '<project' "$path" || ok=false ;;
+        module) [ "$(tr -d ' \t\r\n' < "$path" | head -c 1)" = "{" ] || ok=false ;;
+    esac
+    $ok || die "$(basename "$path") is not a valid .$ext file (starts with: $(head -c 60 "$path" | tr -d '\r\n'))"
+}
+
 maven_promote() {
     local artifact_id="$1"
     local base="$MAVEN_REPO/$GROUP_PATH/$artifact_id"
@@ -165,7 +175,7 @@ maven_promote() {
     step "Maven $GROUP_ID:$artifact_id $SNAPSHOT -> $VERSION"
     mkdir -p "$dir"
 
-    meta=$(curl -sS -f -K "$MAVEN_AUTH" "$base/$SNAPSHOT/maven-metadata.xml") \
+    meta=$(curl -sS -f -L -K "$MAVEN_AUTH" "$base/$SNAPSHOT/maven-metadata.xml") \
         || die "GET failed: $base/$SNAPSHOT/maven-metadata.xml"
     meta=$(printf '%s' "$meta" | tr -d '\r\n')
     local build ts bn current
@@ -191,7 +201,8 @@ maven_promote() {
         source="$artifact_id-$val$classifier.$ext"
         target="$artifact_id-$VERSION$classifier.$ext"
         path="$dir/$target"
-        curl -sS -f -K "$MAVEN_AUTH" -o "$path" "$base/$SNAPSHOT/$source" || die "download failed: $base/$SNAPSHOT/$source"
+        curl -sS -f -L -K "$MAVEN_AUTH" -o "$path" "$base/$SNAPSHOT/$source" || die "download failed: $base/$SNAPSHOT/$source"
+        verify_download "$path" "$ext"
         if [ "$ext" = "pom" ] || [ "$ext" = "module" ]; then
             sed -i "s/$(regex_escape "$val")/$VERSION/g; s/$(regex_escape "$SNAPSHOT")/$VERSION/g" "$path"
             if grep -qF -e "$SNAPSHOT" -e "$val" "$path"; then

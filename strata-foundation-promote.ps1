@@ -49,14 +49,29 @@ function Get-HttpStatus([string]$Url, [string]$AuthConfig) {
 }
 
 function Get-Url([string]$Url, [string]$AuthConfig) {
-    $output = & curl.exe -sS -f -K $AuthConfig $Url
+    $output = & curl.exe -sS -f -L -K $AuthConfig $Url
     if ($LASTEXITCODE -ne 0) { Stop-Promote "GET failed: $Url" }
     return ($output -join "`n")
 }
 
 function Save-Url([string]$Url, [string]$Destination, [string]$AuthConfig) {
-    & curl.exe -sS -f -K $AuthConfig -o $Destination $Url
+    & curl.exe -sS -f -L -K $AuthConfig -o $Destination $Url
     if ($LASTEXITCODE -ne 0) { Stop-Promote "download failed: $Url" }
+}
+
+function Test-Download([string]$Path, [string]$Extension) {
+    $bytes = [System.IO.File]::ReadAllBytes($Path)
+    $text  = [System.Text.Encoding]::UTF8.GetString($bytes)
+    $ok = switch ($Extension) {
+        'jar'    { $bytes.Length -ge 2 -and $bytes[0] -eq 0x50 -and $bytes[1] -eq 0x4B }
+        'pom'    { $text.Contains('<project') }
+        'module' { $text.TrimStart().StartsWith('{') }
+        default  { $true }
+    }
+    if (-not $ok) {
+        $start = $text.Substring(0, [Math]::Min(60, $text.Length)) -replace '[\r\n]', ''
+        Stop-Promote "$(Split-Path -Leaf $Path) is not a valid .$Extension file (starts with: $start)"
+    }
 }
 
 function Send-File([string]$Path, [string]$Url, [string]$AuthConfig) {
@@ -135,6 +150,7 @@ function Invoke-MavenPromote([string]$ArtifactId, [hashtable]$Auth, [string]$Wor
         $target = "$ArtifactId-$Version$classifier.$($entry.extension)"
         $path   = Join-Path $dir $target
         Save-Url "$base/$Snapshot/$source" $path $Auth.Maven
+        Test-Download $path $entry.extension
         if ($entry.extension -in @('pom', 'module')) {
             $text = [System.IO.File]::ReadAllText($path)
             $text = $text.Replace($entry.value, $Version).Replace($Snapshot, $Version)
