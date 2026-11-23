@@ -104,11 +104,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
 
-      - name: Build Typescript with Yarn
+      - name: Build, Publish (snapshot) and Test Typescript with Yarn
+        if: github.event_name != 'pull_request'
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{secrets.NODE_AUTH_TOKEN}}
           yarn config set registry https://registry.npmjs.org/
-#          yarn run test
+          yarn run test
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
 
