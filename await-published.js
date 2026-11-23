@@ -40,6 +40,11 @@ async function main() {
     if (!manifest.name || !match) fail(options.manifest + ' does not hold a <x.y.z>-snapshot.<timestamp> version');
 
     const tag = 'snapshot-' + match[1];
+    const stampOf = version => {
+        const found = new RegExp('^' + match[1].replace(/\./g, '\\.') + '-snapshot\\.(\\d+)$').exec(version || '');
+        return found ? BigInt(found[1]) : null;
+    };
+    const ownStamp = stampOf(manifest.version);
     const url = options.registry + manifest.name.replace('/', '%2f');
     const views = [
         ['install', 'application/vnd.npm.install-v1+json'],
@@ -51,9 +56,13 @@ async function main() {
     console.log('await-published: waiting for ' + manifest.name + '@' + tag + ' -> ' + manifest.version);
     while (true) {
         const seen = [];
+        let supersededBy = null;
         for (const [name, accept] of views) {
             try {
-                seen.push(name + '=' + (await fetchDistTag(url, accept, tag)));
+                const current = await fetchDistTag(url, accept, tag);
+                seen.push(name + '=' + current);
+                const stamp = stampOf(current);
+                if (stamp !== null && stamp > ownStamp) supersededBy = current;
             } catch (error) {
                 seen.push(name + '=error(' + error.message + ')');
             }
@@ -62,6 +71,10 @@ async function main() {
         if (seen.every(entry => entry.endsWith('=' + manifest.version))) {
             console.log('await-published: ' + manifest.name + '@' + manifest.version + ' visible as ' + tag + ' after ' + elapsed + 's');
             return;
+        }
+        if (supersededBy) {
+            fail(manifest.name + '@' + tag + ' already points at newer ' + supersededBy + ' than ' + manifest.version +
+                '; superseded by a concurrent publish to the same dist-tag');
         }
         if (Date.now() > deadline) {
             fail(manifest.name + '@' + tag + ' did not resolve to ' + manifest.version + ' within ' + options.timeout + 's (' + seen.join(', ') + ')');
