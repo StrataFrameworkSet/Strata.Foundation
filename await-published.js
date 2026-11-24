@@ -102,18 +102,24 @@ async function main() {
         await sleep(10000);
     }
 
-    while (true) {
-        const status = await tarballStatus(tarball);
-        if (status === 200) {
-            console.log('await-published: ' + tarball + ' downloadable after ' + elapsed() + 's');
-            return;
+    // Probe the origin with a unique query string so a 404 is never cached under the URL yarn fetches;
+    // then request the plain URL, which stores a 200 at the CDN before yarn asks for it.
+    const phases = [
+        ['origin', () => tarball + (tarball.includes('?') ? '&' : '?') + 'probe=' + Date.now()],
+        ['cdn', () => tarball]
+    ];
+    for (const [phase, target] of phases) {
+        while (true) {
+            const status = await tarballStatus(target());
+            if (status === 200) break;
+            if (Date.now() > deadline) {
+                fail(tarball + ' still returns ' + status + ' (' + phase + ') after ' + options.timeout + 's');
+            }
+            console.log('await-published: ' + elapsed() + 's tarball(' + phase + ')=' + status);
+            await sleep(10000);
         }
-        if (Date.now() > deadline) {
-            fail(tarball + ' still returns ' + status + ' after ' + options.timeout + 's');
-        }
-        console.log('await-published: ' + elapsed() + 's tarball=' + status);
-        await sleep(10000);
     }
+    console.log('await-published: ' + tarball + ' downloadable after ' + elapsed() + 's');
 }
 
 main().catch(error => fail(error.stack || String(error)));
